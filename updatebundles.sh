@@ -1,3 +1,3 @@
 #! /bin/bash
-git submodule foreach git checkout master
-git submodule foreach git pull --no-rebase origin master
+git submodule foreach git submodule init
+git submodule foreach git submodule update

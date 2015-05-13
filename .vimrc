@@ -1,4 +1,5 @@
 filetype off
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -12,6 +13,7 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+"GRAPHICAL UNDO TREE
 map <leader>g :GundoToggle<CR>
 
 

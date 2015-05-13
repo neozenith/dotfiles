@@ -18,6 +18,17 @@ ln -s neozenith-vim/.vim ~/.vim
 . ~/neozenith-vim/updatebundles.sh
 ```
 
+## Adding Plugins
+```
+cd ~/neozenith-vim
+git submodule add https://github.com/developer/repository.git .vim/bundle/repository
+git submodule init
+git submodule update
+```
+Then you should update the `addbundles.sh` to include the `git submodule add` command you used above just in case a clean up is required. I know the `.gitmodules` should perform this task but redundancy is good.
+
+
 ## Credits
 Tim Pope https://github.com/tpope
+
 Huge thanks for everything you have done for the VIM community.
