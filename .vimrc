@@ -53,7 +53,7 @@ let g:lightline = {
   \ 'colorsheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode' ],
-  \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+  \             [ 'fugitive', 'readonly', 'relativepath', 'filename', 'modified' ] ]
   \ },
   \ 'component_function': {
   \   'fugitive': 'FugitiveCheck'
