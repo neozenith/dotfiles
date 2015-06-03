@@ -14,6 +14,7 @@ call pathogen#helptags()
 " ---------------------------
 set t_Co=256
 set background=dark
+set mouse=nicr               " Set mouse scroll events to nav cursor
 syntax on                    " syntax highlighing
 filetype on                  " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
