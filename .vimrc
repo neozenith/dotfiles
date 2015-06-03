@@ -23,8 +23,9 @@ set colorcolumn=80        " Highlight 80 character limit
 set scrolloff=999         " Keep the cursor centered in the screen
 set showmatch             " Highlight matching braces
 " set list                  " Show invisible characters
-" set listchars=tab:›\ ,eol:¬,trail:⋅ "Set the characters for the invisibles
-" ---------------------------
+" Set the characters for the invisibles
+" set listchars=eol:$,tab:~>,trail:~,extends:>,precedes:<
+ " ---------------------------
 " CODE FOLDING - Use :za in a method to toggle indent fold level
 set foldmethod=indent
 set foldlevel=99
