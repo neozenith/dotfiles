@@ -25,7 +25,11 @@ set showmatch             " Highlight matching braces
 " set list                  " Show invisible characters
 " Set the characters for the invisibles
 " set listchars=eol:$,tab:~>,trail:~,extends:>,precedes:<
- " ---------------------------
+:set ignorecase " case insensitive
+:set smartcase  " use case if any caps used 
+:set incsearch  " show match as search proceeds
+:set hlsearch   " search highlighting
+" ---------------------------
 " CODE FOLDING - Use :za in a method to toggle indent fold level
 set foldmethod=indent
 set foldlevel=99
