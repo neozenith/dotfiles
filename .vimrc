@@ -52,10 +52,17 @@ let g:lightline = {
   \ 'colorsheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode' ],
-  \             [ 'fugitive', 'readonly', 'relativepath', 'filename', 'modified' ] ]
+  \             [ 'fugitive', 'readonly', 'relativepath', 'filename', 'modified' ] ],
+  \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
   \ },
   \ 'component_function': {
   \   'fugitive': 'FugitiveCheck'
+  \ },
+  \ 'component_expand': {
+  \   'syntastic': 'SyntasticStatuslineFlag',
+  \ },
+  \ 'component_type': {
+  \   'syntastic': 'error',
   \ },
   \ 'separator': { 'left': "\u25B6", 'right': "\u25C0" },
   \ 'subseparator': { 'left': "|", 'right': "|" }
@@ -64,6 +71,25 @@ let g:lightline = {
 fun! FugitiveCheck()
     return exists('*fugitive#head') ? fugitive#head() : ''
 endfun
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp,*.py,*.rb,*.js,*.css call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
+" ---------------------------
+" SYNTASTIC
+" ---------------------------
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
+let g:syntastic_ruby_checkers = ['rubocop']
 
 " ---------------------------
 " NAVIGATION CONFIGURATION

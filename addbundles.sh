@@ -14,6 +14,8 @@ git submodule add https://github.com/tpope/vim-git.git .vim/bundle/git
 
 # STATUS LINE
 git submodule add https://github.com/itchyny/lightline.vim .vim/bundle/lightline.vim
+#SYNTAX CHECKER
+git submodule add https://github.com/scrooloose/syntastic.git .vim/bundle/syntastic
 
 # CODE COMPLETION
 git submodule add https://github.com/tpope/vim-surround.git .vim/bundle/surround
