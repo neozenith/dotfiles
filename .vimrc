@@ -52,7 +52,7 @@ let g:lightline = {
   \ 'colorsheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode' ],
-  \             [ 'fugitive', 'readonly', 'relativepath', 'filename', 'modified' ] ],
+  \             [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
   \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
   \ },
   \ 'component_function': {
@@ -84,12 +84,14 @@ endfunction
 " ---------------------------
 " SYNTASTIC
 " ---------------------------
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 let g:syntastic_ruby_checkers = ['rubocop']
+map <c-f> :lclose<CR>
 
 " ---------------------------
 " NAVIGATION CONFIGURATION
