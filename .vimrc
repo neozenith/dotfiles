@@ -9,6 +9,10 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
+" TODO: 
+" [ ] https://github.com/junegunn/vim-plug
+" [ ] https://github.com/vitalk/vim-simple-todo
+
 " ---------------------------
 " BASIC CONFIGURATION
 " ---------------------------
