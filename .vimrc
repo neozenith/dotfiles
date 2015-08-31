@@ -12,6 +12,7 @@ call pathogen#helptags()
 " TODO: 
 " [ ] https://github.com/junegunn/vim-plug
 " [ ] https://github.com/vitalk/vim-simple-todo
+" [ ] https://github.com/vim-scripts/TaskList.vim
 
 " ---------------------------
 " BASIC CONFIGURATION
