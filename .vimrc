@@ -53,13 +53,10 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode' ],
   \             [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
-  \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
   \ },
   \ 'component_function': {
   \   'fugitive': 'FugitiveCheck'
-  \ },
-  \ 'component_expand': {
-  \   'syntastic': 'SyntasticStatuslineFlag',
   \ },
   \ 'component_type': {
   \   'syntastic': 'error',
@@ -78,7 +75,7 @@ augroup AutoSyntastic
 augroup END
 function! s:syntastic()
   SyntasticCheck
-  call lightline#update()
+  "call lightline#update()
 endfunction
 
 " ---------------------------
@@ -88,10 +85,10 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_javascript_checkers = ['jshint', 'jslint', 'jscs']
+let g:syntastic_javascript_checkers = ['jshint', 'jslint']
 map <c-f> :lclose<CR>
 
 " ---------------------------
@@ -103,28 +100,14 @@ map <c-f> :lclose<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
 " ---------------------------
-" WINDOW SPLITTING - Use Ctrl+{h,j,k,l} to open a split in movement direction
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-" ---------------------------
 " GRAPHICAL UNDO TREE
 map <leader>g :GundoToggle<CR>
-
 
 " ---------------------------
 " PYTHON DEVELOPMENT
 " ---------------------------
 " PEP8 Validation
 let g:pep8_map='<leader>8'
-
-
-" ---------------------------
-" RUBY DEVELOPMENT
-" ---------------------------
-" RuboCop Validator short cut. Saves buffer and runs style cop
-:command RRuboCop w|RuboCop --only Style
 
 " ---------------------------
 " STRIP TRAILING WHITESPACE
