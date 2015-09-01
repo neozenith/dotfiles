@@ -51,6 +51,17 @@ set expandtab       " Expand TABs to spaces.
 " ---------------------------
 " STATUS LINE - LIGHTLINE
 " ---------------------------
+" Patched Font:
+" http://sourcefoundry.org/hack/
+" https://github.com/powerline/fonts
+" How To Get It To Work:
+" http://superuser.com/questions/749437/trouble-installing-powerline-pre-patched-fonts-on-mavericks-10-9-2
+" Use the unicode symbols beginning with \uE0XX as that is the reserved for 
+" private use unicode range. Disregard the symbols lightline specifies.
+" After all that work to get the patched font working I think the symbols were
+" ugly with exception of the Git branch glyph but I'm leaving this 
+" documentation here for later in case it helps future-me or someone else.
+
 set laststatus=2  " Forces 2 lines for status bar, otherwise was getting hidden
 set noshowmode    " The second line showing the normal mode is hidden. Clean
 let g:lightline = {
@@ -58,21 +69,26 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode' ],
   \             [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
-  \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
   \ },
   \ 'component_function': {
   \   'fugitive': 'FugitiveCheck'
   \ },
-  \ 'component_type': {
-  \   'syntastic': 'error',
+  \ 'component': {
+  \   'readonly': '%{&readonly?"\ue0a2":""}',
   \ },
-  \ 'separator': { 'left': "\u25B6", 'right': "\u25C0" },
+  \ 'separator': { 'left': "", 'right': "" },
   \ 'subseparator': { 'left': "|", 'right': "|" }
   \ }
 
-fun! FugitiveCheck()
-    return exists('*fugitive#head') ? fugitive#head() : ''
-endfun
+
+function! FugitiveCheck()
+  if exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? "\ue0a0:"._ : ''
+  endif
+  return ''
+endfunction
 
 augroup AutoSyntastic
   autocmd!
