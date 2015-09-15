@@ -1,0 +1,5 @@
+alias ll="ls -laGHf"
+alias gs="git status -v"
+alias gb="git branch -v"
+export PS1="\e[0;32m\W \$ \e[m "
+export PS1="$PS1\$(git-radar --bash --fetch) "
