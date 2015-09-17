@@ -1,5 +1,5 @@
 alias ll="ls -laGHf"
-alias gs="git status -v"
+alias gs="git status -v --ignore-submodules"
 alias gb="git branch -vv -a"
 alias gcon="git diff --name-only --diff-filter=U"
 export PS1="\e[0;32m\W\e[m"
