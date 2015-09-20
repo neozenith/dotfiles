@@ -7,3 +7,4 @@ export PS1="$PS1\$(git-radar --bash --fetch)\$ "
 export PATH=$PATH:~/scripts/ssh-connections
 #export PATH=$PATH:~/scripts/didit-cli-client
 export PATH=$PATH:~/scripts/sql-connections
+export PATH=~/.rbenv/shims:$PATH
