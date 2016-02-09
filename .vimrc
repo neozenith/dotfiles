@@ -128,7 +128,7 @@ map <leader>g :GundoToggle<CR>
 " PYTHON DEVELOPMENT
 " ---------------------------
 " PEP8 Validation
-let g:pep8_map='<leader>8'
+let g:pep8_map='<leader>pep8'
 
 " ---------------------------
 " STRIP TRAILING WHITESPACE
