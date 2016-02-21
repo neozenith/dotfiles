@@ -13,6 +13,9 @@ alias dken="eval \$(docker-machine env default)"
 alias dkdn="docker-machine stop default"
 alias dk="docker"
 alias dkm="docker-machine"
+alias dkclean="docker stop \$(docker ps -aq); docker rm \$(docker ps -aq)"
+alias dki="docker images"
+alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
 
 # Prompt & Paths
 export PS1="\e[0;32m\W\e[m"
