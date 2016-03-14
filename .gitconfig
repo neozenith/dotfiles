@@ -1,5 +1,4 @@
 [gui]
-[gui]
 [user]
 	name = Josh Wilson
 	email = neozenith.dev@gmail.com
@@ -14,3 +13,8 @@
 	trustExitCode = true
 [push]
 	default = simple
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
