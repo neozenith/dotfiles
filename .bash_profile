@@ -1,12 +1,16 @@
 # Navigation
 alias ll="ls -laGHf"
 
+# Vim shortcuts
+alias ctpy="ctags -R --languages=python --exclude=.git --exclude=log ."
+
 # Git shortcuts
 alias gs="git status -v --ignore-submodules"
 alias gb="git branch -vv -a"
 alias gcon="git diff --name-only --diff-filter=U"
 alias gm=" git pull -v --all; git checkout master -f; git pull -v"
 alias gpa="git pull -v --all"
+
 # Docker Shortcuts
 alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
 alias dken="eval \$(docker-machine env default)"
