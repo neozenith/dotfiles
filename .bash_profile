@@ -2,7 +2,7 @@
 alias ll="ls -laGHf"
 
 # Vim shortcuts
-alias ctpy="ctags -R --languages=python --exclude=.git --exclude=log ."
+alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclude=log ."
 
 # Git shortcuts
 alias gs="git status -v --ignore-submodules"
