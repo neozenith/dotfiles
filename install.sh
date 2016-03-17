@@ -16,9 +16,7 @@ npm install -g jscs
 
 # Vundle
 if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
-  git submodule add https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
-else
-  git submodule update
+  git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 fi
 # Install Plugins
 vim +PluginInstall +qall
