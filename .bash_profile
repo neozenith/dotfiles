@@ -2,6 +2,9 @@
 alias ll="ls -laGHf"
 
 # Vim shortcuts
+alias vim="/usr/local/Cellar/vim/7.4.865/bin/vim"
+alias vimdiff="/usr/local/Cellar/vim/7.4.865/bin/vimdiff"
+
 alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclude=log ."
 
 # Git shortcuts
