@@ -32,6 +32,7 @@ Plugin 'scrooloose/syntastic'
 " CODE COMPLETION
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
+Plugin 'Valloric/YouCompleteMe'
 " # RUBY DEV
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'ngmy/vim-rubocop'
