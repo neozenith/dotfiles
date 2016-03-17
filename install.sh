@@ -3,17 +3,24 @@
 # Desc: Install script for associated syntax checker tools 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd ~
+echo "$(pwd)"
+
+rm -rfv ~/.vim
+rm -rfv ~/.vimrc
+ln -sfv $DIR/.vimrc ~/.vimrc  
+ln -sfv $DIR/.vim ~/.vim
+ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
+
 cd $DIR
 echo "$(pwd)"
+
+
 #HomeBrew
-brew install vim --upgrade
+brew install vim cmake npm --upgrade
 BREW_VIM="$(brew list vim | grep -e \"/vim\")"
 echo -e "$BREW_VIM"
-
-
-#alias vim="$BREW_VIM"
-brew install npm
-brew install cmake
 
 #Python
 

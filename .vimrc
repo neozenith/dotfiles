@@ -2,14 +2,6 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " ---------------------------
-" PATHOGEN LOAD PLUGINS
-" ---------------------------
-" filetype off
-" runtime bundle/vim-pathogen/autoload/pathogen.vim
-" call pathogen#infect()
-" call pathogen#helptags()
-
-" ---------------------------
 " VUNDLE LOAD PLUGINS
 " ---------------------------
 set nocompatible
@@ -139,6 +131,12 @@ let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_javascript_checkers = ['jshint', 'jslint']
 map <c-f> :lclose<CR>
 
+" ---------------------------
+" YouCompleteMe 
+" ---------------------------
+let g:ycm_key_detailed_diagnostics = ''
+let g:ycm_key_invoke_completion = ''
+let g:ycm_complete_in_strings=0
 " ---------------------------
 " NAVIGATION CONFIGURATION
 " ---------------------------
