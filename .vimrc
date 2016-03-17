@@ -4,15 +4,49 @@ scriptencoding utf-8
 " ---------------------------
 " PATHOGEN LOAD PLUGINS
 " ---------------------------
-filetype off
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+" filetype off
+" runtime bundle/vim-pathogen/autoload/pathogen.vim
+" call pathogen#infect()
+" call pathogen#helptags()
 
-" TODO: 
-" [ ] https://github.com/junegunn/vim-plug
-" [ ] https://github.com/vitalk/vim-simple-todo
-" [ ] https://github.com/vim-scripts/TaskList.vim
+" ---------------------------
+" VUNDLE LOAD PLUGINS
+" ---------------------------
+set nocompatible
+filetype off 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" NAVIGATION
+Plugin 'vim-scripts/The-NERD-tree'
+Plugin 'sjl/gundo.vim'
+" GIT Integerations
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+" STATUS LINE
+Plugin 'itchyny/lightline.vim'
+" SYNTAX CHECKER
+Plugin 'scrooloose/syntastic'
+" CODE COMPLETION
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
+" # RUBY DEV
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'tpope/vim-rails' 
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rake'
+Plugin 'reinh/vim-makegreen'
+" # WEB DEV
+Plugin 'elzr/vim-json'
+" # PYTHON DEV
+Plugin 'fs111/pydoc.vim'
+Plugin 'vim-scripts/pep8'
+Plugin 'alfredodeza/pytest.vim'
+call vundle#end()
+
 
 " ---------------------------
 " BASIC CONFIGURATION
@@ -53,14 +87,6 @@ set expandtab       " Expand TABs to spaces.
 " ---------------------------
 " Patched Font:
 " http://sourcefoundry.org/hack/
-" https://github.com/powerline/fonts
-" How To Get It To Work:
-" http://superuser.com/questions/749437/trouble-installing-powerline-pre-patched-fonts-on-mavericks-10-9-2
-" Use the unicode symbols beginning with \uE0XX as that is the reserved for 
-" private use unicode range. Disregard the symbols lightline specifies.
-" After all that work to get the patched font working I think the symbols were
-" ugly with exception of the Git branch glyph but I'm leaving this 
-" documentation here for later in case it helps future-me or someone else.
 
 set laststatus=2  " Forces 2 lines for status bar, otherwise was getting hidden
 set noshowmode    " The second line showing the normal mode is hidden. Clean
@@ -129,6 +155,7 @@ map <leader>g :GundoToggle<CR>
 " ---------------------------
 " PEP8 Validation
 let g:pep8_map='<leader>pep8'
+autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " ---------------------------
 " STRIP TRAILING WHITESPACE
