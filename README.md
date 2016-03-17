@@ -15,6 +15,8 @@ cd ~
 git clone --recursive git@github.com:neozenith/vim.git ~/neozenith-vim
 ln -s neozenith-vim/.vimrc ~/.vimrc
 ln -s neozenith-vim/.vim ~/.vim
+cd neozenith-vim
+. install.sh
 ```
 
 ## Update Plugins
