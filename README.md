@@ -1,9 +1,13 @@
 # NeoZenith VIM dotFiles
 
 ## Brief
-This is not intended as a public example of *good* management of VIM dotFiles although I do make every attempt to apply best practices in maintaining this configuration purely for my own ease of use.
+This is not intended as a public example of *good* management of VIM dotFiles 
+although I do make every attempt to apply best practices in maintaining this 
+configuration purely for my own ease of use.
 
-I have spent far too long curating my VIM configuration it was about time it got some version control and got backed up too. Making moving to other machines or even developing remotely easier.
+I have spent far too long curating my VIM configuration it was about time it 
+got some version control and got backed up too. Making moving to other machines 
+or even developing remotely easier.
 
 ## Installation
 ```
@@ -19,14 +23,8 @@ ln -s neozenith-vim/.vim ~/.vim
 ```
 
 ## Adding Plugins
-```
-cd ~/neozenith-vim
-git submodule add https://github.com/developer/repository.git .vim/bundle/repository
-git submodule init
-git submodule update
-```
-Then you should update the `addbundles.sh` to include the `git submodule add` command you used above just in case a clean up is required. I know the `.gitmodules` should perform this task but redundancy is good.
-
+See Vundle documentation.
+https://github.com/VundleVim/Vundle.vim#quick-start
 
 ## Credits
 Tim Pope https://github.com/tpope
