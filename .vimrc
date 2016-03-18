@@ -17,6 +17,7 @@ Plugin 'sjl/gundo.vim'
 " GIT Integerations
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
+Plugin 'airblade/vim-gitgutter'
 " STATUS LINE
 Plugin 'itchyny/lightline.vim'
 " SYNTAX CHECKER
@@ -51,9 +52,11 @@ syntax on                    " syntax highlighing
 filetype on                  " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
 colorscheme molokai
+set number                " Line numbers are helpful
 set colorcolumn=80        " Highlight 80 character limit
-set scrolloff=999         " Keep the cursor centered in the screen
+set scrolloff=999          " Keep the cursor centered in the screen
 set showmatch             " Highlight matching braces
+set backspace=indent,eol,start  "Allow backspace in insert mode
 " set list                  " Show invisible characters
 " Set the characters for the invisibles
 " set listchars=eol:$,tab:~>,trail:~,extends:>,precedes:<
@@ -65,6 +68,7 @@ set showmatch             " Highlight matching braces
 " CODE FOLDING - Use :za in a method to toggle indent fold level
 set foldmethod=indent
 set foldlevel=99
+set foldnestmax=3       "deepest fold is 3 levels
 " ---------------------------
 " TABS (2 Spaces)
 set tabstop=2       " The width of a TAB is set to 2.
@@ -74,6 +78,9 @@ set tabstop=2       " The width of a TAB is set to 2.
 set shiftwidth=2    " Indents will have a width of 2.
 set softtabstop=2   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
+set autoindent
+set smartindent
+set smarttab
 
 " ---------------------------
 " STATUS LINE - LIGHTLINE
