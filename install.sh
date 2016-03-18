@@ -38,6 +38,6 @@ fi
 # Install Plugins
 vim +PluginInstall +qall
 cd .vim/bundle/YouCompleteMe
-./install.py --tern-completer
+./install.py 
 cd $DIR
 echo "$(pwd)"
