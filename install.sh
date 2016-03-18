@@ -13,14 +13,21 @@ ln -sfv $DIR/.vimrc ~/.vimrc
 ln -sfv $DIR/.vim ~/.vim
 ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
 
+echo -e "Install VIM from Source"
+rm -rfv vim/
+git clone git@github.com:vim/vim.git vim/
+cd vim/src
+echo "$(pwd)"
+./configure --prefix=/usr/local/ \
+  --enable-rubyinterp \
+  --enable-pythoninterp \
+  --with-features=huge
+sudo make; sudo make install
 cd $DIR
 echo "$(pwd)"
 
-
 #HomeBrew
-brew install vim cmake npm --upgrade
-BREW_VIM="$(brew list vim | grep -e \"/vim\")"
-echo -e "$BREW_VIM"
+brew install cmake npm --upgrade
 
 #Python
 
