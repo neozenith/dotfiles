@@ -50,6 +50,7 @@ set background=dark
 set mouse=nicr               " Set mouse scroll events to nav cursor
 syntax on                    " syntax highlighing
 filetype on                  " try to detect filetypes
+filetype plugin on
 filetype plugin indent on    " enable loading indent file for filetype
 colorscheme molokai
 set number                " Line numbers are helpful
@@ -78,6 +79,9 @@ set tabstop=2       " The width of a TAB is set to 2.
 set shiftwidth=2    " Indents will have a width of 2.
 set softtabstop=2   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
+
+" for python files, enforce 2 spaces
+autocmd Filetype python setlocal ts=2 sw=2 expandtab
 " set autoindent
 " set smartindent
 " set smarttab
