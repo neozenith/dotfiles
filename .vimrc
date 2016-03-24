@@ -73,19 +73,20 @@ set foldlevel=99
 set foldnestmax=3       "deepest fold is 3 levels
 " ---------------------------
 " TABS (2 Spaces)
-set tabstop=2       " The width of a TAB is set to 2.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 2.
-set shiftwidth=2    " Indents will have a width of 2.
-set softtabstop=2   " Sets the number of columns for a TAB.
+" http://vi.stackexchange.com/a/4546/6958
+let s:tabwidth=2
+set tabstop=s:tabwidth      " The width of a TAB is set to 2.
+                            " Still it is a \t. It is just that
+                            " Vim will interpret it to be having
+                            " a width of 2.
+set shiftwidth=s:tabwidth   " Indents will have a width of 2.
+set softtabstop=s:tabwidth  " Sets the number of columns for a TAB.
+au Filetype * let &l:tabstop = s:tabwidth
+au Filetype * let &l:shiftwidth = s:tabwidth
+au Filetype * let &l:softtabstop = s:tabwidth
 set expandtab       " Expand TABs to spaces.
-
-" for python files, enforce 2 spaces
-autocmd Filetype python setlocal ts=2 sw=2 expandtab
-" set autoindent
-" set smartindent
-" set smarttab
+set shiftround      " Round indent to multiple of 'shiftwidth'
+set autoindent      " Copy indent from current line, over to the new line
 
 " ---------------------------
 " STATUS LINE - LIGHTLINE
