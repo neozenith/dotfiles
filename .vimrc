@@ -75,12 +75,12 @@ set foldnestmax=3       "deepest fold is 3 levels
 " TABS (2 Spaces)
 " http://vi.stackexchange.com/a/4546/6958
 let s:tabwidth=2
-set tabstop=s:tabwidth      " The width of a TAB is set to 2.
-                            " Still it is a \t. It is just that
-                            " Vim will interpret it to be having
-                            " a width of 2.
-set shiftwidth=s:tabwidth   " Indents will have a width of 2.
-set softtabstop=s:tabwidth  " Sets the number of columns for a TAB.
+set tabstop=2      " The width of a TAB is set to 2.
+                   " Still it is a \t. It is just that
+                   " Vim will interpret it to be having
+                   " a width of 2.
+set shiftwidth=2   " Indents will have a width of 2.
+set softtabstop=2  " Sets the number of columns for a TAB.
 au Filetype * let &l:tabstop = s:tabwidth
 au Filetype * let &l:shiftwidth = s:tabwidth
 au Filetype * let &l:softtabstop = s:tabwidth
@@ -150,6 +150,7 @@ map <c-f> :lclose<CR>
 let g:ycm_key_detailed_diagnostics = ''
 let g:ycm_key_invoke_completion = ''
 let g:ycm_complete_in_strings=0
+let g:ycm_autoclose_preview_window_after_insertion = 1
 " ---------------------------
 " NAVIGATION CONFIGURATION
 " ---------------------------
