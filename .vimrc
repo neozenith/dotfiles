@@ -11,6 +11,29 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" -------------------
+"  Compulsory Components of Any Dev Environment
+"  1. Syntax Coloring
+"  2. Code Folding
+"  3. Jump to Definition
+"  4. File Explorer
+"  5. Tabbed Workspace
+"  6. AutoComplete
+"    i.   Key Words and closing symbols for target language
+"    ii.  Project Methods, Symbols and Variables
+"    iii. Framework Methods and Symbols
+"  7. Auto Syntax Checking
+"  8. Auto Style Checking
+"  9. Auto Linting
+"  10. Version Control Integration
+"    i. Live Diff
+"    ii. Live branch name and status
+"  11. Search & Replace with RegEx
+"  12. Highlight matching brackets
+"  13. Undo History
+" -------------------
+
 " INTERFACE
 Plugin 'vim-scripts/The-NERD-tree'        " File Explorer
 Plugin 'sjl/gundo.vim'                    " Undo History
@@ -37,6 +60,8 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
 Plugin 'reinh/vim-makegreen'
 " # WEB DEV
+Plugin 'mattn/emmet-vim'        " HTML/XML Tag Expander
+Plugin 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plugin 'marijnh/tern_for_vim'   " JavaScript AutoComplete
 Plugin 'elzr/vim-json'          " JSON Style Checker
 Plugin 'ap/vim-css-color'       " Preview CSS colours with text highlighting
