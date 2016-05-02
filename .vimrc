@@ -32,6 +32,9 @@ Plugin 'VundleVim/Vundle.vim'
 "  11. Search & Replace with RegEx
 "  12. Highlight matching brackets
 "  13. Undo History
+"  14. Auto testing
+"    i. unit tests
+"    ii. code coverage coloring
 " -------------------
 
 " INTERFACE
@@ -60,7 +63,12 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
 Plugin 'reinh/vim-makegreen'
 " # WEB DEV
+
+" Emmet HTML tag expander
+" type: html:5
+" to expand: ctrl-y , 
 Plugin 'mattn/emmet-vim'        " HTML/XML Tag Expander
+
 Plugin 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plugin 'marijnh/tern_for_vim'   " JavaScript AutoComplete
 Plugin 'elzr/vim-json'          " JSON Style Checker
@@ -169,9 +177,18 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+
+" Checkers
 let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_javascript_checkers = ['jshint', 'jslint']
+
+" Each js project will need the following files:
+" .eslintrc
+" .jscsrc
+" .jshintrc
+" .tern-project
+let g:syntastic_javascript_checkers = ['eslint', 'jscs', 'jshint']
+
 map <c-f> :lclose<CR>
 
 " ---------------------------

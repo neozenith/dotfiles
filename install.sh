@@ -35,8 +35,9 @@ brew install cmake npm --upgrade
 sudo gem install rubocop
 
 #JavaScript
-npm install -g jshint
-npm install -g jscs
+npm install -g jshint --upgrade
+npm install -g jscs --upgrade
+npm install -g eslint --upgrade
 
 # Vundle
 if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
@@ -45,6 +46,6 @@ fi
 # Install Plugins
 vim +PluginInstall +qall
 cd .vim/bundle/YouCompleteMe
-./install.py 
+./install.py --tern-completer 
 cd $DIR
 echo "$(pwd)"
