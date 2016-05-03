@@ -2,8 +2,8 @@
 alias ll="ls -laGHf"
 
 # Vim shortcuts
-alias vim="/usr/local/Cellar/vim/7.4.865/bin/vim"
-alias vimdiff="/usr/local/Cellar/vim/7.4.865/bin/vimdiff"
+#alias vim="/usr/local/Cellar/vim/7.4.865/bin/vim"
+#alias vimdiff="/usr/local/Cellar/vim/7.4.865/bin/vimdiff"
 
 alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclude=log ."
 
@@ -30,7 +30,7 @@ export PS1="$PS1\$(git-radar --bash --fetch)\$ "
 export PATH=$PATH:~/scripts/ssh-connections
 #export PATH=$PATH:~/scripts/didit-cli-client
 export PATH=$PATH:~/scripts/sql-connections
-export PATH=~/.rbenv/shims:$PATH
+#export PATH=~/.rbenv/shims:$PATH
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
