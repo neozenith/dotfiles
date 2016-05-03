@@ -7,12 +7,15 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd ~
 echo "$(pwd)"
 
+##############################################################################
 rm -rfv ~/.vim
 rm -rfv ~/.vimrc
 ln -sfv $DIR/.vimrc ~/.vimrc  
 ln -sfv $DIR/.vim ~/.vim
 ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
 
+
+##############################################################################
 echo -e "Install VIM from Source"
 rm -rfv vim/
 git clone git@github.com:vim/vim.git vim/
@@ -26,20 +29,25 @@ sudo make; sudo make install
 cd $DIR
 echo "$(pwd)"
 
+##############################################################################
 #HomeBrew
 brew install cmake npm --upgrade
 
+##############################################################################
 #Python
 
+##############################################################################
 #Ruby
 sudo gem install rubocop
 
+##############################################################################
 #JavaScript
 npm install -g jshint --upgrade
 npm install -g jscs --upgrade
 npm install -g eslint --upgrade
 npm install -g express-generator --upgrade 
 
+##############################################################################
 # Vundle
 if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
