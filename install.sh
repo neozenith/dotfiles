@@ -42,10 +42,11 @@ sudo gem install rubocop
 
 ##############################################################################
 #JavaScript
-npm install -g jshint --upgrade
-npm install -g jscs --upgrade
-npm install -g eslint --upgrade
-npm install -g express-generator --upgrade 
+npm install -g \
+  jshint \
+  jscs \
+  eslint \
+  express-generator
 
 ##############################################################################
 # Vundle
