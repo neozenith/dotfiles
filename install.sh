@@ -38,6 +38,7 @@ sudo gem install rubocop
 npm install -g jshint --upgrade
 npm install -g jscs --upgrade
 npm install -g eslint --upgrade
+npm install -g express-generator --upgrade 
 
 # Vundle
 if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
