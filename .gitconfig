@@ -18,3 +18,5 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[color]
+	ui = true
