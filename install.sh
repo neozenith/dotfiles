@@ -17,7 +17,7 @@ ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
 
 ##############################################################################
 echo -e "Install VIM from Source"
-rm -rfv vim/
+sudo rm -rfv vim/
 git clone git@github.com:vim/vim.git vim/
 cd vim/src
 echo "$(pwd)"
