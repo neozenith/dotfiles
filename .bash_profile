@@ -27,10 +27,22 @@ alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
 # Prompt & Paths
 export PS1="\e[0;32m\W\e[m"
 export PS1="$PS1\$(git-radar --bash --fetch)\$ "
-export PATH=$PATH:~/scripts/ssh-connections
-#export PATH=$PATH:~/scripts/didit-cli-client
-export PATH=$PATH:~/scripts/sql-connections
-#export PATH=~/.rbenv/shims:$PATH
+
+
+# Check to see if it is already in the PATH before unnecessarily concatenating
+if [ -z "$(echo $PATH | grep "/scripts/ssh-connections")" ]; then 
+  export PATH=$PATH:~/scripts/ssh-connections
+  export PATH=$PATH:~/scripts/sql-connections
+fi
+
+if [ -z "$(echo $PATH | grep "/.npm-packages/bin")" ]; then 
+  export PATH=$PATH:~/.npm-packages/bin 
+fi
+
+if [ -z "$(echo $PATH | grep "/.rbenv/shims/")" ]; then 
+  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+fi 
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi

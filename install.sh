@@ -46,7 +46,8 @@ npm install -g \
   jshint \
   jscs \
   eslint \
-  express-generator
+  express-generator \
+  mocha
 
 ##############################################################################
 # Vundle
