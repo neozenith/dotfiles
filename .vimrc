@@ -162,7 +162,7 @@ endfunction
 
 augroup AutoSyntastic
   autocmd!
-  autocmd BufWritePost *.c,*.cpp,*.py,*.rb,*.js,*.css call s:syntastic()
+  autocmd BufWritePost *.c,*.cpp,*.py,*.rb,*.js,*.css,*.ejs call s:syntastic()
 augroup END
 function! s:syntastic()
   SyntasticCheck
@@ -188,6 +188,7 @@ let g:syntastic_ruby_checkers = ['rubocop']
 " .jshintrc
 " .tern-project
 let g:syntastic_javascript_checkers = ['eslint', 'jscs', 'jshint']
+au BufNewFile,BufRead *.ejs set filetype=html
 
 map <c-f> :lclose<CR>
 
