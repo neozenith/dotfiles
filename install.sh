@@ -2,7 +2,8 @@
 # Auth: Josh Wilson
 # Desc: Install script for associated syntax checker tools 
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+START_DIR="$(pwd)"
 
 cd ~
 echo "$(pwd)"
@@ -10,8 +11,8 @@ echo "$(pwd)"
 ##############################################################################
 rm -rfv ~/.vim
 rm -rfv ~/.vimrc
-ln -sfv $DIR/.vimrc ~/.vimrc  
-ln -sfv $DIR/.vim ~/.vim
+ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc  
+ln -sfv $SCRIPT_DIR/.vim ~/.vim
 ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
 
 
@@ -26,7 +27,7 @@ echo "$(pwd)"
   --enable-pythoninterp \
   --with-features=huge
 sudo make; sudo make install
-cd $DIR
+cd $SCRIPT_DIR
 echo "$(pwd)"
 
 ##############################################################################
@@ -58,5 +59,5 @@ fi
 vim +PluginInstall +qall
 cd .vim/bundle/YouCompleteMe
 ./install.py --tern-completer 
-cd $DIR
+cd $SCRIPT_DIR
 echo "$(pwd)"
