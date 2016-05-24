@@ -7,12 +7,18 @@ alias ll="ls -laGHf"
 
 alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclude=log ."
 
-# Git shortcuts
+### Git shortcuts
+# (G)it (S)tatus
 alias gs="git status -v --ignore-submodules"
+# (G)it (B)ranch
 alias gb="git branch -vv -a"
+# (G)it (C)ondition 
 alias gcon="git diff --name-only --diff-filter=U"
+# (G)it (M)aster
 alias gm=" git pull -v --all; git checkout master -f; git pull -v"
 alias gpa="git pull -v --all"
+# (G)it (T)ree
+alias gt="git log --graph --full-history --all --pretty=format:\"%C(auto)%h%x09%Cgreen%an%Creset%C(auto)%d%x20%s\""
 
 # Docker Shortcuts
 alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
