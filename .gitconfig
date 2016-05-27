@@ -4,7 +4,7 @@
 	email = neozenith.dev@gmail.com
 [core]
 	excludesfile = /Users/neozenith/.gitignore_global
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
