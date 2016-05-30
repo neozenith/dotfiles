@@ -12,7 +12,7 @@ or even developing remotely easier.
 ## Installation
 ```
 cd ~
-git clone --recursive git@github.com:neozenith/vim.git ~/neozenith-vim
+git clone git@github.com:neozenith/vim.git ~/neozenith-vim
 . neozenith-vim/install.sh
 ```
 
