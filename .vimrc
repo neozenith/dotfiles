@@ -14,7 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " -------------------
 "  Compulsory Components of Any Dev Environment
-"  1. Syntax Coloring
+"  1. Syntax Coloring / Nested Bracket Coloring
 "  2. Code Folding
 "  3. Jump to Definition
 "  4. File Explorer
@@ -32,9 +32,9 @@ Plugin 'VundleVim/Vundle.vim'
 "  11. Search & Replace with RegEx
 "  12. Highlight matching brackets
 "  13. Undo History
-"  14. Auto testing
-"    i. unit tests
-"    ii. code coverage coloring
+"  14. Auto testing TODO
+"    i. unit tests TODO
+"    ii. code coverage coloring TODO
 " -------------------
 
 " INTERFACE
@@ -125,6 +125,17 @@ au Filetype * let &l:softtabstop = s:tabwidth
 set expandtab       " Expand TABs to spaces.
 set shiftround      " Round indent to multiple of 'shiftwidth'
 set autoindent      " Copy indent from current line, over to the new line
+
+" ---------------------------
+" NO BACKUP FILES 
+set noswapfile
+set nobackup
+set nowb
+
+" ---------------------------
+"  Allow Uppercase :w :q :wq 
+command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
+command! -bang Q quit<bang>
 
 " ---------------------------
 " STATUS LINE - LIGHTLINE
@@ -224,6 +235,8 @@ au Syntax * RainbowParenthesesLoadBraces
 " NERDTree - Use :n OR Ctrl+n
 map <leader>n :NERDTreeToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
 " ---------------------------
 " GRAPHICAL UNDO TREE
 map <leader>g :GundoToggle<CR>
