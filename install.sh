@@ -9,12 +9,15 @@ cd ~
 echo "$(pwd)"
 
 function symlink_vimrc () {
+  echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
+  echo -e "\033[94mSymLinking new files..."
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc  
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
   # Display synmlinks
   ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
+  echo -e "\033[0m"
 }
 
 function build_vim () {
