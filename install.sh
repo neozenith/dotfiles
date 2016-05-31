@@ -8,6 +8,18 @@ START_DIR="$(pwd)"
 cd ~
 echo "$(pwd)"
 
+function confirm () {
+  read -r -p "${1:-? [y/N]} " response
+  case $response in
+      [yY][eE][sS]|[yY]) 
+          true
+          ;;
+      *)
+          false
+          ;;
+  esac
+}
+
 function symlink_vimrc () {
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
@@ -21,7 +33,7 @@ function symlink_vimrc () {
 }
 
 function build_vim () {
-  cd $SCRIPT_DIR
+  cd ~
   echo "$(pwd)"
 
   echo -e "Install VIM from Source"
@@ -71,15 +83,7 @@ function vim_plugins () {
   # Install Plugins
   vim +PluginInstall +qall
   
-  read -r -p "Build YouCompleteMe Autocomplete engine? [y/N] " response
-  case $response in
-      [yY][eE][sS]|[yY]) 
-          build_ycm
-          ;;
-      *)
-          echo "Skipping..."
-          ;;
-  esac
+  confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
 }
 
 function build_ycm () {
@@ -100,35 +104,11 @@ function main_installer () {
   vim --version
   echo -e "============================================="
 
-  read -r -p "Build latest Vim from Source? [y/N] " response
-  case $response in
-      [yY][eE][sS]|[yY]) 
-          build_vim
-          ;;
-      *)
-          echo "Skipping..."
-          ;;
-  esac
+  confirm "Build latest Vim from Source" && build_vim
   
-  read -r -p "Install .vimrc files? [y/N] " response
-  case $response in
-      [yY][eE][sS]|[yY]) 
-          symlink_vimrc
-          ;;
-      *)
-          echo "Skipping..."
-          ;;
-  esac
+  confirm "Install .vimrc files" && symlink_vimrc
   
-  read -r -p "Install Vim vundle plugins? [y/N] " response
-  case $response in
-      [yY][eE][sS]|[yY]) 
-          vim_plugins
-          ;;
-      *)
-          echo "Skipping..."
-          ;;
-  esac
+  confirm "Install Vim vundle plugins" && vim_plugins
   
 }
 
