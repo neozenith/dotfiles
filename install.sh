@@ -9,7 +9,7 @@ cd ~
 echo "$(pwd)"
 
 function confirm () {
-  read -r -p "${1}? [y/N]" response
+  read -r -p "${1}? [y/N] " response
   case $response in
       [yY][eE][sS]|[yY]) 
           true
