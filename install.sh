@@ -15,6 +15,19 @@ function confirm () {
           ;;
   esac
 }
+function title(){
+  echo -e "\033[32m===================="
+  echo -e "$*"
+  echo -e "====================\033[0m"
+}
+function notice(){
+  echo -e "\033[35m$*\033[0m"
+}
+function pause(){
+  echo -e "\033[33m"
+  read -p "Press [Enter] to continue or Ctrl+C to Abort..."
+  echo -e "\033[0m"
+}
 function show_dir () {
   echo -e "\033[94mWorking Directory:\033[0m\t $(pwd)"
 }
@@ -57,6 +70,47 @@ function build_vim () {
   show_dir
 }
 
+###############################################################################
+function install_dev_dependencies () {
+  title "Installing Development Tools..."
+  pause
+  # install xcode command line tools
+  xcode-select --install
+
+  # install hombrew
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  notice "Homebrew update and upgrade:"
+  brew update 
+  brew upgrade
+  brew doctor
+  # Git Radar / Git AutoComplete
+  brew install michaeldfallen/formula/git-radar
+  brew install git
+  brew install bash-completion
+  brew install ctags
+
+  # SQL Drivers
+  brew install postgres
+  brew install freetds
+  brew install redis
+
+  # Ruby
+  brew install rbenv ruby-build
+  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+  rbenv install 2.2.0
+  rbenv global 2.2.0
+  ruby -v
+  notice "Installing Gems as SuperUser"
+  sudo gem install bundler rails
+  rbenv rehash
+
+  # Python
+  curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
+  notice "Installing PIP and Packages as SuperUser"
+  sudo python get-pip.py
+  sudo pip install --upgrade awscli boto awsebcli
+}
+
 function install_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
   
@@ -66,6 +120,7 @@ function install_plugin_dependencies () {
   #Python
 
   #Ruby
+  notice "Installing Gems as SuperUser"
   sudo gem install rubocop
 
   #JavaScript
@@ -106,6 +161,8 @@ function build_ycm () {
 }
 
 function main_installer () {
+  confirm "Install development tools" && install_dev_dependencies
+  
   echo -e "=============================================\033[92m"
   which vim
   vim --version
