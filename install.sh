@@ -2,11 +2,7 @@
 # Auth: Josh Wilson
 # Desc: Install script for associated syntax checker tools 
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-START_DIR="$(pwd)"
-
-cd ~
-echo "$(pwd)"
+clear
 
 function confirm () {
   read -r -p "${1}? [y/N] " response
@@ -19,6 +15,15 @@ function confirm () {
           ;;
   esac
 }
+function show_dir () {
+  echo -e "\033[94mWorking Directory:\033[0m\t $(pwd)"
+}
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+START_DIR="$(pwd)"
+
+cd ~
+show_dir
 
 function symlink_vimrc () {
   echo -e "\033[91mDeleting existing files..."
@@ -34,13 +39,14 @@ function symlink_vimrc () {
 
 function build_vim () {
   cd ~
-  echo "$(pwd)"
+  show_dir
 
   echo -e "Install VIM from Source"
-  sudo rm -rfv vim/
+  sudo rm -rf vim/
   git clone git@github.com:vim/vim.git vim/
+  
   cd vim/src
-  echo "$(pwd)"
+  show_dir
   ./configure --prefix=/usr/local/ \
     --enable-rubyinterp \
     --enable-pythoninterp \
@@ -48,7 +54,7 @@ function build_vim () {
   sudo make; sudo make install
   
   cd $SCRIPT_DIR
-  echo "$(pwd)"
+  show_dir
 }
 
 function install_plugin_dependencies () {
@@ -89,20 +95,21 @@ function vim_plugins () {
 function build_ycm () {
   # Build Autocomplete
   cd $SCRIPT_DIR
-  echo "$(pwd)"
+  show_dir
 
   cd .vim/bundle/YouCompleteMe
+  show_dir
   ./install.py --tern-completer 
   
   cd $SCRIPT_DIR
-  echo "$(pwd)"
+  show_dir
 }
 
 function main_installer () {
-  echo -e "============================================="
+  echo -e "=============================================\033[92m"
   which vim
   vim --version
-  echo -e "============================================="
+  echo -e "\033[0m============================================="
 
   confirm "Build latest Vim from Source" && build_vim
   
