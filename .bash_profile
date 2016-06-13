@@ -53,3 +53,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+#TODO get the following line to test first and if not present 
+# then download and install 
+# curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
