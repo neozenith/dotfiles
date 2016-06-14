@@ -129,6 +129,7 @@ function install_plugin_dependencies () {
 
   #JavaScript
   npm install -g \
+    grunt-cli \
     yo \
     jshint \
     jscs \
