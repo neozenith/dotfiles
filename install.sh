@@ -129,9 +129,11 @@ function install_plugin_dependencies () {
 
   #JavaScript
   npm install -g \
+    yo \
     jshint \
     jscs \
     eslint \
+    webapp-generator \
     express-generator \
     mocha
 }
