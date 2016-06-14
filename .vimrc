@@ -206,6 +206,7 @@ map <c-f> :lclose<CR>
 " ---------------------------
 " YouCompleteMe 
 " ---------------------------
+" let g:loaded_youcompleteme = 1
 let g:ycm_key_detailed_diagnostics = ''
 let g:ycm_key_invoke_completion = ''
 let g:ycm_complete_in_strings=0
