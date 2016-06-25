@@ -108,7 +108,7 @@ set backspace=indent,eol,start  "Allow backspace in insert mode
 " CODE FOLDING - Use :za in a method to toggle indent fold level
 set foldmethod=indent
 set foldlevel=99
-set foldnestmax=3       "deepest fold is 3 levels
+set foldnestmax=5       "deepest fold is 5 levels
 " ---------------------------
 " TABS (2 Spaces)
 " http://vi.stackexchange.com/a/4546/6958
