@@ -206,6 +206,9 @@ map <c-f> :lclose<CR>
 " ---------------------------
 " YouCompleteMe 
 " ---------------------------
+" Uncomment loaded_youcomplteme to disable YCM when on a system that 
+" does not allow YouCompleteMe plugin or have a new enough version of Vim
+"
 " let g:loaded_youcompleteme = 1
 let g:ycm_key_detailed_diagnostics = ''
 let g:ycm_key_invoke_completion = ''
