@@ -138,6 +138,17 @@ scriptencoding utf-8
   "  Allow Uppercase :w :q :wq 
   command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
   command! -bang Q quit<bang>
+  
+  " ---------------------------
+  " Pretty Formatting
+  " http://stackoverflow.com/questions/26214156/how-to-auto-format-json-on-save-in-vim
+  "
+  " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+  " :%!python -m json.tool
+  "
+  " autocmd FileType xml autocmd BufWritePre <buffer> %!tidy -xml -q -l
+  " :%!tidy -xml -q -l
+
 " }
 
 " ---------------------------
