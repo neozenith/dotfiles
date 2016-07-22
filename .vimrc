@@ -2,7 +2,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " ---------------------------
-" Plugins: Vundle
+" Plugins: Vim-Plug https://github.com/junegunn/vim-plug
 " ---------------------------
 " {
   function! BuildYCM(info)
