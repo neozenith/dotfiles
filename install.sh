@@ -144,12 +144,14 @@ function vim_plugins () {
   
   install_plugin_dependencies
 
-  # Check if Vundle is already installed
-  if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+  # Check if Plug is already installed
+  if [ ! -d ".vim/autoload/plug.vim" ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
+
   # Install Plugins
-  vim +PluginInstall +qall
+  vim +PlugInstall +qall
   
   confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
 }
