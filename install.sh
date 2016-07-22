@@ -151,9 +151,9 @@ function vim_plugins () {
   fi
 
   # Install Plugins
-  vim +PlugInstall +qall
+  #vim +PlugInstall +qall
   
-  confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
+  #confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
 }
 
 function build_ycm () {
@@ -181,7 +181,7 @@ function main_installer () {
   
   confirm "Install .vimrc files" && symlink_vimrc
   
-  confirm "Install Vim vundle plugins" && vim_plugins
+  confirm "Install Vim plugins" && vim_plugins
   
 }
 
