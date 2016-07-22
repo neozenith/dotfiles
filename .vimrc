@@ -10,6 +10,8 @@ scriptencoding utf-8
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
+  " TODO: https://github.com/junegunn/vim-plug
+
   " let Vundle manage Vundle, required
   Plugin 'VundleVim/Vundle.vim'
 
