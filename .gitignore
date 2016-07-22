@@ -3,3 +3,4 @@
 .vim/bundle
 tags
 gems.tags
+*.log
