@@ -147,6 +147,9 @@ scriptencoding utf-8
   " :%!python -m json.tool
   "
   " autocmd FileType xml autocmd BufWritePre <buffer> %!tidy -xml -q -l
+  " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool 2>/dev/null || echo <buffer>
+  " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+
   " :%!tidy -xml -q -l
 
 " }
