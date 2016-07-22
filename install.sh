@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 # Auth: Josh Wilson
 # Desc: Install script for associated syntax checker tools 
 
@@ -139,7 +139,7 @@ function install_plugin_dependencies () {
     mocha
 }
 
-# Vundle
+# Vim Plug
 function vim_plugins () {
   
   install_plugin_dependencies
