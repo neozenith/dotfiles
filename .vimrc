@@ -135,7 +135,7 @@ scriptencoding utf-8
   set noswapfile
   set nobackup
   set nowb
-
+  
   " ---------------------------
   "  Allow Uppercase :w :q :wq 
   command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
@@ -154,6 +154,21 @@ scriptencoding utf-8
 
   " :%!tidy -xml -q -l
 
+" }
+
+" ---------------------------
+" GUI CONFIGURATION:
+" ---------------------------
+" {
+  if has("gui_running")
+    if has("gui_gtk2")
+      set guifont=Hack:h10
+    elseif has("gui_macvim")
+      set guifont=Hack:h10
+    elseif has("gui_win32")
+      set guifont=Hack:h10:cANSI
+    endif
+  endif
 " }
 
 " ---------------------------
