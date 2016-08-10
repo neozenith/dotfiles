@@ -96,6 +96,11 @@ scriptencoding utf-8
   filetype plugin on
   filetype plugin indent on    " enable loading indent file for filetype
   colorscheme molokai
+  
+  let &t_ZH="\e[3m"             "Italicise Comments
+  let &t_ZR="\e[23m"
+  highlight Comment cterm=italic gui=italic
+
   set number                " Line numbers are helpful
   set colorcolumn=80        " Highlight 80 character limit
   set scrolloff=999          " Keep the cursor centered in the screen
