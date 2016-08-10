@@ -172,6 +172,7 @@ scriptencoding utf-8
       set guifont=Hack:h10
     elseif has("gui_win32")
       set guifont=Hack:h10:cANSI
+      set guioptions-=L           " Prevents gVim moving from Aero Snapped Positions
     endif
   endif
 " }
