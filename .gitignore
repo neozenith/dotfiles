@@ -1,6 +1,7 @@
 *.swp
 .vim/.netrwhist
 .vim/bundle
+.vim/autoload
 tags
 gems.tags
 *.log
