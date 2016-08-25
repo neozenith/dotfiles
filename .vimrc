@@ -95,7 +95,8 @@ scriptencoding utf-8
   filetype on                  " try to detect filetypes
   filetype plugin on
   filetype plugin indent on    " enable loading indent file for filetype
-  colorscheme molokai
+  "colorscheme molokai
+  colorscheme xoria256
   
   let &t_ZH="\e[3m"             "Italicise Comments
   let &t_ZR="\e[23m"
