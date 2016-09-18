@@ -10,8 +10,6 @@ scriptencoding utf-8
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
-  " TODO: https://github.com/junegunn/vim-plug
-
   " let Vundle manage Vundle, required
   Plugin 'VundleVim/Vundle.vim'
 
@@ -53,6 +51,7 @@ scriptencoding utf-8
   Plugin 'itchyny/lightline.vim'  " Status bar
   " SYNTAX CHECKER
   Plugin 'scrooloose/syntastic'   " Syntax Check engine
+  Plugin 'Chiel92/vim-autoformat'
   " CODE COMPLETION
   Plugin 'tpope/vim-surround'
   Plugin 'tpope/vim-endwise'
@@ -79,7 +78,6 @@ scriptencoding utf-8
   Plugin 'othree/html5.vim'       " HTML5 AutoComplete
   " # PYTHON DEV
   Plugin 'fs111/pydoc.vim'
-  Plugin 'vim-scripts/pep8'
   Plugin 'alfredodeza/pytest.vim'
   call vundle#end()
 " }
@@ -146,19 +144,6 @@ scriptencoding utf-8
   "  Allow Uppercase :w :q :wq 
   command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
   command! -bang Q quit<bang>
-  
-  " ---------------------------
-  " Pretty Formatting
-  " http://stackoverflow.com/questions/26214156/how-to-auto-format-json-on-save-in-vim
-  "
-  " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
-  " :%!python -m json.tool
-  "
-  " autocmd FileType xml autocmd BufWritePre <buffer> %!tidy -xml -q -l
-  " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool 2>/dev/null || echo <buffer>
-  " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
-
-  " :%!tidy -xml -q -l
 
 " }
 
@@ -179,7 +164,7 @@ scriptencoding utf-8
 " }
 
 " ---------------------------
-" Trim Trailing Whitespace:
+" Autoformat: Indent, Trim Trailing Whitespace
 " ---------------------------
 " {
   " http://stackoverflow.com/a/1618401/622276
@@ -190,6 +175,8 @@ scriptencoding utf-8
     call cursor(l, c)
   endfun
   autocmd FileType c,cpp,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+  
+  au BufWritePre * :Autoformat
 " }
 
 " ---------------------------
@@ -262,31 +249,6 @@ scriptencoding utf-8
   map <c-f> :lclose<CR>
 " }
 
-" ---------------------------
-" Pretty Format: JSON and XML auto indenter
-" ---------------------------
-" {
-  " Inspired by this Stackoverflow answer 
-  " http://stackoverflow.com/a/29819201/622276
-  function! PrettyJSON()
-    "Save current cursor position"
-    let l:winview = winsaveview()
-    %!python -m json.tool
-    " Restore cursor position
-    call winrestview(l:winview)
-  endfunction
-  command! PrettyJSON :call PrettyJSON()
-  
-  function! PrettyXML()
-    "Save current cursor position"
-    let l:winview = winsaveview()
-    %!tidy -xml -q -l
-    " Restore cursor position
-    call winrestview(l:winview)
-  endfunction
-  command! PrettyXML :call PrettyXML()
-" }
-  
 " ---------------------------
 " Javascript Development: Syntax/Linting Checker
 " ---------------------------

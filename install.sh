@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 # Auth: Josh Wilson
-# Desc: Install script for associated syntax checker tools 
+# Desc: Install script for associated syntax checker tools
 
 # Installation on Windows
 # https://medium.com/@saaguero/setting-up-vim-in-windows-5401b1d58537#.a3huqnkx7
@@ -11,12 +11,12 @@ clear
 function confirm () {
   read -r -p "${1}? [y/N] " response
   case $response in
-      [yY][eE][sS]|[yY]) 
-          true
-          ;;
-      *)
-          false
-          ;;
+    [yY][eE][sS]|[yY])
+      true
+      ;;
+    *)
+      false
+      ;;
   esac
 }
 function title(){
@@ -49,7 +49,7 @@ function symlink_vimrc () {
   rm -rfv ~/.jscsrc
   rm -rfv ~/.tern-project
   echo -e "\033[94mSymLinking new files..."
-  ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc  
+  ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
   ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc
   ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project
@@ -65,7 +65,7 @@ function build_vim () {
   echo -e "Install VIM from Source"
   sudo rm -rf vim/
   git clone git@github.com:vim/vim.git vim/
-  
+
   cd vim/src
   show_dir
   ./configure --prefix=/usr/local/ \
@@ -73,7 +73,7 @@ function build_vim () {
     --enable-pythoninterp \
     --with-features=huge
   sudo make; sudo make install
-  
+
   cd $SCRIPT_DIR
   show_dir
 }
@@ -88,14 +88,18 @@ function install_dev_dependencies () {
   # install hombrew
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   notice "Homebrew update and upgrade:"
-  brew update 
+  brew update
   brew upgrade
   brew doctor
+
   # Git Radar / Git AutoComplete
   brew install michaeldfallen/formula/git-radar
   brew install git
   brew install bash-completion
   brew install ctags
+
+  # C, C++, C#, Objective-C
+  brew install llvm
 
   # Database Drivers
   brew install postgres
@@ -121,7 +125,7 @@ function install_dev_dependencies () {
 
 function install_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
-  
+
   #HomeBrew
   brew install cmake npm --upgrade
 
@@ -138,6 +142,7 @@ function install_plugin_dependencies () {
     jshint \
     jscs \
     eslint \
+    js-beautify \
     webapp-generator \
     express-generator \
     mocha
@@ -145,7 +150,7 @@ function install_plugin_dependencies () {
 
 # Vundle
 function vim_plugins () {
-  
+
   install_plugin_dependencies
 
   # Check if Vundle is already installed
@@ -154,7 +159,7 @@ function vim_plugins () {
   fi
   # Install Plugins
   vim +PluginInstall +qall
-  
+
   confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
 }
 
@@ -165,26 +170,26 @@ function build_ycm () {
 
   cd .vim/bundle/YouCompleteMe
   show_dir
-  ./install.py --tern-completer 
-  
+  ./install.py --tern-completer
+
   cd $SCRIPT_DIR
   show_dir
 }
 
 function main_installer () {
   confirm "Install development tools" && install_dev_dependencies
-  
+
   echo -e "=============================================\033[92m"
   which vim
   vim --version
   echo -e "\033[0m============================================="
 
   confirm "Build latest Vim from Source" && build_vim
-  
+
   confirm "Install .vimrc files" && symlink_vimrc
-  
+
   confirm "Install Vim vundle plugins" && vim_plugins
-  
+
 }
 
 main_installer
