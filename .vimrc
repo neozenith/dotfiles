@@ -263,9 +263,36 @@ scriptencoding utf-8
 " }
 
 " ---------------------------
+" Pretty Format: JSON and XML auto indenter
+" ---------------------------
+" {
+  " Inspired by this Stackoverflow answer 
+  " http://stackoverflow.com/a/29819201/622276
+  function! PrettyJSON()
+    "Save current cursor position"
+    let l:winview = winsaveview()
+    %!python -m json.tool
+    " Restore cursor position
+    call winrestview(l:winview)
+  endfunction
+  command! PrettyJSON :call PrettyJSON()
+  
+  function! PrettyXML()
+    "Save current cursor position"
+    let l:winview = winsaveview()
+    %!tidy -xml -q -l
+    " Restore cursor position
+    call winrestview(l:winview)
+  endfunction
+  command! PrettyXML :call PrettyXML()
+" }
+  
+" ---------------------------
 " Javascript Development: Syntax/Linting Checker
 " ---------------------------
 " {
+  " Inspired by this Stackoverflow answer 
+  " http://stackoverflow.com/a/29819201/622276
   function! JscsFix()
     "Save current cursor position"
     let l:winview = winsaveview()
@@ -276,6 +303,8 @@ scriptencoding utf-8
     call winrestview(l:winview)
   endfunction
   command! JscsFix :call JscsFix()
+" }
+
 " ---------------------------
 " YouCompleteMe: AutoComplete Engine
 " ---------------------------
