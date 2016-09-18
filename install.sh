@@ -46,9 +46,13 @@ function symlink_vimrc () {
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
+  rm -rfv ~/.jscsrc
+  rm -rfv ~/.tern-project
   echo -e "\033[94mSymLinking new files..."
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc  
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
+  ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc
+  ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project
   # Display synmlinks
   ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
   echo -e "\033[0m"
@@ -93,7 +97,7 @@ function install_dev_dependencies () {
   brew install bash-completion
   brew install ctags
 
-  # SQL Drivers
+  # Database Drivers
   brew install postgres
   brew install freetds
   brew install redis
