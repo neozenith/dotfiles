@@ -143,7 +143,6 @@ function install_plugin_dependencies () {
     jscs \
     eslint \
     js-beautify \
-    webapp-generator \
     express-generator \
     mocha
 }
