@@ -176,7 +176,7 @@ scriptencoding utf-8
   endfun
   autocmd FileType c,cpp,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
   
-  au BufWritePre * :Autoformat
+  " au BufWritePre * :Autoformat
 " }
 
 " ---------------------------
