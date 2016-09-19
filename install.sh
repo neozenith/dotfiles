@@ -121,6 +121,10 @@ function install_dev_dependencies () {
   notice "Installing PIP and Packages as SuperUser"
   sudo python get-pip.py
   sudo pip install --upgrade awscli boto awsebcli
+
+  # DevOps
+  brew install terraform
+  brew install graphviz
 }
 
 function install_plugin_dependencies () {
