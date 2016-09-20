@@ -49,9 +49,10 @@ scriptencoding utf-8
   Plugin 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
   " STATUS LINE
   Plugin 'itchyny/lightline.vim'  " Status bar
-  " SYNTAX CHECKER
+  " SYNTAX CHECKER + HIGHLIGHTING
   Plugin 'scrooloose/syntastic'   " Syntax Check engine
-  Plugin 'Chiel92/vim-autoformat'
+  Plugin 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
+  Plugin 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
   " CODE COMPLETION
   Plugin 'tpope/vim-surround'
   Plugin 'tpope/vim-endwise'
