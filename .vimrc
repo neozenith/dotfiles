@@ -77,6 +77,7 @@ scriptencoding utf-8
   Plugin 'elzr/vim-json'          " JSON Style Checker
   Plugin 'ap/vim-css-color'       " Preview CSS colours with text highlighting
   Plugin 'othree/html5.vim'       " HTML5 AutoComplete
+  Plugin 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
   " # PYTHON DEV
   Plugin 'fs111/pydoc.vim'
   Plugin 'alfredodeza/pytest.vim'
