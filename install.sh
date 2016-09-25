@@ -148,7 +148,8 @@ function install_plugin_dependencies () {
     eslint \
     js-beautify \
     express-generator \
-    mocha
+    mocha \
+    webpack
 }
 
 # Vundle
