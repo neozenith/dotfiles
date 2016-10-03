@@ -245,7 +245,7 @@ scriptencoding utf-8
   " .jscsrc
   " .jshintrc
   " .tern-project
-  let g:syntastic_javascript_checkers = ['eslint', 'jscs', 'jshint']
+  let g:syntastic_javascript_checkers = ['eslint', 'jscs']
   au BufNewFile,BufRead *.ejs set filetype=html
 
   map <c-f> :lclose<CR>
