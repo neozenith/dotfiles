@@ -121,6 +121,7 @@ function install_dev_dependencies () {
   notice "Installing PIP and Packages as SuperUser"
   sudo python get-pip.py
   sudo pip install --upgrade awscli boto awsebcli
+  complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
 
   # DevOps
   brew install terraform
