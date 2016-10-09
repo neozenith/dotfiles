@@ -54,6 +54,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+if [ -n "$(which aws_completer)" ]; then
+  complete -C "$(which aws_completer)" aws
+fi
+
 #TODO get the following line to test first and if not present 
 # then download and install 
 # curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
