@@ -109,7 +109,8 @@ scriptencoding utf-8
   set backspace=indent,eol,start  "Allow backspace in insert mode
   " set list                  " Show invisible characters
   " Set the characters for the invisibles
-  " set listchars=eol:$,tab:~>,trail:~,extends:>,precedes:<
+  " http://stackoverflow.com/a/29787362/622276
+  :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
   :set ignorecase " case insensitive
   :set smartcase  " use case if any caps used 
   :set incsearch  " show match as search proceeds
