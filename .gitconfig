@@ -1,7 +1,10 @@
 [gui]
+
+[http]
+
 [user]
-	name = Josh Wilson
-	email = neozenith.dev@gmail.com
+	name = "Josh Peak"
+	email = "neozenith.dev@gmail.com"
 [core]
 	excludesfile = /Users/neozenith/.gitignore_global
 	editor = /usr/local/bin/vim
@@ -20,3 +23,5 @@
 	prompt = false
 [color]
 	ui = true
+[commit]
+	template = /Users/neozenith/.stCommitMsg

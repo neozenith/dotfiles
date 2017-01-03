@@ -48,12 +48,14 @@ function symlink_vimrc () {
   rm -rfv ~/.vimrc
   rm -rfv ~/.jscsrc
   rm -rfv ~/.tern-project
+  rm -rfv ~/.ycm_extra_conf.py
   echo -e "\033[94mSymLinking new files..."
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
-  ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc
-  ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project
-  # Display synmlinks
+  ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc                       # JSCS Lint Base Settings
+  ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
+  ln -sfv $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings
+  # Display symlinks
   ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
   echo -e "\033[0m"
 }
@@ -175,7 +177,7 @@ function build_ycm () {
 
   cd .vim/bundle/YouCompleteMe
   show_dir
-  ./install.py --tern-completer
+  ./install.py --tern-completer --clang-completer --system-libclang
 
   cd $SCRIPT_DIR
   show_dir
