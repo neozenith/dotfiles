@@ -66,7 +66,10 @@ function build_vim () {
 
   echo -e "Install VIM from Source"
   sudo rm -rf vim/
-  git clone git@github.com:vim/vim.git vim/
+  # packages for centos
+  sudo yum install cmake npm -y
+  sudo yum install ruby-devel python-devel ncurses-devel -y
+  git clone https://github.com/vim/vim.git vim/
 
   cd vim/src
   show_dir
@@ -81,7 +84,7 @@ function build_vim () {
 }
 
 ###############################################################################
-function install_dev_dependencies () {
+function install_osx_dev_dependencies () {
   title "Installing Development Tools..."
   pause
   # install xcode command line tools
