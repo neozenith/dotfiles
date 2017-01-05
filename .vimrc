@@ -43,21 +43,35 @@ scriptencoding utf-8
   Plugin 'sjl/gundo.vim'                    " Undo History
   Plugin 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
   Plugin 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
+
   " GIT Integerations
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-git'
   Plugin 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
+  " Note to self: Git Diff article explaining how to 3 way merge with Vim
+  " http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
+
   " STATUS LINE
   Plugin 'itchyny/lightline.vim'  " Status bar
+
   " SYNTAX CHECKER + HIGHLIGHTING
   Plugin 'scrooloose/syntastic'   " Syntax Check engine
   Plugin 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
   Plugin 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
+
   " CODE COMPLETION
   Plugin 'tpope/vim-surround'
   Plugin 'tpope/vim-endwise'
   Plugin 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
   Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+
+  " C++ Dev
+  " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
+  " There is a default one in this repo that links to root user dir but it
+  " should be copied into and configured per project. 
+  " http://valloric.github.io/YouCompleteMe/#c-family-semantic-completion
+  " https://jonasdevlieghere.com/a-better-youcompleteme-config/
+
   " # RUBY DEV
   Plugin 'vim-ruby/vim-ruby'
   Plugin 'ngmy/vim-rubocop'       " Ruby Syntax and Style Checker
@@ -65,6 +79,7 @@ scriptencoding utf-8
   Plugin 'tpope/vim-bundler'
   Plugin 'tpope/vim-rake'
   Plugin 'reinh/vim-makegreen'
+  
   " # WEB DEV
 
   " Emmet HTML tag expander
@@ -78,9 +93,11 @@ scriptencoding utf-8
   Plugin 'ap/vim-css-color'       " Preview CSS colours with text highlighting
   Plugin 'othree/html5.vim'       " HTML5 AutoComplete
   Plugin 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
+  
   " # PYTHON DEV
   Plugin 'fs111/pydoc.vim'
   Plugin 'alfredodeza/pytest.vim'
+  
   call vundle#end()
 " }
 
