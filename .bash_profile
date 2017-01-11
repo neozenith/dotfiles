@@ -32,8 +32,13 @@ alias dki="docker images"
 alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
 
 # Prompt & Paths
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 export PS1="\e[0;32m\w\e[m"
 # export PS1="$PS1\$(git-radar --bash --fetch)"
+export PS1="$PS1\$(parse_git_branch)"
 export PS1="$PS1\n\$ "
 
 
