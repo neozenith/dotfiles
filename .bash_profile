@@ -33,7 +33,7 @@ alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
 
 # Prompt & Paths
 export PS1="\e[0;32m\w\e[m"
-# export PS1="$PS1\$(git-radar --bash --fetch)\n\$ "
+export PS1="$PS1\$(git-radar --bash --fetch)\n\$ "
 export PS1="$PS1\n\$ "
 
 

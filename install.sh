@@ -66,7 +66,7 @@ function build_vim () {
 
   echo -e "Install VIM from Source"
   sudo rm -rf vim/
-  git clone git@github.com:vim/vim.git vim/
+  git clone https://github.com/vim/vim.git vim/
 
   cd vim/src
   show_dir
@@ -96,7 +96,7 @@ function install_dev_dependencies () {
 
   # Git Radar / Git AutoComplete
   brew install michaeldfallen/formula/git-radar
-  brew install git
+  brew install git git-flow
   brew install bash-completion
   brew install ctags
 
@@ -111,8 +111,8 @@ function install_dev_dependencies () {
   # Ruby
   brew install rbenv ruby-build
   if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-  rbenv install 2.2.0
-  rbenv global 2.2.0
+  rbenv install 2.3.0
+  rbenv global 2.3.0
   ruby -v
   notice "Installing Gems as SuperUser"
   sudo gem install bundler rails
