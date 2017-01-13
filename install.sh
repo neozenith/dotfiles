@@ -111,8 +111,8 @@ function install_dev_dependencies () {
   # Ruby
   brew install rbenv ruby-build
   if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-  rbenv install 2.3.0
-  rbenv global 2.3.0
+  rbenv install 2.4.0
+  rbenv global 2.4.0
   ruby -v
   notice "Installing Gems as SuperUser"
   sudo gem install bundler rails
