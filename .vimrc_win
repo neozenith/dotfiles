@@ -105,7 +105,14 @@ scriptencoding utf-8
 " BASIC CONFIGURATION:
 " ---------------------------
 " {
+  " Windows CMDer 256 color fixes
+  " http://stackoverflow.com/a/14434531 
+  set term=xterm
   set t_Co=256
+  let &t_AB="\e[48;5;%dm" 
+  let &t_AF="\e[38;5;%dm"
+  colorscheme xoria256
+  
   set background=dark
   set mouse=nicr               " Set mouse scroll events to nav cursor
   syntax on                    " syntax highlighing
@@ -113,7 +120,6 @@ scriptencoding utf-8
   filetype plugin on
   filetype plugin indent on    " enable loading indent file for filetype
   "colorscheme molokai
-  colorscheme xoria256
   
   let &t_ZH="\e[3m"             "Italicise Comments
   let &t_ZR="\e[23m"
@@ -295,7 +301,7 @@ scriptencoding utf-8
   " Uncomment loaded_youcomplteme to disable YCM when on a system that 
   " does not allow YouCompleteMe plugin or have a new enough version of Vim
   "
-  " let g:loaded_youcompleteme = 1
+  let g:loaded_youcompleteme = 1
   let g:ycm_key_detailed_diagnostics = ''
   let g:ycm_key_invoke_completion = ''
   let g:ycm_complete_in_strings=0
