@@ -4,3 +4,6 @@
 tags
 gems.tags
 *.log
+
+# Windows temporary files
+*.*~
