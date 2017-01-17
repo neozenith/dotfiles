@@ -339,6 +339,8 @@ scriptencoding utf-8
   let g:ycm_key_invoke_completion = ''
   let g:ycm_complete_in_strings=0
   let g:ycm_autoclose_preview_window_after_insertion = 1
+  let g:ycm_confirm_extra_conf = 0 " Not super safe but just assume the .ycm_extra_conf.py is safe
+
 " }
 
 " ---------------------------
