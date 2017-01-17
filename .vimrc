@@ -52,9 +52,6 @@ scriptencoding utf-8
   " http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
 
   " STATUS LINE
-  " TODO: Patched Fonts
-  " https://github.com/ryanoasis/nerd-fonts (~2Gb)
-  Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
   Plugin 'itchyny/lightline.vim'  " Status bar
 
@@ -118,6 +115,11 @@ scriptencoding utf-8
   Plugin 'fs111/pydoc.vim'
   Plugin 'alfredodeza/pytest.vim'
   
+  " Patched Fonts:
+  " Must be last plugin to load
+  " https://github.com/ryanoasis/nerd-fonts (~2Gb)
+  Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
+
   call vundle#end()
 " }
 
