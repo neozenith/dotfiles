@@ -52,6 +52,7 @@ scriptencoding utf-8
   " http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
 
   " STATUS LINE
+
   Plugin 'itchyny/lightline.vim'  " Status bar
 
   " SYNTAX CHECKER + HIGHLIGHTING
@@ -71,6 +72,22 @@ scriptencoding utf-8
   " should be copied into and configured per project. 
   " http://valloric.github.io/YouCompleteMe/#c-family-semantic-completion
   " https://jonasdevlieghere.com/a-better-youcompleteme-config/
+  "
+  "Plugin 'rdnetto/YCM-Generator' " Automatically generates YouCompleteMe configuration based on Makefile
+  "
+  " https://github.com/tpope/vim-dispatch
+  Plugin 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
+  " 
+  " https://github.com/alepez/vim-gtest
+  " Plugin 'alepez/vim-gtest'       " Unit Testing Framework
+  "
+  " https://github.com/alepez/vim-llvmcov
+  " Plugin 'alepez/vim-llvmcov'     " Code Covereage
+  "
+  " TODO: An elegant guide to refactoring as well as checking if files exist 
+  " https://github.com/alepez/dotfiles/blob/master/vim/init.vim
+  "
+  Plugin 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 
   " # RUBY DEV
   Plugin 'vim-ruby/vim-ruby'
@@ -98,6 +115,11 @@ scriptencoding utf-8
   Plugin 'fs111/pydoc.vim'
   Plugin 'alfredodeza/pytest.vim'
   
+  " Patched Fonts:
+  " Must be last plugin to load
+  " https://github.com/ryanoasis/nerd-fonts (~2Gb)
+  Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
+
   call vundle#end()
 " }
 
@@ -216,7 +238,9 @@ scriptencoding utf-8
     \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
     \ },
     \ 'component_function': {
-    \   'fugitive': 'FugitiveCheck'
+    \   'fugitive': 'FugitiveCheck',
+    \   'filetype': 'DevIconsFiletype',
+    \   'fileformat': 'DevIconsFileformat'
     \ },
     \ 'component': {
     \   'readonly': '%{&readonly?"\ue0a2":""}',
@@ -225,6 +249,13 @@ scriptencoding utf-8
     \ 'subseparator': { 'left': "|", 'right': "|" }
     \ }
 
+  function! DevIconsFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  endfunction
+
+  function! DevIconsFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  endfunction
 
   function! FugitiveCheck()
     if exists("*fugitive#head")
@@ -292,14 +323,24 @@ scriptencoding utf-8
 " YouCompleteMe: AutoComplete Engine
 " ---------------------------
 " {
-  " Uncomment loaded_youcomplteme to disable YCM when on a system that 
+  " Uncomment loaded_youcompleteme to disable YCM when on a system that 
   " does not allow YouCompleteMe plugin or have a new enough version of Vim
   "
+  " NOTE: This configuration looks like it autodisables YCM when it isn't
+  " supported
+  " https://github.com/alepez/dotfiles/blob/master/vim/vimrc/ycm.vim#L9-L14
+  " https://github.com/Valloric/YouCompleteMe/pull/2369
+  if !((v:version == 704 && has('patch143') || v:version > 704) && (has('python') || has('python3')))
+    let g:loaded_youcompleteme = 1
+  endif
+
   " let g:loaded_youcompleteme = 1
   let g:ycm_key_detailed_diagnostics = ''
   let g:ycm_key_invoke_completion = ''
   let g:ycm_complete_in_strings=0
   let g:ycm_autoclose_preview_window_after_insertion = 1
+  let g:ycm_confirm_extra_conf = 0 " Not super safe but just assume the .ycm_extra_conf.py is safe
+
 " }
 
 " ---------------------------
@@ -332,6 +373,12 @@ scriptencoding utf-8
   map <leader>n :NERDTreeToggle<CR>
   map <C-n> :NERDTreeToggle<CR>
   let NERDTreeShowHidden=1
+  let NERDTreeQuitOnOpen = 1
+  
+  " DevIcons addon to NERDTree
+  let g:webdevicons_enable_nerdtree = 1
+  " Force extra padding in NERDTree so that the filetype icons line up vertically 
+  let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
   " ---------------------------
   " GRAPHICAL UNDO TREE
