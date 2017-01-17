@@ -12,9 +12,14 @@ scriptencoding utf-8
 set nocompatible
 filetype off 
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Setup Runtime Path:
+if has('win64') || has('win32') || has('win16')
+  set rtp+=$HOME/vimfiles/bundle/Vundle.vim
+else
+  set rtp+=~/.vim/bundle/Vundle.vim
+endif
 
+call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 

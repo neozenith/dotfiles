@@ -11,7 +11,7 @@ cls
 rm -rfv %HOME%\_vimrc
 rm -rfv %HOME%\vimfiles
 
-cp -v _vimrc %HOME%\_vimrc
+cp -v .vimrc %HOME%\_vimrc
 xcopy /s .vim %HOME%\vimfiles
 
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
