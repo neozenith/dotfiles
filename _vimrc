@@ -243,7 +243,7 @@ scriptencoding utf-8
     \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
     \ },
     \ 'component_function': {
-    \   'fugitive': 'FugitiveCheck'
+    \   'fugitive': 'FugitiveCheck',
     \   'filetype': 'DevIconsFiletype',
     \   'fileformat': 'DevIconsFileformat'
     \ },
