@@ -118,6 +118,10 @@ scriptencoding utf-8
   " Patched Fonts:
   " Must be last plugin to load
   " https://github.com/ryanoasis/nerd-fonts (~2Gb)
+  "
+  " Windows CMDer ConEmu - change codepage to get patched fonts
+  " http://stackoverflow.com/a/28453539/622276
+  " chcp 65001
   Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
   call vundle#end()
