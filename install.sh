@@ -130,7 +130,7 @@ function install_dev_dependencies () {
   brew install graphviz
 }
 
-function install_plugin_dependencies () {
+function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
   #HomeBrew
@@ -158,7 +158,11 @@ function install_plugin_dependencies () {
 # Vundle
 function vim_plugins () {
 
-  install_plugin_dependencies
+  if [[ $OSTYPE == darwin* ]]; then
+    install_osx_plugin_dependencies
+  else
+    notice "Plugin dependencies not defined for non OSX platforms yet."
+  fi
 
   # Check if Vundle is already installed
   if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
