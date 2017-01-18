@@ -10,10 +10,18 @@ got some version control and got backed up too. Making moving to other machines
 or even developing remotely easier.
 
 ## Installation
+### Mac OSX
 ```
 cd ~
-git clone git@github.com:neozenith/vim.git ~/neozenith-vim
-. neozenith-vim/install.sh
+git clone https://github.com/neozenith/vim-dotfiles.git ~/nz-vim/
+. nz-vim/install.sh
+```
+### Windows
+```
+cd %HOME%
+git clone https://github.com/neozenith/vim-dotfiles.git nz-vim/
+cd nz-vim
+install.bat
 ```
 
 ## Update Plugins
@@ -26,6 +34,7 @@ See Vundle documentation.
 https://github.com/VundleVim/Vundle.vim#quick-start
 
 ## Credits
-Tim Pope https://github.com/tpope
+- [Tim Pope](https://github.com/tpope)
+- [Alessandro Pezzato](https://github.com/alepez)
 
 Huge thanks for everything you have done for the VIM community.
