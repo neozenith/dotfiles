@@ -190,6 +190,7 @@ function main_installer () {
   which vim
   vim --version
   echo -e "\033[0m============================================="
+  curl https://github.com/vim/vim/releases | grep tag/v
 
   confirm "Build latest Vim from Source" && build_vim
 
