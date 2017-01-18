@@ -70,7 +70,12 @@ function build_vim () {
 
   cd vim/src
   show_dir
-  ./configure --prefix=/usr/local/ \
+  if [[ $OSTYPE == darwin* ]]; then
+    VIM_INSTALL_PREFIX="--prefix=/usr/local/"
+  else
+    VIM_INSTALL_PREFIX="--prefix=/usr/"
+  fi
+  sudo ./configure $VIM_INSTALL_PREFIX \
     --enable-rubyinterp \
     --enable-pythoninterp \
     --with-features=huge
@@ -81,7 +86,22 @@ function build_vim () {
 }
 
 ###############################################################################
-function install_dev_dependencies () {
+
+function install_RHEL_dev_dependencies () {
+  sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+
+  sudo yum update && sudo yum upgrade -y
+  sudo yum install -y \
+    cmake gcc-c++ make \
+    ncurses ncurses-devel \
+    clang clang-devel \
+    python python-devel \
+    ruby ruby-devel 
+  
+  sudo yum install nodejs npm --enablerepo=epel
+}
+
+function install_osx_dev_dependencies () {
   title "Installing Development Tools..."
   pause
   # install xcode command line tools
@@ -110,7 +130,9 @@ function install_dev_dependencies () {
 
   # Ruby
   brew install rbenv ruby-build
-  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+  if which rbenv > /dev/null; then 
+    eval "$(rbenv init -)"
+  fi
   rbenv install 2.4.0
   rbenv global 2.4.0
   ruby -v
@@ -128,9 +150,14 @@ function install_dev_dependencies () {
   # DevOps
   brew install terraform
   brew install graphviz
+
 }
 
-function install_plugin_dependencies () {
+function install_RHEL_plugin_dependencies () {
+  echo "Nothing to do here"
+}
+
+function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
   #HomeBrew
@@ -158,7 +185,12 @@ function install_plugin_dependencies () {
 # Vundle
 function vim_plugins () {
 
-  install_plugin_dependencies
+  if [[ $OSTYPE == darwin* ]]; then
+    install_osx_plugin_dependencies
+  else
+    notice "Plugin dependencies not defined for non OSX platforms yet."
+    install_RHEL_plugin_dependencies
+  fi
 
   # Check if Vundle is already installed
   if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
@@ -184,7 +216,11 @@ function build_ycm () {
 }
 
 function main_installer () {
-  confirm "Install development tools" && install_dev_dependencies
+  if [[ $OSTYPE == darwin* ]]; then
+    confirm "Install OSX development tools" && install_osx_dev_dependencies
+  else
+    confirm "Install RHEL development tools" && install_RHEL_dev_dependencies
+  fi
 
   echo -e "=============================================\033[92m"
   which vim
