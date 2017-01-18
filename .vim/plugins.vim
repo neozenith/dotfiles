@@ -14,12 +14,13 @@ filetype off
 
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
-  set rtp+=$HOME/vimfiles/bundle/Vundle.vim
+  set rtp=$HOME/vimfiles/bundle/Vundle.vim
+  call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 else
   set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 endif
 
-call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 

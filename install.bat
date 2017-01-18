@@ -12,9 +12,17 @@ rm -rfv %HOME%\_vimrc
 rm -rfv %HOME%\vimfiles
 
 cp -v .vimrc %HOME%\_vimrc
-xcopy /s .vim %HOME%\vimfiles
+xcopy /s /I .vim %HOME%\vimfiles
 
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
 git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/vimfiles/bundle/Vundle.vim
 
 vim +PluginInstall +qall
+
+:: WIP To be able to build YCM on Windows
+:: Must be admin
+choco install cmake 7zip -y
+PATH=%PATH%;C:\Program Files\CMake\bin;
+
+:: Install this
+:: http://releases.llvm.org/3.9.1/LLVM-3.9.1-win64.exe
