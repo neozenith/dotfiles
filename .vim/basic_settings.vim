@@ -14,6 +14,16 @@ syntax on                    " syntax highlighing
 filetype on                  " try to detect filetypes
 filetype plugin on
 filetype plugin indent on    " enable loading indent file for filetype
+
+if has('win64') || has('win32') || has('win16')
+  " Windows CMDer 256 color fixes
+   " http://stackoverflow.com/a/14434531 
+   set term=xterm
+   set t_Co=256
+   let &t_AB="\e[48;5;%dm" 
+   let &t_AF="\e[38;5;%dm"
+endif
+
 "colorscheme molokai
 colorscheme xoria256
 
