@@ -22,6 +22,9 @@
 [mergetool]
 	prompt = false
 [color]
-	ui = true
+  ui = true
+  diff = auto
+  branch = auto
+  status = auto
 [commit]
 	template = /Users/neozenith/.stCommitMsg
