@@ -39,7 +39,13 @@ set backspace=indent,eol,start  "Allow backspace in insert mode
 " set list                  " Show invisible characters
 " Set the characters for the invisibles
 " http://stackoverflow.com/a/29787362/622276
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
+" Needs to be Vim 7.4.710+
+if ((v:version == 704 && has('patch710') || v:version > 704) )
+  set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
+else
+  set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+endif
+
 set ignorecase " case insensitive
 set smartcase  " use case if any caps used 
 set incsearch  " show match as search proceeds
