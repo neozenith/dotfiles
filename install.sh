@@ -96,10 +96,9 @@ function install_RHEL_dev_dependencies () {
     ncurses ncurses-devel \
     clang clang-devel \
     python python-devel \
-    ruby ruby-devel \
-    colordiff
+    ruby ruby-devel 
   
-  sudo $(PKG_MANAGER) install nodejs npm --enablerepo=epel
+  sudo $(PKG_MANAGER) install --enablerepo=epel nodejs npm colordiff
 }
 
 function install_osx_dev_dependencies () {

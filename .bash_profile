@@ -30,8 +30,8 @@ if [[ $OSTYPE == darwin* ]]; then
   # http://stackoverflow.com/a/16865578/622276
   alias colourdiff="sed \"s/^-/`echo -e \"\x1b\"`[31m-/;s/^+/`echo -e \"\x1b\"`[32m+/;s/^@/`echo -e \"\x1b\"`[34m@/;s/$/`echo -e \"\x1b\"`[0m/\""
 else
-
-  alias colourdiff="sed 's/^-/\x1b[41m-/;s/^+/\x1b[42m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'"
+  # apt-get install colordiff
+  alias colourdiff="sed 's/^-/\x1b[31m-/;s/^+/\x1b[32m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'"
 fi
 
 # Docker Shortcuts
@@ -46,7 +46,22 @@ alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
 
 # Prompt & Paths
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  # Route errors to stderr (2>) especially when in non-Git directories
+  # Pipe sane output to sed for cleanup
+  # Get diff and status
+  # if there are any unstaged diffs then colour RED
+  # if there are staged but uncommited work then YELLOW
+  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
+  STATUS=`git status -s 2> /dev/null`
+  DIFF=`git diff 2> /dev/null`
+  STATUS_COLOUR=""
+  if [[ -n $STATUS ]]; then
+    STATUS_COLOUR="\e[33m"
+  fi
+  if [[ -n $DIFF ]]; then
+    STATUS_COLOUR="\e[31m"
+  fi
+  echo -e "$STATUS_COLOUR$BRANCH\e[0m"
 }
 
 export PS1="\e[0;32m\w\e[m"
