@@ -51,11 +51,14 @@ parse_git_branch() {
   # Get diff and status
   # if there are any unstaged diffs then colour RED
   # if there are staged but uncommited work then YELLOW
+
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
   STATUS=`git status -s 2> /dev/null`
   DIFF=`git diff 2> /dev/null`
-  STATUS_COLOUR=""
   ESC_CODE=""
+  RED="[31m"
+  YELLOW="[33m"
+  BLUE="[34m"
 
   if [[ $OSTYPE == darwin* ]]; then
     ESC_CODE="\033"
@@ -63,11 +66,12 @@ parse_git_branch() {
     ESC_CODE="\e"
   fi
 
+  STATUS_COLOUR="$ESC_CODE$BLUE"
   if [[ -n $STATUS ]]; then
-    STATUS_COLOUR="$ESC_CODE[33m"
+    STATUS_COLOUR="$ESC_CODE$YELLOW"
   fi
   if [[ -n $DIFF ]]; then
-    STATUS_COLOUR="$ESC_CODE[31m"
+    STATUS_COLOUR="$ESC_CODE$RED"
   fi
 
   echo -e "$STATUS_COLOUR$BRANCH$ESC_CODE[0m"
