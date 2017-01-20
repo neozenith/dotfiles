@@ -80,7 +80,7 @@ parse_git_branch() {
 export PS1="\e[0;32m\w\e[m"
 # export PS1="$PS1\$(git-radar --bash --fetch)"
 export PS1="$PS1\$(parse_git_branch)"
-export PS1="$PS1\n\$ "
+export PS1="$PS1\nλ "
 
 
 # Check to see if it is already in the PATH before unnecessarily concatenating
