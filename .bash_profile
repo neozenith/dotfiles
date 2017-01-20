@@ -55,13 +55,22 @@ parse_git_branch() {
   STATUS=`git status -s 2> /dev/null`
   DIFF=`git diff 2> /dev/null`
   STATUS_COLOUR=""
+  ESC_CODE=""
+
+  if [[ $OSTYPE == darwin* ]]; then
+    ESC_CODE="\033"
+  else
+    ESC_CODE="\e"
+  fi
+
   if [[ -n $STATUS ]]; then
-    STATUS_COLOUR="\e[33m"
+    STATUS_COLOUR="$ESC_CODE[33m"
   fi
   if [[ -n $DIFF ]]; then
-    STATUS_COLOUR="\e[31m"
+    STATUS_COLOUR="$ESC_CODE[31m"
   fi
-  echo -e "$STATUS_COLOUR$BRANCH\e[0m"
+
+  echo -e "$STATUS_COLOUR$BRANCH$ESC_CODE[0m"
 }
 
 export PS1="\e[0;32m\w\e[m"
