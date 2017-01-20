@@ -21,6 +21,19 @@ alias gp="git push"
 # (G)it (T)ree
 alias gt="git tree"
 
+### Subversion shortcuts
+if [[ $OSTYPE == darwin* ]]; then
+  # Easy version from hommebrew
+  # brew install colordiff
+  #
+  # Hard version to always have available in bash
+  # http://stackoverflow.com/a/16865578/622276
+  alias colourdiff="sed \"s/^-/`echo -e \"\x1b\"`[31m-/;s/^+/`echo -e \"\x1b\"`[32m+/;s/^@/`echo -e \"\x1b\"`[34m@/;s/$/`echo -e \"\x1b\"`[0m/\""
+else
+
+  alias colourdiff="sed 's/^-/\x1b[41m-/;s/^+/\x1b[42m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'"
+fi
+
 # Docker Shortcuts
 alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
 alias dken="eval \$(docker-machine env default)"

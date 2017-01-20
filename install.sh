@@ -89,16 +89,17 @@ function build_vim () {
 
 function install_RHEL_dev_dependencies () {
   sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
-
-  sudo yum update && sudo yum upgrade -y
-  sudo yum install -y \
+  PKG_MANAGER=yum # Centos: yum / SUSE: zypper / Ubuntu: apt-get
+  sudo $(PKG_MANAGER) update && sudo $(PKG_MANAGER) upgrade -y
+  sudo $(PKG_MANAGER) install -y \
     cmake gcc-c++ make \
     ncurses ncurses-devel \
     clang clang-devel \
     python python-devel \
-    ruby ruby-devel 
+    ruby ruby-devel \
+    colordiff
   
-  sudo yum install nodejs npm --enablerepo=epel
+  sudo $(PKG_MANAGER) install nodejs npm --enablerepo=epel
 }
 
 function install_osx_dev_dependencies () {
@@ -119,6 +120,7 @@ function install_osx_dev_dependencies () {
   brew install git git-flow
   brew install bash-completion
   brew install ctags
+  brew install colordiff
 
   # C, C++, C#, Objective-C
   brew install llvm
