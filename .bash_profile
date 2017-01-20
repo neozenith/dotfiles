@@ -19,7 +19,7 @@ alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags;
 alias gpa="git pull -v --all"
 alias gp="git push"
 # (G)it (T)ree
-alias gt="git log --graph --full-history --all --date=relative --pretty=format:\"%C(auto)%h%x09%Cgreen%ad %an%Creset%C(auto)%d%x20%s%n\""
+alias gt="git tree"
 
 # Docker Shortcuts
 alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
