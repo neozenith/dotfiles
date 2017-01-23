@@ -16,6 +16,7 @@ alias gb="git branch -vv -a"
 alias gcon="git diff --name-only --diff-filter=U"
 # (G)it (M)aster
 alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
+alias gu=" git checkout $1 -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
 alias gpa="git pull -v --all"
 alias gp="git push"
 # (G)it (T)ree
