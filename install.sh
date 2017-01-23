@@ -89,8 +89,21 @@ function build_vim () {
 
 function install_RHEL_dev_dependencies () {
   sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
-  PKG_MANAGER=yum # Centos: yum / SUSE: zypper / Ubuntu: apt-get
-  sudo $(PKG_MANAGER) update && sudo $(PKG_MANAGER) upgrade -y
+  HAS_YUM=`which yum 2> /dev/null`
+  HAS_ZYPPER=`which zypper 2> /dev/null`
+  HAS_APTGET=`which apt-get 2> /dev/null`
+
+  PKG_MANAGER="rpm" # Centos: yum / SUSE: zypper / Ubuntu: apt-get
+  if [[ -n "$HAS_YUM" ]]; then
+    PKG_MANAGER="yum"
+  elif [[ -n "$HAS_ZYPPER" ]]; then
+    PKG_MANAGER="zypper"
+  elif [[ -n "$HAS_APTGET" ]]; then
+    PKG_MANAGER="apt-get"
+  fi
+
+  sudo $(PKG_MANAGER) update 
+  sudo $(PKG_MANAGER) upgrade -y
   sudo $(PKG_MANAGER) install -y \
     cmake gcc-c++ make \
     ncurses ncurses-devel \
