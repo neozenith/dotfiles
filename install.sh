@@ -198,7 +198,7 @@ function vim_plugins () {
     git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
   fi
   # Install Plugins
-  vim +PluginInstall +qall
+  vim +PluginInstall +PluginUpdate +qall
 
   confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
 }
