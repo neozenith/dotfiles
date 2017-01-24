@@ -65,8 +65,16 @@ function build_vim () {
   show_dir
 
   echo -e "Install VIM from Source"
-  sudo rm -rf vim/
-  git clone https://github.com/vim/vim.git vim/
+  if [ ! -d "./vim/.git" ]; then
+    notice "Cloning a clean copy"
+    sudo rm -rfv vim/
+    git clone https://github.com/vim/vim.git vim/
+  else 
+    cd vim
+    notice "Pulling latest changes"
+    git pull origin master -vv
+    cd ~
+  fi
 
   cd vim/src
   show_dir
