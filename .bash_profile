@@ -21,21 +21,21 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 # 6. Path variables for custom scripts
 
 ### Git shortcuts
-# (G)it (S)tatus
-alias gs="git status -v --ignore-submodules"
-# (G)it (B)ranch
-alias gb="git branch -vv -a"
-# (G)it (C)ondition 
-alias gcon="git diff --name-only --diff-filter=U"
-# (G)it (M)aster
-alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
-alias gu=" git checkout $1 -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
-alias gpa="git pull -v --all"
-alias gp="git push"
-# (G)it (T)ree
-alias gt="git tree"
+  # (G)it (S)tatus
+  alias gs="git status -v --ignore-submodules"
+  # (G)it (B)ranch
+  alias gb="git branch -vv -a"
+  # (G)it (C)ondition 
+  alias gcon="git diff --name-only --diff-filter=U"
+  # (G)it (M)aster
+  alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
+  alias gu=" git checkout $1 -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
+  alias gpa="git pull -v --all"
+  alias gp="git push"
+  # (G)it (T)ree
+  alias gt="git tree"
 
-### Subversion shortcuts
+# ColourDiff:
 if [[ $OSTYPE == darwin* ]]; then
   # Easy version from hommebrew
   # brew install colordiff
@@ -48,23 +48,23 @@ else
   alias colourdiff="sed 's/^-/\x1b[31m-/;s/^+/\x1b[32m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'"
 fi
 
-# Docker Shortcuts
-alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
-alias dken="eval \$(docker-machine env default)"
-alias dkdn="docker-machine stop default"
-alias dk="docker"
-alias dkm="docker-machine"
-alias dkclean="docker stop \$(docker ps -aq); docker rm \$(docker ps -aq)"
-alias dki="docker images"
-alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
+# Docker Shortcuts:
+  alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
+  alias dken="eval \$(docker-machine env default)"
+  alias dkdn="docker-machine stop default"
+  alias dk="docker"
+  alias dkm="docker-machine"
+  alias dkclean="docker stop \$(docker ps -aq); docker rm \$(docker ps -aq)"
+  alias dki="docker images"
+  alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
 
-# Prompt & Paths
+# Prompt & Paths:
 parse_git_branch() {
-  # Route errors to stderr (2>) especially when in non-Git directories
-  # Pipe sane output to sed for cleanup
   # Get diff and status
   # if there are any unstaged diffs then colour RED
   # if there are staged but uncommited work then YELLOW
+  # Route errors to stderr (2>) especially when in non-Git directories
+  # Pipe sane output to sed for cleanup
 
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
   STATUS=`git status -s 2> /dev/null`
@@ -97,31 +97,44 @@ export PS1="$PS1\$(parse_git_branch)"
 export PS1="$PS1\nλ "
 
 
-# Check to see if it is already in the PATH before unnecessarily concatenating
-if [ -z "$(echo $PATH | grep "/scripts/ssh-connections")" ]; then 
-  export PATH=$PATH:~/scripts/ssh-connections
-  export PATH=$PATH:~/scripts/sql-connections
+# PATH and ENV Variables :
+function inject_path () {
+  # Check to see if it is already in the PATH before unnecessarily concatenating
+  if [[ -z "$(echo $PATH | grep "$1")" ]]; then 
+    export PATH=$PATH:$1
+  fi
+}
+
+  inject_path "~/scripts/ssh-connections"
+  inject_path "~/scripts/sql-connections"
+  inject_path "~/.npm-packages/bin"
+
+# Inject if RBEnv Shim not injected
+if [[ -z "$(echo $PATH | grep '/.rbenv/shims')" ]]; then 
+  HAS_RBENV=`which rbenv 2> /dev/null`
+  if [[ -n "$HAS_RBENV"  ]]; then eval "$(rbenv init -)"; fi
 fi
 
-if [ -z "$(echo $PATH | grep "/.npm-packages/bin")" ]; then 
-  export PATH=$PATH:~/.npm-packages/bin 
-fi
-
-if [ -z "$(echo $PATH | grep "/.rbenv/shims/")" ]; then 
-  if which rbenv 2> /dev/null; then eval "$(rbenv init -)"; fi
-fi
-
-# OSX Specific:
+# OSX Bash Completions:
 if [[ $OSTYPE == darwin* ]]; then
+
+  # HomeBrew Bash Completion
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 
-
+  # AWS Completions
   if [ -n "$(which aws_completer)" ]; then
     complete -C "$(which aws_completer)" aws
   fi
 
+  # Docker Completions
+  DOCKER_COMPLETION_SCRIPTS="/Applications/Docker.app/Contents/Resources/etc"
+  ln -sq $DOCKER_COMPLETION_SCRIPTS/docker.bash-completion $(brew --prefix)/etc/bash_completion.d/docker 2> /dev/null
+  ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-machine.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-machine 2> /dev/null
+  ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-compose.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-compose 2> /dev/null
+
+  # iTerm2 Integrations
   #TODO get the following line to test first and if not present 
   # then download and install 
   # curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
