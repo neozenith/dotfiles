@@ -5,7 +5,20 @@ alias ll="ls -laGHf"
 #alias vim="/usr/local/Cellar/vim/7.4.865/bin/vim"
 #alias vimdiff="/usr/local/Cellar/vim/7.4.865/bin/vimdiff"
 
+# ctags
 alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclude=log ."
+
+# TODO
+# Refactor this into subscripts to be sourced
+# 1. Git Shortcuts
+# 2. Docker Shortcuts
+# 3. Bash Completions
+#   i.    Homebrew install
+#   ii.   AWS
+#   iii.  Docker
+# 4. Bash Prompt
+# 5. Colourdiff 
+# 6. Path variables for custom scripts
 
 ### Git shortcuts
 # (G)it (S)tatus
