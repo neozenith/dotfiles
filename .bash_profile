@@ -108,7 +108,7 @@ if [ -z "$(echo $PATH | grep "/.npm-packages/bin")" ]; then
 fi
 
 if [ -z "$(echo $PATH | grep "/.rbenv/shims/")" ]; then 
-  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+  if which rbenv 2> /dev/null; then eval "$(rbenv init -)"; fi
 fi
 
 # OSX Specific:
