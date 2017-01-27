@@ -138,7 +138,19 @@ function install_osx_dev_dependencies () {
   # Git Radar / Git AutoComplete
   brew install michaeldfallen/formula/git-radar
   brew install git git-flow
-  brew install bash-completion
+  
+  brew install bash-completion \
+    docker-completion \
+    docker-compose-completion \
+    docker-machine-completion \
+    ruby-completion \
+    gem-completion \
+    bundler-completion \
+    rake-completion \
+    rails-completion \
+    vagrant-completion \
+    pip-completion 
+
   brew install ctags
   brew install colordiff
 
@@ -146,9 +158,11 @@ function install_osx_dev_dependencies () {
   brew install llvm
 
   # Database Drivers
-  brew install postgres
-  brew install freetds
-  brew install redis
+  brew install postgres \
+    freetds \
+    redis \
+    influxdb \
+    elasticsearch
 
   # Ruby
   brew install rbenv ruby-build
