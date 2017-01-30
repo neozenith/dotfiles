@@ -57,6 +57,9 @@ fi
   alias dkclean="docker stop \$(docker ps -aq); docker rm \$(docker ps -aq)"
   alias dki="docker images"
   alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
+  #TODO:
+  # https://codefresh.io/blog/everyday-hacks-docker/
+  # Update to use Docker 1.13+ features such as `prune`
 
 # Prompt & Paths:
 parse_git_branch() {
