@@ -5,9 +5,28 @@ This is not intended as a public example of *good* management of VIM dotFiles
 although I do make every attempt to apply best practices in maintaining this 
 configuration purely for my own ease of use.
 
-I have spent far too long curating my VIM configuration it was about time it 
-got some version control and got backed up too. Making moving to other machines 
-or even developing remotely easier.
+Since starting I have managed to solve:
+ - [AutoComplete Engine](https://github.com/Valloric/YouCompleteMe)
+ - Auto linting dependent upon file extension
+ - Feature toggle Vim features depending upon what version of Vim is available
+ - Cross platform
+  - Windows (CMDer)
+  - OSX iTerm2
+  - Linux
+    - Centos 7.2
+    - OpenSUSE LEAP 42.2
+ - Custom fonts via [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+
+
+## Samples
+
+![Vim sample with file explorer][sample1]
+
+![Vim sample with autocomplete][sample2]
+
+
+[sample1]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/sample1.png
+[sample2]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/sample2.png
 
 ## Installation
 ### Mac OSX
