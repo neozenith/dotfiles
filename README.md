@@ -25,8 +25,8 @@ Since starting I have managed to solve:
 ![Vim sample with autocomplete][sample2]
 
 
-[sample1]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/sample1.png
-[sample2]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/sample2.png
+[sample1]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/example1.png
+[sample2]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/example2.png
 
 ## Installation
 ### Mac OSX
