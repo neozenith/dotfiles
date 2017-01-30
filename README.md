@@ -15,7 +15,7 @@ Since starting I have managed to solve:
   - Linux
     - Centos 7.2
     - OpenSUSE LEAP 42.2
- - Custom fonts via [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+ - Custom fonts and icons via [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
 
 
 ## Samples
