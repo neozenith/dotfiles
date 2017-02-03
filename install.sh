@@ -137,7 +137,7 @@ function install_osx_dev_dependencies () {
 
   # Git Radar / Git AutoComplete
   brew install michaeldfallen/formula/git-radar
-  brew install git git-flow
+  brew install git --with-brewed-openssl --with-brewed-curl git-flow
   
   brew install bash-completion \
     docker-completion \
