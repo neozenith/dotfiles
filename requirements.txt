@@ -1,0 +1,4 @@
+awscli 
+boto 
+awsebcli 
+cpplint
