@@ -180,7 +180,7 @@ function install_osx_dev_dependencies () {
   curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
   notice "Installing PIP and Packages as SuperUser"
   sudo python get-pip.py
-  sudo pip install --upgrade awscli boto awsebcli
+  sudo pip install --upgrade awscli boto awsebcli cpplint
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
 
   # DevOps

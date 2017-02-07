@@ -24,7 +24,8 @@ let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 let g:syntastic_ruby_checkers = ['rubocop']
 
 " CPP:
-let g:syntastic_cpp_checkers = ['gcc', 'clang_check', 'clang_tidy']
+let g:syntastic_cpp_checkers = ['gcc', 'clang_check', 'clang_tidy', 'cpplint']
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
 
 " Web Dev:
 " Each js project will need the following files:
