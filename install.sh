@@ -177,10 +177,14 @@ function install_osx_dev_dependencies () {
   rbenv rehash
 
   # Python
-  curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
-  notice "Installing PIP and Packages as SuperUser"
-  sudo python get-pip.py
-  sudo pip install --upgrade awscli boto awsebcli
+  HAS_PIP=`which pip 2> /dev/null`
+  if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
+    curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
+    notice "Installing PIP and Packages as SuperUser"
+    sudo python get-pip.py
+  fi
+  sudo pip install pip --upgrade # Get pip to manage pip
+  sudo pip install -r $SCRIPT_DIR/requirements.txt --upgrade
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
 
   # DevOps
