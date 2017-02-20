@@ -3,8 +3,8 @@
 [http]
 
 [user]
-	name = "Josh Peak"
-	email = "neozenith.dev@gmail.com"
+	name = Josh Peak
+	email = neozenith.dev@gmail.com
 [core]
 	excludesfile = /Users/neozenith/.gitignore_global
 	editor = /usr/local/bin/vim
@@ -27,7 +27,7 @@
   branch = auto
   status = auto
 [commit]
-  template = /Users/neozenith/.stCommitMsg
+	template = /Users/neozenith/.stCommitMsg
 [alias]
   # http://stackoverflow.com/a/9074343
   tree2 = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
