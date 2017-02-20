@@ -27,7 +27,7 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   # (G)it (S)tatus
   alias gs="git status -u -v --ignore-submodules"
   # (G)it (B)ranch
-  alias gb="git branch -vv -a"
+  alias gb="git branch -vv"
   # (G)it (D)iff
   alias gd="git diff -v --color-words"
   # (G)it (C)ondition of file 
