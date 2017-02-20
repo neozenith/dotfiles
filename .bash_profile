@@ -25,17 +25,19 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 
 ### Git shortcuts
   # (G)it (S)tatus
-  alias gs="git status -v --ignore-submodules"
+  alias gs="git status -u -v --ignore-submodules"
   # (G)it (B)ranch
   alias gb="git branch -vv -a"
-  # (G)it (C)ondition 
+  # (G)it (D)iff
+  alias gd="git diff -v --color-words"
+  # (G)it (C)ondition of file 
   alias gcon="git diff --name-only --diff-filter=U"
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
   alias gu=" git checkout $1 -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
   alias gpa="git pull -v --all"
   alias gp="git push"
-  # (G)it (T)ree
+  # (G)it (T)ree see gitconfig for full details
   alias gt="git tree"
 
 # ColourDiff:
