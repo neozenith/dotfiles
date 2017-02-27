@@ -36,6 +36,9 @@ git clone https://github.com/neozenith/vim-dotfiles.git ~/nz-vim/
 . nz-vim/install.sh
 ```
 ### Windows
+Download latest gVim for CMDer to use that binary instead of bundled.
+[Latest GVim](https://github.com/vim/vim-win32-installer/releases)
+
 ```
 cd %HOME%
 git clone https://github.com/neozenith/vim-dotfiles.git nz-vim/

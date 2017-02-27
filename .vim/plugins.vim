@@ -75,7 +75,9 @@ Plugin 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
-Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+
+" Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+
 
 " C++ Dev
 " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
