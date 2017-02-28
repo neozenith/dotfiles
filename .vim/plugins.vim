@@ -15,7 +15,7 @@ filetype off
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
   set rtp=$HOME/vimfiles/bundle/Vundle.vim
-  call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+  call vundle#begin('$HOME/vimfiles/bundle/')
 else
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
@@ -130,7 +130,8 @@ Plugin 'alfredodeza/pytest.vim'
 
 " Patched Fonts:
 " Must be last plugin to load
-" https://github.com/ryanoasis/nerd-fonts (~2Gb)
+" https://github.com/ryanoasis/nerd-fonts/releases
+" https://github.com/ryanoasis/nerd-fonts/releases/download/v1.0.0/Hack.zip (9Mb)
 Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
 call vundle#end()
