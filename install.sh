@@ -153,6 +153,7 @@ function install_osx_dev_dependencies () {
 
   brew install ctags
   brew install colordiff
+  brew install plantuml graphviz doxygen
 
   # C, C++, C#, Objective-C
   brew install llvm
