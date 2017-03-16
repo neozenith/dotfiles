@@ -12,10 +12,26 @@ rm -rfv %HOME%\_vimrc
 :: rm -rfv %HOME%\vimfiles
 
 cp -v .vimrc %HOME%\_vimrc
-xcopy /s /I /Y .vim %HOME%\vimfiles
+
+:: JSCS Lint Base Settings
+cp -v .jscsrc %HOME%\.jscsrc                       
+
+:: YCM JS Base Settings
+cp -v .tern-project %HOME%\.tern-project           
+
+:: YCM C++ Base Settings
+cp -v .ycm_extra_conf.py %HOME%\.ycm_extra_conf.py 
+
+cp -v .gitconfig %HOME%\.gitconfig 
+
+xcopy /f /s /I /Y .vim %HOME%\vimfiles
 
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
-git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/vimfiles/bundle/Vundle.vim
+IF EXIST "%USERPROFILE%\vimfiles\bundle\Vundle.vim\.git" GOTO NO_CLONE_VUNDLE
+
+git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%\vimfiles\bundle\Vundle.vim
+
+:NO_CLONE_VUNDLE
 
 vim +PluginInstall +PluginUpgrade +qall
 

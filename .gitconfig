@@ -33,3 +33,17 @@
   tree2 = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
   tree = !"git tree2"
   t = !"git tree2"
+[credential "https://entrance.c-esolutions.com.au/"]
+	username = josh.peak
+[http "https://entrance.c-esolutions.com.au/"]
+	sslCAPath = C:\\Users\\neozenith\\keys
+  sslCAInfo = C:\\Users\\neozenith\\keys\\isca.crt
+  sslVerify = 1
+  sslCert = C:\\Users\\neozenith\\keys\\joshpeakcert.pem
+  sslCertPasswordProtected = 0
+[credentials "https://github.com"]
+	username = neozenith
+[credentials "https://gitlab.com"]
+	username = neozenith
+[credentials "https://entrance.c-esolutions.com.au"]
+	username = josh.peak
