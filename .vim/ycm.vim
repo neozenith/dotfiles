@@ -21,10 +21,15 @@ endif
 "
 " let g:loaded_youcompleteme = 1
 
+let g:ycm_show_diagnostics_ui = 0 " Disable to allow syntastic cpp checkers
+
+
 let g:ycm_key_detailed_diagnostics = ''
 let g:ycm_key_invoke_completion = ''
 let g:ycm_complete_in_strings=0
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'  "where to search for .ycm_extra_conf.py if not found
 let g:ycm_confirm_extra_conf = 0 " Not super safe but just assume the .ycm_extra_conf.py is safe
 
 " Apply YCM FixIt
