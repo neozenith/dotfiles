@@ -9,15 +9,15 @@
 cls
 
 rm -rfv %HOME%\_vimrc
-rm -rfv %HOME%\vimfiles
+:: rm -rfv %HOME%\vimfiles
 
 cp -v .vimrc %HOME%\_vimrc
-xcopy /s /I .vim %HOME%\vimfiles
+xcopy /s /I /Y .vim %HOME%\vimfiles
 
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
 git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/vimfiles/bundle/Vundle.vim
 
-vim +PluginInstall +qall
+vim +PluginInstall +PluginUpgrade +qall
 
 :: WIP To be able to build YCM on Windows
 :: Must be admin
