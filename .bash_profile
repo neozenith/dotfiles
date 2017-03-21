@@ -40,6 +40,12 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   # (G)it (T)ree see gitconfig for full details
   alias gt="git tree"
 
+  # Git Branch Purge
+  # This deletes local branches no longer tracked on the server
+  # http://stackoverflow.com/a/17987721/622276 
+  alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+
+
 # ColourDiff:
 if [[ $OSTYPE == darwin* ]]; then
   # Easy version from hommebrew
