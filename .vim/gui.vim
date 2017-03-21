@@ -10,11 +10,11 @@ scriptencoding utf-8
 " {
   if has("gui_running")
     if has("gui_gtk2")
-      set guifont=Hack:h10
+      set guifont=Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono:h14
     elseif has("gui_macvim")
-      set guifont=Hack:h10
+      set guifont=Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono:h14
     elseif has("gui_win32")
-      set guifont=Hack:h10:cANSI
+      set guifont=Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono:h14:cANSI
       set guioptions-=L           " Prevents gVim moving from Aero Snapped Positions
     endif
   endif
