@@ -8,6 +8,7 @@ scriptencoding utf-8
 " GUI CONFIGURATION:
 " ---------------------------
 " {
+" http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI
   if has("gui_running")
     if has("gui_gtk2")
       set guifont=Sauce\ Code\ Pro\ Nerd\ Font\ Complete\ Mono:h14
