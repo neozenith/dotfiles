@@ -143,10 +143,11 @@ if [[ $OSTYPE == darwin* ]]; then
   fi
 
   # Docker Completions
-  DOCKER_COMPLETION_SCRIPTS="/Applications/Docker.app/Contents/Resources/etc"
-  ln -sq $DOCKER_COMPLETION_SCRIPTS/docker.bash-completion $(brew --prefix)/etc/bash_completion.d/docker 2> /dev/null
-  ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-machine.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-machine 2> /dev/null
-  ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-compose.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-compose 2> /dev/null
+  # Managed by HomeBrew but left for reference
+  # DOCKER_COMPLETION_SCRIPTS="/Applications/Docker.app/Contents/Resources/etc"
+  # ln -sq $DOCKER_COMPLETION_SCRIPTS/docker.bash-completion $(brew --prefix)/etc/bash_completion.d/docker 2> /dev/null
+  # ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-machine.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-machine 2> /dev/null
+  # ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-compose.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-compose 2> /dev/null
 
   # iTerm2 Integrations
   #TODO get the following line to test first and if not present 

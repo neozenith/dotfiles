@@ -153,7 +153,13 @@ function install_osx_dev_dependencies () {
 
   brew install ctags
   brew install colordiff
+
+  # Documentation
   brew install plantuml graphviz doxygen
+
+  # DevOps
+  brew install terraform
+  brew install ansible
 
   # C, C++, C#, Objective-C
   brew install llvm
@@ -189,9 +195,6 @@ function install_osx_dev_dependencies () {
   sudo pip install awscli --ignore-installed six
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
 
-  # DevOps
-  brew install terraform
-  brew install graphviz
 
 }
 
