@@ -43,7 +43,20 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   # Git Branch Purge
   # This deletes local branches no longer tracked on the server
   # http://stackoverflow.com/a/17987721/622276 
-  alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+  alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'S
+
+  # Git changelog commands:
+  alias glasttag="git describe --abbrev=0 --tags 2> /dev/null"
+
+  # Git changelog release tag: Changelog relative to last tag on master 
+  # Assumes only master is tagged for releases.
+  alias gclr="last_tag=\"git describe --abbrev=0 --tags\"; git log --oneline --no-merges $last_tag..HEAD"
+  # Git changelog master: Changelog between latest master release and 
+  # accumulated develop branch
+  alias gclm="git log --oneline --no-merges master..develop | grep -Ev (WIP:|DEBUG:|Merge)"
+  # Git changelog develop: Changelog relative to accumulated develop branch,
+  # and current checked out branch.
+  alias gcld="git log --oneline --no-merges develop..HEAD | grep -Ev (WIP:|DEBUG:|Merge)"
 
 
 # ColourDiff:

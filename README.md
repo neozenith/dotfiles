@@ -1,5 +1,9 @@
 # NeoZenith VIM dotFiles
 
+<a href="https://stackexchange.com/users/309684">
+<img src="https://stackexchange.com/users/flair/309684.png" width="208" height="58" alt="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+</a>
+
 ## Brief
 This is not intended as a public example of *good* management of VIM dotFiles 
 although I do make every attempt to apply best practices in maintaining this 
