@@ -40,7 +40,7 @@ Since starting I have managed to solve:
 ----
 
 ## Installation
-### Mac OSX
+### OSX / Linux
 ```
 cd ~
 git clone https://github.com/neozenith/vim-dotfiles.git ~/nz-vim/
