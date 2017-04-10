@@ -67,9 +67,20 @@ Plugin 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
 Plugin 'itchyny/lightline.vim'  " Status bar
 
 " SYNTAX CHECKER + HIGHLIGHTING
+
+
+Plugin 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
+
 Plugin 'scrooloose/syntastic'   " Syntax Check engine
 Plugin 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
 Plugin 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
+
+" MARKDOWN
+" https://github.com/plasticboy/vim-markdown
+" Some useful tools to make vim generate and maintain
+" markdown documents. Useful when CMS tools expect markdown input.
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " CODE COMPLETION
 Plugin 'tpope/vim-surround'

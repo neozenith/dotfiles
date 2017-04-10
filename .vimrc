@@ -35,6 +35,9 @@ runtime indentguides.vim
 " RainbowParenthesis:
 runtime rainbowparenthesis.vim
 
+" Markdown Document Editting:
+runtime markdown.vim
+
 " Dev Javascript:
 runtime dev_js.vim
 
