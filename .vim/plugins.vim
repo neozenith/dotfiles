@@ -15,7 +15,7 @@ filetype off
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
   set rtp=$HOME/vimfiles/bundle/Vundle.vim
-  call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+  call vundle#begin('$HOME/vimfiles/bundle/')
 else
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
@@ -67,15 +67,32 @@ Plugin 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
 Plugin 'itchyny/lightline.vim'  " Status bar
 
 " SYNTAX CHECKER + HIGHLIGHTING
+
+
+Plugin 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
+
 Plugin 'scrooloose/syntastic'   " Syntax Check engine
 Plugin 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
 Plugin 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
+
+" MARKDOWN
+" https://github.com/plasticboy/vim-markdown
+" Some useful tools to make vim generate and maintain
+" markdown documents. Useful when CMS tools expect markdown input.
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " CODE COMPLETION
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
-Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+
+if has('win64') || has('win32') || has('win16')
+  " No YCM Support for now
+else
+  Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+endif
+
 
 " C++ Dev
 " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
@@ -128,7 +145,8 @@ Plugin 'alfredodeza/pytest.vim'
 
 " Patched Fonts:
 " Must be last plugin to load
-" https://github.com/ryanoasis/nerd-fonts (~2Gb)
+" https://github.com/ryanoasis/nerd-fonts/releases
+" https://github.com/ryanoasis/nerd-fonts/releases/download/v1.0.0/Hack.zip (9Mb)
 Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
 call vundle#end()

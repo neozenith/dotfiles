@@ -17,15 +17,20 @@ filetype plugin indent on    " enable loading indent file for filetype
 
 if has('win64') || has('win32') || has('win16')
   " Windows CMDer 256 color fixes
-   " http://stackoverflow.com/a/14434531 
-   set term=xterm
-   set t_Co=256
-   let &t_AB="\e[48;5;%dm" 
-   let &t_AF="\e[38;5;%dm"
+  " http://stackoverflow.com/a/14434531 
+  set term=xterm
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm" 
+  let &t_AF="\e[38;5;%dm"
+   
+  " Windows CMDer Backspace Fix
+  " https://github.com/Maximus5/ConEmu/issues/641
+  inoremap <Char-0x07F> <BS>
+  nnoremap <Char-0x07F> <BS>
+  "colorscheme solarized
+else
+  colorscheme xoria256
 endif
-
-"colorscheme molokai
-colorscheme xoria256
 
 let &t_ZH="\e[3m"             "Italicise Comments
 let &t_ZR="\e[23m"
