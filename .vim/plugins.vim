@@ -87,7 +87,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 
-" Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+if has('win64') || has('win32') || has('win16')
+  " No YCM Support for now
+else
+  Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+endif
 
 
 " C++ Dev
