@@ -8,8 +8,8 @@
 
 cls
 
-rm -rfv %HOME\.vimrc
-rm -rfv %HOME\.vim
+rm -rfv %HOME%\.vimrc
+rm -rfv %HOME%\.vim
 rm -rfv %HOME%\_vimrc
 :: rm -rfv %HOME%\vimfiles
 
@@ -29,9 +29,9 @@ cp -v .gitconfig %HOME%\.gitconfig
 xcopy /f /s /I /Y .vim %HOME%\vimfiles
 
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
-IF EXIST "%USERPROFILE%\vimfiles\bundle\Vundle.vim\.git" GOTO NO_CLONE_VUNDLE
+IF EXIST "%HOME%\vimfiles\bundle\Vundle.vim\.git" GOTO NO_CLONE_VUNDLE
 
-git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%\vimfiles\bundle\Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git %HOME%\vimfiles\bundle\Vundle.vim
 
 :NO_CLONE_VUNDLE
 
