@@ -8,6 +8,8 @@
 
 cls
 
+rm -rfv %HOME\.vimrc
+rm -rfv %HOME\.vim
 rm -rfv %HOME%\_vimrc
 :: rm -rfv %HOME%\vimfiles
 

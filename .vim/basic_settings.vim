@@ -27,11 +27,10 @@ if has('win64') || has('win32') || has('win16')
   " https://github.com/Maximus5/ConEmu/issues/641
   inoremap <Char-0x07F> <BS>
   nnoremap <Char-0x07F> <BS>
-  colorscheme molokai
+  colorscheme solarized
+else
+  colorscheme xoria256
 endif
-
-"colorscheme molokai
-colorscheme xoria256
 
 let &t_ZH="\e[3m"             "Italicise Comments
 let &t_ZR="\e[23m"
