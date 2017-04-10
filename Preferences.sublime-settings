@@ -1,0 +1,7 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+	"font_face":"Knack NF",
+	"tab_size":2,
+	"rulers":[80]
+}
