@@ -80,16 +80,17 @@ function install_RHEL_dev_dependencies () {
   
   $SUDO $PKG_MANAGER update 
   $SUDO $PKG_MANAGER upgrade -y
-  $SUDO $PKG_MANAGER install -y $PACKAGES
   
   if [[ -n "$HAS_YUM" ]]; then
     $SUDO $PKG_MANAGER install "Development Tools" -y
   fi
   
   if [[ -n "$HAS_APTGET" ]]; then
-    $SUDO $PKG_MANAGER install make -y
+    $SUDO $PKG_MANAGER install  build-essential checkinstall -y
   fi
 
+  $SUDO $PKG_MANAGER install -y $PACKAGES
+  
   $SUDO $PKG_MANAGER install --enablerepo=epel nodejs npm colordiff
 }
 
