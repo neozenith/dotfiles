@@ -11,7 +11,10 @@ scriptencoding utf-8
 " Vundle Plugins:
 runtime plugins.vim         
 
-" Basic Settings: Tabs, Colors, Folding and anything that are plain Vim Settings 
+" Vi Compatible Settings: Tabs, Colors, Folding and anything that are plain Vi Settings 
+runtime vi_compatible_settings.vim  
+
+" Vim Basic Settings: Tabs, Colors, Folding and anything that are plain Vim Settings 
 runtime basic_settings.vim  
 
 " GVim: Gui based settings
