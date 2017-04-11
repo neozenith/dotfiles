@@ -9,7 +9,6 @@ scriptencoding utf-8
 " ---------------------------
 set t_Co=256
 set background=dark
-set mouse=nicr               " Set mouse scroll events to nav cursor
 syntax on                    " syntax highlighing
 filetype on                  " try to detect filetypes
 filetype plugin on
@@ -56,15 +55,6 @@ set ignorecase " case insensitive
 set smartcase  " use case if any caps used 
 set incsearch  " show match as search proceeds
 set hlsearch   " search highlighting
-
-" ---------------------------
-" CODE FOLDING: 
-" - Use :za in a method to toggle indent fold level
-" - Use :zM to fold everything
-" ---------------------------
-set foldmethod=indent
-set foldlevel=99
-set foldnestmax=5       "deepest fold is 5 levels
 
 " ---------------------------
 " TABS: (2 Spaces)

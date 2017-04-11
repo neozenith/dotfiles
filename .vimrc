@@ -9,13 +9,17 @@ scriptencoding utf-8
 " Sub scripts can be found in the .vim/ folder
 
 " Vundle Plugins:
-runtime plugins.vim         
+if !has('compatible')
+  runtime plugins.vim  
+endif
 
 " Vi Compatible Settings: Tabs, Colors, Folding and anything that are plain Vi Settings 
 runtime vi_compatible_settings.vim  
 
 " Vim Basic Settings: Tabs, Colors, Folding and anything that are plain Vim Settings 
-runtime basic_settings.vim  
+if !has('compatible')
+  runtime basic_settings.vim  
+endif
 
 " GVim: Gui based settings
 runtime gui.vim             
@@ -24,7 +28,9 @@ runtime gui.vim
 runtime lightline.vim       
 
 " Syntastic: - Linting and Syntax checker plugin configuration
-runtime syntastic.vim       
+if !has('compatible')
+  runtime syntastic.vim       
+endif
 
 " YouCompleteMe Autocomplete Engine:
 runtime ycm.vim
@@ -42,7 +48,9 @@ runtime rainbowparenthesis.vim
 runtime markdown.vim
 
 " Dev Javascript:
-runtime dev_js.vim
+if !has('compatible')
+  runtime dev_js.vim
+endif
 
 " Dev Python:
 runtime dev_py.vim
