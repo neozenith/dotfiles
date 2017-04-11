@@ -56,7 +56,6 @@ function install_RHEL_dev_dependencies () {
   HAS_YUM=`which yum 2> /dev/null`
   HAS_ZYPPER=`which zypper 2> /dev/null`
   HAS_APTGET=`which apt-get 2> /dev/null`
-  $SUDO curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
 
   PKG_MANAGER="rpm" # Centos: yum / SUSE: zypper / Ubuntu: apt-get
   if [[ -n "$HAS_YUM" ]]; then
@@ -76,6 +75,9 @@ function install_RHEL_dev_dependencies () {
   $SUDO $PKG_MANAGER upgrade -y
   
   if [[ -n "$HAS_YUM" ]]; then
+    # Add RHEL Node Repo
+    $SUDO curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+    
     $SUDO $PKG_MANAGER install -y "Development Tools"
     $SUDO $PKG_MANAGER install -y cmake gcc-c++ make
     $SUDO $PKG_MANAGER install -y ncurses ncurses-devel
