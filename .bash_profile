@@ -135,6 +135,7 @@ function inject_path () {
   inject_path "~/scripts/ssh-connections"
   inject_path "~/scripts/sql-connections"
   inject_path "~/.npm-packages/bin"
+  inject_path "~/Qt5.8.0/5.8/clang_64/bin"
 
 # Inject if RBEnv Shim not injected
 if [[ -z "$(echo $PATH | grep '/.rbenv/shims')" ]]; then 
