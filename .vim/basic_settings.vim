@@ -15,6 +15,7 @@ filetype on                  " try to detect filetypes
 filetype plugin on
 filetype plugin indent on    " enable loading indent file for filetype
 
+
 if has('win64') || has('win32') || has('win16')
   " Windows CMDer 256 color fixes
   " http://stackoverflow.com/a/14434531 
@@ -84,6 +85,16 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 set autoindent      " Copy indent from current line, over to the new line
 
 " ---------------------------
+" WINDOW NAVIGATION:
+" http://nvie.com/posts/how-i-boosted-my-vim/
+" ---------------------------
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" ---------------------------
 " NO BACKUP FILES:
 " ---------------------------
 set noswapfile
@@ -91,7 +102,7 @@ set nobackup
 set nowb
 
 " ---------------------------
-"  Allow Uppercase: :w :q :wq 
+"  Key Mapping: 
 " ---------------------------
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 command! -bang Q quit<bang>

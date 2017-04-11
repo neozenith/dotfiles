@@ -7,6 +7,18 @@
 
 
 clear
+###############################################################################
+# HELPER FUNCTIONS:
+###############################################################################
+
+function warn() {
+    echo "$1" >&2
+}
+
+function die() {
+    warn "$1"
+    exit 1
+}
 
 function confirm () {
   read -r -p "${1}? [y/N] " response
@@ -36,70 +48,15 @@ function show_dir () {
   echo -e "\033[94mWorking Directory:\033[0m\t $(pwd)"
 }
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-START_DIR="$(pwd)"
-
-cd ~
-show_dir
-
-function symlink_vimrc () {
-  echo -e "\033[91mDeleting existing files..."
-  rm -rfv ~/.vim
-  rm -rfv ~/.vimrc
-  rm -rfv ~/.jscsrc
-  rm -rfv ~/.tern-project
-  rm -rfv ~/.ycm_extra_conf.py
-  echo -e "\033[94mSymLinking new files..."
-  ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
-  ln -sfv $SCRIPT_DIR/.vim ~/.vim
-  ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc                       # JSCS Lint Base Settings
-  ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
-  ln -sfv $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings
-  # Display symlinks
-  ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
-  echo -e "\033[0m"
-}
-
-function build_vim () {
-  cd ~
-  show_dir
-
-  echo -e "Install VIM from Source"
-  if [ ! -d "./vim/.git" ]; then
-    notice "Cloning a clean copy"
-    sudo rm -rfv vim/
-    git clone https://github.com/vim/vim.git vim/
-  else 
-    cd vim
-    notice "Pulling latest changes"
-    git pull origin master -vv
-    cd ~
-  fi
-
-  cd vim/src
-  show_dir
-  if [[ $OSTYPE == darwin* ]]; then
-    VIM_INSTALL_PREFIX="--prefix=/usr/local/"
-  else
-    VIM_INSTALL_PREFIX="--prefix=/usr/"
-  fi
-  sudo ./configure $VIM_INSTALL_PREFIX \
-    --enable-rubyinterp \
-    --enable-pythoninterp \
-    --with-features=huge
-  sudo make; sudo make install
-
-  cd $SCRIPT_DIR
-  show_dir
-}
-
 ###############################################################################
-
+# Install Development Environment Tools
+###############################################################################
 function install_RHEL_dev_dependencies () {
-  sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+  SUDO=`which sudo 2> /dev/null`
   HAS_YUM=`which yum 2> /dev/null`
   HAS_ZYPPER=`which zypper 2> /dev/null`
   HAS_APTGET=`which apt-get 2> /dev/null`
+  $SUDO curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
 
   PKG_MANAGER="rpm" # Centos: yum / SUSE: zypper / Ubuntu: apt-get
   if [[ -n "$HAS_YUM" ]]; then
@@ -110,16 +67,25 @@ function install_RHEL_dev_dependencies () {
     PKG_MANAGER="apt-get"
   fi
 
-  sudo $(PKG_MANAGER) update 
-  sudo $(PKG_MANAGER) upgrade -y
-  sudo $(PKG_MANAGER) install -y \
+  echo -e "PKG_MANAGER: $PKG_MANAGER"
+  echo -e "HAS_YUM: $HAS_YUM"
+  echo -e "HAS_ZYPPER: $HAS_ZYPPER"
+  echo -e "HAS_APTGET: $HAS_APTGET"
+
+  $SUDO $PKG_MANAGER update 
+  $SUDO $PKG_MANAGER upgrade -y
+  $SUDO $PKG_MANAGER install -y \
     cmake gcc-c++ make \
     ncurses ncurses-devel \
     clang clang-devel \
     python python-devel \
     ruby ruby-devel 
   
-  sudo $(PKG_MANAGER) install --enablerepo=epel nodejs npm colordiff
+  if [[ -n "$HAS_YUM" ]]; then
+    $SUDO $PKG_MANAGER install "Development Tools" -y
+  fi
+
+  $SUDO $PKG_MANAGER install --enablerepo=epel nodejs npm colordiff
 }
 
 function install_osx_dev_dependencies () {
@@ -194,10 +160,77 @@ function install_osx_dev_dependencies () {
   sudo pip install -r $SCRIPT_DIR/requirements.txt --upgrade
   sudo pip install awscli --ignore-installed six
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
-
-
 }
 
+
+###############################################################################
+# Install Latest VIM from Source
+###############################################################################
+function build_vim () {
+  cd ~
+  show_dir
+
+  echo -e "Install VIM from Source"
+  if [ ! -d "./vim/.git" ]; then
+    notice "Cloning a clean copy"
+    sudo rm -rfv vim/
+    git clone https://github.com/vim/vim.git vim/
+  else 
+    cd vim
+    notice "Pulling latest changes"
+    git pull origin master -vv
+    cd ~
+  fi
+
+  cd vim/src
+  show_dir
+  if [[ $OSTYPE == darwin* ]]; then
+    VIM_INSTALL_PREFIX="--prefix=/usr/local/"
+  else
+    VIM_INSTALL_PREFIX="--prefix=/usr/"
+  fi
+  
+  SUDO=`which sudo 2> /dev/null`
+  MAKE=`which make 2> /dev/null`
+
+  if [[ -n "$MAKE" ]]; then 
+    $SUDO ./configure $VIM_INSTALL_PREFIX \
+      --enable-rubyinterp \
+      --enable-pythoninterp \
+      --with-features=huge
+    $SUDO $MAKE; $SUDO $MAKE install
+  fi
+
+  cd $SCRIPT_DIR
+  show_dir
+}
+
+
+###############################################################################
+# Install VIMRC:
+###############################################################################
+function symlink_vimrc () {
+  echo -e "\033[91mDeleting existing files..."
+  rm -rfv ~/.vim
+  rm -rfv ~/.vimrc
+  rm -rfv ~/.jscsrc
+  rm -rfv ~/.tern-project
+  rm -rfv ~/.ycm_extra_conf.py
+  echo -e "\033[94mSymLinking new files..."
+  ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
+  ln -sfv $SCRIPT_DIR/.vim ~/.vim
+  ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc                       # JSCS Lint Base Settings
+  ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
+  ln -sfv $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings
+  # Display symlinks
+  ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
+  echo -e "\033[0m"
+}
+
+
+###############################################################################
+# Install VIM Plugin Dependencies
+###############################################################################
 function install_RHEL_plugin_dependencies () {
   echo "Nothing to do here"
 }
@@ -227,7 +260,10 @@ function install_osx_plugin_dependencies () {
     webpack
 }
 
-# Vundle
+
+###############################################################################
+# Install VIM Plugins
+###############################################################################
 function vim_plugins () {
 
   if [[ $OSTYPE == darwin* ]]; then
@@ -244,7 +280,10 @@ function vim_plugins () {
   # Install Plugins
   vim +PluginInstall +PluginUpdate +qall
 
-  confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
+  # If YCM plugin installed ask to build
+  if [ -d ".vim/bundle/YouCompleteMe/.git" ]; then
+    confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
+  fi
 }
 
 function build_ycm () {
@@ -260,13 +299,34 @@ function build_ycm () {
   show_dir
 }
 
+
+###############################################################################
+# INIT:
+###############################################################################
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+START_DIR="$(pwd)"
+
+cd ~
+show_dir
+
+
+###############################################################################
+# Main Entry Point
+###############################################################################
 function main_installer () {
+  
+  ###############################
+  # Install Dev Environment Tools
+  ###############################
   if [[ $OSTYPE == darwin* ]]; then
     confirm "Install OSX development tools" && install_osx_dev_dependencies
   else
     confirm "Install RHEL development tools" && install_RHEL_dev_dependencies
   fi
 
+  ##############################
+  # Build Latest VIM From Source
+  ##############################
   echo -e "=============================================\033[92m"
   which vim
   vim --version
@@ -275,8 +335,14 @@ function main_installer () {
 
   confirm "Build latest Vim from Source" && build_vim
 
+  ###############
+  # Install VIMRC
+  ###############
   confirm "Install .vimrc files" && symlink_vimrc
 
+  ####################
+  #Install VIM Plugins
+  ####################
   confirm "Install Vim vundle plugins" && vim_plugins
 
 }
