@@ -72,26 +72,27 @@ function install_RHEL_dev_dependencies () {
   echo -e "HAS_ZYPPER: $HAS_ZYPPER"
   echo -e "HAS_APTGET: $HAS_APTGET"
 
-  PACKAGES=cmake gcc-c++ make
-  PACKAGES=$PACKAGES ncurses ncurses-devel
-  PACKAGES=$PACKAGES clang clang-devel
-  PACKAGES=$PACKAGES python python-devel
-  PACKAGES=$PACKAGES ruby ruby-devel 
-  
   $SUDO $PKG_MANAGER update 
   $SUDO $PKG_MANAGER upgrade -y
   
   if [[ -n "$HAS_YUM" ]]; then
-    $SUDO $PKG_MANAGER install "Development Tools" -y
+    $SUDO $PKG_MANAGER install -y "Development Tools"
+    $SUDO $PKG_MANAGER install -y cmake gcc-c++ make
+    $SUDO $PKG_MANAGER install -y ncurses ncurses-devel
+    $SUDO $PKG_MANAGER install -y clang clang-devel
+    $SUDO $PKG_MANAGER install -y python python-devel
+    $SUDO $PKG_MANAGER install -y ruby ruby-devel 
   fi
   
   if [[ -n "$HAS_APTGET" ]]; then
-    $SUDO $PKG_MANAGER install  build-essential checkinstall -y
+    $SUDO $PKG_MANAGER install -y build-essential checkinstall
+    $SUDO $PKG_MANAGER install -y cmake gcc-c++
+    $SUDO $PKG_MANAGER install -y libncurses5-dev libncursesw5-dev
+    $SUDO $PKG_MANAGER install -y clang clang-dev
+    $SUDO $PKG_MANAGER install -y python python-dev
+    $SUDO $PKG_MANAGER install -y ruby ruby-dev
   fi
 
-  $SUDO $PKG_MANAGER install -y $PACKAGES
-  
-  $SUDO $PKG_MANAGER install --enablerepo=epel nodejs npm colordiff
 }
 
 function install_osx_dev_dependencies () {
