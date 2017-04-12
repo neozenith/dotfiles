@@ -88,8 +88,9 @@ function install_RHEL_dev_dependencies () {
   
   if [[ -n "$HAS_APTGET" ]]; then
     $SUDO $PKG_MANAGER install -y build-essential checkinstall
-    $SUDO $PKG_MANAGER install -y cmake gcc-c++
+    $SUDO $PKG_MANAGER install -y cmake
     $SUDO $PKG_MANAGER install -y libncurses5-dev libncursesw5-dev
+    $SUDO $PKG_MANAGER install -y clang 
     $SUDO $PKG_MANAGER install -y clang clang-dev
     $SUDO $PKG_MANAGER install -y python python-dev
     $SUDO $PKG_MANAGER install -y ruby ruby-dev
@@ -352,7 +353,7 @@ function main_installer () {
   ####################
   #Install VIM Plugins
   ####################
-  confirm "Install Vim vundle plugins" && vim_plugins
+  confirm "Install Vim plugins" && vim_plugins
 
 }
 
