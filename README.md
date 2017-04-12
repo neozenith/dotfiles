@@ -126,7 +126,7 @@ environments.
 ### Update Plugins
 
 ```
-vim +PluginUpdate +qall
+vim +PlugUpdate +qall
 ```
 
 ## Adding Plugins
