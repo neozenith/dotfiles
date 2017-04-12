@@ -92,7 +92,7 @@ Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 if has('win64') || has('win32') || has('win16')
   " No YCM Support for now
 else
-  Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer --clang-completer --system-libclang'} " Auto Complete Engine
+  Plug 'Valloric/YouCompleteMe' " Auto Complete Engine
 endif
 
 

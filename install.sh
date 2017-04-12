@@ -282,7 +282,7 @@ function vim_plugins () {
     install_RHEL_plugin_dependencies
   fi
 
-  # Check if Vundle is already installed
+  # Check if Plug is already installed
   if [ ! -d ".vim/bundle/Plug.vim/autoload/.git" ]; then
     git clone https://github.com/junegunn/vim-plug.git .vim/bundle/Plug.vim/autoload
   fi
@@ -290,9 +290,9 @@ function vim_plugins () {
   vim +PlugInstall +PlugUpdate +qall
 
   # If YCM plugin installed ask to build
-  #if [ -d ".vim/bundle/YouCompleteMe/.git" ]; then
-  #  confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
-  #fi
+  if [ -d ".vim/plugged/YouCompleteMe/.git" ]; then
+    confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
+  fi
 }
 
 function build_ycm () {
@@ -300,7 +300,7 @@ function build_ycm () {
   cd $SCRIPT_DIR
   show_dir
 
-  cd .vim/bundle/YouCompleteMe
+  cd .vim/plugged/YouCompleteMe
   show_dir
   ./install.py --tern-completer --clang-completer --system-libclang
 
