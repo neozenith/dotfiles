@@ -283,16 +283,16 @@ function vim_plugins () {
   fi
 
   # Check if Vundle is already installed
-  if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+  if [ ! -d ".vim/bundle/Plug.vim/autoload/.git" ]; then
+    git clone https://github.com/junegunn/vim-plug.git .vim/bundle/Plug.vim/autoload
   fi
   # Install Plugins
-  vim +PluginInstall +PluginUpdate +qall
+  vim +PlugInstall +PlugUpdate +qall
 
   # If YCM plugin installed ask to build
-  if [ -d ".vim/bundle/YouCompleteMe/.git" ]; then
-    confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
-  fi
+  #if [ -d ".vim/bundle/YouCompleteMe/.git" ]; then
+  #  confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
+  #fi
 }
 
 function build_ycm () {
