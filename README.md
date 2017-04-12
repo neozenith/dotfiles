@@ -14,7 +14,7 @@ I would like to think it is mature enough now that it can teach others on
 their Vim journey and also show how far I am in my own exploration. 
 
 Since starting I have managed to solve:
- - [AutoComplete Engine](https://github.com/Valloric/YouCompleteMe)
+ - [AutoComplete Engine][ycm]
  - Auto linting dependent upon file extension
  - Feature toggle Vim features depending upon what version of Vim is available
  - Cross platform
@@ -23,7 +23,10 @@ Since starting I have managed to solve:
   - Linux
     - Centos 7.2
     - OpenSUSE LEAP 42.2
- - Custom fonts and icons via [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+ - Custom fonts and icons via [Nerd Fonts][nerd-fonts]
+
+[ycm]: https://github.com/Valloric/YouCompleteMe
+[nerd-fonts]: https://github.com/ryanoasis/nerd-fonts
 
 ----
 
@@ -48,7 +51,8 @@ git clone https://github.com/neozenith/vim-dotfiles.git ~/nz-vim/
 ```
 ### Windows
 Download latest gVim for CMDer to use that binary instead of bundled.
-[Latest GVim](https://github.com/vim/vim-win32-installer/releases)
+[Latest GVim][gvim-download]
+
 
 ```
 cd %HOME%
@@ -56,6 +60,8 @@ git clone https://github.com/neozenith/vim-dotfiles.git nz-vim/
 cd nz-vim
 install.bat
 ```
+
+[gvim-download]: https://github.com/vim/vim-win32-installer/releases
 
 ----
 
@@ -76,10 +82,10 @@ path.
    - *(Optional)* Install and build latest Vim from Source
    - Install `.vimrc`
    - Install `.vim/` and associated `.vim/*.vim` scripts.
-   - Install Vundle into `.vim/bundle/Vundle`
-   - Start Vim to run `vim +PluginInstall +PluginUpdate +qall` to install 
-   plugins managed by Vundle.
-   - *(Optional)* Build and install [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
+   - Install Vim-Plug into `.vim/bundle/Plug.vim/autoload`
+   - Start Vim to run `vim +PlugInstall +PlugUpdate +qall` to install 
+   plugins managed by Plug.
+   - *(Optional)* Build and install [YouCompleteMe][ycm]
  - Rerunning the *install.sh / install.bat* should shortcut the install
  and just update plugins.
 
@@ -94,16 +100,40 @@ Safe to merge platform specific features to `develop`.
 are not supported or time does not permit to download supporting systems.
 
 ----
+
+## Cross Platform Testing
+
+My setup is dual boot OSX and Windows native. Linux gets virtualised so I am
+leveraging [Vagrant][vagrant] and [Virtual Box][vbox] to spin up Linux dev 
+environments.
+
+```bash
+    
+    #From this repository on windows or osx
+    vagrant up
+    vagrant ssh
+    
+    # Inside Guest VM
+    . ~/nz-vim/install.sh
+
+```
+
+[vagrant]: https://www.vagrantup.com
+[vbox]: https://www.virtualbox.org/
+
+----
 ## Plugins
 ### Update Plugins
 
 ```
-vim +PluginUpdate +qall
+vim +PlugUpdate +qall
 ```
 
 ## Adding Plugins
 
-See [Vundle documentation](https://github.com/VundleVim/Vundle.vim#quick-start)
+See [Plug documentation][plug-docs]
+
+[plug-docs]:  https://github.com/junegunn/vim-plug#example
 
 ----
 ## Resources and Training

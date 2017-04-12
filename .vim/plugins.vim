@@ -14,15 +14,15 @@ filetype off
 
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
-  set rtp=$HOME/vimfiles/bundle/Vundle.vim
-  call vundle#begin('$HOME/vimfiles/bundle/')
+  set rtp=$HOME/vimfiles/bundle/Plug.vim
+  call plug#begin('$HOME/vimfiles/bundle/')
 else
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+  set rtp+=~/.vim/bundle/Plug.vim
+  call plug#begin()
 endif
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Plug 'VundleVim/Vundle.vim'
 
 " -------------------
 "  Compulsory Components of Any Dev Environment
@@ -50,47 +50,47 @@ Plugin 'VundleVim/Vundle.vim'
 " -------------------
 
 " INTERFACE
-Plugin 'vim-scripts/The-NERD-tree'        " File Explorer
-Plugin 'sjl/gundo.vim'                    " Undo History
-Plugin 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
-Plugin 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
+Plug 'vim-scripts/The-NERD-tree'        " File Explorer
+Plug 'sjl/gundo.vim'                    " Undo History
+Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
+Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 
 " GIT Integerations
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
 " Note to self: Git Diff article explaining how to 3 way merge with Vim
 " http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
 
 " STATUS LINE
 
-Plugin 'itchyny/lightline.vim'  " Status bar
+Plug 'itchyny/lightline.vim'  " Status bar
 
 " SYNTAX CHECKER + HIGHLIGHTING
 
 
-Plugin 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
+Plug 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
 
-Plugin 'scrooloose/syntastic'   " Syntax Check engine
-Plugin 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
-Plugin 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
+Plug 'scrooloose/syntastic'   " Syntax Check engine
+Plug 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
+Plug 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
 
 " MARKDOWN
 " https://github.com/plasticboy/vim-markdown
 " Some useful tools to make vim generate and maintain
 " markdown documents. Useful when CMS tools expect markdown input.
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 " CODE COMPLETION
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 
 if has('win64') || has('win32') || has('win16')
   " No YCM Support for now
 else
-  Plugin 'Valloric/YouCompleteMe' " Auto Complete Engine
+  Plug 'Valloric/YouCompleteMe' " Auto Complete Engine
 endif
 
 
@@ -104,7 +104,7 @@ endif
 "Plugin 'rdnetto/YCM-Generator' " Automatically generates YouCompleteMe configuration based on Makefile
 "
 " https://github.com/tpope/vim-dispatch
-Plugin 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
+Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
 " 
 " https://github.com/alepez/vim-gtest
 " Plugin 'alepez/vim-gtest'       " Unit Testing Framework
@@ -115,38 +115,38 @@ Plugin 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
 " TODO: An elegant guide to refactoring as well as checking if files exist 
 " https://github.com/alepez/dotfiles/blob/master/vim/init.vim
 "
-Plugin 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
+Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 
 " # RUBY DEV
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'ngmy/vim-rubocop'       " Ruby Syntax and Style Checker
-Plugin 'tpope/vim-rails' 
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-rake'
-Plugin 'reinh/vim-makegreen'
+Plug 'vim-ruby/vim-ruby'
+Plug 'ngmy/vim-rubocop'       " Ruby Syntax and Style Checker
+Plug 'tpope/vim-rails' 
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rake'
+Plug 'reinh/vim-makegreen'
 
 " # WEB DEV
 
 " Emmet HTML tag expander
 " type: html:5
 " to expand: ctrl-y , 
-Plugin 'mattn/emmet-vim'        " HTML/XML Tag Expander
+Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 
-Plugin 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
-Plugin 'marijnh/tern_for_vim'   " JavaScript AutoComplete
-Plugin 'elzr/vim-json'          " JSON Style Checker
-Plugin 'ap/vim-css-color'       " Preview CSS colours with text highlighting
-Plugin 'othree/html5.vim'       " HTML5 AutoComplete
-Plugin 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
+Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
+Plug 'marijnh/tern_for_vim'   " JavaScript AutoComplete
+Plug 'elzr/vim-json'          " JSON Style Checker
+Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
+Plug 'othree/html5.vim'       " HTML5 AutoComplete
+Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
 
 " # PYTHON DEV
-Plugin 'fs111/pydoc.vim'
-Plugin 'alfredodeza/pytest.vim'
+Plug 'fs111/pydoc.vim'
+Plug 'alfredodeza/pytest.vim'
 
 " Patched Fonts:
 " Must be last plugin to load
 " https://github.com/ryanoasis/nerd-fonts/releases
 " https://github.com/ryanoasis/nerd-fonts/releases/download/v1.0.0/Hack.zip (9Mb)
-Plugin 'ryanoasis/vim-devicons' " Patched Fonts integrations
+Plug 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
-call vundle#end()
+call plug#end()

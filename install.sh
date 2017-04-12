@@ -84,15 +84,18 @@ function install_RHEL_dev_dependencies () {
     $SUDO $PKG_MANAGER install -y clang clang-devel
     $SUDO $PKG_MANAGER install -y python python-devel
     $SUDO $PKG_MANAGER install -y ruby ruby-devel 
+    $SUDO $PKG_MANAGER install -y nodejs
   fi
   
   if [[ -n "$HAS_APTGET" ]]; then
     $SUDO $PKG_MANAGER install -y build-essential checkinstall
-    $SUDO $PKG_MANAGER install -y cmake gcc-c++
+    $SUDO $PKG_MANAGER install -y cmake
     $SUDO $PKG_MANAGER install -y libncurses5-dev libncursesw5-dev
+    $SUDO $PKG_MANAGER install -y clang 
     $SUDO $PKG_MANAGER install -y clang clang-dev
     $SUDO $PKG_MANAGER install -y python python-dev
     $SUDO $PKG_MANAGER install -y ruby ruby-dev
+    $SUDO $PKG_MANAGER install -y nodejs
   fi
 
 }
@@ -282,15 +285,15 @@ function vim_plugins () {
     install_RHEL_plugin_dependencies
   fi
 
-  # Check if Vundle is already installed
-  if [ ! -d ".vim/bundle/Vundle.vim/.git" ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+  # Check if Plug is already installed
+  if [ ! -d ".vim/bundle/Plug.vim/autoload/.git" ]; then
+    git clone https://github.com/junegunn/vim-plug.git .vim/bundle/Plug.vim/autoload
   fi
   # Install Plugins
-  vim +PluginInstall +PluginUpdate +qall
+  vim +PlugInstall +PlugUpdate +qall
 
   # If YCM plugin installed ask to build
-  if [ -d ".vim/bundle/YouCompleteMe/.git" ]; then
+  if [ -d ".vim/plugged/YouCompleteMe/.git" ]; then
     confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
   fi
 }
@@ -300,7 +303,7 @@ function build_ycm () {
   cd $SCRIPT_DIR
   show_dir
 
-  cd .vim/bundle/YouCompleteMe
+  cd .vim/plugged/YouCompleteMe
   show_dir
   ./install.py --tern-completer --clang-completer --system-libclang
 
@@ -352,7 +355,7 @@ function main_installer () {
   ####################
   #Install VIM Plugins
   ####################
-  confirm "Install Vim vundle plugins" && vim_plugins
+  confirm "Install Vim plugins" && vim_plugins
 
 }
 
