@@ -114,7 +114,6 @@ environments.
     vagrant ssh
     
     # Inside Guest VM
-    git clone file:///vagrant ~/nz-vim
     . ~/nz-vim/install.sh
 
 ```
