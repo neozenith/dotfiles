@@ -94,6 +94,29 @@ Safe to merge platform specific features to `develop`.
 are not supported or time does not permit to download supporting systems.
 
 ----
+
+## Cross Platform Testing
+
+My setup is dual boot OSX and Windows native. Linux gets virtualised so I am
+leveraging [Vagrant](vagrant) and [Virtual Box](vbox) to spin up Linux dev 
+environments.
+
+```bash
+    
+    #From this repository on windows or osx
+    vagrant up
+    vagrant ssh
+    
+    # Inside Guest VM
+    git clone file:///vagrant ~/nz-vim
+    . ~/nz-vim/install.sh
+
+```
+
+vagrant: https://www.vagrantup.com
+vbox: https://www.virtualbox.org/
+
+----
 ## Plugins
 ### Update Plugins
 
