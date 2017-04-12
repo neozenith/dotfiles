@@ -115,6 +115,7 @@ Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
 " TODO: An elegant guide to refactoring as well as checking if files exist 
 " https://github.com/alepez/dotfiles/blob/master/vim/init.vim
 "
+Plug 'pboettch/vim-cmake-syntax'        " CMake Syntax Highlighting
 Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 
 " # RUBY DEV
