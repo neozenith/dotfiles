@@ -2,6 +2,7 @@
 *.swp
 .vim/.netrwhist
 .vim/bundle
+.vim/plugged
 tags
 gems.tags
 *.log
