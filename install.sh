@@ -84,6 +84,7 @@ function install_RHEL_dev_dependencies () {
     $SUDO $PKG_MANAGER install -y clang clang-devel
     $SUDO $PKG_MANAGER install -y python python-devel
     $SUDO $PKG_MANAGER install -y ruby ruby-devel 
+    $SUDO $PKG_MANAGER install -y nodejs
   fi
   
   if [[ -n "$HAS_APTGET" ]]; then
@@ -94,6 +95,7 @@ function install_RHEL_dev_dependencies () {
     $SUDO $PKG_MANAGER install -y clang clang-dev
     $SUDO $PKG_MANAGER install -y python python-dev
     $SUDO $PKG_MANAGER install -y ruby ruby-dev
+    $SUDO $PKG_MANAGER install -y nodejs
   fi
 
 }

@@ -12,8 +12,6 @@ scriptencoding utf-8
 set nocompatible
 filetype off 
 
-" TODO: https://github.com/junegunn/vim-plug
-
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
   set rtp=$HOME/vimfiles/bundle/Plug.vim
