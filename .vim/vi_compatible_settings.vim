@@ -14,6 +14,14 @@ filetype on                  " try to detect filetypes
 filetype plugin on
 filetype plugin indent on    " enable loading indent file for filetype
 
+" ---------------------------
+" Syntax Highlighting Speedup:
+" https://github.com/iauns/dotfiles/blob/master/.vimrc
+" ---------------------------
+" Speed up vim's syntax highlighting. \
+set nocursorcolumn 
+set nocursorline 
+syntax sync minlines=256
 
 if has('win64') || has('win32') || has('win16')
   " Windows CMDer 256 color fixes
@@ -83,6 +91,7 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
 
 " ---------------------------
 " NO BACKUP FILES:
