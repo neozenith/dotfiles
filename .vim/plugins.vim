@@ -50,7 +50,8 @@ endif
 " -------------------
 
 " INTERFACE
-Plug 'vim-scripts/The-NERD-tree'        " File Explorer
+Plug 'scrooloose/nerdtree'        " File Explorer
+Plug 'scrooloose/nerdcommenter'   " Toggle Commenting
 Plug 'sjl/gundo.vim'                    " Undo History
 Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
 Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting

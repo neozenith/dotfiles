@@ -23,6 +23,10 @@ set nocursorcolumn
 set nocursorline 
 syntax sync minlines=256
 
+" ---------------------------
+" Syntax Highlighting Settings:
+" ---------------------------
+colorsheme elflord      " Safe default colour sheme from Vi's shipped settings
 if has('win64') || has('win32') || has('win16')
   " Windows CMDer 256 color fixes
   " http://stackoverflow.com/a/14434531 
@@ -30,12 +34,6 @@ if has('win64') || has('win32') || has('win16')
   set t_Co=256
   let &t_AB="\e[48;5;%dm" 
   let &t_AF="\e[38;5;%dm"
-   
-  " Windows CMDer Backspace Fix
-  " https://github.com/Maximus5/ConEmu/issues/641
-  inoremap <Char-0x07F> <BS>
-  nnoremap <Char-0x07F> <BS>
-  "colorscheme solarized
 else
   colorscheme xoria256
 endif
@@ -44,11 +42,28 @@ let &t_ZH="\e[3m"             "Italicise Comments
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic gui=italic
 
+" ---------------------------
+" IDE Style Settings:
+" ---------------------------
 set number                " Line numbers are helpful
 set colorcolumn=80        " Highlight 80 character limit
-set scrolloff=999          " Keep the cursor centered in the screen
+set scrolloff=999         " Keep the cursor centered in the screen
 set showmatch             " Highlight matching braces
+
+" ---------------------------
+" Backspace Behaviour:
+" ---------------------------
 set backspace=indent,eol,start  "Allow backspace in insert mode
+if has('win64') || has('win32') || has('win16')
+  " Windows CMDer Backspace Fix
+  " https://github.com/Maximus5/ConEmu/issues/641
+  inoremap <Char-0x07F> <BS>
+  nnoremap <Char-0x07F> <BS>
+endif
+
+" ---------------------------
+" Show Invisibles:
+" ---------------------------
 " set list                  " Show invisible characters
 " Set the characters for the invisibles
 " http://stackoverflow.com/a/29787362/622276
@@ -59,6 +74,9 @@ else
   set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 endif
 
+" -----------------------------
+" Find In File Search Settings:
+" -----------------------------
 set ignorecase " case insensitive
 set smartcase  " use case if any caps used 
 set incsearch  " show match as search proceeds

@@ -38,6 +38,9 @@ runtime ycm.vim
 " NERDTree File Navigation:
 runtime nerdtree.vim
 
+" NERDCommenter:
+runtime nerdcommenter.vim
+
 " Indent Guides:
 runtime indentguides.vim
 
