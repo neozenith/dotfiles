@@ -87,6 +87,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
+Plug 'szw/vim-tags'
 
 if has('win64') || has('win32') || has('win16')
   " No YCM Support for now
