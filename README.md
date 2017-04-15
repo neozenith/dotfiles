@@ -152,13 +152,15 @@ These blogs have been hugely influential and informative in making the switch.
  - [Vim Adventures][vim-adventures] - Online game of Vim Tutor
  - [Thorsten Ball's Vim Resources][thorsten-ball-vim-resources]
  - [Vim Revisted][vim-revisited] - Good for explaining core navigation shortcuts
- - [Coming Home to Vim - Steve Losh][coming-home] - Explains *text objects*
+ - [Coming Home to Vim - Steve Losh][coming-home]
+ - [Vim Text Objects: The Definitive Guide][text-objects]
 
 [vimcasts]: http://vimcasts.org/
 [vim-adventures]: https://vim-adventures.com/
 [thorsten-ball-vim-resources]: https://thorstenball.com/blog/2012/07/09/vim-learning-resources/
 [vim-revisited]: http://mislav.net/2011/12/vim-revisited/
 [coming-home]: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+[text-objects]: http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
 
 ### Vim in 10 Seconds
 
@@ -297,5 +299,7 @@ is because it is so extensible it has evolved capabilities through plugins.
  - [Tim Pope](https://github.com/tpope)
  - [Alessandro Pezzato](https://github.com/alepez)
  - [Thorsten Ball](https://github.com/mrnugget) 
+ - [Mislav Marohnić](https://github.com/mislav)
+ - [Steve Losh](https://bitbucket.org/sjl/)
 
 Huge thanks for everything you have done for the VIM community.
