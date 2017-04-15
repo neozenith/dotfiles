@@ -248,6 +248,7 @@ Vim can jump forward an backward:
  - Sentence by sentence ( `)` sentence forward, `(` sentence backward)
  - Paragraph by paragraph ( `}` paragraph forward, `{` paragraph backward)
  - Heading or brackets ( `]]` section forward, `[[` section backward)
+ - Matching parenthesis, bracket or brace (`%`)
 
 Vim has an understanding of the text structures. See *knowing where you want 
 to go* in [Vim Revisited][vim-revisited] for more details.
