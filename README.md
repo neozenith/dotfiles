@@ -146,6 +146,12 @@ These blogs have been hugely influential and informative in making the switch.
  - [Vim Revisted][vim-revisited] - Good for explaining core navigation shortcuts
  - [Coming Home to Vim - Steve Losh][coming-home] - Explains *text objects*
 
+[vimcasts]: http://vimcasts.org/
+[vim-adventures]: https://vim-adventures.com/
+[thorsten-ball-vim-resources]: https://thorstenball.com/blog/2012/07/09/vim-learning-resources/
+[vim-revisited]: http://mislav.net/2011/12/vim-revisited/
+[coming-home]: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+
 ### Vim in 10 Seconds
 
  - Press `i` to enter *Insert Mode*
@@ -266,11 +272,7 @@ What takes years is, shaping and crafting your editor to suit you as you
 personally evolve over the years. The reason Vim has lasted for so many years
 is because it is so extensible it has evolved capabilities through plugins.
 
-[vimcasts]: http://vimcasts.org/
-[vim-adventures]: https://vim-adventures.com/
-[thorsten-ball-vim-resources]: https://thorstenball.com/blog/2012/07/09/vim-learning-resources/
-[vim-revisited]: http://mislav.net/2011/12/vim-revisited/
-[coming-home]: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+
 ----
 
 ## Credits
