@@ -4,6 +4,14 @@
 <img src="https://stackexchange.com/users/flair/309684.png" width="208" height="58" alt="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites">
 </a>
 
+ - [Brief](#brief)
+ - [Samples](#samples)
+ - [Developing and Maintaining](#developing-and-maintaining)
+ - [Cross Platform Testing](#cross-platform-testing)
+ - [Adding Plugins](#adding-plugins)
+ - [Learning Resources](#resources-and-training)
+ - [Credits](#credits)
+
 ## Brief
 
 This is not intended as a public example of *good* management of VIM dotFiles 
@@ -65,7 +73,7 @@ install.bat
 
 ----
 
-## Developing / Maintaining
+## Developing and Maintaining
 
 **.vimrc**
  - The key entry file for vim configuration. 
@@ -163,6 +171,13 @@ These blogs have been hugely influential and informative in making the switch.
 
 ### Vim in 5 minute
 
+ - [Modal Text Editting](#modal-text-editting)
+ - [Copy and Pasting](#copy-and-pasting)
+ - [Clipboards](#clipboards)
+ - [Search and Replace](#search-and-replace)
+ - [Movement](#movement)
+ - [Portable Configuration](#portable-configuration)
+
 #### Modal Text Editting
 
 Vim has 3 modes which logically scope the types of tasks you perfom text 
@@ -249,7 +264,8 @@ to version control. Vi is available on most Unix systems but has been replaced
 by Vim in a lot of cases.
 
 I can go to most systems and bring my own configuration, or gracefully fall 
-back to a rich core set of commands.
+back to a rich core set of commands. Also there is a low setup cost since *it
+is already on a lot of systems*.
 
 Since Github it has made sharing plugins and extensions much more
 social and easily available.
