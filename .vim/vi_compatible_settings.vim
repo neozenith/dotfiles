@@ -26,7 +26,7 @@ syntax sync minlines=256
 " ---------------------------
 " Syntax Highlighting Settings:
 " ---------------------------
-colorsheme elflord      " Safe default colour sheme from Vi's shipped settings
+colorscheme elflord      " Safe default colour sheme from Vi's shipped settings
 if has('win64') || has('win32') || has('win16')
   " Windows CMDer 256 color fixes
   " http://stackoverflow.com/a/14434531 
