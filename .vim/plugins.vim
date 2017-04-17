@@ -50,7 +50,8 @@ endif
 " -------------------
 
 " INTERFACE
-Plug 'vim-scripts/The-NERD-tree'        " File Explorer
+Plug 'scrooloose/nerdtree'        " File Explorer
+Plug 'scrooloose/nerdcommenter'   " Toggle Commenting
 Plug 'sjl/gundo.vim'                    " Undo History
 Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
 Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
@@ -86,6 +87,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
+Plug 'szw/vim-tags'
 
 if has('win64') || has('win32') || has('win16')
   " No YCM Support for now
@@ -115,6 +117,7 @@ Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
 " TODO: An elegant guide to refactoring as well as checking if files exist 
 " https://github.com/alepez/dotfiles/blob/master/vim/init.vim
 "
+Plug 'pboettch/vim-cmake-syntax'        " CMake Syntax Highlighting
 Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 
 " # RUBY DEV
