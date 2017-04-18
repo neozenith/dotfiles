@@ -29,13 +29,13 @@ cp -v .gitconfig %HOME%\.gitconfig
 xcopy /f /s /I /Y .vim %HOME%\vimfiles
 
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
-IF EXIST "%HOME%\vimfiles\bundle\Vundle.vim\.git" GOTO NO_CLONE_VUNDLE
+IF EXIST "%HOME%\vimfiles\bundle\Plug.vim\.git" GOTO NO_CLONE_PLUG
 
-git clone https://github.com/VundleVim/Vundle.vim.git %HOME%\vimfiles\bundle\Vundle.vim
+git clone https://github.com/junegunn/vim-plug.git %HOME%\vimfiles\bundle\Plug.vim\autoload
 
-:NO_CLONE_VUNDLE
+:NO_CLONE_PLUG
 
-vim +PluginInstall +PluginUpgrade +qall
+vim +PlugInstall +PlugUpgrade +qall
 
 :: WIP To be able to build YCM on Windows
 :: Must be admin

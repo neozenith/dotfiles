@@ -1,9 +1,14 @@
+# Vim Cruft
 *.swp
 .vim/.netrwhist
 .vim/bundle
+.vim/plugged
 tags
 gems.tags
 *.log
+
+# Vagrant Linux Test box
+.vagrant
 
 # Windows temporary files
 *.*~
