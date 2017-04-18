@@ -4,13 +4,33 @@
 <img src="https://stackexchange.com/users/flair/309684.png" width="208" height="58" alt="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites">
 </a>
 
- - [Brief](#brief)
- - [Samples](#samples)
- - [Developing and Maintaining](#developing-and-maintaining)
- - [Cross Platform Testing](#cross-platform-testing)
- - [Adding Plugins](#adding-plugins)
- - [Learning Resources](#resources-and-training)
- - [Credits](#credits)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Brief](#brief)
+- [Samples](#samples)
+- [Installation](#installation)
+  - [OSX / Linux](#osx--linux)
+  - [Windows](#windows)
+- [Developing and Maintaining](#developing-and-maintaining)
+- [Cross Platform Testing](#cross-platform-testing)
+- [Plugins](#plugins)
+  - [Update Plugins](#update-plugins)
+- [Adding Plugins](#adding-plugins)
+- [Resources and Training](#resources-and-training)
+  - [Vim in 10 Seconds](#vim-in-10-seconds)
+  - [Vim in 5 minute](#vim-in-5-minute)
+    - [Modal Text Editting](#modal-text-editting)
+    - [Copy and Pasting](#copy-and-pasting)
+    - [Clipboards](#clipboards)
+    - [Search and Replace](#search-and-replace)
+    - [Movement](#movement)
+    - [Portable Configuration](#portable-configuration)
+  - [Vim in 30 minutes](#vim-in-30-minutes)
+- [Credits](#credits)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Brief
 

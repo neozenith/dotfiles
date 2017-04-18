@@ -261,15 +261,14 @@ function install_osx_plugin_dependencies () {
 
   #JavaScript
   npm install -g \
-    grunt-cli \
-    yo \
     jshint \
     jscs \
     eslint \
     js-beautify \
     express-generator \
     mocha \
-    webpack
+    webpack \
+    doctoc
 }
 
 
