@@ -31,7 +31,7 @@ xcopy /f /s /I /Y .vim %HOME%\vimfiles
 :: https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
 IF EXIST "%HOME%\vimfiles\bundle\Plug.vim\.git" GOTO NO_CLONE_PLUG
 
-git clone https://github.com/junegunn/vim-plug.git %HOME%\bundle\Plug.vim\autoload
+git clone https://github.com/junegunn/vim-plug.git %HOME%\vimfiles\bundle\Plug.vim\autoload
 
 :NO_CLONE_PLUG
 

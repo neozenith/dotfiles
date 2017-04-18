@@ -14,7 +14,7 @@ filetype off
 
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
-  set rtp=$HOME/vimfiles/bundle/Plug.vim
+  set rtp+=$HOME/vimfiles/bundle/Plug.vim
   call plug#begin('$HOME/vimfiles/bundle/')
 else
   set rtp+=~/.vim/bundle/Plug.vim
