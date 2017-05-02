@@ -34,9 +34,10 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   alias gcon="git diff --name-only --diff-filter=U"
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
-  alias gu=" git checkout $1 -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
+  alias gu=" git checkout $1 -f; git fetch -v --all -t -p; git pull -v --all"
   alias gpa="git pull -v --all"
   alias gp="git push"
+  alias gf="git fetch -t -p"
   # (G)it (T)ree see gitconfig for full details
   alias gt="git tree"
 
