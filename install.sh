@@ -150,12 +150,13 @@ function install_osx_dev_dependencies () {
     elasticsearch
 
   # Ruby
-  brew install rbenv ruby-build
-  if which rbenv > /dev/null; then 
-    eval "$(rbenv init -)"
-  fi
-  rbenv install 2.4.0
-  rbenv global 2.4.0
+  brew install ruby ruby-build -y
+  # brew install rbenv ruby-build
+  # if which rbenv > /dev/null; then
+  #   eval "$(rbenv init -)"
+  # fi
+  # rbenv install 2.4.0
+  # rbenv global 2.4.0
   ruby -v
   notice "Installing Gems as SuperUser"
   sudo gem install bundler rails
