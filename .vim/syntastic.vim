@@ -21,7 +21,7 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 
 " Ruby:
-let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_ruby_checkers = ['rubocop']
 
 " CPP:
 let g:syntastic_cpp_checkers = ['cpplint', 'gcc', 'clang_check', 'clang_tidy']
