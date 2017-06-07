@@ -141,10 +141,10 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 # Inject if RBEnv Shim not injected
-if [[ -z "$(echo $PATH | grep '/.rbenv/shims')" ]]; then 
-  HAS_RBENV=`which rbenv 2> /dev/null`
-  if [[ -n "$HAS_RBENV"  ]]; then eval "$(rbenv init -)"; fi
-fi
+# if [[ -z "$(echo $PATH | grep '/.rbenv/shims')" ]]; then
+#   HAS_RBENV=`which rbenv 2> /dev/null`
+#   if [[ -n "$HAS_RBENV"  ]]; then eval "$(rbenv init -)"; fi
+# fi
 
 # OSX Bash Completions:
 if [[ $OSTYPE == darwin* ]]; then
