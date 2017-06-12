@@ -5,6 +5,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " TODO: https://github.com/purpleKarrot/dotfiles/blob/master/config/nvim/init.vim
+" TODO: https://github.com/purpleKarrot/dotfiles/blob/master/config/git/template/hooks/pre-commit
 
 " ---------------------------
 " BASIC CONFIGURATION:
