@@ -79,7 +79,7 @@ function install_RHEL_dev_dependencies () {
     $SUDO curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
     
     $SUDO $PKG_MANAGER install -y "Development Tools"
-    $SUDO $PKG_MANAGER install -y cmake gcc-c++ make
+    $SUDO $PKG_MANAGER install -y cmake3 gcc-c++ make
     $SUDO $PKG_MANAGER install -y ncurses ncurses-devel
     $SUDO $PKG_MANAGER install -y clang clang-devel
     $SUDO $PKG_MANAGER install -y python python-devel
