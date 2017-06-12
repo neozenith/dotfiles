@@ -4,6 +4,8 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+" TODO: https://github.com/purpleKarrot/dotfiles/blob/master/config/nvim/init.vim
+
 " ---------------------------
 " BASIC CONFIGURATION:
 " ---------------------------
