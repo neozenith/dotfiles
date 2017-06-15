@@ -47,11 +47,13 @@ endif
 "  14. Auto testing TODO
 "    i. unit tests TODO
 "    ii. code coverage coloring TODO
+"  15. Command Pallette (See VS Code, Sublime)
 " -------------------
 
 " INTERFACE
-Plug 'scrooloose/nerdtree'        " File Explorer
-Plug 'scrooloose/nerdcommenter'   " Toggle Commenting
+Plug 'scrooloose/nerdtree'              " File Explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status in file explorer
+Plug 'scrooloose/nerdcommenter'         " Toggle Commenting
 Plug 'sjl/gundo.vim'                    " Undo History
 Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
 Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
@@ -68,7 +70,6 @@ Plug 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
 Plug 'itchyny/lightline.vim'  " Status bar
 
 " SYNTAX CHECKER + HIGHLIGHTING
-
 
 Plug 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
 
@@ -95,6 +96,10 @@ else
   Plug 'Valloric/YouCompleteMe' " Auto Complete Engine
 endif
 
+" COMMAND PALETTE
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'fisadev/vim-ctrlp-cmdpalette'
+
 
 " C++ Dev
 " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
@@ -103,21 +108,16 @@ endif
 " http://valloric.github.io/YouCompleteMe/#c-family-semantic-completion
 " https://jonasdevlieghere.com/a-better-youcompleteme-config/
 "
-"Plugin 'rdnetto/YCM-Generator' " Automatically generates YouCompleteMe configuration based on Makefile
-"
-" https://github.com/tpope/vim-dispatch
-Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously
+Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously with :Make
 " 
 " https://github.com/alepez/vim-gtest
-" Plugin 'alepez/vim-gtest'       " Unit Testing Framework
+" Plug 'alepez/vim-gtest'       " Unit Testing Framework
 "
 " https://github.com/alepez/vim-llvmcov
-" Plugin 'alepez/vim-llvmcov'     " Code Covereage
-"
-" TODO: An elegant guide to refactoring as well as checking if files exist 
-" https://github.com/alepez/dotfiles/blob/master/vim/init.vim
+" Plug 'alepez/vim-llvmcov'     " Code Covereage
 "
 Plug 'pboettch/vim-cmake-syntax'        " CMake Syntax Highlighting
+Plug 'neozenith/cmake.vim'                " Add CMake commands
 Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 
 " # RUBY DEV

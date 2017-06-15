@@ -71,13 +71,17 @@ Since starting I have managed to solve:
 ----
 
 ## Installation
+
 ### OSX / Linux
-```
+
+```bash
 cd ~
 git clone https://github.com/neozenith/vim-dotfiles.git ~/nz-vim/
 . nz-vim/install.sh
 ```
+
 ### Windows
+
 Download latest gVim for CMDer to use that binary instead of bundled.
 [Latest GVim][gvim-download]
 
