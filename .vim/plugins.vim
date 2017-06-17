@@ -21,9 +21,6 @@ else
   call plug#begin()
 endif
 
-" let Vundle manage Vundle, required
-" Plug 'VundleVim/Vundle.vim'
-
 " -------------------
 "  Compulsory Components of Any Dev Environment
 "  1. Syntax Coloring / Nested Bracket Coloring
