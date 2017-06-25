@@ -114,7 +114,7 @@ Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously with :Mak
 " Plug 'alepez/vim-llvmcov'     " Code Covereage
 "
 Plug 'pboettch/vim-cmake-syntax'        " CMake Syntax Highlighting
-Plug 'neozenith/cmake.vim'                " Add CMake commands
+" Plug 'neozenith/cmake.vim'                " Add CMake commands
 Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 
 " # RUBY DEV
