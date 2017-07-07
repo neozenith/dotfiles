@@ -31,10 +31,10 @@ au Filetype markdown   setlocal spell spelllang=en_us
 
 " ---------------
 " Markdown Setup:
-augroup markdown
-    au!
-    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-augroup END
+" augroup markdown
+"     au!
+"     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+" augroup END
 
 " -----------------------
 " Pseudo Command Palette:
