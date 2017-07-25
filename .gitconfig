@@ -5,7 +5,7 @@
 	email = neozenith.dev@gmail.com
 [core]
 	excludesfile = /Users/neozenith/.gitignore_global
-	editor = /usr/local/bin/vim
+	editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -29,9 +29,3 @@
   tree2 = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
   tree = !"git tree2"
   t = !"git tree2"
-[credentials "https://github.com"]
-	username = neozenith
-[credentials "https://gitlab.com"]
-	username = neozenith
-[credentials "https://entrance.c-esolutions.com.au"]
-	username = josh.peak
