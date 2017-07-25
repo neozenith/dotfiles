@@ -48,6 +48,8 @@ echo "$KEYS_DIR"
 #######################################
 # Defaults and Platform specific tweaks
 #######################################
+# Password protected PEM files still prompt for password.
+# Setting to 1 ALWAYS prompts when there is no password.
 PASS_PROTECTED=0
 USER=neozenith
 
@@ -95,6 +97,7 @@ for SERVER in $SERVERS;do
       git config $CFG_SCOPE http.$SERVER.sslCAInfo $KEYS_DIR/isca.crt
       git config $CFG_SCOPE http.$SERVER.sslCert $KEYS_DIR/joshpeakcert.pem
       git config $CFG_SCOPE http.$SERVER.sslCertPasswordProtected $PASS_PROTECTED
+      USER=josh.peak
     fi
 
     git config $CFG_SCOPE credential.$SERVER.username $USER
