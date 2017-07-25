@@ -51,6 +51,9 @@ function show_dir () {
 ###############################################################################
 # Install Development Environment Tools
 ###############################################################################
+function install_mingw_dev_dependencies () {
+  echo "Not yet implemented"
+}
 function install_RHEL_dev_dependencies () {
   SUDO=`which sudo 2> /dev/null`
   HAS_YUM=`which yum 2> /dev/null`
@@ -79,7 +82,7 @@ function install_RHEL_dev_dependencies () {
     $SUDO curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
     
     $SUDO $PKG_MANAGER install -y "Development Tools"
-    $SUDO $PKG_MANAGER install -y cmake gcc-c++ make
+    $SUDO $PKG_MANAGER install -y cmake3 gcc-c++ make
     $SUDO $PKG_MANAGER install -y ncurses ncurses-devel
     $SUDO $PKG_MANAGER install -y clang clang-devel
     $SUDO $PKG_MANAGER install -y python python-devel
@@ -182,11 +185,13 @@ function install_osx_dev_dependencies () {
 function build_vim () {
   cd ~
   show_dir
+  SUDO=`which sudo 2> /dev/null`
+  MAKE=`which make 2> /dev/null`
 
   echo -e "Install VIM from Source"
   if [ ! -d "./vim/.git" ]; then
     notice "Cloning a clean copy"
-    sudo rm -rfv vim/
+    $SUDO rm -rfv vim/
     git clone https://github.com/vim/vim.git vim/
   else 
     cd vim
@@ -202,9 +207,8 @@ function build_vim () {
   else
     VIM_INSTALL_PREFIX="--prefix=/usr/"
   fi
+  echo "Installing to: $VIM_INSTALL_PREFIX"
   
-  SUDO=`which sudo 2> /dev/null`
-  MAKE=`which make 2> /dev/null`
 
   if [[ -n "$MAKE" ]]; then 
     $SUDO ./configure $VIM_INSTALL_PREFIX \
@@ -212,6 +216,8 @@ function build_vim () {
       --enable-pythoninterp \
       --with-features=huge
     $SUDO $MAKE; $SUDO $MAKE install
+  else
+    echo "make not found. Not building Vim"
   fi
 
   cd $SCRIPT_DIR
@@ -248,6 +254,10 @@ function install_RHEL_plugin_dependencies () {
   echo "Nothing to do here"
 }
 
+function install_mingw_plugin_dependencies () {
+  echo "Nothing to do here"
+}
+
 function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
@@ -255,7 +265,7 @@ function install_osx_plugin_dependencies () {
   brew install cmake npm --upgrade
 
   #Python
-
+  
   #Ruby
   notice "Installing Gems as SuperUser"
   sudo gem install rubocop
@@ -280,6 +290,8 @@ function vim_plugins () {
 
   if [[ $OSTYPE == darwin* ]]; then
     install_osx_plugin_dependencies
+  elif [[ $OSTYPE == msys* ]]; then
+    install_mingw_plugin_dependencies
   else
     notice "Plugin dependencies not defined for non OSX platforms yet."
     install_RHEL_plugin_dependencies
@@ -330,8 +342,11 @@ function main_installer () {
   ###############################
   # Install Dev Environment Tools
   ###############################
+  echo "OS Detected: $OSTYPE"
   if [[ $OSTYPE == darwin* ]]; then
     confirm "Install OSX development tools" && install_osx_dev_dependencies
+  elif [[ $OSTYPE == msys* ]]; then
+    confirm "Install Windows Git Bash (MinGW) development tools" && install_mingw_dev_dependencies
   else
     confirm "Install RHEL development tools" && install_RHEL_dev_dependencies
   fi

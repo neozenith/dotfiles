@@ -8,7 +8,7 @@ scriptencoding utf-8
 " Refactoring entry point vimrc
 " Sub scripts can be found in the .vim/ folder
 
-" Vundle Plugins:
+" Plugins:
 if !has('compatible')
   runtime plugins.vim  
 endif
