@@ -38,6 +38,7 @@
   co = checkout
   cl = clone
   cm = commit
+
 [credentials "https://github.com"]
 	username = neozenith
 [credentials "https://gitlab.com"]
