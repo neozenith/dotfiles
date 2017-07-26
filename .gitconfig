@@ -29,3 +29,19 @@
   tree2 = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
   tree = !"git tree2"
   t = !"git tree2"
+  
+  st = status -u -v --ignore-submodules
+  br = branch -vv
+  d = diff -v --color-words
+  f = fetch -v --tags --prune
+  br = branch
+  co = checkout
+  cl = clone
+  cm = commit
+
+[credentials "https://github.com"]
+	username = neozenith
+[credentials "https://gitlab.com"]
+	username = neozenith
+[credentials "https://entrance.c-esolutions.com.au"]
+	username = josh.peak
