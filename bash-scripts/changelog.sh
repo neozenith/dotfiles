@@ -1,23 +1,47 @@
 #! /bin/bash
-# Usage: changelog.sh [lasttag|tagref|branch_ref]
+# Usage: changelog.sh [lasttag|tagref|branch_ref] [JIRA Host]
 #
 # By default this script will evaluate the git log messages between the current HEAD
-# and the develop branch. It will blacklist and whitelist commit messages based upon
+# and the develop branch. eg develop..HEAD 
+# It will blacklist and whitelist commit messages based upon
 # the regular expressions defined below and prefix the output format with markdown
 # bullet points.
 #
-# changelog.sh | sort
+# ```
+# # USAGE:
+# changelog.sh 
+# ```
 #
-# This will arrange the output into the commit message categories
-#
+# If you pass in a different refspec as the first argument it will get a 
+# changelog between that argument and HEAD
+# 
+# ```
 # git checkout develop
-# changelog.sh v3.12.0 | sort
-# changelog.sh master | sort
+#
+# # From a Branch
+# # master..HEAD
+# changelog.sh master
+#
+# # From a Tag
+# # v3.12.0..HEAD
+# changelog.sh v3.12.0
+# ```
 #
 # The above snippet when run from develop relative to the last tagged release or
 # more simply the following:
 #
 # changelog.sh lasttag
+#
+# JIRA Linking:
+# If you want to replace any text in your changelog with markdown links to your
+# JIRA Issue tracking system then pass in your host as the second argument
+#
+# ```
+# # Example:
+# # develop..HEAD
+# changelog.sh develop jira.atlassian.net
+# ```
+
 
 BASE_BRANCH=develop
 LAST_TAG=`git describe --abbrev=0 --tags 2> /dev/null | grep -E '^v\d\.\d\.\d'`
@@ -56,29 +80,50 @@ LOG_ARGS=`echo "--oneline"`
 LOG_FORMAT=" - %s"
 
 ####################
-# JIRA Issue Linking 
+# WIP: JIRA Issue Linking 
 ####################
 # ----
-# Define Jira project code to scrape out of changelogs 
+# Define Jira host to scrape out of changelogs 
 # and replace with valid markdown links
-JIRA_PRJ="HOR"
-JIRA_HOST="dexata.atlassian.net"
+JIRA_HOST=$2
+
+JIRA_SED_EXP=""  
+if [[ -n $JIRA_HOST ]]; then
+  JIRA_URL="https://$JIRA_HOST/browse/"
+  JIRA_URL="$(echo $JIRA_URL | sed -e 's/\//\\\//g')"
+  JIRA_SED_EXP="s/\([A-Z][A-Z]*-[0-9][0-9]*\)/\[\1\]\($JIRA_URL\1\)/g"
+fi
 # ----
-JIRA_URL="https://$JIRA_HOST/browse/"
-JIRA_URL="$(echo $JIRA_URL | sed -e 's/\//\\\//g')"
-JIRA_SED_EXP="s/\($JIRA_PRJ-[0-9][0-9]*\)/\[\1\]\($JIRA_URL\1\)/g"
 
 echo "## Changelog $BASE_BRANCH..$BRANCH ($(date))"
 echo ""
 echo "#### Added:"
-git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$ADD_WHITE_LIST" | sed -e $JIRA_SED_EXP
+if [[ -n $JIRA_HOST ]]; then
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$ADD_WHITE_LIST" | sed -e $JIRA_SED_EXP
+else
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$ADD_WHITE_LIST"
+fi
+
 echo ""
 echo "#### Updated:"
-git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$CHG_WHITE_LIST" | sed -e $JIRA_SED_EXP
+if [[ -n $JIRA_HOST ]]; then
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$CHG_WHITE_LIST" | sed -e $JIRA_SED_EXP
+else
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$CHG_WHITE_LIST"
+fi
+
 echo ""
 echo "#### Fixed:"
-git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$FIX_WHITE_LIST" | sed -e $JIRA_SED_EXP
+if [[ -n $JIRA_HOST ]]; then
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$FIX_WHITE_LIST" | sed -e $JIRA_SED_EXP
+else
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$FIX_WHITE_LIST"
+fi
+
 echo ""
 echo "#### Other Changes:"
-git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$MISC_WHITE_LIST" | sed -e $JIRA_SED_EXP
-
+if [[ -n $JIRA_HOST ]]; then
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$MISC_WHITE_LIST" | sed -e $JIRA_SED_EXP
+else
+  git log $LOG_ARGS --format="$LOG_FORMAT" $MERGE_BASE..$BRANCH | egrep -v "$BLACK_LIST" | egrep "$MISC_WHITE_LIST" 
+fi
