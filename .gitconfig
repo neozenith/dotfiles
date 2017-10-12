@@ -35,3 +35,11 @@
 	username = neozenith
 [credentials "https://entrance.c-esolutions.com.au"]
 	username = josh.peak
+[credential "https://entrance.c-esolutions.com.au"]
+	username = josh.peak
+[http "https://entrance.c-esolutions.com.au"]
+	sslVerify = 1
+	sslCAPath = /Users/neozenith/keys
+	sslCAInfo = /Users/neozenith/keys/isca.crt
+	sslCert = /Users/neozenith/keys/joshpeakcert.pem
+	sslCertPasswordProtected = 0
