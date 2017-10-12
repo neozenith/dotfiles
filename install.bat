@@ -6,6 +6,19 @@
 :: https://medium.com/@saaguero/setting-up-vim-in-windows-5401b1d58537#.a3huqnkx7
 
 
+:: DEPENDENCIES
+::
+:: PYTHON
+:: https://www.python.org/downloads/
+:: https://www.python.org/ftp/python/3.6.2/python-3.6.2.exe
+::
+:: CLANG
+:: http://releases.llvm.org/download.html
+:: http://releases.llvm.org/4.0.1/LLVM-4.0.1-win64.exe
+::
+
+call chocolatey.bat
+
 cls
 
 rm -rfv %HOME%\.vimrc
@@ -35,12 +48,6 @@ git clone https://github.com/junegunn/vim-plug.git %HOME%\vimfiles\bundle\Plug.v
 
 :NO_CLONE_PLUG
 
-vim +PlugInstall +PlugUpgrade +qall
+vim +PlugInstall +PlugUpdate +qall
 
-:: WIP To be able to build YCM on Windows
-:: Must be admin
-:: choco install cmake 7zip -y
-:: PATH=%PATH%;C:\Program Files\CMake\bin;
 
-:: Install this
-:: http://releases.llvm.org/3.9.1/LLVM-3.9.1-win64.exe
