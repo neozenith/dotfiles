@@ -38,15 +38,16 @@
   co = checkout
   cl = clone
   cm = commit
+[credentials]
+  helper = osxkeychain
 
 [credentials "https://github.com"]
 	username = neozenith
 [credentials "https://gitlab.com"]
 	username = neozenith
 [credentials "https://entrance.c-esolutions.com.au"]
-	username = josh.peak
-[credential "https://entrance.c-esolutions.com.au"]
-	username = josh.peak
+  username = josh.peak
+  helper = osxkeychain
 [http "https://entrance.c-esolutions.com.au"]
 	sslVerify = 1
 	sslCAPath = /Users/neozenith/keys

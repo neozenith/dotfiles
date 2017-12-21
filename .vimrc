@@ -10,26 +10,26 @@ scriptencoding utf-8
 
 " Plugins:
 if !has('compatible')
-  runtime plugins.vim  
+  runtime plugins.vim
 endif
 
-" Vi Compatible Settings: Tabs, Colors, Folding and anything that are plain Vi Settings 
-runtime vi_compatible_settings.vim  
+" Vi Compatible Settings: Tabs, Colors, Folding and anything that are plain Vi Settings
+runtime vi_compatible_settings.vim
 
-" Vim Basic Settings: Tabs, Colors, Folding and anything that are plain Vim Settings 
+" Vim Basic Settings: Tabs, Colors, Folding and anything that are plain Vim Settings
 if !has('compatible')
-  runtime basic_settings.vim  
+  runtime basic_settings.vim
 endif
 
 " GVim: Gui based settings
-runtime gui.vim             
+runtime gui.vim
 
 " Lightline: status bar configuration
-runtime lightline.vim       
+runtime lightline.vim
 
 " Syntastic: - Linting and Syntax checker plugin configuration
 if !has('compatible')
-  runtime syntastic.vim       
+  runtime syntastic.vim
 endif
 
 " YouCompleteMe Autocomplete Engine:

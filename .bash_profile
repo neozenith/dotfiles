@@ -138,7 +138,8 @@ function inject_path () {
   inject_path "~/.npm-packages/bin"
   inject_path "$(go env GOPATH)/bin"
 if [[ $OSTYPE == darwin* ]]; then
-  inject_path "~/Qt5.8.0/5.8/clang_64/bin"
+  # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
+  inject_path "/usr/local/opt/openssl/bin"
 fi
 
 # Inject if RBEnv Shim not injected
