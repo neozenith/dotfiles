@@ -22,8 +22,8 @@ filetype plugin indent on    " enable loading indent file for filetype
 " https://github.com/iauns/dotfiles/blob/master/.vimrc
 " ---------------------------
 " Speed up vim's syntax highlighting. \
-set nocursorcolumn 
-set nocursorline 
+set nocursorcolumn
+set nocursorline
 syntax sync minlines=256
 
 " ---------------------------
@@ -32,10 +32,10 @@ syntax sync minlines=256
 colorscheme elflord      " Safe default colour sheme from Vi's shipped settings
 if has('win64') || has('win32') || has('win16')
   " Windows CMDer 256 color fixes
-  " http://stackoverflow.com/a/14434531 
+  " http://stackoverflow.com/a/14434531
   set term=xterm
   set t_Co=256
-  let &t_AB="\e[48;5;%dm" 
+  let &t_AB="\e[48;5;%dm"
   let &t_AF="\e[38;5;%dm"
 else
   colorscheme xoria256
@@ -81,7 +81,7 @@ endif
 " Find In File Search Settings:
 " -----------------------------
 set ignorecase " case insensitive
-set smartcase  " use case if any caps used 
+set smartcase  " use case if any caps used
 set incsearch  " show match as search proceeds
 set hlsearch   " search highlighting
 
@@ -99,7 +99,7 @@ set softtabstop=2  " Sets the number of columns for a TAB.
 au Filetype * let &l:tabstop = s:tabwidth
 au Filetype * let &l:shiftwidth = s:tabwidth
 au Filetype * let &l:softtabstop = s:tabwidth
-set expandtab       " Expand TABs to spaces.
+set noexpandtab       "DO NOT Expand TABs to spaces.
 set shiftround      " Round indent to multiple of 'shiftwidth'
 set autoindent      " Copy indent from current line, over to the new line
 
@@ -122,7 +122,7 @@ set nobackup
 set nowb
 
 " ---------------------------
-"  Key Mapping: 
+"  Key Mapping:
 " ---------------------------
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 command! -bang Q quit<bang>

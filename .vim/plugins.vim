@@ -10,7 +10,7 @@ scriptencoding utf-8
 " ---------------------------
 " {
 set nocompatible
-filetype off 
+filetype off
 
 " Setup Runtime Path:
 if has('win64') || has('win32') || has('win16')
@@ -72,7 +72,6 @@ Plug 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
 
 Plug 'scrooloose/syntastic'   " Syntax Check engine
 Plug 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
-Plug 'evanmiller/nginx-vim-syntax'  " Syntax highlighting nginx configs
 
 " MARKDOWN
 " https://github.com/plasticboy/vim-markdown
@@ -101,12 +100,12 @@ Plug 'fisadev/vim-ctrlp-cmdpalette'
 " C++ Dev
 " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
 " There is a default one in this repo that links to root user dir but it
-" should be copied into and configured per project. 
+" should be copied into and configured per project.
 " http://valloric.github.io/YouCompleteMe/#c-family-semantic-completion
 " https://jonasdevlieghere.com/a-better-youcompleteme-config/
 "
 Plug 'tpope/vim-dispatch'     " Run build and test jobs asynchronously with :Make
-" 
+"
 " https://github.com/alepez/vim-gtest
 " Plug 'alepez/vim-gtest'       " Unit Testing Framework
 "
@@ -119,7 +118,7 @@ Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 " # RUBY DEV
 Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'       " Ruby Syntax and Style Checker
-Plug 'tpope/vim-rails' 
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'reinh/vim-makegreen'
@@ -128,7 +127,7 @@ Plug 'reinh/vim-makegreen'
 
 " Emmet HTML tag expander
 " type: html:5
-" to expand: ctrl-y , 
+" to expand: ctrl-y ,
 Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 
 Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
@@ -137,6 +136,7 @@ Plug 'elzr/vim-json'          " JSON Style Checker
 Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
+Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
 
 " # PYTHON DEV
 Plug 'fs111/pydoc.vim'
