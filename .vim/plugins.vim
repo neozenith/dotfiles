@@ -86,6 +86,9 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 Plug 'szw/vim-tags'
 
+"TODO: Snippets
+" https://github.com/SirVer/ultisnips
+
 if has('win64') || has('win32') || has('win16')
   " No YCM Support for now
 else
@@ -136,7 +139,7 @@ Plug 'elzr/vim-json'          " JSON Style Checker
 Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
-Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
+"TODO: Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
 
 " # PYTHON DEV
 Plug 'fs111/pydoc.vim'

@@ -262,7 +262,7 @@ function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
   #HomeBrew
-  brew install cmake npm --upgrade
+  brew install ninja cmake npm --upgrade
 
   #Python
   
