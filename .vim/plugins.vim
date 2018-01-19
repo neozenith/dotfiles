@@ -86,8 +86,6 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 Plug 'szw/vim-tags'
 
-"TODO: Snippets
-" https://github.com/SirVer/ultisnips
 
 if has('win64') || has('win32') || has('win16')
   " No YCM Support for now
@@ -98,6 +96,10 @@ endif
 " COMMAND PALETTE
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fisadev/vim-ctrlp-cmdpalette'
+
+" SNIPPETS
+Plug 'SirVer/ultisnips'			" Snippet Engine
+Plug 'honza/vim-snippets'		" Collection of community snippets
 
 
 " C++ Dev
@@ -136,6 +138,7 @@ Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plug 'marijnh/tern_for_vim'   " JavaScript AutoComplete
 Plug 'elzr/vim-json'          " JSON Style Checker
+Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter

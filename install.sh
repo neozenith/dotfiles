@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 # Auth: Josh Wilson
 # Desc: Install script for associated syntax checker tools
 
@@ -139,8 +139,8 @@ function install_osx_dev_dependencies () {
   brew install plantuml graphviz doxygen
 
   # DevOps
-  brew install terraform
-  brew install ansible
+  # brew install terraform
+  # brew install ansible
 
   # C, C++, C#, Objective-C
   brew install llvm
@@ -150,7 +150,8 @@ function install_osx_dev_dependencies () {
     freetds \
     redis \
     influxdb \
-    elasticsearch
+    elasticsearch \
+		kibana
 
   # Ruby
   brew install ruby ruby-build -y

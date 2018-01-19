@@ -1,5 +1,10 @@
 {
   "libs":[
-    "express"
-  ]
+    "express",
+		"mocha",
+		"requests"
+  ],
+	"plugins": {
+    "node": {}
+  }
 }
