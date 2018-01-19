@@ -27,21 +27,13 @@ let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_cpp_checkers = ['cpplint', 'gcc', 'clang_check', 'clang_tidy']
 let g:syntastic_cpp_cpplint_exec = 'cpplint'
 
-" Web Dev:
-" Each js project will need the following files:
-" .eslintrc
-" .jscsrc
-" .jshintrc
-" .tern-project
-let g:syntastic_javascript_checkers = ['eslint', 'jscs']
-au BufNewFile,BufRead *.ejs set filetype=html
 
 map <c-f> :lclose<CR>
 
 " Check On Write File:
 augroup AutoSyntastic
   autocmd!
-  autocmd BufWritePost *.c,*.cpp,*.py,*.rb,*.js,*.css,*.ejs call s:syntastic()
+  autocmd BufWritePost *.c,*.cpp,*.py,*.rb call s:syntastic()
 augroup END
 
 

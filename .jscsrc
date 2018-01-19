@@ -1,9 +1,10 @@
 {
-  "preset":"airbnb",
+  "preset":"node-style-guide",
   "requireTrailingComma": false,
   "validateIndentation": false,
   "maximumLineLength": false,
   "requireCamelCaseOrUpperCaseIdentifiers": false,
-  "requireSpaceBeforeBlockStatements":false
+  "requireSpaceBeforeBlockStatements":false,
+  "requireSpaceAfterLineComment":false
 
 }

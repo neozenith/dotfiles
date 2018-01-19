@@ -1,13 +1,19 @@
 " Author: Josh Peak
 " Date: 2017-JAN-17
-" Description: Configuration specific to javascript development 
+" Description: Configuration specific to javascript development
 set encoding=utf-8
 scriptencoding utf-8
 
 " ---------------------------
+" Filetypes:
+" ---------------------------
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.jsx set filetype=javascript
+
+" ---------------------------
 " Javascript Development: Syntax/Linting Checker
 " ---------------------------
-" Inspired by this Stackoverflow answer 
+" Inspired by this Stackoverflow answer
 " http://stackoverflow.com/a/29819201/622276
 function! JscsFix()
   "Save current cursor position"
@@ -19,3 +25,24 @@ function! JscsFix()
   call winrestview(l:winview)
 endfunction
 command! JscsFix :call JscsFix()
+
+" ---------------------------
+" Syntastic: Javascript Specific Syntax and Linter checking
+" ---------------------------
+" Each js project will need the following files:
+" .eslintrc
+" .jscsrc
+let g:syntastic_javascript_checkers = ['eslint', 'jscs']
+
+" Check On Write File:
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.js,*.css,*.ejs,*.jsx call SyntasticCheck()
+augroup END
+
+
+" ---------------------------
+" YouCompleteMe: AutoComplete Engine Settings
+" ---------------------------
+" http://www.dotnetsurfers.com/blog/2016/02/08/using-vim-as-a-javascript-ide
+" .tern-project -- This is for YouCompleteMe

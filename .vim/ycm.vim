@@ -16,13 +16,12 @@ if !((v:version == 704 && has('patch143') || v:version > 704) && (has('python') 
   let g:loaded_youcompleteme = 1
 endif
 
-" Disable YCM: Uncomment loaded_youcompleteme to disable YCM when on a system that 
+" Disable YCM: Uncomment loaded_youcompleteme to disable YCM when on a system that
 " does not allow YouCompleteMe plugin or have a new enough version of Vim
 "
 " let g:loaded_youcompleteme = 1
 
 let g:ycm_show_diagnostics_ui = 0 " Disable to allow syntastic cpp checkers
-
 
 let g:ycm_key_detailed_diagnostics = ''
 let g:ycm_key_invoke_completion = ''
