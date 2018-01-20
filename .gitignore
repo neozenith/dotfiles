@@ -12,3 +12,5 @@ gems.tags
 
 # Windows temporary files
 *.*~
+# OSX temporary files
+*/*.DS_Store
