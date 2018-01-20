@@ -127,6 +127,9 @@ set nowb
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 command! -bang Q quit<bang>
 
+" Remap the need for : to enter command mode to ; to reduce the need to SHIFT
+nnoremap ; :
+
 " ---------------------------
 " Autoformat: Indent, Trim Trailing Whitespace
 " ---------------------------
