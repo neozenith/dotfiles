@@ -1,10 +1,10 @@
 {
-  "libs":[
-    "express",
+	"libs":[
+		"express",
 		"mocha",
 		"requests"
-  ],
+	],
 	"plugins": {
-    "node": {}
-  }
+		"node": {}
+	}
 }
