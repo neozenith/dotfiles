@@ -1,0 +1,47 @@
+# Author: Josh Peak
+# Date: 2018-JAN-20
+# Description: I finally got around to having a pressing need for snippets
+# with developing Node.JS. As was advised by Drew Neil in Vimcast #67
+# Don't just include big batches of other's snippets. Cherry pick the ones you need.
+
+snippet nodebang
+#! /usr/bin/env node
+endsnippet
+
+snippet strict
+'use strict';
+endsnippet
+
+
+# Require statement that will mirror the package name as the default const name
+snippet constreq
+const ${2:$1} = require('${1}');
+endsnippet
+
+snippet if
+if (${1}) {
+	${0}
+}
+endsnippet
+
+snippet ife
+if (${1}) {
+	${2}
+} else {
+	${3}
+}
+endsnippet
+
+snippet afe
+(${1}) => ${2}
+endsnippet
+
+snippet afb
+(${1:req, res}) => {
+	${2}
+}
+endsnippet
+
+snippet con
+console.log('${1}');
+endsnippet

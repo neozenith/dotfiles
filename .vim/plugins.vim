@@ -99,7 +99,7 @@ Plug 'fisadev/vim-ctrlp-cmdpalette'
 
 " SNIPPETS
 Plug 'SirVer/ultisnips'			" Snippet Engine
-Plug 'honza/vim-snippets'		" Collection of community snippets
+" Plug 'honza/vim-snippets'		" Collection of community snippets
 
 
 " C++ Dev
