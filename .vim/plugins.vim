@@ -142,7 +142,10 @@ Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
-"TODO: Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
+Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
+" TODO: https://github.com/maximbaz/lightline-ale
+"
+let g:ale_emit_conflict_warnings = 0	" Prevent conflict with Syntastic
 
 " # PYTHON DEV
 Plug 'fs111/pydoc.vim'
