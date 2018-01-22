@@ -28,14 +28,11 @@ if !has('compatible')
 	" Plugins:
   runtime plugins.vim
 
-	" Syntastic: - Linting and Syntax checker plugin configuration
-	runtime syntastic.vim
-
-	" GVim: Gui based settings
-	runtime gui.vim
-
 	" Lightline: status bar configuration
 	runtime lightline.vim
+
+	" ALE Async Linting Engine: - Linting and Syntax checker plugin configuration
+	runtime ale_async_lint_engine.vim
 
 	" YouCompleteMe Autocomplete Engine:
 	runtime ycm.vim
@@ -61,6 +58,9 @@ if !has('compatible')
 
 	" Dev Python:
 	runtime dev_py.vim
+
+	" GVim: Gui based settings
+	runtime gui.vim
 endif
 
 
