@@ -275,10 +275,10 @@ function install_osx_plugin_dependencies () {
 
   #JavaScript
   npm install -g \
-    jshint \
-    jscs \
     eslint \
-    js-beautify \
+		prettier \
+		prettier-eslint \
+		swaglint \
     express-generator \
     mocha \
     webpack \

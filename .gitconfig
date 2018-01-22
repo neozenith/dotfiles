@@ -26,8 +26,7 @@
   status = auto
 [alias]
   # http://stackoverflow.com/a/9074343
-  tree2 = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
-  tree = !"git tree2"
+  tree = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
   t = !"git tree2"
   
   st = status -u -v --ignore-submodules

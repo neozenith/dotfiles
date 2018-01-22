@@ -22,7 +22,7 @@ endif
 
 
 " ---------------------------
-"  PLUGINS: Plugin dependent dettings
+"  PLUGINS: Plugin dependent settings
 " ---------------------------
 if !has('compatible')
 	" Plugins:
@@ -33,14 +33,12 @@ if !has('compatible')
 
 	" ALE Async Linting Engine: - Linting and Syntax checker plugin configuration
 	runtime ale_async_lint_engine.vim
-
 	" YouCompleteMe Autocomplete Engine:
 	runtime ycm.vim
 	runtime ultisnips.vim
 
 	" NERDTree File Navigation:
 	runtime nerdtree.vim
-
 	" NERDCommenter:
 	runtime nerdcommenter.vim
 
@@ -50,14 +48,14 @@ if !has('compatible')
 	" RainbowParenthesis:
 	runtime rainbowparenthesis.vim
 
-	" Markdown Document Editting:
-	runtime markdown.vim
-
 	" Dev Javascript:
 	runtime dev_js.vim
 
 	" Dev Python:
 	runtime dev_py.vim
+
+	" Markdown Document Editting:
+	runtime markdown.vim
 
 	" GVim: Gui based settings
 	runtime gui.vim

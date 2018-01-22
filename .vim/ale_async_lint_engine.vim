@@ -9,16 +9,22 @@ scriptencoding utf-8
 " ---------------------------
 " ALE Async Linting Engine:
 " ---------------------------
-" {
-" let g:ale_emit_conflict_warnings = 0	" Prevent conflict with Syntastic
-" }
+let g:ale_linters = {
+\   'javascript': ['eslint', 'standard'],
+\		'python': ['pyflakes', 'pylint', 'python'],
+\		'ruby': ['rubocop'],
+\		'cpp': ['cpplint', 'clang_check', 'clang_tidy']
+\}
 
-" " Python:
-" let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
-"
-" " Ruby:
-" let g:syntastic_ruby_checkers = ['rubocop']
-"
-" " CPP:
-" let g:syntastic_cpp_checkers = ['cpplint', 'gcc', 'clang_check', 'clang_tidy']
-" let g:syntastic_cpp_cpplint_exec = 'cpplint'
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\}
+" If you configure g:ale_pattern_options outside of vimrc, you need this.
+let g:ale_pattern_options_enabled = 1
+
+let g:ale_lint_on_text_changed = 'never'								" Only on enter and save should ALE trigger
+let g:ale_echo_msg_format = '[%linter%][%severity%] %s' " Set log format
+let g:ale_sign_error = "\uf00d"													" Set gutter symbol
+let g:ale_sign_warning = "\uf071"
