@@ -106,6 +106,13 @@ function install_RHEL_dev_dependencies () {
 function install_osx_dev_dependencies () {
   title "Installing Development Tools..."
   pause
+
+	# Show hidden files
+  defaults write com.apple.finder AppleShowAllFiles YES
+	# Use list view in all Finder windows by default
+  # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
+  defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
   # install xcode command line tools
   xcode-select --install
 

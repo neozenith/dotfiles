@@ -65,8 +65,15 @@ Plug 'itchyny/lightline.vim'  " Status bar
 
 " CODE STYLE: Syntax Higlighting, Linting, Formatting
 Plug 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
-Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
-Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
+" ALE linting events
+if (v:version >= 800)
+	Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
+	Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
+else
+	" NOTE: Should probably fallback to Syntastic but I can't be bothered
+	" maintaing that when I have no need.
+	echoerr "These dotfiles require NeoVim or Vim 8"
+endif
 Plug 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
 Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
 Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
