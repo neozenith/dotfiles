@@ -10,7 +10,8 @@ scriptencoding utf-8
 " ALE Async Linting Engine:
 " ---------------------------
 let g:ale_linters = {
-\   'javascript': ['eslint', 'standard'],
+\		'typescript': ['tslint', 'prettier'],
+\		'javascript': ['eslint', 'prettier', 'standard'],
 \		'python': ['pyflakes', 'pylint', 'python'],
 \		'ruby': ['rubocop'],
 \		'cpp': ['cpplint', 'clang_check', 'clang_tidy']
@@ -25,6 +26,6 @@ let g:ale_pattern_options = {
 let g:ale_pattern_options_enabled = 1
 
 let g:ale_lint_on_text_changed = 'never'								" Only on enter and save should ALE trigger
-let g:ale_echo_msg_format = '[%linter%][%severity%] %s' " Set log format
+let g:ale_echo_msg_format = '[%linter%][%severity%] %s'	" Set log format
 let g:ale_sign_error = "\uf00d"													" Set gutter symbol
 let g:ale_sign_warning = "\uf071"

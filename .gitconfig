@@ -6,6 +6,10 @@
 [core]
 	excludesfile = /Users/neozenith/.gitignore_global
 	editor = vim
+
+	# Set tab stop of git diff from 8 to 2
+	# https://stackoverflow.com/a/24846248/622276
+	pager = sed 's/\t/  /g' | less
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
