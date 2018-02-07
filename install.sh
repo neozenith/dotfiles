@@ -240,14 +240,14 @@ function symlink_vimrc () {
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
-  rm -rfv ~/.jscsrc
+  rm -rfv ~/.prettierrc.yml
   rm -rfv ~/.eslintrc.json
   rm -rfv ~/.tern-project
   rm -rfv ~/.ycm_extra_conf.py
   echo -e "\033[94mSymLinking new files..."
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
-  ln -sfv $SCRIPT_DIR/.jscsrc ~/.jscsrc                       # JSCS Lint Base Settings
+  ln -sfv $SCRIPT_DIR/.prettierrc.yml ~/.prettierrc.yml       # Prettier JS Formatter Base Settings
   ln -sfv $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
   ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
   ln -sfv $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings

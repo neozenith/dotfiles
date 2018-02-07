@@ -17,6 +17,14 @@ let g:ale_linters = {
 \		'cpp': ['cpplint', 'clang_check', 'clang_tidy']
 \}
 
+" https://prettier.io/docs/en/vim.html#ale-configuration
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['typescript'] = ['prettier']
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+
+
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
