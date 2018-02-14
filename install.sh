@@ -123,8 +123,8 @@ function install_osx_dev_dependencies () {
   brew upgrade
   brew doctor
 
-  # Git Radar / Git AutoComplete
-  brew install michaeldfallen/formula/git-radar
+  # Git Tooling
+  # brew install michaeldfallen/formula/git-radar
   brew install git --with-brewed-openssl --with-brewed-curl git-flow
   
   brew install bash-completion \
@@ -146,22 +146,19 @@ function install_osx_dev_dependencies () {
   brew install plantuml graphviz doxygen
 
   # DevOps
-  # brew install terraform
-  # brew install ansible
+  # brew install terraform ansible
 
   # C, C++, C#, Objective-C
   brew install llvm
 
   # Database Drivers
   brew install postgres \
-    freetds \
     redis \
-    influxdb \
     elasticsearch \
 		kibana
 
   # Ruby
-  brew install ruby ruby-build -y
+  # brew install ruby ruby-build -y
   # brew install rbenv ruby-build
   # if which rbenv > /dev/null; then
   #   eval "$(rbenv init -)"
@@ -170,10 +167,10 @@ function install_osx_dev_dependencies () {
   # rbenv global 2.4.0
   ruby -v
   notice "Installing Gems as SuperUser"
-  sudo gem install bundler rails
-  rbenv rehash
+  sudo gem install bundler
+  # rbenv rehash
 
-  # Python
+  # Python 2.7
   HAS_PIP=`which pip 2> /dev/null`
   if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
     curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
