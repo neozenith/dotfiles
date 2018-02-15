@@ -73,19 +73,6 @@ else
   alias colourdiff="sed 's/^-/\x1b[31m-/;s/^+/\x1b[32m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'"
 fi
 
-# Docker Shortcuts:
-  alias dkup="docker-machine start default; docker-machine regenerate-certs default -f; eval \$(docker-machine env default)"
-  alias dken="eval \$(docker-machine env default)"
-  alias dkdn="docker-machine stop default"
-  alias dk="docker"
-  alias dkm="docker-machine"
-  alias dkclean="docker stop \$(docker ps -aq); docker rm \$(docker ps -aq)"
-  alias dki="docker images"
-  alias dkiclean="docker rmi \$(docker images -q --filter 'dangling=true')"
-  #TODO:
-  # https://codefresh.io/blog/everyday-hacks-docker/
-  # Update to use Docker 1.13+ features such as `prune`
-
 # Prompt & Paths:
 parse_git_branch() {
   # Get diff and status
