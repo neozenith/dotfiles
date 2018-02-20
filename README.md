@@ -24,7 +24,7 @@ for this reason.
  - **Plugin Manager**: [Vim Plug `junegunn/vim-plug`][vim-plug]
    - Use any github repo slug to reference a plugin and it downloads in parallel. Quickest setup.
  - **Autocomplete**: [YouCompleteMe `Valloric/YouCompleteMe`][ycm]
-   - Hooks into Vim's autocomplete API and depending upon filetype, it asynchronously uses the right parsing engine to reference the the best autocomplete and even load documentation for function specs.
+   - Hooks into Vim's autocomplete API and depending upon filetype, it asynchronously uses the right parsing engine to reference the best autocomplete and even load documentation for function specs.
  - **Linting Engine**: [ALE (Async Linting Engine) `w0rp/ale`][ale]
    - I used to use [Syntastic][syntastic] for years but linting takes time and syntastic would lock up Vim. [ALE][ale] will dispatch async jobs so I can save and eventually it'll let me know whats up. 
    - Really good when paired with the following to have a cool status bar summary of failed lints:
@@ -36,7 +36,7 @@ for this reason.
    - [NerdTree Git Plugin `Xuyuanp/nerdtree-git-plugin`][nerdtree-git]
    - [Git Gutter `airblade/vim-gitgutter`][git-gutter]
 
-[sauce-code-pro]: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro)
+[sauce-code-pro]: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro
 [sauce-code-pro-download]: https://github.com/ryanoasis/nerd-fonts/releases/download/v1.2.0/SourceCodePro.zip
 [vim-plug]: https://github.com/junegunn/vim-plug
 [ycm]: https://github.com/Valloric/YouCompleteMe 
