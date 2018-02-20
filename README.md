@@ -7,31 +7,13 @@ style="float: right;"
 alt="Vim Bonsai SVG Logo"
 src="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true" />
 
-<a href="https://stackexchange.com/users/309684">
-<img src="https://stackexchange.com/users/flair/309684.png" width="208" height="58" alt="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for NeoZenith on Stack Exchange, a network of free, community-driven Q&amp;A sites">
-</a>
-
 This is not intended as a public example of *good* management of VIM dotFiles 
 although I do make every attempt to apply best practices in maintaining this 
-configuration purely for my own ease of use.
+configuration purely for my own ease of use and reference. 
 
-I would like to think it is mature enough now that it can teach others on 
-their Vim journey and also show how far I am in my own exploration. 
-
-Since starting I have managed to solve:
- - [AutoComplete Engine][ycm]
- - Auto linting dependent upon file extension
- - Feature toggle Vim features depending upon what version of Vim is available
- - Cross platform
-  - Windows (CMDer/MinGW)
-  - OSX iTerm2
-  - Linux
-    - Centos 7.2
-    - OpenSUSE LEAP 42.2
- - Custom fonts and icons via [Nerd Fonts][nerd-fonts]
-
-[ycm]: https://github.com/Valloric/YouCompleteMe
-[nerd-fonts]: https://github.com/ryanoasis/nerd-fonts
+Like the Vim bonsai logo above it all starts with a seed and then you nurture 
+and prune it for your own environment. Each person's Vim journey is different
+for this reason.
 
 ----
 
