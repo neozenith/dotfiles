@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="350px" height="200px">
+<svg 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="1.1" 
+  width="350px" height="200px"
+>
   <!-- 
     dark green: #77b052
     light green: #93bc54
@@ -28,7 +33,7 @@
     
     <!-- Roots -->
     <path d="M 75,160 Q 100,150 100,100" stroke="#6b4a27" stroke-width="15" fill="none" />
-    <path d="M 150,160 Q 70,160 207,50" stroke="#533f27" stroke-width="15" fill="none" />
+    <path d="M 150,160 Q 70,160 206,50" stroke="#533f27" stroke-width="15" fill="none" stroke-linecap="round" />
 
     <!-- Light branches -->
     <line x1="100" y1="150" x2="100" y2="50" stroke="#6b4a27" stroke-width="15" stroke-linecap="round" />
@@ -55,15 +60,26 @@
     
 </g>
 
-<use href="#leaves" x="0" y="0" transform="translate(30,10) scale(0.9)">
-    
+<use xlink:href="#leaves" x="0" y="0" transform="translate(30,10) scale(0.9)">
+    <animateTransform attributeName="transform" type="translate" additive="sum" repeatCount="0" dur="6s" from="75,40" to="0,0" />
+    <animateTransform attributeName="transform" type="scale" additive="sum" repeatCount="0" dur="6s" from="0" to="1" />
 </use>
-<use href="#leaves" x="0" y="0" transform="translate(140,0) scale(1.1)">
-    
+<use xlink:href="#leaves" x="0" y="0" transform="translate(140,0) scale(1.1)">
+    <animateTransform attributeName="transform" type="translate" additive="sum" repeatCount="0" dur="12s" from="65,40" to="0,0" />
+    <animateTransform attributeName="transform" type="scale" additive="sum" repeatCount="0" dur="12s" from="0" to="1" />
 </use>
-<use href="#leaves" x="0" y="0" transform="translate(0,100) scale(0.55,0.5)" />
-<use href="#leaves" x="0" y="0" transform="translate(220,80) scale(0.6,0.5)" />
-<use href="#leaves" x="0" y="0" transform="translate(250,120) scale(0.8,0.8)" />
+<use xlink:href="#leaves" x="0" y="0" transform="translate(0,100) scale(0.55,0.5)">
+    <animateTransform attributeName="transform" type="translate" additive="sum" repeatCount="0" dur="8s" from="35,40" to="0,0" />
+    <animateTransform attributeName="transform" type="scale" additive="sum" repeatCount="0" dur="8s" from="0" to="1" />
+</use>
+<use xlink:href="#leaves" x="0" y="0" transform="translate(220,80) scale(0.6,0.5)">
+    <animateTransform attributeName="transform" type="translate" additive="sum" repeatCount="0" dur="6s" from="85,40" to="0,0" />
+    <animateTransform attributeName="transform" type="scale" additive="sum" repeatCount="0" dur="6s" from="0" to="1" />
+</use>
+<use xlink:href="#leaves" x="0" y="0" transform="translate(250,120) scale(0.8,0.8)">
+    <animateTransform attributeName="transform" type="translate" additive="sum" repeatCount="0" dur="10s" from="60,50" to="0,0" />
+    <animateTransform attributeName="transform" type="scale" additive="sum" repeatCount="0" dur="10s" from="0" to="1" />
+</use>
   
 
 </svg>
