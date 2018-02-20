@@ -8,7 +8,7 @@
 ## Brief
 ![Vim Bonsai Logo](https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true){:style="float: right;margin-right: 7px;margin-top: 7px;"}
 
-<img style="float: right;" href="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true" />
+<img style="float: right;" src="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true" />
 
 This is not intended as a public example of *good* management of VIM dotFiles 
 although I do make every attempt to apply best practices in maintaining this 
