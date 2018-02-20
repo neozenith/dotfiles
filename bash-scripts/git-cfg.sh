@@ -72,9 +72,9 @@ fi
 ###################################
 GITHUB_SERVER="https://github.com"
 GITLAB_SERVER="https://gitlab.com"
-DEXATA_SERVER="https://entrance.c-esolutions.com.au"
+SPECIAL_SERVER=""
 # Array of servers to configure
-SERVERS="$GITHUB_SERVER $GITLAB_SERVER $DEXATA_SERVER"
+SERVERS="$GITHUB_SERVER $GITLAB_SERVER"
 
 for SERVER in $SERVERS;do
 
@@ -91,7 +91,7 @@ for SERVER in $SERVERS;do
 
     git config $CFG_SCOPE core.askpass ""
 
-    if [[ $SERVER == $DEXATA_SERVER ]]; then
+    if [[ $SERVER == $SPECIAL_SERVER ]]; then
       git config $CFG_SCOPE http.$SERVER.sslVerify 1
       git config $CFG_SCOPE http.$SERVER.sslCAPath $KEYS_DIR
       git config $CFG_SCOPE http.$SERVER.sslCAInfo $KEYS_DIR/isca.crt
