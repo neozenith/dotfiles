@@ -4,6 +4,7 @@
 
 <img 
 style="float: right;" 
+align="right"
 alt="Vim Bonsai SVG Logo"
 src="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true" />
 
