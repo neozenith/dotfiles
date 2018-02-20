@@ -9,7 +9,7 @@
 ![Vim Bonsai Logo][vim-bonsai]
 
 [vim-bonsai]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg 
-<img style="float: right;" href="bonsai.svg" />
+<img style="float: right;" href="./bonsai.svg" />
 
 This is not intended as a public example of *good* management of VIM dotFiles 
 although I do make every attempt to apply best practices in maintaining this 
