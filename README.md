@@ -18,6 +18,39 @@ for this reason.
 
 ----
 
+## Highlights
+
+ - **Font**: [Sauce Code Pro][sauce-code-pro] [(Download link)][sauce-code-pro-download]
+ - **Plugin Manager**: [Vim Plug `junegunn/vim-plug`][vim-plug]
+   - Use any github repo slug to reference a plugin and it downloads in parallel. Quickest setup.
+ - **Autocomplete**: [YouCompleteMe `Valloric/YouCompleteMe`][ycm]
+   - Hooks into Vim's autocomplete API and depending upon filetype, it asynchronously uses the right parsing engine to reference the the best autocomplete and even load documentation for function specs.
+ - **Linting Engine**: [ALE (Async Linting Engine) `w0rp/ale`][ale]
+   - I used to use [Syntastic][syntastic] for years but linting takes time and syntastic would lock up Vim. [ALE][ale] will dispatch async jobs so I can save and eventually it'll let me know whats up. 
+   - Really good when paired with the following to have a cool status bar summary of failed lints:
+     - [Lightline `itchyny/lightline.vim`][lightline]
+     - [Lightline-ALE `maximbaz/lightline-ale`][lightline-ale]
+ - **File Management / Git**:
+   - [NerdTree `scrooloose/nerdtree`][nerdtree]
+   - [Vim-DevIcons `ryanoasis/vim-devicons`][vim-devicons]
+   - [NerdTree Git Plugin `Xuyuanp/nerdtree-git-plugin`][nerdtree-git]
+   - [Git Gutter `airblade/vim-gitgutter`][git-gutter]
+
+[sauce-code-pro]: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro)
+[sauce-code-pro-download]: https://github.com/ryanoasis/nerd-fonts/releases/download/v1.2.0/SourceCodePro.zip
+[vim-plug]: https://github.com/junegunn/vim-plug
+[ycm]: https://github.com/Valloric/YouCompleteMe 
+[ale]: https://github.com/w0rp/ale
+[syntastic]: https://github.com/vim-syntastic/syntastic
+[lightline]: https://github.com/itchyny/lightline.vim
+[lightline-ale]: https://github.com/maximbaz/lightline-ale
+[nerdtree]: https://github.com/scrooloose/nerdtree
+[vim-devicons]: https://github.com/ryanoasis/vim-devicons
+[nerdtree-git]: https://github.com/Xuyuanp/nerdtree-git-plugin
+[git-gutter]: https://github.com/airblade/vim-gitgutter
+
+----
+
 ## Screenshots
 
 ![Vim sample with file explorer][sample1]
