@@ -6,7 +6,7 @@
 
 
 ## Brief
-![Vim Bonsai Logo][vim-bonsai]
+![Vim Bonsai Logo][vim-bonsai]{:style="float: right;margin-right: 7px;margin-top: 7px;"}
 
 [vim-bonsai]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true 
 <img style="float: right;" href="./bonsai.svg" />
