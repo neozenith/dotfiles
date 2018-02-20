@@ -1,9 +1,8 @@
-# NeoZenith VIM dotFiles
+# NeoZenith Vim dotFiles
 
 ## Brief
 
 <img 
-style="float: right;" 
 align="right"
 alt="Vim Bonsai SVG Logo"
 src="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true" />
@@ -12,13 +11,13 @@ This is not intended as a public example of *good* management of VIM dotFiles
 although I do make every attempt to apply best practices in maintaining this 
 configuration purely for my own ease of use and reference. 
 
-Like the Vim bonsai logo above it all starts with a seed and then you nurture 
+Like the Vim bonsai logo, it all starts with a seed and then you nurture 
 and prune it for your own environment. Each person's Vim journey is different
 for this reason.
 
 ----
 
-## Samples
+## Screenshots
 
 ![Vim sample with file explorer][sample1]
 
