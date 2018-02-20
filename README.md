@@ -3,9 +3,10 @@
 ## Brief
 
 <img 
-align="right"
-alt="Vim Bonsai SVG Logo"
-src="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/bonsai.svg?sanitize=true" />
+  align="right"
+  alt="Vim Bonsai SVG Logo"
+  src="https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/images/vim-bonsai.svg?sanitize=true" 
+/>
 
 This is not intended as a public example of *good* management of VIM dotFiles 
 although I do make every attempt to apply best practices in maintaining this 
@@ -24,8 +25,8 @@ for this reason.
 ![Vim sample with autocomplete][sample2]
 
 
-[sample1]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/example1.png
-[sample2]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/screenshots/example2.png
+[sample1]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/images/example1.png
+[sample2]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/images/example2.png
 
 ----
 
