@@ -34,6 +34,8 @@
 
 ## Brief
 
+<img style="float: right;" href="bonsai.svg" />
+
 This is not intended as a public example of *good* management of VIM dotFiles 
 although I do make every attempt to apply best practices in maintaining this 
 configuration purely for my own ease of use.

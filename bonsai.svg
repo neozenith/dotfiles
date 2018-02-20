@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="350px" height="200px">
+  <!-- 
+    dark green: #77b052
+    light green: #93bc54
+
+    Dark tree brown: #533f27
+    Light tree brown: #6b4a27
+
+    Light red pot: #6f2637
+    Dark 
+  -->
+  <defs>
+  <g id="leaves">
+    <circle cx="55" cy="30" r="30" fill="#93bc54" />
+    <circle cx="25" cy="30" r="20" fill="#93bc54" />
+    <circle cx="85" cy="30" r="15" fill="#93bc54" />
+    <rect x="0" y="35" width="120" height="25" rx="12" fill="#77b052" />
+    <circle cx="65" cy="30" r="20" fill="#93bc54" />
+    <circle cx="100" cy="38" r="15" fill="#93bc54" />
+    <circle cx="27" cy="38" r="16" fill="#93bc54" />
+    <circle cx="7" cy="42" r="6" fill="#93bc54" />
+    <circle cx="112" cy="42" r="6" fill="#93bc54" />
+  </g>
+  </defs>
+
+  
+  <g id="vim-branches">
+    
+    <!-- Roots -->
+    <path d="M 75,160 Q 100,150 100,100" stroke="#6b4a27" stroke-width="15" fill="none" />
+    <path d="M 150,160 Q 70,160 207,50" stroke="#533f27" stroke-width="15" fill="none" />
+
+    <!-- Light branches -->
+    <line x1="100" y1="150" x2="100" y2="50" stroke="#6b4a27" stroke-width="15" stroke-linecap="round" />
+    <line x1="100" y1="150" x2="200" y2="50" stroke="#6b4a27" stroke-width="15" stroke-linecap="round" />
+    <!-- Dark branches -->
+    <line x1="107" y1="150" x2="107" y2="50" stroke="#533f27" stroke-width="8" stroke-linecap="round" />
+    <line x1="107" y1="150" x2="207" y2="50" stroke="#533f27" stroke-width="8" stroke-linecap="round" />
+  </g>
+  <g id="pot">
+  <title>Pot</title>
+  <polygon fill="#cb8" stroke="#dc9" stroke-width="2"
+        points="50,150 250,150 225,200 75,200" />
+  <polygon fill="#ca6"
+        points="220,195 245,150 250,150 225,200 75,200" />
+  <polygon fill="#dc9"
+        points="50,150 250,150 248,155 58,155 78,200 75,200" />
+  </g>
+
+<g>
+<!-- Small branches -->
+    <path d="M 130,130 C 180,60 180,220 300,160" stroke="#533f27" stroke-width="6" fill="none" />
+    <path d="M 130,130 C 180,60 220,120 270,100" stroke="#533f27" stroke-width="6" fill="none" />
+    <path d="M 100,130 C 50,95 50,170 20,120" stroke="#6b4a27" stroke-width="6" fill="none" />
+    
+</g>
+
+<use href="#leaves" x="0" y="0" transform="translate(30,10) scale(0.9)">
+    
+</use>
+<use href="#leaves" x="0" y="0" transform="translate(140,0) scale(1.1)">
+    
+</use>
+<use href="#leaves" x="0" y="0" transform="translate(0,100) scale(0.55,0.5)" />
+<use href="#leaves" x="0" y="0" transform="translate(220,80) scale(0.6,0.5)" />
+<use href="#leaves" x="0" y="0" transform="translate(250,120) scale(0.8,0.8)" />
+  
+
+</svg>
