@@ -23,7 +23,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/nz-vim</string>
+	<string>~/nz-vim/terminal-configs</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -60,9 +60,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1261 440 445 77 0 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>342 194 918 401 0 0 1920 1178 </string>
+	<string>342 266 918 401 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 8 1867 1170 0 0 1920 1178 </string>
+	<string>0 8 1859 1170 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -764,7 +764,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/joshpeak/nz-vim</string>
+	<string>/Users/joshpeak/nz-vim/terminal-configs</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
@@ -776,13 +776,15 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-01-26T02:08:51Z</date>
+	<date>2018-02-28T23:05:56Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>TabStyle</key>
 	<integer>3</integer>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.1.5</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
