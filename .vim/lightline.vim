@@ -15,7 +15,7 @@ scriptencoding utf-8
 set laststatus=2	" Forces 2 lines for status bar, otherwise was getting hidden
 set noshowmode		" The second line showing the normal mode is hidden. Clean
 let g:lightline = {
-	\ 'colorsheme': 'tender',
+	\ 'colorsheme': 'wombat',
 	\ 'active': {
 	\		'left': [
 	\			[ 'mode' ],
