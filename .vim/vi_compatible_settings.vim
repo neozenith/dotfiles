@@ -30,6 +30,11 @@ syntax sync minlines=256
 " Syntax Highlighting Settings:
 " ---------------------------
 colorscheme elflord			 " Safe default colour sheme from Vi's shipped settings
+
+if (has("termguicolors"))
+	set termguicolors
+endif
+
 if has('win64') || has('win32') || has('win16')
 	" Windows CMDer 256 color fixes
 	" http://stackoverflow.com/a/14434531
@@ -38,6 +43,7 @@ if has('win64') || has('win32') || has('win16')
 	let &t_AB="\e[48;5;%dm"
 	let &t_AF="\e[38;5;%dm"
 else
+	" Use xoria256 since it is installed but check plugins.vim for overrides
 	colorscheme xoria256
 endif
 

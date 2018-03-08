@@ -48,6 +48,11 @@ endif
 " -------------------
 
 " INTERFACE:
+Plug 'jacoborus/tender.vim'							" Tender colorscheme
+Plug 'nightsense/carbonized'
+Plug 'nightsense/vimspectr'
+
+
 Plug 'scrooloose/nerdtree'              " File Explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status in file explorer
 Plug 'scrooloose/nerdcommenter'         " Toggle Commenting
@@ -101,6 +106,7 @@ Plug 'fisadev/vim-ctrlp-cmdpalette'
 " to expand: ctrl-y ,
 Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 
+Plug 'pangloss/vim-javascript'
 Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plug 'marijnh/tern_for_vim'   " JavaScript AutoComplete
 Plug 'elzr/vim-json'          " JSON Style Checker
@@ -154,3 +160,8 @@ Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
 Plug 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
 call plug#end()
+
+augroup javascript_colorscheme
+    au!
+    au FileType javascript colorscheme tender
+augroup END
