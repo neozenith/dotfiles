@@ -80,30 +80,60 @@ parse_git_branch() {
   # if there are staged but uncommited work then YELLOW
   # Route errors to stderr (2>) especially when in non-Git directories
   # Pipe sane output to sed for cleanup
-
-  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
-  STATUS=`git status -s 2> /dev/null`
-  DIFF=`git diff 2> /dev/null`
   ESC_CODE=""
-  RED="[31m"
-  YELLOW="[33m"
-  BLUE="[34m"
-
   if [[ $OSTYPE == darwin* ]]; then
     ESC_CODE="\033"
   else
     ESC_CODE="\e"
   fi
+  RED="$ESC_CODE[31m"
+  GREEN="$ESC_CODE[32m"
+  YELLOW="$ESC_CODE[33m"
+	BLUE="$ESC_CODE[34m"
+  PURPLE="$ESC_CODE[36m"
+	NORM="$ESC_CODE[0m"
 
-  STATUS_COLOUR="$ESC_CODE$BLUE"
+  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
+  STATUS=`git status -s 2> /dev/null`
+  DIFF=`git diff 2> /dev/null`
+
+	# TODO: Incorporate local changes statuses
+	# https://git-scm.com/docs/git-status#_short_format
+	STAT_MOD=`git status -s 2> /dev/null | grep -e "^ M" | wc -l | tr -d '[:space:]'`
+	STAT_DEL=`git status -s 2> /dev/null | grep -e "^ D" | wc -l | tr -d '[:space:]'`
+	STAT_NEW=`git status -s 2> /dev/null | grep -e "^??" | wc -l | tr -d '[:space:]'`
+	STAT_ADD=`git status -s 2> /dev/null | grep -e "^. " | wc -l | tr -d '[:space:]'`
+
+	CACHE_STATUS=""
+
+	# If cache status changes detected then accumulate
+	if [[ $STAT_MOD > 0 ]]; then
+		CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
+	fi
+	if [[ $STAT_ADD > 0 ]]; then
+		CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
+	fi
+	if [[ $STAT_DEL > 0 ]]; then
+		CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
+	fi
+	if [[ $STAT_NEW > 0 ]]; then
+		CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
+	fi
+	# If there is a cache status accumulated then prefix with a space
+	if [[ -n $CACHE_STATUS ]]; then
+		CACHE_STATUS=" [${CACHE_STATUS}]"
+	fi
+
+
+  STATUS_COLOUR="$BLUE"
   if [[ -n $STATUS ]]; then
-    STATUS_COLOUR="$ESC_CODE$YELLOW"
+    STATUS_COLOUR="$YELLOW"
   fi
   if [[ -n $DIFF ]]; then
-    STATUS_COLOUR="$ESC_CODE$RED"
+    STATUS_COLOUR="$RED"
   fi
 
-  echo -e "$STATUS_COLOUR$BRANCH$ESC_CODE[0m"
+  echo -e "$STATUS_COLOUR$BRANCH$NORM$CACHE_STATUS"
 }
 
 export PS1="\e[0;32m\w\e[m"
