@@ -276,10 +276,10 @@ function install_osx_plugin_dependencies () {
   
   #Ruby
   notice "Installing Gems as SuperUser"
-  sudo gem install rubocop
+  # sudo gem install rubocop
 
   #JavaScript
-  npm install -g \
+  sudo npm install -g \
     eslint \
 		prettier \
 		prettier-eslint \
@@ -287,6 +287,9 @@ function install_osx_plugin_dependencies () {
     express-generator \
     mocha \
     webpack
+
+	sudo npm -g outdated
+	sudo npm -g update
 }
 
 
