@@ -14,30 +14,36 @@ scriptencoding utf-8
 
 set laststatus=2	" Forces 2 lines for status bar, otherwise was getting hidden
 set noshowmode		" The second line showing the normal mode is hidden. Clean
-let g:lightline = {
-	\ 'colorsheme': 'wombat',
-	\ 'active': {
-	\		'left': [
+
+" Initialise lightline empty config
+let g:lightline = {'active':{'left':[], 'right':[]}}
+
+" left side lightline components
+let g:lightline.active.left = [
 	\			[ 'mode' ],
 	\			[ 'fugitive', 'readonly', 'relativepath', 'modified' ]
-	\		],
-	\		'right': [
+	\		]
+
+" Right side lightline components
+let g:lightline.active.right = [
 	\			['linter_errors', 'linter_warnings', 'linter_ok'],
 	\			['lineinfo', 'percent'],
 	\			['fileformat', 'fileencoding', 'filetype']
 	\		]
-	\ },
-	\ 'component_function': {
+
+let g:lightline.colorscheme = 'jellybeans'
+
+" Linked Vim functions to render elements
+let g:lightline.component_function = {
 	\		'fugitive': 'FugitiveCheck',
 	\		'filetype': 'DevIconsFiletype',
 	\		'fileformat': 'DevIconsFileformat'
-	\ },
-	\ 'component': {
-	\		'readonly': '%{&readonly?"\ue0a2":""}',
-	\ },
-	\ 'separator': { 'left': "", 'right': "" },
-	\ 'subseparator': { 'left': "|", 'right': "|" }
 	\ }
+let g:lightline.component = {'readonly': '%{&readonly?"\ue0a2":""}' }
+
+" Component separators
+let g:lightline.separator = { 'left': "", 'right': "" }
+let g:lightline.subseparator = { 'left': "|", 'right': "|" }
 
 " ---------------------------
 " ALE Lightline Status:
