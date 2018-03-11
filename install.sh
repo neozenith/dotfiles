@@ -219,6 +219,7 @@ function build_vim () {
     $SUDO ./configure $VIM_INSTALL_PREFIX \
       --enable-rubyinterp \
       --enable-pythoninterp \
+      --enable-python3interp \
       --with-features=huge
     $SUDO $MAKE; $SUDO $MAKE install
   else
