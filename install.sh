@@ -285,8 +285,7 @@ function install_osx_plugin_dependencies () {
 		swaglint \
     express-generator \
     mocha \
-    webpack \
-    doctoc
+    webpack
 }
 
 
