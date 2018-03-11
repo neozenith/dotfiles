@@ -48,7 +48,7 @@ endif
 " -------------------
 
 " INTERFACE:
-Plug 'jacoborus/tender.vim'							" Tender colorscheme
+Plug 'neozenith/tender.vim'							" Tender colorscheme
 Plug 'nightsense/carbonized'
 Plug 'nightsense/vimspectr'
 
@@ -161,7 +161,8 @@ Plug 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
 call plug#end()
 
-augroup javascript_colorscheme
-    au!
-    au FileType javascript colorscheme tender
-augroup END
+colorscheme tender
+" augroup javascript_colorscheme
+"     au!
+"     au FileType javascript colorscheme tender
+" augroup END
