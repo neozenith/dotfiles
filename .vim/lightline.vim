@@ -31,7 +31,7 @@ let g:lightline.active.right = [
 	\			['fileformat', 'fileencoding', 'filetype']
 	\		]
 
-let g:lightline.colorscheme = 'powerline'
+let g:lightline.colorscheme = 'xoria256'
 
 " Linked Vim functions to render elements
 let g:lightline.component_function = {
