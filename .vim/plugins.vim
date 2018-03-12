@@ -111,7 +111,9 @@ Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plug 'marijnh/tern_for_vim'   " JavaScript AutoComplete
 Plug 'elzr/vim-json'          " JSON Style Checker
 Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
-Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
+" Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
+" Plug 'gko/vim-coloresque'			" Preview CSS colours. Works better than ap/vim/css-color. Awaiting YAML FT support merge request
+Plug 'neozenith/vim-coloresque'
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
 
