@@ -99,10 +99,10 @@ parse_git_branch() {
 
 	# TODO: Incorporate local changes statuses
 	# https://git-scm.com/docs/git-status#_short_format
-	STAT_MOD=`git status -s 2> /dev/null | grep -e "^ M" | wc -l | tr -d '[:space:]'`
-	STAT_DEL=`git status -s 2> /dev/null | grep -e "^ D" | wc -l | tr -d '[:space:]'`
-	STAT_NEW=`git status -s 2> /dev/null | grep -e "^??" | wc -l | tr -d '[:space:]'`
-	STAT_ADD=`git status -s 2> /dev/null | grep -e "^. " | wc -l | tr -d '[:space:]'`
+	STAT_MOD=`echo "$STATUS" | grep -e "^ M" | wc -l | tr -d '[:space:]'`
+	STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
+	STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
+	STAT_ADD=`echo "$STATUS" | grep -e "^. " | wc -l | tr -d '[:space:]'`
 
 	CACHE_STATUS=""
 
