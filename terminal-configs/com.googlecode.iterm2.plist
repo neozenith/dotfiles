@@ -58,11 +58,11 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1261 440 445 77 0 0 1920 1178 </string>
+	<string>1261 306 445 77 0 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>342 266 918 401 0 0 1920 1178 </string>
+	<string>342 338 796 473 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 8 1859 1170 0 0 1920 1178 </string>
+	<string>0 0 1867 1178 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -301,7 +301,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Recycle</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -637,7 +637,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodeProNerdFontCM-Regular 14</string>
+			<string>FuraCodeNerdFontCM-Light 13</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -776,7 +776,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-02-28T23:05:56Z</date>
+	<date>2018-03-11T21:41:40Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>TabStyle</key>
