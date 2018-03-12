@@ -5,6 +5,12 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " ---------------------------
+" Syntax: pangloss/vim-javascript
+" ---------------------------
+let g:javascript_plugin_jsdoc = 1
+
+
+" ---------------------------
 " Filetypes:
 " ---------------------------
 au BufNewFile,BufRead *.ejs set filetype=html
