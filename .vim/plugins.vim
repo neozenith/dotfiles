@@ -49,6 +49,7 @@ endif
 
 " INTERFACE:
 Plug 'neozenith/tender.vim'							" Tender colorscheme
+Plug 'neozenith/estilo-xoria256'							" Tender colorscheme
 Plug 'nightsense/carbonized'
 Plug 'nightsense/vimspectr'
 
@@ -163,7 +164,7 @@ Plug 'ryanoasis/vim-devicons' " Patched Fonts integrations
 
 call plug#end()
 
-colorscheme tender
+colorscheme xoria256
 " augroup javascript_colorscheme
 "     au!
 "     au FileType javascript colorscheme tender

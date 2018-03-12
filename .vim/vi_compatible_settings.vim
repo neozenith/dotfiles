@@ -44,7 +44,7 @@ if has('win64') || has('win32') || has('win16')
 	let &t_AF="\e[38;5;%dm"
 else
 	" Use xoria256 since it is installed but check plugins.vim for overrides
-	colorscheme xoria256
+	colorscheme old_xoria256
 endif
 
 let &t_ZH="\e[3m"							"Italicise Comments
