@@ -368,7 +368,10 @@ function main_installer () {
   which vim
   vim --version
   echo -e "\033[0m============================================="
-  curl https://github.com/vim/vim/releases | grep tag/v
+	
+	# NOTE: To strip out characters the left side regex must wild match the parts
+	# You want removed and the () capture groups preserve what you want to keep
+	curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
 
   confirm "Build latest Vim from Source" && build_vim
 
