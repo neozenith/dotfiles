@@ -14,6 +14,7 @@ let g:javascript_plugin_jsdoc = 1
 " Filetypes:
 " ---------------------------
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.svg set filetype=html
 au BufNewFile,BufRead *.jsx set filetype=javascript
 
 " ---------------------------
