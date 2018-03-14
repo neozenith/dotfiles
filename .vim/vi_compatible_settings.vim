@@ -55,7 +55,7 @@ highlight Comment cterm=italic gui=italic
 " IDE Style Settings:
 " ---------------------------
 set number								" Line numbers are helpful
-set colorcolumn=80				" Highlight 80 character limit
+set colorcolumn=80,110		" Highlight 80 character limit
 set scrolloff=999					" Keep the cursor centered in the screen
 set showmatch							" Highlight matching braces
 
