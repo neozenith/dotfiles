@@ -25,7 +25,7 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 
 ### Git shortcuts
   # (G)it (S)tatus
-  alias gs="git status -u -v --ignore-submodules"
+  alias gs="git status -u -s --ignore-submodules"
   # (G)it (B)ranch
   alias gb="git branch -vv"
   # (G)it (D)iff
@@ -132,10 +132,10 @@ parse_git_branch() {
 
 	# TODO: Incorporate local changes statuses
 	# https://git-scm.com/docs/git-status#_short_format
-	STAT_MOD=`echo "$STATUS" | grep -e "^ M" | wc -l | tr -d '[:space:]'`
+	STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
 	STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
 	STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
-	STAT_ADD=`echo "$STATUS" | grep -e "^. " | wc -l | tr -d '[:space:]'`
+	STAT_ADD=`echo "$STATUS" | grep -e "^[MDA]." | wc -l | tr -d '[:space:]'`
 
 	CACHE_STATUS=""
 
