@@ -156,3 +156,12 @@ fun! <SID>StripTrailingWhitespaces()
 	call cursor(l, c)
 endfun
 autocmd FileType c,cpp,javascript,java,php,ruby,python,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" Show syntax highlighting groups for word under cursor
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nmap <Leader>si :call <SID>SynStack()<CR>

@@ -60,9 +60,9 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1261 172 445 77 0 0 1920 1178 </string>
+	<string>-1150 373 445 77 -1920 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>342 482 796 473 0 0 1920 1178 </string>
+	<string>-1578 626 796 473 -1920 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1867 1178 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
@@ -311,7 +311,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Flashing Bell</key>
-			<false/>
+			<true/>
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -639,7 +639,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FuraCodeNerdFontCM-Regular 12</string>
+			<string>SauceCodeProNerdFontCM-Regular 13</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -675,7 +675,7 @@
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
-			<false/>
+			<true/>
 			<key>Smart Cursor Color</key>
 			<false/>
 			<key>Space</key>
@@ -778,7 +778,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-03-11T21:41:40Z</date>
+	<date>2018-03-14T01:44:56Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>TabStyle</key>
