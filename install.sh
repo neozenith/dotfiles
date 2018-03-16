@@ -139,7 +139,7 @@ function install_osx_dev_dependencies () {
     vagrant-completion \
     pip-completion 
 
-  brew install ctags
+  brew install ctags fzf
   brew install colordiff
 
   # Documentation
