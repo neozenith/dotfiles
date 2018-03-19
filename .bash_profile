@@ -23,13 +23,16 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 # 5. Colourdiff 
 # 6. Path variables for custom scripts
 
+###############################################################################
+# ALIASES: 
+###############################################################################
 ### Git shortcuts
   # (G)it (S)tatus
   alias gs="git status -u -s --ignore-submodules"
   # (G)it (B)ranch
   alias gb="git branch -vv"
   # (G)it (D)iff
-  alias gd="git diff -v --color-words"
+  alias gd="git diff -v"
   # (G)it (C)ondition of file 
   alias gcon="git diff --name-only --diff-filter=U"
   # (G)it (M)aster
@@ -60,18 +63,24 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   alias gcld="git log --oneline --no-merges develop..HEAD | grep -Ev (WIP:|DEBUG:|Merge)"
 
 
+###############################################################################
+# EXPORTED FUNCTIONS:
+###############################################################################
 # ColourDiff:
-if [[ $OSTYPE == darwin* ]]; then
-  # Easy version from hommebrew
-  # brew install colordiff
-  #
-  # Hard version to always have available in bash
-  # http://stackoverflow.com/a/16865578/622276
-  alias colourdiff="sed \"s/^-/`echo -e \"\x1b\"`[31m-/;s/^+/`echo -e \"\x1b\"`[32m+/;s/^@/`echo -e \"\x1b\"`[34m@/;s/$/`echo -e \"\x1b\"`[0m/\""
-else
-  # apt-get install colordiff
-  alias colourdiff="sed 's/^-/\x1b[31m-/;s/^+/\x1b[32m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'"
-fi
+cdiff() {
+	if [[ $OSTYPE == darwin* ]]; then
+		# Easy version from hommebrew
+		# brew install colordiff
+		#
+		# Hard version to always have available in bash
+		# http://stackoverflow.com/a/16865578/622276
+		sed "s/^-/`echo -e "\x1b"`[31m-/;s/^+/`echo -e "\x1b"`[32m+/;s/^@/`echo -e "\x1b"`[34m@/;s/$/`echo -e "\x1b"`[0m/"
+	else
+		# apt-get install colordiff
+		sed 's/^-/\x1b[31m-/;s/^+/\x1b[32m+/;s/^@/\x1b[34m@/;s/$/\x1b[0m/'
+	fi
+}
+export -f cdiff 
 
 ccurl() {
   ESC_CODE=""
@@ -96,17 +105,19 @@ ccurl() {
 	# curl verbose header information is piped to stderr
 	# We need to pipe stderr (2>) to stdout (1>) using >&
 	# Apply colourising pattern matchers
-	curl -sv $1 2>&1 | \
+	curl -sv "$@" 2>&1 | \
 		sed -E "s/^(>) (.*): (.*)$/$RED\1 $LBLUE\2: $LRED\3$NORM/g" | \
 		sed -E "s/^(<) (.*): (.*)$/$GREEN\1 $LBLUE\2: $LGREEN\3$NORM/g" | \
 		sed -E "s/^(\*) (.*)$/$PURPLE\1 $NORM\2$NORM/g" | \
 		sed -E "s/^(<) (.*)$/$GREEN\1 $GREEN\2$NORM/g" | \
 		sed -E "s/^(>) (.*)$/$RED\1 $RED\2$NORM/g"
 }
+export -f ccurl
 
-	export -f ccurl
 
+###############################################################################
 # Prompt & Paths:
+###############################################################################
 parse_git_branch() {
   # Get diff and status
   # if there are any unstaged diffs then colour RED
@@ -174,8 +185,16 @@ export PS1="\e[0;32m\w\e[m"
 export PS1="$PS1\$(parse_git_branch)"
 export PS1="$PS1\nλ "
 
+# ZSH style tab auto complete first option instead of BELL
+# Then tabl cycle through other ambiguous options
+# https://superuser.com/a/835047/454665
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
 
+
+###############################################################################
 # PATH and ENV Variables :
+###############################################################################
 function inject_path () {
   # Check to see if it is already in the PATH before unnecessarily concatenating
   if [[ -z "$(echo $PATH | grep "$1")" ]]; then 
@@ -192,12 +211,6 @@ if [[ $OSTYPE == darwin* ]]; then
   inject_path "/usr/local/opt/openssl/bin"
 fi
 
-# Inject if RBEnv Shim not injected
-# if [[ -z "$(echo $PATH | grep '/.rbenv/shims')" ]]; then
-#   HAS_RBENV=`which rbenv 2> /dev/null`
-#   if [[ -n "$HAS_RBENV"  ]]; then eval "$(rbenv init -)"; fi
-# fi
-
 # OSX Bash Completions:
 if [[ $OSTYPE == darwin* ]]; then
 
@@ -211,15 +224,7 @@ if [[ $OSTYPE == darwin* ]]; then
     complete -C "$(which aws_completer)" aws
   fi
 
-  # Docker Completions
-  # Managed by HomeBrew but left for reference
-  # DOCKER_COMPLETION_SCRIPTS="/Applications/Docker.app/Contents/Resources/etc"
-  # ln -sq $DOCKER_COMPLETION_SCRIPTS/docker.bash-completion $(brew --prefix)/etc/bash_completion.d/docker 2> /dev/null
-  # ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-machine.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-machine 2> /dev/null
-  # ln -sq $DOCKER_COMPLETION_SCRIPTS/docker-compose.bash-completion $(brew --prefix)/etc/bash_completion.d/docker-compose 2> /dev/null
-
   # iTerm2 Integrations
-  #TODO get the following line to test first and if not present 
   # then download and install 
   # curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
   test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
