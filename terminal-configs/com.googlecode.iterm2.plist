@@ -60,11 +60,11 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>-1150 371 445 77 -1920 0 1920 1178 </string>
+	<string>-1150 237 445 77 -1920 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1237 692 918 401 -1920 0 1920 1178 </string>
+	<string>-1237 692 796 473 -1920 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1921 22 1920 1155 -1920 0 1920 1178 </string>
+	<string>-1920 0 1920 1178 -1920 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -639,7 +639,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodeProNerdFontCM-Light 14</string>
+			<string>SauceCodeProNerdFontCM-ExtraLight 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
