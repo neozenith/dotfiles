@@ -139,8 +139,7 @@ function install_osx_dev_dependencies () {
     vagrant-completion \
     pip-completion 
 
-  brew install ctags fzf the_silver_searcher
-  brew install colordiff
+  brew install tree ctags fzf the_silver_searcher
 
   # Documentation
   brew install plantuml graphviz doxygen
