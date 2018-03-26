@@ -279,6 +279,7 @@ function install_osx_plugin_dependencies () {
 
   #JavaScript
   sudo npm install -g \
+		tern \
     eslint \
 		prettier \
 		prettier-eslint \
