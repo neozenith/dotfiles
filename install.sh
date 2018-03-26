@@ -11,15 +11,19 @@ clear
 # HELPER FUNCTIONS:
 ###############################################################################
 
+# Warn will echo the first argument to stderr
 function warn() {
     echo "$1" >&2
 }
 
+# Die will warn the first argument and then exit
 function die() {
     warn "$1"
     exit 1
 }
 
+# Confirm will prompt the user for a y/n response 
+# that can be used for conditional execution
 function confirm () {
   read -r -p "${1}? [y/N] " response
   case $response in
@@ -149,6 +153,8 @@ function install_osx_dev_dependencies () {
 
   # C, C++, C#, Objective-C
   brew install llvm
+	# Golang
+	brew install golang
 
   # Database Drivers
   brew install postgres \
@@ -177,8 +183,8 @@ function install_osx_dev_dependencies () {
     sudo python get-pip.py
   fi
   sudo pip install pip --upgrade # Get pip to manage pip
-  sudo pip install -r $SCRIPT_DIR/requirements.txt --upgrade
-  sudo pip install awscli --ignore-installed six
+  sudo pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
+  sudo pip install awscli --ignore-installed six --upgrade --user
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
 }
 
@@ -279,7 +285,6 @@ function install_osx_plugin_dependencies () {
 
   #JavaScript
   sudo npm install -g \
-		tern \
     eslint \
 		prettier \
 		prettier-eslint \
@@ -327,7 +332,7 @@ function build_ycm () {
 
   cd .vim/plugged/YouCompleteMe
   show_dir
-  ./install.py --tern-completer --clang-completer --system-libclang
+  ./install.py --js-completer --tern-completer --go-completer --clang-completer --system-libclang
 
   cd $SCRIPT_DIR
   show_dir
@@ -378,7 +383,7 @@ function main_installer () {
   ###############
   # Install VIMRC
   ###############
-  confirm "Install .vimrc files" && symlink_vimrc
+	confirm "Install (symlink) .vimrc files" && symlink_vimrc
 
   ####################
   #Install VIM Plugins
