@@ -139,46 +139,44 @@ parse_git_branch() {
 
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
   STATUS=`git status -s 2> /dev/null`
-  DIFF=`git diff 2> /dev/null`
 
-	# TODO: Incorporate local changes statuses
 	# https://git-scm.com/docs/git-status#_short_format
 	STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
 	STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
 	STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
 	STAT_ADD=`echo "$STATUS" | grep -e "^[MDA]." | wc -l | tr -d '[:space:]'`
 
-	CACHE_STATUS=""
+  STATUS_COLOUR="$BLUE"
+  if [[ -n $STATUS ]]; then
+    STATUS_COLOUR="$YELLOW"
+  fi
 
-	# If cache status changes detected then accumulate
+	CACHE_STATUS=""
+	# If cache status changes are detected then accumulate
+	if [[ $STAT_NEW > 0 ]]; then
+		CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
+    STATUS_COLOUR="$RED"
+	fi
 	if [[ $STAT_MOD > 0 ]]; then
 		CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
-	fi
-	if [[ $STAT_ADD > 0 ]]; then
-		CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
+    STATUS_COLOUR="$RED"
 	fi
 	if [[ $STAT_DEL > 0 ]]; then
 		CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
+    STATUS_COLOUR="$RED"
 	fi
-	if [[ $STAT_NEW > 0 ]]; then
-		CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
+	# Staged for commit
+	if [[ $STAT_ADD > 0 ]]; then
+		CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
 	fi
 	# If there is a cache status accumulated then prefix with a space
 	if [[ -n $CACHE_STATUS ]]; then
 		CACHE_STATUS=" [${CACHE_STATUS}]"
 	fi
 
-
-  STATUS_COLOUR="$BLUE"
-  if [[ -n $STATUS ]]; then
-    STATUS_COLOUR="$YELLOW"
-  fi
-  if [[ -n $DIFF ]]; then
-    STATUS_COLOUR="$RED"
-  fi
-
   echo -e "$STATUS_COLOUR$BRANCH$NORM$CACHE_STATUS"
 }
+export -f parse_git_branch
 
 export PS1="\e[0;32m\w\e[m"
 # export PS1="$PS1\$(git-radar --bash --fetch)"
