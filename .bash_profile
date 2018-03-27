@@ -233,3 +233,5 @@ fi
 
 # Fuzzy Finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f ~/.npmrc ] && export NPM_TOKEN=`cat ~/.npmrc | sed 's/\/\/registry.npmjs.org\/:_authToken=//g'`
