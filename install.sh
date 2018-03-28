@@ -151,6 +151,8 @@ function install_osx_dev_dependencies () {
   # DevOps
   # brew install terraform ansible
 
+	# NodeJS
+	brew install node
   # C, C++, C#, Objective-C
   brew install llvm
 	# Golang
@@ -275,7 +277,7 @@ function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
   #HomeBrew
-  brew install ninja cmake npm --upgrade
+  brew install ninja cmake node --upgrade
 
   #Python
   
