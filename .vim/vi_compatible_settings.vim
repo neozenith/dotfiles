@@ -144,6 +144,18 @@ nnoremap ; :
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 command! -bang Q quit<bang>
 
+" Show in location list all TODO / FIXME / REFACTOR / NOTE annotation reminders
+" https://stackoverflow.com/questions/509690/how-can-you-list-the-matches-of-vims-search/21000896#comment68784996_21000896
+" Change to vimgrep and :copen to use quickfix list instead of location list
+"
+" Also when using RegEx Alternation in VimScript Keymappings you need to
+" double escape or use the <Bslash><Bar> notation but \\| is shorter.
+" https://stackoverflow.com/a/33924660/622276
+nnoremap <leader>t :lvimgrep /TODO\\|FIXME\\|REFACTOR\\|NOTE/ %<cr>:lopen<cr>
+nnoremap <leader>f :lvimgrep /<c-r>=expand("<cword>")<cr>/ %<cr>:lopen<cr>
+
+" After searching clear the search highlighting with leader-leader
+nnoremap <leader><leader> :nohlsearch<cr>
 
 " ---------------------------
 " Autoformat: Indent, Trim Trailing Whitespace
