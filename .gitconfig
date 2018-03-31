@@ -33,14 +33,16 @@
   tree = log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative 
   t = !"git tree2"
   
-  st = status -u -v --ignore-submodules
+  st = status -u --ignore-submodules
   br = branch -vv
   d = diff -v --color-words
   f = fetch -v --tags --prune
   br = branch
   co = checkout
   cl = clone
-  cm = commit
+	cm = commit
+	lola = log --graph --oneline --decorate --all --abbrev-commit
+	lol = log --graph --oneline --decorate  --abbrev-commit
 [credentials]
   helper = osxkeychain
 
