@@ -277,7 +277,7 @@ function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
   #HomeBrew
-  brew install ninja cmake node --upgrade
+  brew install ninja cmake node
 
   #Python
   
@@ -295,8 +295,8 @@ function install_osx_plugin_dependencies () {
     mocha \
     webpack
 
-	sudo npm -g outdated
-	sudo npm -g update
+	# sudo npm -g outdated
+	# sudo npm -g update
 }
 
 
@@ -334,7 +334,7 @@ function build_ycm () {
 
   cd .vim/plugged/YouCompleteMe
   show_dir
-  ./install.py --js-completer --tern-completer --go-completer --clang-completer --system-libclang
+  ./install.py --js-completer  --go-completer --clang-completer --system-libclang
 
   cd $SCRIPT_DIR
   show_dir
