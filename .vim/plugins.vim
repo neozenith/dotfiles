@@ -91,7 +91,7 @@ Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 Plug 'szw/vim-tags'
 if !has('win64') && !has('win32') && !has('win16')
   " No Windows YCM Support for now
-  Plug 'Valloric/YouCompleteMe' " Auto Complete Engine
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --go-completer --clang-completer --system-libclang' } " Auto Complete Engine
 endif
 
 " SNIPPETS: See .vim/custom_snippets/README.md

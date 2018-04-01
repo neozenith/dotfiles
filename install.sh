@@ -321,10 +321,11 @@ function vim_plugins () {
   # Install Plugins
   vim +PlugInstall +PlugUpdate +qall
 
+	# DEPRECATED: In favor of Vim-Plug managing post update hook
   # If YCM plugin installed ask to build
-  if [ -d ".vim/plugged/YouCompleteMe/.git" ]; then
-    confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
-  fi
+  # if [ -d ".vim/plugged/YouCompleteMe/.git" ]; then
+    # confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
+  # fi
 }
 
 function build_ycm () {
