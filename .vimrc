@@ -51,6 +51,9 @@ if !has('compatible')
 	" Dev Javascript:
 	runtime dev_js.vim
 
+	" Dev Arduino:
+	runtime arduino.vim
+
 	" Dev Python:
 	runtime dev_py.vim
 

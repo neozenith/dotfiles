@@ -118,6 +118,9 @@ Plug 'neozenith/vim-coloresque'
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
 
+" ARDUINO DEV:
+Plug 'stevearc/vim-arduino'
+
 " PYTHON DEV:
 Plug 'fs111/pydoc.vim'
 Plug 'alfredodeza/pytest.vim'
@@ -132,10 +135,7 @@ Plug 'plasticboy/vim-markdown'
 " RUBY DEV:
 Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'       " Ruby Syntax and Style Checker
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rake'
-Plug 'reinh/vim-makegreen'
 
 " C++ Dev
 " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
