@@ -37,7 +37,7 @@ let g:lightline.colorscheme = 'xoria256'
 let g:lightline.component_function = {
 	\		'fugitive': 'FugitiveCheck',
 	\		'filetype': 'DevIconsFiletype',
-	\		'fileformat': 'DevIconsFileformat'
+	\		'fileformat': 'DevIconsFileformat',
 	\ }
 let g:lightline.component = {'readonly': '%{&readonly?"\ue0a2":""}' }
 
@@ -86,4 +86,6 @@ function! FugitiveCheck()
 	endif
 	return ''
 endfunction
+
+
 

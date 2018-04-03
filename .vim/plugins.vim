@@ -119,7 +119,8 @@ Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
 
 " ARDUINO DEV:
-Plug 'stevearc/vim-arduino'
+" Plug 'stevearc/vim-arduino'
+Plug 'neozenith/vim-arduino'
 
 " PYTHON DEV:
 Plug 'fs111/pydoc.vim'
