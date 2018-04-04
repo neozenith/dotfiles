@@ -33,6 +33,8 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   alias gb="git branch -vv"
   # (G)it (D)iff
   alias gd="git diff -v"
+	# (G)it (C)ommit
+	alias gc="git commit $*"
   # (G)it (C)ondition of file 
   alias gcon="git diff --name-only --diff-filter=U"
   # (G)it (M)aster
