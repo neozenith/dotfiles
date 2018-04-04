@@ -35,21 +35,18 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   alias gd="git diff -v"
 	# (G)it (C)ommit
 	alias gc="git commit $*"
-  # (G)it (C)ondition of file 
-  alias gcon="git diff --name-only --diff-filter=U"
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
   alias gu=" git checkout $1 -f; git fetch -v --all -t -p; git pull -v --all"
   alias gpa="git pull -v --all"
-  alias gp="git push"
+	# (G)it (P)ush
+	alias gp="git push"
+	# (G)it (F)etch
   alias gf="git fetch -t -p"
   # (G)it (T)ree see gitconfig for full details
   alias gt="git tree"
-
-  # Git Branch Purge
-  # This deletes local branches no longer tracked on the server
-  # http://stackoverflow.com/a/17987721/622276 
-  alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'S
+	# (G)it (L)og, same as above but backup option if not defined in git config
+	alias gl="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative" 
 
   # Git changelog commands:
   alias glasttag="git describe --abbrev=0 --tags 2> /dev/null"
