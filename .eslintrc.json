@@ -10,7 +10,9 @@
         "es6": true,
         "mocha": true
     },
+		"plugins": ["prettier"],
     "rules": {
+				"prettier/prettier":"error",
         "no-alert": "error",
         "no-array-constructor": "error",
         "no-bitwise": "off",
@@ -206,7 +208,8 @@
         "quote-props": "off",
         "quotes": "off",
         "radix": "off",
-        "require-jsdoc": "off",
+        "require-jsdoc": "warn",
+        "valid-jsdoc": "warn",
         "require-yield": "off",
         "rest-spread-spacing": "off",
         "semi": "error",
@@ -223,7 +226,6 @@
         "template-curly-spacing": "off",
         "unicode-bom": "off",
         "use-isnan": "error",
-        "valid-jsdoc": "off",
         "valid-typeof": "error",
         "vars-on-top": "off",
         "wrap-iife": "off",

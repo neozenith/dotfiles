@@ -290,6 +290,7 @@ function install_osx_plugin_dependencies () {
     eslint \
 		prettier \
 		prettier-eslint \
+		eslint-plugin-prettier \
 		swaglint \
     express-generator \
     mocha \
