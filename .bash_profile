@@ -37,12 +37,12 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 	alias gc="git commit $*"
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
-  alias gu=" git checkout $1 -f; git fetch -v --all -t -p; git pull -v --all"
+  alias gu=" git checkout $1 -f; git fetch -v --all --tags --prune; git pull -v --all"
   alias gpa="git pull -v --all"
 	# (G)it (P)ush
 	alias gp="git push"
 	# (G)it (F)etch
-  alias gf="git fetch -t -p"
+  alias gf="git fetch --tags --prune --all"
   # (G)it (T)ree see gitconfig for full details
   alias gt="git tree"
 	# (G)it (L)og, same as above but backup option if not defined in git config
