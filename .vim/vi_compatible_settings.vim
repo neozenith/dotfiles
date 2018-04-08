@@ -110,6 +110,15 @@ set shiftround			" Round indent to multiple of 'shiftwidth'
 set autoindent			" Copy indent from current line, over to the new line
 
 " ---------------------------
+" Detect Changes:
+" https://stackoverflow.com/a/927634/622276
+" ---------------------------
+set autoread	" Reload from file if changed outside buffer. Only prompt if buffer changes have not been committed.
+set updatetime=1000
+au FocusGained,CursorHold * checktime
+
+
+" ---------------------------
 " WINDOW NAVIGATION:
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " ---------------------------
