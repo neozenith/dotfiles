@@ -8,6 +8,7 @@ scriptencoding utf-8
 " Syntax: pangloss/vim-javascript
 " ---------------------------
 let g:javascript_plugin_jsdoc = 1
+nnoremap <leader>jsd :<C-u>call JSDocAdd()<CR>
 
 
 " ---------------------------

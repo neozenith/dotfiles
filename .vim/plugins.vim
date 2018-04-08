@@ -107,9 +107,11 @@ Plug 'fisadev/vim-ctrlp-cmdpalette'
 " to expand: ctrl-y ,
 Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 
+" https://davidosomething.com/blog/vim-for-javascript/
 Plug 'pangloss/vim-javascript'
 Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
-Plug 'marijnh/tern_for_vim'   " JavaScript AutoComplete
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " JavaScript AutoComplete
+
 Plug 'elzr/vim-json'          " JSON Style Checker
 Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 " Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
@@ -117,6 +119,8 @@ Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 Plug 'neozenith/vim-coloresque'
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
+Plug 'joegesualdo/jsdoc.vim'	" Generate JSDoc block from method definition
+
 
 " ARDUINO DEV:
 " Plug 'stevearc/vim-arduino'
