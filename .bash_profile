@@ -143,7 +143,7 @@ parse_git_branch() {
 	STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
 	STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
 	STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
-	STAT_ADD=`echo "$STATUS" | grep -e "^[MDA]." | wc -l | tr -d '[:space:]'`
+	STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
   STATUS_COLOUR="$BLUE"
   if [[ -n $STATUS ]]; then
