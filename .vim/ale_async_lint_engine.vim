@@ -10,8 +10,8 @@ scriptencoding utf-8
 " ALE Async Linting Engine:
 " ---------------------------
 let g:ale_linters = {
-\		'typescript': ['tslint', 'prettier'],
-\		'javascript': ['eslint', 'prettier', 'standard'],
+\		'typescript': ['tslint'],
+\		'javascript': ['eslint', 'standard'],
 \		'python': ['pyflakes', 'pylint', 'python'],
 \		'ruby': ['rubocop'],
 \		'cpp': ['cpplint', 'clang_check', 'clang_tidy']
@@ -19,8 +19,8 @@ let g:ale_linters = {
 
 " https://prettier.io/docs/en/vim.html#ale-configuration
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['typescript'] = ['prettier']
+let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fixers['typescript'] = ['eslint']
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
