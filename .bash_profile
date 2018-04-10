@@ -146,10 +146,11 @@ parse_git_branch() {
   PURPLE="$ESC_CODE[36m"
 	NORM="$ESC_CODE[0m"
 
-  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
+  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
   STATUS=`git status -s 2> /dev/null`
 
 	# https://git-scm.com/docs/git-status#_short_format
+	# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
 	STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
 	STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
 	STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
@@ -183,13 +184,34 @@ parse_git_branch() {
 		CACHE_STATUS=" [${CACHE_STATUS}]"
 	fi
 
-  echo -e "$STATUS_COLOUR$BRANCH$NORM$CACHE_STATUS"
+	# Remote status if you have fetched latest from remotes
+	# 
+	# For each remote, compare the remote tracking branch to the current branch
+	# Then compare the other way arround.
+	# `git cherry` will give a list of commit hashes which we will just count the lines (`wc -l`).
+	# Only append the remote status if either are non zero.
+	#
+	# NOTE: This is ONLY looking at the local cache. I used to use git-radar
+	# until I had issues with it running `git fetch` every time the prompt loaded.
+	# Exacerbated when one company's policy was a password was required for every
+	# git operation.... A passoword everytime I need a prompt? No thanks.
+	#
+	# https://stackoverflow.com/a/7940630/622276
+	for r in `git remote 2> /dev/null`; do
+		UP=`git cherry $r/$BRANCH $BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
+		DOWN=`git cherry $BRANCH $r/$BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
+		if [ $UP -gt  0 ] || [ $DOWN -gt 0 ];then
+			REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}$PURPLE|$NORM"
+		fi
+	done
+
+	echo -e "${STATUS_COLOUR}⎇ ${BRANCH}$NORM$CACHE_STATUS$REMOTE_STATUS"
 }
 export -f parse_git_branch
 
 export PS1="\e[0;32m\w\e[m"
 # export PS1="$PS1\$(git-radar --bash --fetch)"
-export PS1="$PS1\$(parse_git_branch)"
+export PS1="$PS1 \$(parse_git_branch)"
 export PS1="$PS1\nλ "
 
 # ZSH style tab auto complete first option instead of BELL
