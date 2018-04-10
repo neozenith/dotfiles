@@ -41,8 +41,11 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   alias gpa="git pull -v --all"
 	# (G)it (P)ush
 	alias gp="git push"
+	alias gP="git push; git push --tags"
+	alias gphm="git push heroku master"
 	# (G)it (F)etch
-  alias gf="git fetch --tags --prune --all"
+  alias gf="git fetch --prune --all"
+  alias gF="git fetch --prune --all; git fetch --tags --prune --all"
   # (G)it (T)ree see gitconfig for full details
   alias gt="git tree"
 	# (G)it (L)og, same as above but backup option if not defined in git config
@@ -60,6 +63,13 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   # Git changelog develop: Changelog relative to accumulated develop branch,
   # and current checked out branch.
   alias gcld="git log --oneline --no-merges develop..HEAD | grep -Ev (WIP:|DEBUG:|Merge)"
+
+# HEROKU ALIASES
+
+	alias hw="heroku whoami"
+	# (H)eroku (A)ccounts (S)et = has nz or has cs
+	alias has="heroku accounts:set"
+
 
 
 ###############################################################################
