@@ -133,79 +133,85 @@ parse_git_branch() {
   # if there are staged but uncommited work then YELLOW
   # Route errors to stderr (2>) especially when in non-Git directories
   # Pipe sane output to sed for cleanup
-  ESC_CODE=""
-  if [[ $OSTYPE == darwin* ]]; then
-    ESC_CODE="\033"
-  else
-    ESC_CODE="\e"
-  fi
-  RED="$ESC_CODE[31m"
-  GREEN="$ESC_CODE[32m"
-  YELLOW="$ESC_CODE[33m"
-	BLUE="$ESC_CODE[34m"
-  PURPLE="$ESC_CODE[36m"
-	NORM="$ESC_CODE[0m"
 
+	# No branch -> No more work.
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-  STATUS=`git status -s 2> /dev/null`
-
-	# https://git-scm.com/docs/git-status#_short_format
-	# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
-	STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
-	STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
-	STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
-	STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
-
-  STATUS_COLOUR="$BLUE"
-  if [[ -n $STATUS ]]; then
-    STATUS_COLOUR="$YELLOW"
-  fi
-
-	CACHE_STATUS=""
-	# If cache status changes are detected then accumulate
-	if [[ $STAT_NEW > 0 ]]; then
-		CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
-    STATUS_COLOUR="$RED"
-	fi
-	if [[ $STAT_MOD > 0 ]]; then
-		CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
-    STATUS_COLOUR="$RED"
-	fi
-	if [[ $STAT_DEL > 0 ]]; then
-		CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
-    STATUS_COLOUR="$RED"
-	fi
-	# Staged for commit
-	if [[ $STAT_ADD > 0 ]]; then
-		CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
-	fi
-	# If there is a cache status accumulated then prefix with a space
-	if [[ -n $CACHE_STATUS ]]; then
-		CACHE_STATUS=" [${CACHE_STATUS}]"
-	fi
-
-	# Remote status if you have fetched latest from remotes
-	# 
-	# For each remote, compare the remote tracking branch to the current branch
-	# Then compare the other way arround.
-	# `git cherry` will give a list of commit hashes which we will just count the lines (`wc -l`).
-	# Only append the remote status if either are non zero.
-	#
-	# NOTE: This is ONLY looking at the local cache. I used to use git-radar
-	# until I had issues with it running `git fetch` every time the prompt loaded.
-	# Exacerbated when one company's policy was a password was required for every
-	# git operation.... A passoword everytime I need a prompt? No thanks.
-	#
-	# https://stackoverflow.com/a/7940630/622276
-	for r in `git remote 2> /dev/null`; do
-		UP=`git cherry $r/$BRANCH $BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
-		DOWN=`git cherry $BRANCH $r/$BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
-		if [ $UP -gt  0 ] || [ $DOWN -gt 0 ];then
-			REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}$PURPLE|$NORM"
+	if [[ -n $BRANCH ]]; then
+	
+		# Colours
+		ESC_CODE=""
+		if [[ $OSTYPE == darwin* ]]; then
+			ESC_CODE="\033"
+		else
+			ESC_CODE="\e"
 		fi
-	done
+		RED="$ESC_CODE[31m"
+		GREEN="$ESC_CODE[32m"
+		YELLOW="$ESC_CODE[33m"
+		BLUE="$ESC_CODE[34m"
+		PURPLE="$ESC_CODE[36m"
+		NORM="$ESC_CODE[0m"
 
-	echo -e "${STATUS_COLOUR}⎇ ${BRANCH}$NORM$CACHE_STATUS$REMOTE_STATUS"
+		BRANCH_STATUS=""
+		CACHE_STATUS=""
+		REMOTE_STATUS=""
+
+		# GIT STATUS
+		STATUS=`git status -s 2> /dev/null`
+		# https://git-scm.com/docs/git-status#_short_format
+		# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
+		STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
+		STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
+		STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
+		STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
+
+		STATUS_COLOUR="$BLUE"
+		[[ -n $STATUS ]] && STATUS_COLOUR="$YELLOW"
+
+		# If cache status changes are detected then accumulate
+		[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
+		[[ $STAT_NEW > 0 ]] && STATUS_COLOUR="$RED"
+		
+		[[ $STAT_MOD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
+		[[ $STAT_MOD > 0 ]] && STATUS_COLOUR="$RED"
+		
+		[[ $STAT_DEL > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
+		[[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
+
+		# Staged for commit
+		[[ $STAT_ADD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
+
+		# If there is a cache status accumulated then prefix with a space
+		[[ -n $CACHE_STATUS ]] && CACHE_STATUS=" [${CACHE_STATUS}]"
+		
+		BRANCH_STATUS="${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
+
+		# Remote status if you have fetched latest from remotes
+		# 
+		# For each remote, compare the remote tracking branch to the current branch
+		# Then compare the other way arround.
+		# `git cherry` will give a list of commit hashes which we will just count the lines (`wc -l`).
+		# Only append the remote status if either are non zero.
+		#
+		# NOTE: This is ONLY looking at the local cache. I used to use git-radar
+		# until I had issues with it running `git fetch` every time the prompt loaded.
+		# Exacerbated when one company's policy was a password was required for every
+		# git operation.... A passoword everytime I need a prompt? No thanks.
+		#
+		# https://stackoverflow.com/a/7940630/622276
+		for r in `git remote 2> /dev/null`; do
+			UP=`git cherry $r/$BRANCH $BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
+			DOWN=`git cherry $BRANCH $r/$BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
+			if [ $UP -gt  0 ] || [ $DOWN -gt 0 ];then
+				REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}$PURPLE|$NORM"
+			fi
+		done
+
+		echo -e "${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
+
+	fi
+  
+	
 }
 export -f parse_git_branch
 
