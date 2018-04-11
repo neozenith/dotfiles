@@ -28,17 +28,17 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 ###############################################################################
 ### Git shortcuts
   # (G)it (S)tatus
-  alias gs="git status -u -s --ignore-submodules"
+  alias gs="git status --untracked-files --short --branch --ignore-submodules"
   # (G)it (B)ranch
   alias gb="git branch -vv"
   # (G)it (D)iff
-  alias gd="git diff -v"
+  alias gd="git diff -v --ignore-all-space"
 	# (G)it (C)ommit
 	alias gc="git commit $*"
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
   alias gu=" git checkout $1 -f; git fetch -v --all --tags --prune; git pull -v --all"
-  alias gpa="git pull -v --all"
+  alias gla="git pull -v --all"
 	# (G)it (P)ush
 	alias gp="git push"
 	alias gP="git push; git push --tags"
@@ -52,17 +52,17 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
 	alias gl="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative" 
 
   # Git changelog commands:
-  alias glasttag="git describe --abbrev=0 --tags 2> /dev/null"
+  alias glt="git describe --abbrev=0 --tags 2> /dev/null"
 
   # Git changelog release tag: Changelog relative to last tag on master 
   # Assumes only master is tagged for releases.
   alias gclr="last_tag=\"git describe --abbrev=0 --tags\"; git log --oneline --no-merges $last_tag..HEAD"
   # Git changelog master: Changelog between latest master release and 
   # accumulated develop branch
-  alias gclm="git log --oneline --no-merges master..develop | grep -Ev (WIP:|DEBUG:|Merge)"
+  alias gclm="git log --oneline --no-merges master..develop | grep -Ev '(WIP:|DEBUG:|Merge)'"
   # Git changelog develop: Changelog relative to accumulated develop branch,
   # and current checked out branch.
-  alias gcld="git log --oneline --no-merges develop..HEAD | grep -Ev (WIP:|DEBUG:|Merge)"
+  alias gcld="git log --oneline --no-merges develop..HEAD | grep -Ev '(WIP:|DEBUG:|Merge)'"
 
 # HEROKU ALIASES
 
