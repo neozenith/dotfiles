@@ -34,7 +34,8 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   # (G)it (D)iff
   alias gd="git diff -v --ignore-all-space"
 	# (G)it (C)ommit
-	alias gc="git commit $*"
+	alias gc="git commit -v"
+	alias gca="git commit -v -a"
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
   alias gu=" git checkout $1 -f; git fetch -v --all --tags --prune; git pull -v --all"
