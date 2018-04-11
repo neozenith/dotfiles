@@ -159,10 +159,12 @@ parse_git_branch() {
 		# GIT STATUS
 		STATUS=`git status -s 2> /dev/null`
 
+		# Blue for no modifications or staged work
 		STATUS_COLOUR="$BLUE"
 		# No status -> no more work
 		if [[ -n $STATUS ]]; then 
 			
+			# Yellow when there is staged work
 			STATUS_COLOUR="$YELLOW"
 			# https://git-scm.com/docs/git-status#_short_format
 			# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
@@ -171,6 +173,7 @@ parse_git_branch() {
 			STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
 			STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
+			# Red for any unstaged modifications
 			# If cache status changes are detected then accumulate
 			[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
 			[[ $STAT_NEW > 0 ]] && STATUS_COLOUR="$RED"
