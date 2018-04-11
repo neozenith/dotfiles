@@ -158,31 +158,35 @@ parse_git_branch() {
 
 		# GIT STATUS
 		STATUS=`git status -s 2> /dev/null`
-		# https://git-scm.com/docs/git-status#_short_format
-		# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
-		STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
-		STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
-		STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
-		STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
 		STATUS_COLOUR="$BLUE"
-		[[ -n $STATUS ]] && STATUS_COLOUR="$YELLOW"
+		# No status -> no more work
+		if [[ -n $STATUS ]]; then 
+			
+			STATUS_COLOUR="$YELLOW"
+			# https://git-scm.com/docs/git-status#_short_format
+			# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
+			STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
+			STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
+			STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
+			STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
-		# If cache status changes are detected then accumulate
-		[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
-		[[ $STAT_NEW > 0 ]] && STATUS_COLOUR="$RED"
-		
-		[[ $STAT_MOD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
-		[[ $STAT_MOD > 0 ]] && STATUS_COLOUR="$RED"
-		
-		[[ $STAT_DEL > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
-		[[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
+			# If cache status changes are detected then accumulate
+			[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
+			[[ $STAT_NEW > 0 ]] && STATUS_COLOUR="$RED"
+			
+			[[ $STAT_MOD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
+			[[ $STAT_MOD > 0 ]] && STATUS_COLOUR="$RED"
+			
+			[[ $STAT_DEL > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
+			[[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
 
-		# Staged for commit
-		[[ $STAT_ADD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
+			# Staged for commit
+			[[ $STAT_ADD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
 
-		# If there is a cache status accumulated then prefix with a space
-		[[ -n $CACHE_STATUS ]] && CACHE_STATUS=" [${CACHE_STATUS}]"
+			# If there is a cache status accumulated then prefix with a space
+			[[ -n $CACHE_STATUS ]] && CACHE_STATUS=" [${CACHE_STATUS}]"
+		fi
 		
 		BRANCH_STATUS="${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
 
