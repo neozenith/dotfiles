@@ -132,14 +132,14 @@ parse_git_branch() {
   # Get diff and status
   # if there are any unstaged diffs then colour RED
   # if there are staged but uncommited work then YELLOW
-  # Route errors to stderr (2>) especially when in non-Git directories
+  # Silence errors from stderr (2>) by routing to /dev/null especially when in non-Git directories
   # Pipe sane output to sed for cleanup
 
 	# No branch -> No more work.
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 	if [[ -n $BRANCH ]]; then
 	
-		# Colours
+		# Colours: Define Colours and platform specific escape codes
 		ESC_CODE=""
 		if [[ $OSTYPE == darwin* ]]; then
 			ESC_CODE="\033"
@@ -165,7 +165,7 @@ parse_git_branch() {
 		# No status -> no more work
 		if [[ -n $STATUS ]]; then 
 			
-			# Yellow when there is staged work
+			# Yellow when there is any staged work
 			STATUS_COLOUR="$YELLOW"
 			# https://git-scm.com/docs/git-status#_short_format
 			# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
@@ -175,15 +175,12 @@ parse_git_branch() {
 			STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
 			# Red for any unstaged modifications
+			[ $STAT_MOD -gt 0 ] || [ $STAT_NEW -gt 0 ] || [ $STAT_DEL -gt 0 ] && STATUS_COLOUR="$RED"
+
 			# If cache status changes are detected then accumulate
 			[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
-			[[ $STAT_NEW > 0 ]] && STATUS_COLOUR="$RED"
-			
 			[[ $STAT_MOD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
-			[[ $STAT_MOD > 0 ]] && STATUS_COLOUR="$RED"
-			
 			[[ $STAT_DEL > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
-			[[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
 
 			# Staged for commit
 			[[ $STAT_ADD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
