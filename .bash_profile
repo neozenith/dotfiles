@@ -32,7 +32,17 @@ alias ctpy="ctags -R --python-kinds=-i --languages=python --exclude=.git --exclu
   # (G)it (B)ranch
   alias gb="git branch -vv"
   # (G)it (D)iff
+	# https://stackoverflow.com/a/1587952/622276
+	# http://365git.tumblr.com/post/474079664/whats-the-difference-part-1
+	# http://365git.tumblr.com/post/472624933/the-four-buckets-how-git-considers-content
+	# http://365git.tumblr.com/post/3464927214/getting-a-diff-between-the-working-tree-and-other
+	# Diff Staged <--> Working
   alias gd="git diff -v --ignore-all-space"
+	# Diff HEAD <--> Staged
+  alias gdc="git diff -v --ignore-all-space --cached"
+  alias gds="git diff -v --ignore-all-space --staged"
+	# Diff HEAD <--> Working
+  alias gdh="git diff -v --ignore-all-space HEAD"
 	# (G)it (C)ommit
 	alias gc="git commit -v"
 	alias gca="git commit -v -a"
@@ -175,7 +185,7 @@ parse_git_branch() {
 			STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
 			# Red for any unstaged modifications
-			[ $STAT_MOD -gt 0 ] || [ $STAT_NEW -gt 0 ] || [ $STAT_DEL -gt 0 ] && STATUS_COLOUR="$RED"
+			[[ $STAT_MOD > 0 ]] || [[ $STAT_NEW > 0 ]] || [[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
 
 			# If cache status changes are detected then accumulate
 			[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
