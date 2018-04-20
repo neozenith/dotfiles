@@ -146,32 +146,32 @@ parse_git_branch() {
   # Pipe sane output to sed for cleanup
 
 	# No branch -> No more work.
-  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+  local BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 	if [[ -n $BRANCH ]]; then
 	
 		# Colours: Define Colours and platform specific escape codes
-		ESC_CODE=""
+		local ESC_CODE=""
 		if [[ $OSTYPE == darwin* ]]; then
 			ESC_CODE="\033"
 		else
 			ESC_CODE="\e"
 		fi
-		RED="$ESC_CODE[31m"
-		GREEN="$ESC_CODE[32m"
-		YELLOW="$ESC_CODE[33m"
-		BLUE="$ESC_CODE[34m"
-		PURPLE="$ESC_CODE[36m"
-		NORM="$ESC_CODE[0m"
+		local RED="$ESC_CODE[31m"
+		local GREEN="$ESC_CODE[32m"
+		local YELLOW="$ESC_CODE[33m"
+		local BLUE="$ESC_CODE[34m"
+		local PURPLE="$ESC_CODE[36m"
+		local NORM="$ESC_CODE[0m"
 
-		BRANCH_STATUS=""
-		CACHE_STATUS=""
-		REMOTE_STATUS=""
+		local BRANCH_STATUS=""
+		local CACHE_STATUS=""
+		local REMOTE_STATUS=""
 
 		# GIT STATUS
-		STATUS=`git status -s 2> /dev/null`
+		local STATUS=`git status -s 2> /dev/null`
 
 		# Blue for no modifications or staged work
-		STATUS_COLOUR="$BLUE"
+		local STATUS_COLOUR="$BLUE"
 		# No status -> no more work
 		if [[ -n $STATUS ]]; then 
 			
@@ -179,10 +179,10 @@ parse_git_branch() {
 			STATUS_COLOUR="$YELLOW"
 			# https://git-scm.com/docs/git-status#_short_format
 			# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
-			STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
-			STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
-			STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
-			STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
+			local STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
+			local STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
+			local STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
+			local STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
 
 			# Red for any unstaged modifications
 			[[ $STAT_MOD > 0 ]] || [[ $STAT_NEW > 0 ]] || [[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
@@ -215,8 +215,8 @@ parse_git_branch() {
 		#
 		# https://stackoverflow.com/a/7940630/622276
 		for r in `git remote 2> /dev/null`; do
-			UP=`git cherry $r/$BRANCH $BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
-			DOWN=`git cherry $BRANCH $r/$BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
+			local UP=`git cherry $r/$BRANCH $BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
+			local DOWN=`git cherry $BRANCH $r/$BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
 			if [ $UP -gt  0 ] || [ $DOWN -gt 0 ];then
 				REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}$PURPLE|$NORM"
 			fi
