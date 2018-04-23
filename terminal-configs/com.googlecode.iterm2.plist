@@ -61,10 +61,12 @@
 	<true/>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>770 33 445 77 0 0 1920 1178 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>-1920 556 700 622 -1920 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1237 674 796 473 -1920 0 1920 1178 </string>
+	<string>-1237 700 1018 447 -1920 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 23 1867 1155 0 0 1920 1178 </string>
+	<string>-1920 0 1920 1178 -1920 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -769,6 +771,8 @@
 	<string>/Users/joshpeak/nz-vim/terminal-configs</string>
 	<key>Print In Black And White</key>
 	<true/>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -778,17 +782,21 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-04-11T00:27:06Z</date>
+	<date>2018-04-23T04:01:26Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>ShowMetalFPSmeter</key>
+	<true/>
 	<key>TabStyle</key>
 	<integer>3</integer>
+	<key>UseMetal</key>
+	<true/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.1.5</string>
+	<string>3.1.6</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
