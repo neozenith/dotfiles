@@ -179,21 +179,24 @@ parse_git_branch() {
 			STATUS_COLOUR="$YELLOW"
 			# https://git-scm.com/docs/git-status#_short_format
 			# https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203
+			local STAT_UNT=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
 			local STAT_MOD=`echo "$STATUS" | grep -e "^[MDA ]M" | wc -l | tr -d '[:space:]'`
 			local STAT_DEL=`echo "$STATUS" | grep -e "^ D" | wc -l | tr -d '[:space:]'`
-			local STAT_NEW=`echo "$STATUS" | grep -e "^??" | wc -l | tr -d '[:space:]'`
 			local STAT_ADD=`echo "$STATUS" | grep -e "^[MDAR]." | wc -l | tr -d '[:space:]'`
+			local STAT_CON=`echo "$STATUS" | grep -e "^.U" | wc -l | tr -d '[:space:]'`
 
 			# Red for any unstaged modifications
-			[[ $STAT_MOD > 0 ]] || [[ $STAT_NEW > 0 ]] || [[ $STAT_DEL > 0 ]] && STATUS_COLOUR="$RED"
+			[[ $STAT_MOD > 0 ]] || [[ $STAT_UNT > 0 ]] || [[ $STAT_DEL > 0 ]] || [[ $STAT_CON > 0 ]] && STATUS_COLOUR="$RED"
 
 			# If cache status changes are detected then accumulate
-			[[ $STAT_NEW > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_NEW$NORM"
+			[[ $STAT_UNT > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$PURPLE?$STAT_UNT$NORM"
 			[[ $STAT_MOD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$YELLOW~$STAT_MOD$NORM"
 			[[ $STAT_DEL > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$RED-$STAT_DEL$NORM"
 
 			# Staged for commit
 			[[ $STAT_ADD > 0 ]] && CACHE_STATUS="${CACHE_STATUS}$GREEN+$STAT_ADD$NORM"
+			# Unresolved Merge path --> Merge Conflict
+			[[ $STAT_CON > 0 ]] && CACHE_STATUS="$RED!$STAT_CON$NORM${CACHE_STATUS}"
 
 			# If there is a cache status accumulated then prefix with a space
 			[[ -n $CACHE_STATUS ]] && CACHE_STATUS=" [${CACHE_STATUS}]"
