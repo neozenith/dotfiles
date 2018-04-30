@@ -11,7 +11,7 @@ scriptencoding utf-8
 " ---------------------------
 let g:ale_linters = {
 \		'typescript': ['tslint'],
-\		'javascript': ['eslint', 'standard'],
+\		'javascript': ['eslint'],
 \		'python': ['pyflakes', 'pylint', 'python'],
 \		'ruby': ['rubocop'],
 \		'cpp': ['cpplint', 'clang_check', 'clang_tidy']

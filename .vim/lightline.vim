@@ -26,7 +26,7 @@ let g:lightline.active.left = [
 
 " Right side lightline components
 let g:lightline.active.right = [
-	\			['linter_errors', 'linter_warnings', 'linter_ok'],
+	\			['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
 	\			['lineinfo', 'percent'],
 	\			['fileformat', 'fileencoding', 'filetype']
 	\		]
@@ -50,12 +50,14 @@ let g:lightline.subseparator = { 'left': "|", 'right': "|" }
 " ---------------------------
 " {
 let g:lightline.component_expand = {
+	\		'linter_checking': 'lightline#ale#checking',
+	\		'linter_ok': 'lightline#ale#ok',
 	\		'linter_warnings': 'lightline#ale#warnings',
 	\		'linter_errors': 'lightline#ale#errors',
-	\		'linter_ok': 'lightline#ale#ok',
 	\ }
 
 let g:lightline.component_type = {
+	\		'linter_checking': 'warning',
 	\		'linter_ok': 'left',
 	\		'linter_warnings': 'warning',
 	\		'linter_errors': 'error',
@@ -68,6 +70,8 @@ let g:lightline.component_type = {
 let g:lightline#ale#indicator_warnings = "\uf071"
 let g:lightline#ale#indicator_errors = "\uf00d"
 let g:lightline#ale#indicator_ok = "\uf00c"
+let g:lightline#ale#indicator_checking = "\uf110"
+
 
 " }
 
