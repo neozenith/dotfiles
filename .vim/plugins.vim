@@ -74,8 +74,8 @@ Plug 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
 " ALE linting events
 if (v:version >= 800)
 	Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
-	" Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
-	Plug 'neozenith/lightline-ale' " Plugin to get lightline summary numbers from ALE
+	Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
+	" Plug 'neozenith/lightline-ale' " Plugin to get lightline summary numbers from ALE
 else
 	" NOTE: Should probably fallback to Syntastic but I can't be bothered
 	" maintaing that when I have no need.
