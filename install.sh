@@ -117,15 +117,18 @@ function install_osx_dev_dependencies () {
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
   defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
+	notice "XCode"
   # install xcode command line tools
   xcode-select --install
 
+	notice "HomeBrew"
   # install hombrew
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   notice "Homebrew update and upgrade:"
   brew update
   brew upgrade
   brew doctor
+
 
   # Git Tooling
   # brew install michaeldfallen/formula/git-radar
@@ -164,6 +167,7 @@ function install_osx_dev_dependencies () {
     elasticsearch \
 		kibana
 
+	notice "Ruby + Gems"
   # Ruby
   # brew install ruby ruby-build -y
   # brew install rbenv ruby-build
@@ -177,6 +181,7 @@ function install_osx_dev_dependencies () {
   sudo gem install bundler
   # rbenv rehash
 
+	notice "Python + Packages"
   # Python 2.7
   HAS_PIP=`which pip 2> /dev/null`
   if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
@@ -276,6 +281,7 @@ function install_mingw_plugin_dependencies () {
 function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
+	notice "HomeBrew Packages"
   #HomeBrew
   brew install ninja cmake node
 
@@ -285,16 +291,19 @@ function install_osx_plugin_dependencies () {
   notice "Installing Gems as SuperUser"
   # sudo gem install rubocop
 
+	notice "NodeJS Packages"
   #JavaScript
-  sudo npm install -g \
+  npm install -g \
     eslint \
 		prettier \
 		prettier-eslint \
 		eslint-plugin-prettier \
+		eslint-config-prettier \
 		@neozenith/eslint-config \
 		swaglint \
     express-generator \
     mocha \
+		tern \
     webpack
 
 	# sudo npm -g outdated
@@ -394,6 +403,28 @@ function main_installer () {
   #Install VIM Plugins
   ####################
   confirm "Install Vim plugins" && vim_plugins
+
+	notice "Tools"
+	TOOL_LIST="
+		git 
+		node 
+		npm 
+		python 
+		pip 
+		python3 
+		pip3 
+		ruby
+		brew
+		cmake
+		ninja
+		clang
+		vim	
+"
+
+	for tool in $TOOL_LIST; do
+		notice "${tool}"
+		[[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
+	done
 
 }
 
