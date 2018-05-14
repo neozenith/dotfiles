@@ -154,6 +154,8 @@ function install_osx_dev_dependencies () {
   # DevOps
   # brew install terraform ansible
 
+	# Python3
+	brew install python3
 	# NodeJS
 	brew install node
   # C, C++, C#, Objective-C
@@ -182,17 +184,17 @@ function install_osx_dev_dependencies () {
   # rbenv rehash
 
 	notice "Python + Packages"
-  # Python 2.7
-  HAS_PIP=`which pip 2> /dev/null`
-  if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
-    curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
-    notice "Installing PIP and Packages as SuperUser"
-    sudo python get-pip.py
-  fi
-  sudo pip install pip --upgrade # Get pip to manage pip
-  sudo pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
-  sudo pip install awscli --ignore-installed six --upgrade --user
+	# Python 2.7
+  # HAS_PIP=`which pip 2> /dev/null`
+  # if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
+    # curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
+    # notice "Installing PIP and Packages as SuperUser"
+    # sudo python get-pip.py
+  # fi
+  pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade --user
+  pip3 install awscli --ignore-installed six --upgrade --user
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
+	
 }
 
 

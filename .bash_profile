@@ -281,9 +281,12 @@ if [[ $OSTYPE == darwin* ]]; then
   # then download and install 
   # curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
   test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+	
+	# MatplotLib Rendering in iTerm2
+	export MPLBACKEND="module://itermplot"
+	export ITERMPLOT=rv
 
 fi
-
 # Fuzzy Finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

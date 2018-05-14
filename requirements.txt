@@ -1,3 +1,9 @@
 boto 
 awsebcli 
 cpplint
+numpy
+pandas
+matplotlib
+nose
+tornado
+itermplot
