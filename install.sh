@@ -423,6 +423,7 @@ function main_installer () {
 
 	for tool in $TOOL_LIST; do
 		notice "${tool}"
+		echo -e "`which $tool`"
 		[[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
 	done
 

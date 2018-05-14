@@ -168,7 +168,7 @@ parse_git_branch() {
 		local REMOTE_STATUS=""
 
 		# GIT STATUS
-		local STATUS=`git status -s 2> /dev/null`
+		local STATUS=`git status --short --untracked-files 2> /dev/null`
 
 		# Blue for no modifications or staged work
 		local STATUS_COLOUR="$BLUE"
