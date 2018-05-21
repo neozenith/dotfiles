@@ -149,7 +149,7 @@ function install_osx_dev_dependencies () {
   brew install tree ctags fzf the_silver_searcher
 
   # Documentation
-  brew install plantuml graphviz doxygen
+  # brew install graphviz doxygen
 
   # DevOps
   # brew install terraform ansible
@@ -235,7 +235,7 @@ function build_vim () {
       --enable-pythoninterp \
       --enable-python3interp \
       --with-features=huge
-    $SUDO $MAKE; $SUDO $MAKE install
+    $SUDO $MAKE clean; $SUDO $MAKE; $SUDO $MAKE install
   else
     echo "make not found. Not building Vim"
   fi
@@ -285,7 +285,7 @@ function install_osx_plugin_dependencies () {
 
 	notice "HomeBrew Packages"
   #HomeBrew
-  brew install ninja cmake node
+  brew install ninja cmake node 
 
   #Python
   
