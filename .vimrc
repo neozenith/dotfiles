@@ -25,43 +25,43 @@ endif
 "  PLUGINS: Plugin dependent settings
 " ---------------------------
 if !has('compatible')
-	" Plugins:
+  " Plugins:
   runtime plugins.vim
 
-	" Lightline: status bar configuration
-	runtime lightline.vim
+  " Lightline: status bar configuration
+  runtime lightline.vim
 
-	" ALE Async Linting Engine: - Linting and Syntax checker plugin configuration
-	runtime ale_async_lint_engine.vim
-	" YouCompleteMe Autocomplete Engine:
-	runtime ycm.vim
-	runtime ultisnips.vim
+  " ALE Async Linting Engine: - Linting and Syntax checker plugin configuration
+  runtime ale_async_lint_engine.vim
+  " YouCompleteMe Autocomplete Engine:
+  runtime ycm.vim
+  runtime ultisnips.vim
 
-	" NERDTree File Navigation:
-	runtime nerdtree.vim
-	" NERDCommenter:
-	runtime nerdcommenter.vim
+  " NERDTree File Navigation:
+  runtime nerdtree.vim
+  " NERDCommenter:
+  runtime nerdcommenter.vim
 
-	" Indent Guides:
-	runtime indentguides.vim
+  " Indent Guides:
+  runtime indentguides.vim
 
-	" RainbowParenthesis:
-	runtime rainbowparenthesis.vim
+  " RainbowParenthesis:
+  runtime rainbowparenthesis.vim
 
-	" Dev Javascript:
-	runtime dev_js.vim
+  " Dev Javascript:
+  runtime dev_js.vim
 
-	" Dev Arduino:
-	runtime arduino.vim
+  " Dev Arduino:
+  runtime arduino.vim
 
-	" Dev Python:
-	runtime dev_py.vim
+  " Dev Python:
+  runtime dev_py.vim
 
-	" Markdown Document Editting:
-	runtime markdown.vim
+  " Markdown Document Editting:
+  runtime markdown.vim
 
-	" GVim: Gui based settings
-	runtime gui.vim
+  " GVim: Gui based settings
+  runtime gui.vim
 endif
 
 

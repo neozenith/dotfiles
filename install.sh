@@ -111,17 +111,17 @@ function install_osx_dev_dependencies () {
   title "Installing Development Tools..."
   pause
 
-	# Show hidden files
+  # Show hidden files
   defaults write com.apple.finder AppleShowAllFiles YES
-	# Use list view in all Finder windows by default
+  # Use list view in all Finder windows by default
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
   defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
-	notice "XCode"
+  notice "XCode"
   # install xcode command line tools
   xcode-select --install
 
-	notice "HomeBrew"
+  notice "HomeBrew"
   # install hombrew
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   notice "Homebrew update and upgrade:"
@@ -154,22 +154,22 @@ function install_osx_dev_dependencies () {
   # DevOps
   # brew install terraform ansible
 
-	# Python3
-	brew install python3
-	# NodeJS
-	brew install node
+  # Python3
+  brew install python3
+  # NodeJS
+  brew install node
   # C, C++, C#, Objective-C
   brew install llvm
-	# Golang
-	brew install golang
+  # Golang
+  brew install golang
 
   # Database Drivers
   brew install postgres \
     redis \
     elasticsearch \
-		kibana
+    kibana
 
-	notice "Ruby + Gems"
+  notice "Ruby + Gems"
   # Ruby
   # brew install ruby ruby-build -y
   # brew install rbenv ruby-build
@@ -183,8 +183,8 @@ function install_osx_dev_dependencies () {
   sudo gem install bundler
   # rbenv rehash
 
-	notice "Python + Packages"
-	# Python 2.7
+  notice "Python + Packages"
+  # Python 2.7
   # HAS_PIP=`which pip 2> /dev/null`
   # if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
     # curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
@@ -194,7 +194,7 @@ function install_osx_dev_dependencies () {
   pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade --user
   pip3 install awscli --ignore-installed six --upgrade --user
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
-	
+  
 }
 
 
@@ -283,7 +283,7 @@ function install_mingw_plugin_dependencies () {
 function install_osx_plugin_dependencies () {
   # TODO Make this work for environments other than OSX
 
-	notice "HomeBrew Packages"
+  notice "HomeBrew Packages"
   #HomeBrew
   brew install ninja cmake node 
 
@@ -293,23 +293,23 @@ function install_osx_plugin_dependencies () {
   notice "Installing Gems as SuperUser"
   # sudo gem install rubocop
 
-	notice "NodeJS Packages"
+  notice "NodeJS Packages"
   #JavaScript
   npm install -g \
     eslint \
-		prettier \
-		prettier-eslint \
-		eslint-plugin-prettier \
-		eslint-config-prettier \
-		@neozenith/eslint-config \
-		swaglint \
+    prettier \
+    prettier-eslint \
+    eslint-plugin-prettier \
+    eslint-config-prettier \
+    @neozenith/eslint-config \
+    swaglint \
     express-generator \
     mocha \
-		tern \
+    tern \
     webpack
 
-	# sudo npm -g outdated
-	# sudo npm -g update
+  # sudo npm -g outdated
+  # sudo npm -g update
 }
 
 
@@ -334,7 +334,7 @@ function vim_plugins () {
   # Install Plugins
   vim +PlugInstall +PlugUpdate +qall
 
-	# DEPRECATED: In favor of Vim-Plug managing post update hook
+  # DEPRECATED: In favor of Vim-Plug managing post update hook
   # If YCM plugin installed ask to build
   # if [ -d ".vim/plugged/YouCompleteMe/.git" ]; then
     # confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
@@ -389,45 +389,45 @@ function main_installer () {
   which vim
   vim --version
   echo -e "\033[0m============================================="
-	
-	# NOTE: To strip out characters the left side regex must wild match the parts
-	# You want removed and the () capture groups preserve what you want to keep
-	curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
+  
+  # NOTE: To strip out characters the left side regex must wild match the parts
+  # You want removed and the () capture groups preserve what you want to keep
+  curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
 
   confirm "Build latest Vim from Source" && build_vim
 
   ###############
   # Install VIMRC
   ###############
-	confirm "Install (symlink) .vimrc files" && symlink_vimrc
+  confirm "Install (symlink) .vimrc files" && symlink_vimrc
 
   ####################
   #Install VIM Plugins
   ####################
   confirm "Install Vim plugins" && vim_plugins
 
-	notice "Tools"
-	TOOL_LIST="
-		git 
-		node 
-		npm 
-		python 
-		pip 
-		python3 
-		pip3 
-		ruby
-		brew
-		cmake
-		ninja
-		clang
-		vim	
+  notice "Tools"
+  TOOL_LIST="
+    git 
+    node 
+    npm 
+    python 
+    pip 
+    python3 
+    pip3 
+    ruby
+    brew
+    cmake
+    ninja
+    clang
+    vim 
 "
 
-	for tool in $TOOL_LIST; do
-		notice "${tool}"
-		echo -e "`which $tool`"
-		[[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
-	done
+  for tool in $TOOL_LIST; do
+    notice "${tool}"
+    echo -e "`which $tool`"
+    [[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
+  done
 
 }
 

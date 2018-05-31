@@ -48,8 +48,8 @@ endif
 " -------------------
 
 " INTERFACE:
-Plug 'neozenith/tender.vim'							" Tender colorscheme
-Plug 'neozenith/estilo-xoria256'							" Tender colorscheme
+Plug 'neozenith/tender.vim'             " Tender colorscheme
+Plug 'neozenith/estilo-xoria256'              " Tender colorscheme
 Plug 'nightsense/carbonized'
 Plug 'nightsense/vimspectr'
 
@@ -73,13 +73,13 @@ Plug 'itchyny/lightline.vim'  " Status bar
 Plug 'sheerun/vim-polyglot'   " 100+ Syntax highlighters
 " ALE linting events
 if (v:version >= 800)
-	Plug 'w0rp/ale'								" Async Lint Engine to reduce lag after save running linting
-	Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
-	" Plug 'neozenith/lightline-ale' " Plugin to get lightline summary numbers from ALE
+  Plug 'w0rp/ale'               " Async Lint Engine to reduce lag after save running linting
+  Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
+  " Plug 'neozenith/lightline-ale' " Plugin to get lightline summary numbers from ALE
 else
-	" NOTE: Should probably fallback to Syntastic but I can't be bothered
-	" maintaing that when I have no need.
-	echoerr "These dotfiles require NeoVim or Vim 8"
+  " NOTE: Should probably fallback to Syntastic but I can't be bothered
+  " maintaing that when I have no need.
+  echoerr "These dotfiles require NeoVim or Vim 8"
 endif
 Plug 'Chiel92/vim-autoformat' " Autoformat XML, JSON etc with :Autoformat
 Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
@@ -96,7 +96,7 @@ if !has('win64') && !has('win32') && !has('win16')
 endif
 
 " SNIPPETS: See .vim/custom_snippets/README.md
-Plug 'SirVer/ultisnips'			" Snippet Engine
+Plug 'SirVer/ultisnips'     " Snippet Engine
 
 " COMMAND PALETTE:
 Plug 'ctrlpvim/ctrlp.vim'
@@ -116,11 +116,11 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " JavaScript AutoComplete
 Plug 'elzr/vim-json'          " JSON Style Checker
 Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 " Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
-" Plug 'gko/vim-coloresque'			" Preview CSS colours. Works better than ap/vim/css-color. Awaiting YAML FT support merge request
+" Plug 'gko/vim-coloresque'     " Preview CSS colours. Works better than ap/vim/css-color. Awaiting YAML FT support merge request
 Plug 'neozenith/vim-coloresque'
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
-Plug 'joegesualdo/jsdoc.vim'	" Generate JSDoc block from method definition
+Plug 'joegesualdo/jsdoc.vim'  " Generate JSDoc block from method definition
 
 
 " ARDUINO DEV:

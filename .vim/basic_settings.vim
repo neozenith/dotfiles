@@ -3,8 +3,8 @@
 " Description: Settings related to plain Vim configuration
 set encoding=utf-8
 scriptencoding utf-8
-set path+=**		" All file operations search recursively relative to
-set mouse=nicr	" Set mouse scroll events to nav cursor
+set path+=**    " All file operations search recursively relative to
+set mouse=nicr  " Set mouse scroll events to nav cursor
 
 " ---------------------------
 " CODE FOLDING:
@@ -14,26 +14,26 @@ set mouse=nicr	" Set mouse scroll events to nav cursor
 " enable fold {{{
 set foldmethod=indent
 augroup fdm
-		autocmd!
-		autocmd FileType lua,go,c,cpp setlocal foldmethod=syntax
-		autocmd FileType python				setlocal foldmethod=indent
-		autocmd FileType vim					setlocal foldmethod=marker
+  autocmd!
+  autocmd FileType lua,go,c,cpp setlocal foldmethod=syntax
+  autocmd FileType python       setlocal foldmethod=indent
+  autocmd FileType vim          setlocal foldmethod=marker
 augroup END
-set foldlevel=1					" Fold increment (?)
+set foldlevel=1         " Fold increment (?)
 set foldlevelstart=99
-set foldnestmax=5				" deepest fold is 5 levels
+set foldnestmax=5       " deepest fold is 5 levels
 " }}}
 
 " ---------------
 " Spell Checking:
 " ---------------
-au Filetype markdown	 setlocal spell spelllang=en_us
+au Filetype markdown   setlocal spell spelllang=en_us
 
 " ---------------
 " Markdown Setup:
 " augroup markdown
-"			au!
-"			au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+  " au!
+  " au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 " augroup END
 
 " -----------------------
