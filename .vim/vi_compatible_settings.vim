@@ -105,7 +105,7 @@ set softtabstop=2	" Sets the number of columns for a TAB.
 au Filetype * let &l:tabstop = s:tabwidth
 au Filetype * let &l:shiftwidth = s:tabwidth
 au Filetype * let &l:softtabstop = s:tabwidth
-set noexpandtab			"DO NOT Expand TABs to spaces.
+set expandtab				"Expand TABs to spaces.
 set shiftround			" Round indent to multiple of 'shiftwidth'
 set autoindent			" Copy indent from current line, over to the new line
 
