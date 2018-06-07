@@ -76,7 +76,7 @@ parse_git_prompt() {
     # NOTE: This is ONLY looking at the local cache. I used to use git-radar
     # until I had issues with it running `git fetch` every time the prompt loaded.
     # Exacerbated when one company's policy was a password was required for every
-    # git operation.... A passoword everytime I need a prompt? No thanks.
+    # git operation.... A password everytime I need a prompt? No thanks.
     #
     # https://stackoverflow.com/a/7940630/622276
     for r in `git remote 2> /dev/null`; do

@@ -75,7 +75,7 @@ git fetch automatically in the background so you will need to run that manually.
 
 [gitprompt]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/images/git-prompt.png
 
-If you want it without my complete dotfiles setup theni: 
+If you want it without my complete dotfiles setup then: 
 
 Download [`bash-scripts/function_parse_git_prompt.sh`](https://github.com/neozenith/vim-dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh)
 to your home directory 
