@@ -63,6 +63,34 @@ for this reason.
 
 ----
 
+## Git Bash Prompt 
+
+![Screenshot of Git Prompt][gitprompt]
+
+Inspired by the beautiful piece of bash scripting that is [Git Radar](https://github.com/michaeldfallen/git-radar) 
+yet having been in companies where due to their git security setup it made git-radar unusable.
+
+So I have built out a basic version of `git-radar`. This version does not run 
+git fetch automatically in the background so you will need to run that manually.
+
+[gitprompt]: https://raw.githubusercontent.com/neozenith/vim-dotfiles/master/images/git-prompt.png
+
+If you want it without my complete dotfiles setup then download [`bash-scripts/function_parse_git_prompt.sh`](https://github.com/neozenith/vim-dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh)
+to your home directory and add the following to your `.bash_profile` or `.bashrc`.
+
+```bash
+curl -o $HOME/function_parse_git_prompt.sh https://github.com/neozenith/vim-dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh
+```
+
+```bash
+source $HOME/function_parse_git_prompt.sh
+export PS1="\e[0;32m\w\e[m"
+export PS1="$PS1 \$(parse_git_prompt)"
+export PS1="$PS1\nλ "
+```
+
+----
+
 ## Installation
 
 ### OSX / Linux
