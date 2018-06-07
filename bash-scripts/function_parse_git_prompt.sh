@@ -12,12 +12,9 @@ parse_git_prompt() {
   if [[ -n $BRANCH ]]; then
   
     # Colours: Define Colours and platform specific escape codes
-    local ESC_CODE=""
-    if [[ $OSTYPE == darwin* ]]; then
-      ESC_CODE="\033"
-    else
-      ESC_CODE="\e"
-    fi
+    local ESC_CODE="\e"
+    [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
+
     local RED="$ESC_CODE[31m"
     local GREEN="$ESC_CODE[32m"
     local YELLOW="$ESC_CODE[33m"
