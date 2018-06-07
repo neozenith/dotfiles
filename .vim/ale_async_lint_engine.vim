@@ -20,6 +20,8 @@ let g:ale_linters = {
 " https://prettier.io/docs/en/vim.html#ale-configuration
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fixers['markdown'] = ['eslint']
+let g:ale_fixers['json'] = ['eslint']
 let g:ale_fixers['typescript'] = ['eslint']
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
