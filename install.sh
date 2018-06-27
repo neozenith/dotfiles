@@ -297,6 +297,7 @@ function install_osx_plugin_dependencies () {
   #JavaScript
   npm install -g \
     eslint \
+    tslint \
     prettier \
     prettier-eslint \
     eslint-plugin-prettier \
