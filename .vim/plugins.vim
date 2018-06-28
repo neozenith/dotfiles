@@ -110,6 +110,7 @@ Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 
 " https://davidosomething.com/blog/vim-for-javascript/
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim' "Typescript syntax highlighting
 Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " JavaScript AutoComplete
 
