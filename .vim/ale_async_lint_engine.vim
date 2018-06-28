@@ -10,7 +10,7 @@ scriptencoding utf-8
 " ALE Async Linting Engine:
 " ---------------------------
 let g:ale_linters = {
-\  'typescript': ['tslint'],
+\  'typescript': ['tsserver', 'tslint'],
 \  'javascript': ['eslint'],
 \  'python': ['pyflakes', 'pylint', 'python'],
 \  'ruby': ['rubocop'],
@@ -22,7 +22,7 @@ let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
 let g:ale_fixers['markdown'] = ['eslint']
 let g:ale_fixers['json'] = ['eslint']
-let g:ale_fixers['typescript'] = ['tslint']
+let g:ale_fixers['typescript'] = ['tsserver', 'tslint']
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
