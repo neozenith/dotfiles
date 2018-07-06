@@ -180,7 +180,7 @@ function install_osx_dev_dependencies () {
   # rbenv global 2.4.0
   ruby -v
   notice "Installing Gems as SuperUser"
-  sudo gem install bundler
+  sudo gem install bundler neovim
   # rbenv rehash
 
   notice "Python + Packages"
@@ -309,7 +309,8 @@ function install_osx_plugin_dependencies () {
     express-generator \
     mocha \
     tern \
-    webpack
+    webpack \
+    neovim
 
   # sudo npm -g outdated
   # sudo npm -g update
