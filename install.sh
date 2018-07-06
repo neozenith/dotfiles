@@ -127,13 +127,13 @@ function install_osx_dev_dependencies () {
   notice "Homebrew update and upgrade:"
   brew update
   brew upgrade
-  brew doctor
-
+  brew doctor 
 
   # Git Tooling
   # brew install michaeldfallen/formula/git-radar
   brew install git --with-brewed-openssl --with-brewed-curl git-flow
-  
+  brew install nvim
+
   brew install bash-completion \
     docker-completion \
     docker-compose-completion \
@@ -157,7 +157,7 @@ function install_osx_dev_dependencies () {
   # Python3
   brew install python3
   # NodeJS
-  brew install node
+  brew install node nvm
   # C, C++, C#, Objective-C
   brew install llvm
   # Golang
@@ -252,6 +252,7 @@ function symlink_vimrc () {
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
+  rm -rfv ~/.config/nvim
   rm -rfv ~/.prettierrc.yml
   rm -rfv ~/.eslintrc.json
   rm -rfv ~/.tern-project
@@ -259,6 +260,7 @@ function symlink_vimrc () {
   echo -e "\033[94mSymLinking new files..."
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
+  ln -sfv $SCRIPT_DIR/nvim ~/.config/nvim
   ln -sfv $SCRIPT_DIR/.prettierrc.yml ~/.prettierrc.yml       # Prettier JS Formatter Base Settings
   ln -sfv $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
   ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
