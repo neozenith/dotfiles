@@ -283,7 +283,6 @@ function install_mingw_plugin_dependencies () {
 }
 
 function install_osx_plugin_dependencies () {
-  # TODO Make this work for environments other than OSX
 
   notice "HomeBrew Packages"
   #HomeBrew
@@ -338,24 +337,6 @@ function vim_plugins () {
   # Install Plugins
   vim +PlugInstall +PlugUpdate +qall
 
-  # DEPRECATED: In favor of Vim-Plug managing post update hook
-  # If YCM plugin installed ask to build
-  # if [ -d ".vim/plugged/YouCompleteMe/.git" ]; then
-    # confirm "Build YouCompleteMe Autocomplete engine" && build_ycm
-  # fi
-}
-
-function build_ycm () {
-  # Build Autocomplete
-  cd $SCRIPT_DIR
-  show_dir
-
-  cd .vim/plugged/YouCompleteMe
-  show_dir
-  ./install.py --js-completer  --go-completer --clang-completer --system-libclang
-
-  cd $SCRIPT_DIR
-  show_dir
 }
 
 
@@ -425,6 +406,7 @@ function main_installer () {
     ninja
     clang
     vim 
+    nvim
 "
 
   for tool in $TOOL_LIST; do

@@ -48,10 +48,10 @@ endif
 " -------------------
 
 " INTERFACE:
-Plug 'neozenith/tender.vim'             " Tender colorscheme
-Plug 'neozenith/estilo-xoria256'              " Tender colorscheme
-Plug 'nightsense/carbonized'
-Plug 'nightsense/vimspectr'
+Plug 'neozenith/estilo-xoria256'              " Custom Xoria256 colorscheme
+" Plug 'neozenith/tender.vim'             " Tender colorscheme
+" Plug 'nightsense/carbonized'
+" Plug 'nightsense/vimspectr'
 
 
 Plug 'scrooloose/nerdtree'              " File Explorer

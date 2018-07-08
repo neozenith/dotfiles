@@ -146,37 +146,9 @@ path.
  - Rerunning the *install.sh / install.bat* should shortcut the install
  and just update plugins.
 
-Now that I'm working on making this cross platform and also able to feature
-toggle, all additions will use GitFlow.
-
-Safe to merge platform specific features to `develop`.
-
-`rc/` branches should support target platforms.
-
-`master` is safe on all target platforms and safely backs out where features
-are not supported or time does not permit to download supporting systems.
-
-----
-
-## Cross Platform Testing
-
-My setup is dual boot OSX and Windows native. Linux gets virtualised so I am
-leveraging [Vagrant][vagrant] and [Virtual Box][vbox] to spin up Linux dev 
-environments.
-
-```bash
-    
-    #From this repository on windows or osx
-    vagrant up
-    vagrant ssh
-    
-    # Inside Guest VM
-    . ~/nz-vim/install.sh
-
-```
-
-[vagrant]: https://www.vagrantup.com
-[vbox]: https://www.virtualbox.org/
+ **nvim/init.vim**
+  - This file should not change but will get symlinked to `~/.config/nvim/init.vim`
+  - This file will `source ~/.vimrc` and match existing plugin configuration.
 
 ----
 ## Plugins
