@@ -76,6 +76,12 @@ if (v:version >= 800)
   Plug 'w0rp/ale'               " Async Lint Engine to reduce lag after save running linting
   Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
   " Plug 'neozenith/lightline-ale' " Plugin to get lightline summary numbers from ALE
+  Plug 'ruanyl/coverage.vim'
+  let g:coverage_json_report_path = 'coverage/coverage-final.json'
+  " let g:coverage_show_covered = 1
+  let g:coverage_show_uncovered = 1
+
+
 else
   " NOTE: Should probably fallback to Syntastic but I can't be bothered
   " maintaing that when I have no need.
@@ -86,8 +92,8 @@ Plug 'nathanaelkane/vim-indent-guides'  " Visualise Indent Levels
 Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 
 " AUTO COMPLETE:
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
+Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
 Plug 'szw/vim-tags'
 if !has('win64') && !has('win32') && !has('win16')
