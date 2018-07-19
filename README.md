@@ -167,21 +167,38 @@ See [Plug documentation][plug-docs]
 ----
 ## Resources and Training
 
+_Getting Started and Getting Advanced with Vim_
+
 These blogs have been hugely influential and informative in making the switch.
 
- - [VimCasts][vimcasts] - Video Tutorials
+**Onboarding**
+
+ - `vimtutor`
  - [Vim Adventures][vim-adventures] - Online game of Vim Tutor
- - [Thorsten Ball's Vim Resources][thorsten-ball-vim-resources]
+
+**Core**
+
+ - [VimCasts][vimcasts] - Video Tutorials
+    - [VimCasts Modal Editting and Repetition][vimcasts-repetition]
+    - [VimCasts Sharpening the Saw][vimcasts-sharpeningthesaw]
+ - [Vim Text Objects: The Definitive Guide][text-objects]
  - [Vim Revisted][vim-revisited] - Good for explaining core navigation shortcuts
  - [Coming Home to Vim - Steve Losh][coming-home]
- - [Vim Text Objects: The Definitive Guide][text-objects]
+
+**Extending**
+
+ - [Doug Black - A Good Vimrc][dougblack-goodvimrc]
+ - [Thorsten Ball's Vim Resources][thorsten-ball-vim-resources]
 
 [vimcasts]: http://vimcasts.org/
-[vim-adventures]: https://vim-adventures.com/
-[thorsten-ball-vim-resources]: https://thorstenball.com/blog/2012/07/09/vim-learning-resources/
+[vimcasts-repetition]: http://vimcasts.org/episodes/modal-editing-undo-redo-and-repeat/
+[vimcasts-sharpeningthesaw]: http://vimcasts.org/blog/2012/08/on-sharpening-the-saw/
+[text-objects]: http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
 [vim-revisited]: http://mislav.net/2011/12/vim-revisited/
 [coming-home]: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
-[text-objects]: http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
+[dougblack-goodvimrc]: https://dougblack.io/words/a-good-vimrc.html
+[thorsten-ball-vim-resources]: https://thorstenball.com/blog/2012/07/09/vim-learning-resources/
+[vim-adventures]: https://vim-adventures.com/
 
 ----
 
