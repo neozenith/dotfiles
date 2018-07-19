@@ -78,9 +78,9 @@ endif
 " http://stackoverflow.com/a/29787362/622276
 " Needs to be Vim 7.4.710+
 if ((v:version == 704 && has('patch710') || v:version > 704) )
-  set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
+  set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:␣
 else
-  set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+  set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 endif
 
 " -----------------------------
