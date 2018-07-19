@@ -205,9 +205,10 @@ These blogs have been hugely influential and informative in making the switch.
 ## Credits
 
  - [Tim Pope](https://github.com/tpope)
- - [Alessandro Pezzato](https://github.com/alepez)
- - [Thorsten Ball](https://github.com/mrnugget) 
- - [Mislav Marohnić](https://github.com/mislav)
+ - [Drew Neil](https://github.com/nelstrom)
  - [Steve Losh](https://bitbucket.org/sjl/)
+ - [Thorsten Ball](https://github.com/mrnugget) 
+ - [Alessandro Pezzato](https://github.com/alepez)
+ - [Mislav Marohnić](https://github.com/mislav)
 
 Huge thanks for everything you have done for the VIM community.
