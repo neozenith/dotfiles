@@ -28,7 +28,8 @@ done
 # Prompt & Paths:
 ###############################################################################
 export PS1="\e[0;32m\w\e[m"
-export PS1="$PS1 \$(parse_git_prompt) \$(parse_docker_compose_prompt)"
+export PS1="$PS1 \$(parse_git_prompt)"
+# export PS1="$PS1 \$(parse_docker_compose_prompt)"
 export PS1="$PS1\nλ "
 
 # ZSH style tab auto complete first option instead of BELL
@@ -85,6 +86,6 @@ fi
 
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+  # . "/usr/local/opt/nvm/nvm.sh"
 
