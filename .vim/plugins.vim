@@ -41,18 +41,16 @@ endif
 "  11. Search & Replace with RegEx
 "  12. Highlight matching brackets
 "  13. Undo History
-"  14. Auto testing TODO
-"    i. unit tests TODO
-"    ii. code coverage coloring TODO
+"  14. Auto testing (Run as npm task in other terminal)
+"    i. unit tests
+"    ii. code coverage coloring
 "  15. Command Pallette (See VS Code, Sublime)
+"  16. Finds all references in project
+"  17. Refactor Rename
 " -------------------
 
 " INTERFACE:
 Plug 'neozenith/estilo-xoria256'              " Custom Xoria256 colorscheme
-" Plug 'neozenith/tender.vim'             " Tender colorscheme
-" Plug 'nightsense/carbonized'
-" Plug 'nightsense/vimspectr'
-
 
 Plug 'scrooloose/nerdtree'              " File Explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status in file explorer
@@ -76,12 +74,6 @@ if (v:version >= 800)
   Plug 'w0rp/ale'               " Async Lint Engine to reduce lag after save running linting
   Plug 'maximbaz/lightline-ale' " Plugin to get lightline summary numbers from ALE
   " Plug 'neozenith/lightline-ale' " Plugin to get lightline summary numbers from ALE
-  Plug 'ruanyl/coverage.vim'
-  let g:coverage_json_report_path = 'coverage/coverage-final.json'
-  " let g:coverage_show_covered = 1
-  let g:coverage_show_uncovered = 1
-
-
 else
   " NOTE: Should probably fallback to Syntastic but I can't be bothered
   " maintaing that when I have no need.
@@ -94,12 +86,14 @@ Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 " AUTO COMPLETE:
 Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
-Plug 'vim-scripts/dbext.vim'  " SQL Autocomplete and also SQL querying
-Plug 'szw/vim-tags'
 if !has('win64') && !has('win32') && !has('win16')
   " No Windows YCM Support for now
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --go-completer --clang-completer --system-libclang' } " Auto Complete Engine
 endif
+
+Plug 'vim-scripts/dbext.vim', {'for': 'sql'}  " SQL Autocomplete and also SQL querying
+Plug 'szw/vim-tags'
+
 
 " SNIPPETS: See .vim/custom_snippets/README.md
 Plug 'SirVer/ultisnips'     " Snippet Engine
@@ -124,19 +118,28 @@ Plug 'elzr/vim-json'          " JSON Style Checker
 Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 " Plug 'ap/vim-css-color'       " Preview CSS colours with text highlighting
 " Plug 'gko/vim-coloresque'     " Preview CSS colours. Works better than ap/vim/css-color. Awaiting YAML FT support merge request
-Plug 'neozenith/vim-coloresque'
+Plug 'neozenith/vim-coloresque' " Preview CSS colours
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
 Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
 Plug 'joegesualdo/jsdoc.vim'  " Generate JSDoc block from method definition
 
+" Show code coverage symbols. Requires Vim 8 or higher
+if (v:version >= 800)
+  Plug 'ruanyl/coverage.vim'
+  let g:coverage_json_report_path = 'coverage/coverage-final.json'
+  let g:coverage_show_uncovered = 1
+endif
+
+" R:
+" https://medium.freecodecamp.org/turning-vim-into-an-r-ide-cd9602e8c217
 
 " ARDUINO DEV:
 " Plug 'stevearc/vim-arduino'
 Plug 'neozenith/vim-arduino'
 
 " PYTHON DEV:
-Plug 'fs111/pydoc.vim'
-Plug 'alfredodeza/pytest.vim'
+Plug 'fs111/pydoc.vim', {'for': 'python'}
+Plug 'alfredodeza/pytest.vim', {'for': 'python'}
 
 " MARKDOWN:
 " https://github.com/plasticboy/vim-markdown
@@ -146,9 +149,9 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " RUBY DEV:
-Plug 'vim-ruby/vim-ruby'
-Plug 'ngmy/vim-rubocop'       " Ruby Syntax and Style Checker
-Plug 'tpope/vim-bundler'
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+Plug 'ngmy/vim-rubocop', {'for': 'ruby'}      " Ruby Syntax and Style Checker
+Plug 'tpope/vim-bundler', {'for': 'ruby'}
 
 " C++ Dev
 " Ensure .ycm_extra_conf.py is filled out so compiler directives are set.
@@ -166,7 +169,7 @@ Plug 'tpope/vim-bundler'
 " Plug 'alepez/vim-llvmcov'     " Code Covereage
 "
 Plug 'pboettch/vim-cmake-syntax'        " CMake Syntax Highlighting
-Plug 'octol/vim-cpp-enhanced-highlight' " smarter c++ highlight for c++11/14/17
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'} " smarter c++ highlight for c++11/14/17
 
 
 " Patched Fonts:

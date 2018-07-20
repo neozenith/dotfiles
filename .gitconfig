@@ -19,8 +19,9 @@
 [push]
 	default = simple
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+	tool = opendiff
+  conflictstyle = diff3
+  backup = false
 [mergetool]
 	prompt = false
 [color]

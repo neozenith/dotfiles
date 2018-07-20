@@ -21,7 +21,7 @@ augroup fdm
 augroup END
 set foldlevel=1         " Fold increment (?)
 set foldlevelstart=99
-set foldnestmax=5       " deepest fold is 5 levels
+set foldnestmax=20       " deepest fold is 5 levels
 " }}}
 
 " ---------------
