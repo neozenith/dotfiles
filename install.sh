@@ -1,5 +1,5 @@
 #! /bin/bash
-# Auth: Josh Wilson
+# Auth: Josh Peak
 # Desc: Install script for associated syntax checker tools
 
 # Installation on Windows
