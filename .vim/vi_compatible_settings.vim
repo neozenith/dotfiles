@@ -166,6 +166,10 @@ nnoremap <leader>f :lvimgrep /<c-r>=expand("<cword>")<cr>/ %<cr>:lopen<cr>
 " After searching clear the search highlighting with leader-leader
 nnoremap <leader><leader> :nohlsearch<cr>
 
+" easy way to access global clipboard buffer
+map <leader>y "*y
+map <leader>P "*p
+
 " ---------------------------
 " Autoformat: Indent, Trim Trailing Whitespace
 " ---------------------------
