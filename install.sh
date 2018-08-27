@@ -128,10 +128,11 @@ function install_osx_dev_dependencies () {
   brew update
   brew upgrade
   brew doctor 
+  brew prune
 
   # Git Tooling
   # brew install michaeldfallen/formula/git-radar
-  brew install git --with-brewed-openssl --with-brewed-curl git-flow
+  brew install git --with-brewed-openssl --with-brewed-curl
   brew install nvim
 
   brew install bash-completion \
@@ -154,8 +155,6 @@ function install_osx_dev_dependencies () {
   # DevOps
   # brew install terraform ansible
 
-  # Python3
-  brew install python3
   # NodeJS
   brew install node nvm
   # C, C++, C#, Objective-C
@@ -184,15 +183,11 @@ function install_osx_dev_dependencies () {
   # rbenv rehash
 
   notice "Python + Packages"
-  # Python 2.7
-  # HAS_PIP=`which pip 2> /dev/null`
-  # if [[ -z "$HAS_PIP" ]];then # If it doesn't have pip yet
-    # curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py -o "get-pip.py"
-    # notice "Installing PIP and Packages as SuperUser"
-    # sudo python get-pip.py
-  # fi
-  pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade --user
-  pip3 install awscli --ignore-installed six --upgrade --user
+  # Python 3
+  # pip comes with Python 3. Python 3 also installs "version-less" symlinks
+  brew install python3
+  pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade 
+  pip3 install awscli --ignore-installed six --upgrade
   complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
   
 }
@@ -252,6 +247,7 @@ function symlink_vimrc () {
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
+  rm -rfv ~/.hyper.js 
   rm -rfv ~/.config/nvim
   rm -rfv ~/.prettierrc.yml
   rm -rfv ~/.eslintrc.json
@@ -261,6 +257,7 @@ function symlink_vimrc () {
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
   ln -sfv $SCRIPT_DIR/nvim ~/.config/nvim
+  ln -sfv $SCRIPT_DIR/.hyper.js ~/.hyper.js
   ln -sfv $SCRIPT_DIR/.prettierrc.yml ~/.prettierrc.yml       # Prettier JS Formatter Base Settings
   ln -sfv $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
   ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings

@@ -2,7 +2,7 @@
   # http://www.ee.surrey.ac.uk/Teaching/Unix/
 
 # Navigation
-alias ll="ls -laGHf"
+alias ll="ls -laGH"
 
 ###############################################################################
 # EXPORTED FUNCTIONS:
@@ -51,6 +51,9 @@ inject_path "$(go env GOPATH)/bin"
 if [[ $OSTYPE == darwin* ]]; then
   # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
   inject_path "/usr/local/opt/openssl/bin"
+
+  # Use this to create symlinks from python to python3 
+  prepend_path "/usr/local/opt/python/libexec/bin"
 fi
 
 ###############################################################################
