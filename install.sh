@@ -175,8 +175,9 @@ function install_osx_dev_dependencies () {
   # if which rbenv > /dev/null; then
   #   eval "$(rbenv init -)"
   # fi
-  # rbenv install 2.4.0
-  # rbenv global 2.4.0
+  # RUBY_VERSION=2.5.1
+  # rbenv install $RUBY_VERSION
+  # rbenv global $RUBY_VERSION  
   ruby -v
   notice "Installing Gems as SuperUser"
   sudo gem install bundler neovim
