@@ -96,7 +96,7 @@ Plug 'szw/vim-tags'
 
 
 " SNIPPETS: See .vim/custom_snippets/README.md
-Plug 'SirVer/ultisnips'     " Snippet Engine
+" Plug 'SirVer/ultisnips'     " Snippet Engine
 
 " COMMAND PALETTE:
 Plug 'ctrlpvim/ctrlp.vim'
