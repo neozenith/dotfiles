@@ -44,6 +44,12 @@
 	cm = commit
 	lola = log --graph --oneline --decorate --all --abbrev-commit
 	lol = log --graph --oneline --decorate  --abbrev-commit
+	
+[http]
+	# https://support.ssl.com/Knowledgebase/Article/View/19/0/der-vs-crt-vs-cer-vs-pem-certificates-and-how-to-convert-them
+	# sslCAPath
+	# sslCAInfo
+	
 [credentials]
   helper = osxkeychain
 
