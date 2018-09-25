@@ -1,6 +1,4 @@
 {
-    "terminal.integrated.shell.windows": "C:\\Users\\jpeak\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
-    "python.pythonPath": "C:\\Users\\jpeak\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "editor.tabSize": 2,
@@ -45,4 +43,5 @@
             ]
         }
     ],
+    "vim.foldfix": true,
 }
