@@ -1,5 +1,5 @@
 {
-    "terminal.integrated.shell.windows": "%LOCALAPPDATA%\\Programs\\Git\\bin\\bash.exe",
+    "terminal.integrated.shell.windows": "C:\\Users\\jpeak\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
     "terminal.integrated.fontFamily": "'SauceCodePro NF', Consolas, 'Courier New', monospace",   
     "terminal.integrated.fontWeight":"400",
     "editor.tabSize": 2,
