@@ -1,15 +1,21 @@
 {
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true,
+    "terminal.integrated.shell.windows": "%LOCALAPPDATA%\\Programs\\Git\\bin\\bash.exe",
+    "terminal.integrated.fontFamily": "'SauceCodePro NF', Consolas, 'Courier New', monospace",   
+    "terminal.integrated.fontWeight":"400",
     "editor.tabSize": 2,
-    "python.unitTest.unittestEnabled": false,
-    "python.unitTest.nosetestsEnabled": false,
     "editor.fontFamily": "'SauceCodePro NF', Consolas, 'Courier New', monospace",
-    "python.unitTest.pyTestEnabled": true,
     "explorer.confirmDelete": false,
     "editor.renderWhitespace": "all",
+    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+    "workbench.colorTheme": "Monokai",
+    "editor.minimap.enabled": false,
     "git.confirmSync": false,
     "git.autofetch": true,
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
     "[python]": {
         "editor.rulers": [
             72,
@@ -45,4 +51,5 @@
     ],
     "vim.foldfix": true,
     "vim.useCtrlKeys": false,
+    "vim.easymotion": true,
 }
