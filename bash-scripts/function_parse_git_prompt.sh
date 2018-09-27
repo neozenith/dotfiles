@@ -61,7 +61,14 @@ parse_git_prompt() {
       [[ -n $CACHE_STATUS ]] && CACHE_STATUS=" [${CACHE_STATUS}]"
     fi
     
-    BRANCH_STATUS="${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
+    REBASE_STATUS=""
+    if [[ "$BRANCH" != "master" ]]; then
+        local REBASE_DELTA=`git cherry $BRANCH master 2> /dev/null | wc -l | tr -d '[:space:]'`
+	      if [ $REBASE_DELTA -gt 0 ]; then
+	        REBASE_STATUS="${PURPLE}M→${GREEN}${REBASE_DELTA}${NORM}"
+	      fi
+    fi
+    BRANCH_STATUS="${REBASE_STATUS}${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
 
     # Remote status if you have fetched latest from remotes
     # 
@@ -95,4 +102,6 @@ export -f parse_git_prompt
 
 # export PS1="\e[0;32m\w\e[m"
 # export PS1="$PS1 \$(parse_git_prompt)"
+# Git bash use this version
+# export PS1="$PS1 $(parse_git_prompt)"
 # export PS1="$PS1\nλ "
