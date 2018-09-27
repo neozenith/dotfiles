@@ -13,11 +13,13 @@ set nocompatible
 filetype off
 
 " Setup Runtime Path:
+source ~/dotfiles/.vim/autoload/vim-plug/plug.vim
+
 if has('win64') || has('win32') || has('win16')
-  set rtp+=$HOME/vimfiles/bundle/Plug.vim
-  call plug#begin('$HOME/vimfiles/bundle/')
+  set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/plug.vim
+  call plug#begin()
 else
-  set rtp+=~/.vim/bundle/Plug.vim
+  set rtp+=~/dotfiles/.vim/bundle/Plug.vim
   call plug#begin()
 endif
 
@@ -88,7 +90,7 @@ Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' 
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 if !has('win64') && !has('win32') && !has('win16')
   " No Windows YCM Support for now
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --go-completer --clang-completer --system-libclang' } " Auto Complete Engine
+  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --go-completer --clang-completer --system-libclang' } " Auto Complete Engine
 endif
 
 Plug 'vim-scripts/dbext.vim', {'for': 'sql'}  " SQL Autocomplete and also SQL querying

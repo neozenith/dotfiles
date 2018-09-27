@@ -42,6 +42,7 @@ if has('win64') || has('win32') || has('win16')
   set t_Co=256
   let &t_AB="\e[48;5;%dm"
   let &t_AF="\e[38;5;%dm"
+  colorscheme old_xoria256
 else
   " Use xoria256 since it is installed but check plugins.vim for overrides
   colorscheme old_xoria256
