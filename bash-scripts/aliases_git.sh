@@ -50,4 +50,5 @@
   alias gt="git tree"
   # (G)it (L)og, same as git tree above but backup option if not defined in git config
   alias gl="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative" 
+  alias gg="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --date=relative" 
 
