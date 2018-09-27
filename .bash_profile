@@ -14,7 +14,6 @@ SCRIPTS="
 aliases_git.sh
 aliases_heroku.sh
 function_parse_git_prompt.sh
-function_parse_docker_compose_prompt.sh
 function_ccurl.sh
 function_inject_path.sh
 "
@@ -28,8 +27,13 @@ done
 # Prompt & Paths:
 ###############################################################################
 export PS1="\e[0;32m\w\e[m"
-export PS1="$PS1 \$(parse_git_prompt)"
-# export PS1="$PS1 \$(parse_docker_compose_prompt)"
+if [[ $OSTYPE == msys* ]]; then 
+  export PS1="$PS1 \`parse_git_prompt\`"
+elif [[ $OSTYPE == darwin* ]]; then
+  export PS1="$PS1 \$(parse_git_prompt)"
+else
+  export PS1="$PS1 \$(parse_git_prompt)"
+fi
 export PS1="$PS1\nλ "
 
 # ZSH style tab auto complete first option instead of BELL
