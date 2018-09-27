@@ -1,6 +1,7 @@
 # Vim Cruft
 *.swp
 .vim/.netrwhist
+.vim/autoload/
 .vim/bundle
 .vim/plugged
 tags
