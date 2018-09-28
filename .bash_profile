@@ -9,7 +9,7 @@ alias ll="ls -laGH"
 ###############################################################################
 # TODO: DOTFILE_DIR should not be hard coded but resolve the symlink from SCRIPT_DIR
 # SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DOTFILE_DIR="$HOME/nz-vim"
+DOTFILE_DIR="$HOME/dotfiles"
 SCRIPTS="
 aliases_git.sh
 aliases_heroku.sh
@@ -50,7 +50,7 @@ bind 'TAB:menu-complete'
 inject_path "$HOME/scripts/ssh-connections"
 inject_path "$HOME/scripts/sql-connections"
 inject_path "$HOME/.npm-packages/bin"
-inject_path "$(go env GOPATH)/bin"
+[ -n "$(which go 2> /dev/null)" ] && inject_path "$(go env GOPATH)/bin"
 
 if [[ $OSTYPE == darwin* ]]; then
   # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
