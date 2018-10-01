@@ -1,6 +1,6 @@
+echo -n "🕒 ..."
 # Unix Reference Links
   # http://www.ee.surrey.ac.uk/Teaching/Unix/
-
 # Navigation
 alias ll="ls -laGH"
 
@@ -96,3 +96,4 @@ fi
 # export NVM_DIR="$HOME/.nvm"
   # . "/usr/local/opt/nvm/nvm.sh"
 
+echo "😎"

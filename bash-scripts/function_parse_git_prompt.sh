@@ -64,9 +64,10 @@ parse_git_prompt() {
     REBASE_STATUS=""
     if [[ "$BRANCH" != "master" ]]; then
         local REBASE_DELTA=`git cherry $BRANCH master 2> /dev/null | wc -l | tr -d '[:space:]'`
-	      if [ $REBASE_DELTA -gt 0 ]; then
+				if [ $REBASE_DELTA -gt 0 ]; then
 	        REBASE_STATUS="${PURPLE}M→${GREEN}${REBASE_DELTA}${NORM}"
-	      fi
+				fi
+        
     fi
     BRANCH_STATUS="${REBASE_STATUS}${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
 
@@ -86,9 +87,25 @@ parse_git_prompt() {
     for r in `git remote 2> /dev/null`; do
       local UP=`git cherry $r/$BRANCH $BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
       local DOWN=`git cherry $BRANCH $r/$BRANCH 2> /dev/null | wc -l | tr -d '[:space:]'`
-      if [ $UP -gt  0 ] || [ $DOWN -gt 0 ];then
-        REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}$PURPLE|$NORM"
+      REMOTE_DELTA=""
+      if [ $UP -gt  0 ] || [ $DOWN -gt 0 ] ;then
+        REMOTE_DELTA="|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}"
       fi
+
+      REBASE_STATUS=""
+      REBASE_DELTA=0
+      if [[ "$BRANCH" != "master" ]]; then
+          local REBASE_DELTA=`git cherry $BRANCH $r/master 2> /dev/null | wc -l | tr -d '[:space:]'`
+          if [ $REBASE_DELTA -gt 0 ]; then
+            REBASE_STATUS="${PURPLE}|M↓${GREEN}${REBASE_DELTA}${NORM}"
+          fi
+      fi
+          
+
+      if [ $UP -gt  0 ] || [ $DOWN -gt 0 ] || [ $REBASE_DELTA -gt 0 ];then
+        REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}$REBASE_STATUS$REMOTE_DELTA$PURPLE|$NORM"
+      fi
+
     done
 
     echo -e "${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
