@@ -1,26 +1,30 @@
 {
+    //Terminal
     "terminal.integrated.shell.windows": "C:\\Users\\jpeak\\AppData\\Local\\Programs\\Git\\bin\\sh.exe",
     "terminal.integrated.fontFamily": "'SauceCodePro NF', 'Courier New', monospace",   
     "terminal.integrated.fontSize": 14, 
+    "terminal.integrated.rendererType": "canvas",
 
-
+    // Editor
     "editor.tabSize": 2,
     "editor.fontFamily": "'SauceCodePro NF', 'Courier New', monospace",
     "editor.fontSize": 14,
     "explorer.confirmDelete": false,
     "editor.renderWhitespace": "all",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
-    "workbench.colorTheme": "Material Theme Darker High Contrast",
+    "workbench.colorTheme": "Material Theme Darker",
     "editor.minimap.enabled": false,
 
-
+    // Git
     "git.confirmSync": false,
     "git.autofetch": true,
 
-
-    "python.unitTest.pyTestEnabled": true,
+    // Python
+    "python.unitTest.autoTestDiscoverOnSaveEnabled": true,
     "python.unitTest.unittestEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.pyTestArgs": [],
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "[python]": {
@@ -34,12 +38,12 @@
         }
     },
 
-
+    // Vim
     "vim.statusBarColorControl": true,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#323c2a",
-        "statusBar.noFolderBackground": "#323c2a",
-        "statusBar.debuggingBackground": "#323c2a"
+        "statusBar.background": "#2a363c",
+        "statusBar.noFolderBackground": "#2a363c",
+        "statusBar.debuggingBackground": "#2a363c"
     },
     "vim.statusBarColors.visualline": "#3c322a",
     "vim.statusBarColors.visualblock": "#3c322a",
@@ -61,5 +65,5 @@
     "vim.foldfix": true,
     "vim.useCtrlKeys": false,
     "vim.easymotion": true,
-    "terminal.integrated.rendererType": "canvas",
 }
+
