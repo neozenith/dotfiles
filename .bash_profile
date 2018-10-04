@@ -28,11 +28,11 @@ done
 ###############################################################################
 export PS1="\e[0;32m\w\e[m"
 if [[ $OSTYPE == msys* ]]; then 
-  export PS1="$PS1\n\`parse_git_prompt\`"
+  export PS1="$PS1 \`parse_git_prompt\`"
 elif [[ $OSTYPE == darwin* ]]; then
-  export PS1="$PS1\n\$(parse_git_prompt)"
+  export PS1="$PS1 \$(parse_git_prompt)"
 else
-  export PS1="$PS1\n\$(parse_git_prompt)"
+  export PS1="$PS1 \$(parse_git_prompt)"
 fi
 export PS1="$PS1\nλ "
 

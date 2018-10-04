@@ -108,7 +108,7 @@ parse_git_prompt() {
 
     done
 
-    echo -e "${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
+    echo -e "\n${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
 
   fi
   
