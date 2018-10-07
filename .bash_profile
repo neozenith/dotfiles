@@ -1,4 +1,8 @@
 echo -n "🕒 ..."
+
+# Setup App Tokens
+# https://github.com/settings/tokens
+
 # Unix Reference Links
   # http://www.ee.surrey.ac.uk/Teaching/Unix/
 # Navigation
