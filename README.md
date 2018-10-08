@@ -77,11 +77,11 @@ git fetch automatically in the background so you will need to run that manually.
 
 If you want it without my complete dotfiles setup then: 
 
-Download [`bash-scripts/function_parse_git_prompt.sh`](https://github.com/neozenith/vim-dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh)
+Download [`bash-scripts/function_parse_git_prompt.sh`](https://github.com/neozenith/dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh)
 to your home directory 
 
 ```bash
-curl -o $HOME/function_parse_git_prompt.sh https://github.com/neozenith/vim-dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh
+curl -o $HOME/function_parse_git_prompt.sh https://github.com/neozenith/dotfiles/blob/master/bash-scripts/function_parse_git_prompt.sh
 ```
 
 and add the following to your `.bash_profile` or `.bashrc`.
@@ -101,8 +101,8 @@ export PS1="$PS1\nλ "
 
 ```bash
 cd ~
-git clone https://github.com/neozenith/vim-dotfiles.git ~/nz-vim/
-. nz-vim/install.sh
+git clone https://github.com/neozenith/dotfiles.git
+. dotfiles/install.sh
 ```
 
 ### Windows
@@ -113,7 +113,7 @@ Download latest gVim for CMDer to use that binary instead of bundled.
 
 ```
 cd %HOME%
-git clone https://github.com/neozenith/vim-dotfiles.git nz-vim/
+git clone https://github.com/neozenith/dotfiles.git nz-vim/
 cd nz-vim
 install.bat
 ```
