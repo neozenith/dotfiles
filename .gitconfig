@@ -57,5 +57,3 @@
 	username = neozenith
 [credentials "https://gitlab.com"]
 	username = neozenith
-[credentials "tools.cloudsenseltd.com"]
-  username = jpeak
