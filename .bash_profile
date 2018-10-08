@@ -51,6 +51,7 @@ inject_path "$HOME/scripts/ssh-connections"
 inject_path "$HOME/scripts/sql-connections"
 inject_path "$HOME/.npm-packages/bin"
 
+[ -d "/usr/local/go/bin" ] && prepend_path "/usr/local/go/bin"
 [ -n "$(which go 2> /dev/null)" ] && [ -z "$(go env GOPATH)" ] && export GOPATH="$HOME/go"
 [ -n "$(which go 2> /dev/null)" ] && inject_path "$(go env GOPATH)/bin"
 

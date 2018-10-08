@@ -15,11 +15,11 @@ parse_git_prompt() {
     local ESC_CODE="\e"
     [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
 
-    local RED="$ESC_CODE[2;31m"
-    local GREEN="$ESC_CODE[2;32m"
-    local YELLOW="$ESC_CODE[2;33m"
-    local BLUE="$ESC_CODE[2;34m"
-    local PURPLE="$ESC_CODE[2;36m"
+    local RED="$ESC_CODE[31m"
+    local GREEN="$ESC_CODE[32m"
+    local YELLOW="$ESC_CODE[33m"
+    local BLUE="$ESC_CODE[34m"
+    local PURPLE="$ESC_CODE[36m"
     local NORM="$ESC_CODE[0m"
 
     local BRANCH_STATUS=""
