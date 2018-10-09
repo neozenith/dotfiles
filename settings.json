@@ -1,10 +1,9 @@
 {
     //Terminal
     "terminal.integrated.shell.windows": "C:\\Users\\jpeak\\AppData\\Local\\Programs\\Git\\bin\\sh.exe",
-    "terminal.integrated.fontFamily": "'SauceCodePro NF', 'Courier New', monospace",   
-    "terminal.integrated.fontSize": 14, 
+    "terminal.integrated.fontFamily": "'SauceCodePro NF', 'Courier New', monospace",
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.rendererType": "canvas",
-
     // Editor
     "editor.tabSize": 2,
     "editor.fontFamily": "'SauceCodePro NF', 'Courier New', monospace",
@@ -14,11 +13,10 @@
     "workbench.iconTheme": "eq-material-theme-icons-darker",
     "workbench.colorTheme": "Material Theme Darker",
     "editor.minimap.enabled": false,
-
+    "editor.formatOnSave": true,
     // Git
     "git.confirmSync": false,
     "git.autofetch": true,
-
     // Python
     "python.unitTest.autoTestDiscoverOnSaveEnabled": true,
     "python.unitTest.unittestEnabled": false,
@@ -27,6 +25,9 @@
     "python.unitTest.pyTestArgs": [],
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
+    "python.formatting.autopep8Args": [
+        "--max-line-length=110"
+    ],
     "[python]": {
         "editor.rulers": [
             72,
@@ -37,7 +38,6 @@
             "source.organizeImports": true
         }
     },
-
     // Vim
     "vim.statusBarColorControl": true,
     "workbench.colorCustomizations": {
@@ -66,4 +66,3 @@
     "vim.useCtrlKeys": false,
     "vim.easymotion": true,
 }
-
