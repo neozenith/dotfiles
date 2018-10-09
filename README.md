@@ -113,8 +113,8 @@ Download latest gVim for CMDer to use that binary instead of bundled.
 
 ```
 cd %HOME%
-git clone https://github.com/neozenith/dotfiles.git nz-vim/
-cd nz-vim
+git clone https://github.com/neozenith/dotfiles.git
+cd dotfiles
 install.bat
 ```
 
