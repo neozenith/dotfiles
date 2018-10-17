@@ -1,3 +1,4 @@
+#! /bin/bash
 export ARCH=`uname -m`
 # TODO: Get latest version by curl scraping this URL
 # https://nodejs.org/en/download/current/
