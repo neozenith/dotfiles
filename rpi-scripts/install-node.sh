@@ -1,7 +1,7 @@
 export ARCH=`uname -m`
 # TODO: Get latest version by curl scraping this URL
 # https://nodejs.org/en/download/current/
-export NODE_VERSION='v10.12.0'
+export NODE_VERSION=`curl -s https://nodejs.org/en/download/current/ | grep -E 'v[0-9][0-9]' | sed -r s/.*\(v[0-9]+\.[0-9]+.[0-9]+\).*/\\1/g | head -1`
 export NODE_DIST="node-$NODE_VERSION-linux-$ARCH"
 cd $HOME
 wget "https://nodejs.org/dist/$NODE_VERSION/$NODE_DIST.tar.xz"
