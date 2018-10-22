@@ -50,7 +50,7 @@
 	# sslCAPath
 	# sslCAInfo
 	
-[credentials]
+[credential]
   # Git will try credential stores in failover order
   # https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
 
@@ -63,7 +63,7 @@
   # LAST RESORT
   helper = cache
 
-[credentials "https://github.com"]
+[credential "https://github.com"]
 	username = neozenith
-[credentials "https://gitlab.com"]
+[credential "https://gitlab.com"]
 	username = neozenith
