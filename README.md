@@ -5,7 +5,7 @@
 <img 
   align="right"
   alt="Vim Bonsai SVG Logo"
-  src="https://cdn.rawgit.com/neozenith/vim-dotfiles/2bf070a3/images/vim-bonsai.svg" 
+  src="./images/vim-bonsai.svg?sanitize=true" 
 />
 
 This is not intended as a public example of *good* management of VIM dotFiles 
