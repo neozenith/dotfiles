@@ -11,7 +11,7 @@
     "explorer.confirmDelete": false,
     "editor.renderWhitespace": "all",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
-    "workbench.colorTheme": "Material Theme Darker",
+    "workbench.colorTheme": "Material Theme Darker High Contrast",
     "editor.minimap.enabled": false,
     "editor.formatOnSave": true,
     // Git
@@ -23,15 +23,28 @@
     "python.unitTest.nosetestsEnabled": false,
     "python.unitTest.pyTestEnabled": true,
     "python.unitTest.pyTestArgs": [],
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.pylintArgs": [
+        "--jobs=0"
+    ],
     "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [],
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "120"
+    ],
+    "python.linting.mypyEnabled": false,
     "python.formatting.autopep8Args": [
-        "--max-line-length=110"
+        "--max-line-length=120"
     ],
     "[python]": {
         "editor.rulers": [
             72,
-            79
+            79,
+            110
         ],
         "editor.tabSize": 4,
         "editor.codeActionsOnSave": {
@@ -41,9 +54,9 @@
     // Vim
     "vim.statusBarColorControl": true,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#2a363c",
-        "statusBar.noFolderBackground": "#2a363c",
-        "statusBar.debuggingBackground": "#2a363c"
+        "statusBar.background": "#323c2a",
+        "statusBar.noFolderBackground": "#323c2a",
+        "statusBar.debuggingBackground": "#323c2a"
     },
     "vim.statusBarColors.visualline": "#3c322a",
     "vim.statusBarColors.visualblock": "#3c322a",
@@ -62,7 +75,18 @@
             ]
         }
     ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        }
+    ],
     "vim.foldfix": true,
     "vim.useCtrlKeys": false,
     "vim.easymotion": true,
+    "window.zoomLevel": 0,
 }
