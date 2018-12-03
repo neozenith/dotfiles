@@ -32,7 +32,11 @@
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
   alias gu=" git checkout $1 -f; git fetch -v --all --tags --prune; git pull -v --all"
-  alias gla="git pull -v --all"
+
+###############################################################################
+  # (G)it Pu(L)
+  alias gl="git pull -v"
+  alias gL="git pull -v --all"
   
 ###############################################################################
   # (G)it (P)ush
@@ -48,7 +52,7 @@
 ###############################################################################
   # (G)it (T)ree see gitconfig for full details of git tree alias
   alias gt="git tree"
-  # (G)it (L)og, same as git tree above but backup option if not defined in git config
-  alias gl="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative" 
+  # (G)it (G)raph, same as git tree above but backup option if not defined in git config
+  #alias gl="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --all --date=relative" 
   alias gg="git log --pretty=format:\"%C(bold blue)%h%x09%C(bold green)[%ad] %C(auto)%d%n%C(dim white)%an - %C(reset)%x20%s\" --graph --full-history --date=relative" 
 
