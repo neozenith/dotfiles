@@ -23,7 +23,8 @@
   conflictstyle = diff3
   backup = false
 [mergetool]
-	prompt = false
+  prompt = false
+  keepBackup = false
 [color]
   ui = true
   diff = auto
