@@ -104,3 +104,5 @@ fi
   # . "/usr/local/opt/nvm/nvm.sh"
 
 echo "😎"
+
+export PATH="$HOME/.cargo/bin:$PATH"
