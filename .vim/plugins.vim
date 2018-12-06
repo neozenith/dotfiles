@@ -62,9 +62,11 @@ Plug 'sjl/gundo.vim'                    " Undo History
 " GIT Integerations:
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
+Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
 " Note to self: Git Diff article explaining how to 3 way merge with Vim
 " http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
+
 
 " STATUS LINE:
 Plug 'itchyny/lightline.vim'  " Status bar
