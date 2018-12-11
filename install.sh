@@ -403,8 +403,11 @@ function main_installer () {
     cmake
     ninja
     clang
+    gcc
     vim 
     nvim
+    rustc
+    cargo
 "
 
   for tool in $TOOL_LIST; do
