@@ -337,6 +337,35 @@ function vim_plugins () {
 
 }
 
+function tool_check() {
+
+  notice "Tools"
+  TOOL_LIST="
+    git 
+    node 
+    npm 
+    python 
+    pip 
+    python3 
+    pip3 
+    ruby
+    brew
+    cmake
+    ninja
+    clang
+    gcc
+    vim 
+    nvim
+    rustc
+    cargo
+"
+
+  for tool in $TOOL_LIST; do
+    notice "${tool}"
+    echo -e "`which $tool`"
+    [[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
+  done
+}
 
 ###############################################################################
 # INIT:
@@ -353,6 +382,8 @@ show_dir
 ###############################################################################
 function main_installer () {
   
+  tool_check
+
   ###############################
   # Install Dev Environment Tools
   ###############################
@@ -389,33 +420,8 @@ function main_installer () {
   ####################
   confirm "Install Vim plugins" && vim_plugins
 
-  notice "Tools"
-  TOOL_LIST="
-    git 
-    node 
-    npm 
-    python 
-    pip 
-    python3 
-    pip3 
-    ruby
-    brew
-    cmake
-    ninja
-    clang
-    gcc
-    vim 
-    nvim
-    rustc
-    cargo
-"
-
-  for tool in $TOOL_LIST; do
-    notice "${tool}"
-    echo -e "`which $tool`"
-    [[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
-  done
-
+  
+  tool_check
 }
 
 main_installer
