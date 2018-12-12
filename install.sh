@@ -57,7 +57,11 @@ function show_dir () {
 ###############################################################################
 function install_mingw_dev_dependencies () {
   echo "Not yet implemented"
+
+  # TODO: Auto add this to existing git bash ~/.bashrc if it isn't already in there
+  # test -f ~/dotfiles/.bash_profile && . ~/dotfiles/.bash_profile
 }
+
 function install_RHEL_dev_dependencies () {
   SUDO=`which sudo 2> /dev/null`
   HAS_YUM=`which yum 2> /dev/null`
@@ -136,15 +140,6 @@ function install_osx_dev_dependencies () {
   brew install nvim
 
   brew install bash-completion \
-    docker-completion \
-    docker-compose-completion \
-    docker-machine-completion \
-    ruby-completion \
-    gem-completion \
-    bundler-completion \
-    rake-completion \
-    rails-completion \
-    vagrant-completion \
     pip-completion 
 
   brew install tree ctags fzf the_silver_searcher
@@ -164,24 +159,7 @@ function install_osx_dev_dependencies () {
 
   # Database Drivers
   brew install postgres \
-    redis \
-    elasticsearch \
-    kibana
-
-  notice "Ruby + Gems"
-  # Ruby
-  # brew install ruby ruby-build -y
-  # brew install rbenv ruby-build
-  # if which rbenv > /dev/null; then
-  #   eval "$(rbenv init -)"
-  # fi
-  # RUBY_VERSION=2.5.1
-  # rbenv install $RUBY_VERSION
-  # rbenv global $RUBY_VERSION  
-  ruby -v
-  notice "Installing Gems as SuperUser"
-  sudo gem install bundler neovim
-  # rbenv rehash
+    redis 
 
   notice "Python + Packages"
   # Python 3
@@ -227,7 +205,6 @@ function build_vim () {
 
   if [[ -n "$MAKE" ]]; then 
     $SUDO ./configure $VIM_INSTALL_PREFIX \
-      --enable-rubyinterp \
       --enable-pythoninterp \
       --enable-python3interp \
       --with-features=huge
@@ -244,11 +221,10 @@ function build_vim () {
 ###############################################################################
 # Install VIMRC:
 ###############################################################################
-function symlink_vimrc () {
+function symlink_dotfiles () {
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
-  rm -rfv ~/.hyper.js 
   rm -rfv ~/.config/nvim
   rm -rfv ~/.prettierrc.yml
   rm -rfv ~/.eslintrc.json
@@ -258,7 +234,6 @@ function symlink_vimrc () {
   ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
   ln -sfv $SCRIPT_DIR/.vim ~/.vim
   ln -sfv $SCRIPT_DIR/nvim ~/.config/nvim
-  ln -sfv $SCRIPT_DIR/.hyper.js ~/.hyper.js
   ln -sfv $SCRIPT_DIR/.prettierrc.yml ~/.prettierrc.yml       # Prettier JS Formatter Base Settings
   ln -sfv $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
   ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
@@ -362,8 +337,8 @@ function tool_check() {
 
   for tool in $TOOL_LIST; do
     notice "${tool}"
-    echo -e "`which $tool`"
-    [[ -n `which ${tool}` ]] && ${tool} --version | head -n 1
+    echo -e "`which $tool 2> /dev/null`"
+    [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version | head -n 1
   done
 }
 
@@ -387,7 +362,8 @@ function main_installer () {
   ###############################
   # Install Dev Environment Tools
   ###############################
-  echo "OS Detected: $OSTYPE"
+  title "OS Detected: $OSTYPE"
+
   if [[ $OSTYPE == darwin* ]]; then
     confirm "Install OSX development tools" && install_osx_dev_dependencies
   elif [[ $OSTYPE == msys* ]]; then
@@ -410,10 +386,10 @@ function main_installer () {
 
   confirm "Build latest Vim from Source" && build_vim
 
-  ###############
-  # Install VIMRC
-  ###############
-  confirm "Install (symlink) .vimrc files" && symlink_vimrc
+  ##################
+  # Install Dotfiles
+  ##################
+  confirm "Install (symlink) dotfiles files" && symlink_dotfiles
 
   ####################
   #Install VIM Plugins
