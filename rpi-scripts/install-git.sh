@@ -16,10 +16,15 @@ sudo apt-get install -y autoconf \
     docbook2x
 
 cd ~
-git clone https://github.com/git/git
+# If can't find it then clone it
+[ ! -d git/.git ] && git clone https://github.com/git/git
 cd git
+git checkout master 
+git pull
 
 make configure
 ./configure --prefix=/usr/local
-make all doc info
-make install install-doc install-html install-info
+make all 
+# make doc info
+make install 
+#make install-doc install-html install-info
