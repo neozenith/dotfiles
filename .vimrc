@@ -8,6 +8,15 @@ scriptencoding utf-8
 " Refactoring entry point vimrc
 " Sub scripts can be found in the .vim/ folder
 
+" TODO:
+" Make better use of vim plugins paths
+" https://vimways.org/2018/from-vimrc-to-vim/
+" https://vimways.org/2018/runtime-hackery/
+"
+" Make cross platform support cleaner
+" https://vimways.org/2018/make-your-setup-truly-cross-platform/
+
+
 " ---------------------------
 " Vi Compatible Settings: Tabs, Colors, Folding and anything that are plain Vi Settings
 " ---------------------------

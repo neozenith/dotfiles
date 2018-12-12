@@ -17,12 +17,11 @@ source ~/dotfiles/.vim/autoload/vim-plug/plug.vim
 
 if has('win64') || has('win32') || has('win16')
   set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/plug.vim
-  call plug#begin()
 else
   set rtp+=~/dotfiles/.vim/bundle/Plug.vim
-  call plug#begin()
 endif
 
+call plug#begin()
 " -------------------
 "  Compulsory Components of Any Dev Environment
 "  1. Syntax Coloring / Nested Bracket Coloring
