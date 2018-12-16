@@ -1,0 +1,2 @@
+# Copy to $HOME for OSes that don't support symlinks
+test -f ~/dotfiles/.bash_profile && . ~/dotfiles/.bash_profile
