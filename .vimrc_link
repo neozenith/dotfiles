@@ -1,0 +1,4 @@
+" Copy this file into $HOME where symlinks don't work
+set runtimepath^=~/dotfiles/.vim runtimepath+=~/dotfiles/.vim/after
+let &packpath = &runtimepath
+source ~/dotfiles/.vimrc
