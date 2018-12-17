@@ -373,7 +373,7 @@ function tool_check() {
   for tool in $TOOL_LIST; do
     notice "${tool}"
     echo -e "`which $tool 2> /dev/null`"
-    [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version |& head -n 1
+    [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version 2>&1 | head -n 1
   done
 }
 
