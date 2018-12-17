@@ -13,6 +13,8 @@ set nocompatible
 filetype off
 
 " Setup Runtime Path:
+" TODO: Sort this out. Clearly you have no idea what you are doing
+
 source ~/dotfiles/.vim/autoload/vim-plug/plug.vim
 
 if has('win64') || has('win32') || has('win16')

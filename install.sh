@@ -165,9 +165,42 @@ function install_osx_dev_dependencies () {
   # Python 3
   # pip comes with Python 3. Python 3 also installs "version-less" symlinks
   brew install python3
-  pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade 
-  pip3 install awscli --ignore-installed six --upgrade
-  complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
+}
+
+function install_os_independent_dev_dependencies () {
+  notice "Python Packages"
+  #Python
+
+  if [[ -n `which pip3 2> /dev/null` ]]; then
+    python3 -m pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade 
+    python3 -m pip3 install awscli --ignore-installed six --upgrade
+    complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
+  else
+    notice "pip3 not found"
+  fi
+  
+  notice "NodeJS Packages"
+  #JavaScript
+  if [[ -n `which npm 2> /dev/null` ]]; then
+    npm install -g \
+      eslint \
+      tslint \
+      prettier \
+      prettier-eslint \
+      eslint-plugin-prettier \
+      eslint-config-prettier \
+      @neozenith/eslint-config \
+      swaglint \
+      express-generator \
+      mocha \
+      tern \
+      webpack \
+      neovim
+    # sudo npm -g outdated
+    # sudo npm -g update
+  else
+    notice "NPM not found"
+  fi
   
 }
 
@@ -221,7 +254,13 @@ function build_vim () {
 ###############################################################################
 # Install VIMRC:
 ###############################################################################
-function symlink_dotfiles () {
+function setup_dotfiles() {
+  
+  LINK_ACTION="ln -sfv"
+  if [[ $OSTYPE == msys* ]]; then
+    LINK_ACTION="cp -vr"
+  fi
+
   echo -e "\033[91mDeleting existing files..."
   rm -rfv ~/.vim
   rm -rfv ~/.vimrc
@@ -230,14 +269,21 @@ function symlink_dotfiles () {
   rm -rfv ~/.eslintrc.json
   rm -rfv ~/.tern-project
   rm -rfv ~/.ycm_extra_conf.py
-  echo -e "\033[94mSymLinking new files..."
-  ln -sfv $SCRIPT_DIR/.vimrc ~/.vimrc
-  ln -sfv $SCRIPT_DIR/.vim ~/.vim
-  ln -sfv $SCRIPT_DIR/nvim ~/.config/nvim
-  ln -sfv $SCRIPT_DIR/.prettierrc.yml ~/.prettierrc.yml       # Prettier JS Formatter Base Settings
-  ln -sfv $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
-  ln -sfv $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
-  ln -sfv $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings
+  
+  
+  echo -e "\033[94mLinking new files..."
+  if [[ $OSTYPE == msys* ]]; then
+    $LINK_ACTION $SCRIPT_DIR/.vimrc_link ~/.vimrc
+  else
+    $LINK_ACTION $SCRIPT_DIR/.vimrc ~/.vimrc
+    $LINK_ACTION $SCRIPT_DIR/.vim ~/.vim
+  fi
+
+  $LINK_ACTION $SCRIPT_DIR/nvim ~/.config/nvim
+  $LINK_ACTION $SCRIPT_DIR/.prettierrc.yml ~/.prettierrc.yml       # Prettier JS Formatter Base Settings
+  $LINK_ACTION $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
+  $LINK_ACTION $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
+  $LINK_ACTION $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings
   # Display symlinks
   ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
   echo -e "\033[0m"
@@ -266,26 +312,11 @@ function install_osx_plugin_dependencies () {
   #Ruby
   notice "Installing Gems as SuperUser"
   # sudo gem install rubocop
+}
 
-  notice "NodeJS Packages"
-  #JavaScript
-  npm install -g \
-    eslint \
-    tslint \
-    prettier \
-    prettier-eslint \
-    eslint-plugin-prettier \
-    eslint-config-prettier \
-    @neozenith/eslint-config \
-    swaglint \
-    express-generator \
-    mocha \
-    tern \
-    webpack \
-    neovim
+function install_os_independent_plugin_dependencies () {
 
-  # sudo npm -g outdated
-  # sudo npm -g update
+  notice "No os-independent plugin depenencies"
 }
 
 
@@ -302,11 +333,15 @@ function vim_plugins () {
     notice "Plugin dependencies not defined for non OSX platforms yet."
     install_RHEL_plugin_dependencies
   fi
+  
+  install_os_independent_plugin_dependencies
 
+  # TODO: Resolve this and .vim/plugins.vim
   # Check if Plug is already installed
   if [ ! -d ".vim/bundle/Plug.vim/autoload/.git" ]; then
     git clone https://github.com/junegunn/vim-plug.git .vim/bundle/Plug.vim/autoload
   fi
+
   # Install Plugins
   vim +PlugInstall +PlugUpdate +qall
 
@@ -338,7 +373,7 @@ function tool_check() {
   for tool in $TOOL_LIST; do
     notice "${tool}"
     echo -e "`which $tool 2> /dev/null`"
-    [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version | head -n 1
+    [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version |& head -n 1
   done
 }
 
@@ -372,6 +407,8 @@ function main_installer () {
     confirm "Install RHEL development tools" && install_RHEL_dev_dependencies
   fi
 
+  confirm "Install OS Independent development tools" && install_os_independent_dev_dependencies
+
   ##############################
   # Build Latest VIM From Source
   ##############################
@@ -379,17 +416,20 @@ function main_installer () {
   which vim
   vim --version
   echo -e "\033[0m============================================="
-  
-  # NOTE: To strip out characters the left side regex must wild match the parts
-  # You want removed and the () capture groups preserve what you want to keep
-  curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
 
-  confirm "Build latest Vim from Source" && build_vim
+  if [[ $OSTYPE == darwin* ]]; then
+    # NOTE: To strip out characters the left side regex must wild match the parts
+    # You want removed and the () capture groups preserve what you want to keep
+    curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
+    confirm "Build latest Vim from Source" && build_vim
+  else
+    notice "$OSTYPE not yet supported building latest Vim from source."
+  fi
 
   ##################
   # Install Dotfiles
   ##################
-  confirm "Install (symlink) dotfiles files" && symlink_dotfiles
+  confirm "Setup dotfiles files" && setup_dotfiles
 
   ####################
   #Install VIM Plugins
