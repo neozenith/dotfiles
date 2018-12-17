@@ -379,6 +379,19 @@ function tool_check() {
     echo -e "`which $tool 2> /dev/null`"
     [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version 2>&1 | head -n 1
   done
+  python_check
+}
+
+function python_check(){
+  title "Python Check"
+  for P in "python python2 python3"; do 
+    for PI in `which -a $P`; do
+      notice $PI
+      ls -laFGH $PI 
+      $PI --version
+      $PI -m site | grep "site-packages"
+    done; 
+  done
 }
 
 ###############################################################################
