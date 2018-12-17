@@ -338,8 +338,8 @@ function vim_plugins () {
 
   # TODO: Resolve this and .vim/plugins.vim
   # Check if Plug is already installed
-  if [ ! -d ".vim/bundle/Plug.vim/autoload/.git" ]; then
-    git clone https://github.com/junegunn/vim-plug.git .vim/bundle/Plug.vim/autoload
+  if [ ! -d "dotfiles/.vim/autoload/vim-plug/.git" ]; then
+    git clone https://github.com/junegunn/vim-plug.git dotfiles/.vim/autoload/vim-plug
   fi
 
   # Install Plugins
