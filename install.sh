@@ -84,6 +84,7 @@ function install_RHEL_dev_dependencies () {
 
   $SUDO $PKG_MANAGER update 
   $SUDO $PKG_MANAGER upgrade -y
+  $SUDO $PKG_MANAGER dist-upgrade -y
   
   if [[ -n "$HAS_YUM" ]]; then
     # Add RHEL Node Repo
