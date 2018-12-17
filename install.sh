@@ -385,7 +385,7 @@ function tool_check() {
 function python_check(){
   title "Python Check"
   for P in "python python2 python3"; do 
-    for PI in `which -a $P`; do
+    for PI in `which -a $P 2> /dev/null`; do
       notice $PI
       ls -laFGH $PI 
       $PI --version
