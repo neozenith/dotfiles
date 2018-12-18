@@ -13,15 +13,14 @@ set nocompatible
 filetype off
 
 " Setup Runtime Path:
-" TODO: Sort this out. Clearly you have no idea what you are doing
+set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/
+runtime plug.vim
 
-source ~/dotfiles/.vim/autoload/vim-plug/plug.vim
-
-if has('win64') || has('win32') || has('win16')
-  set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/plug.vim
-else
-  set rtp+=~/dotfiles/.vim/bundle/Plug.vim
-endif
+" if has('win64') || has('win32') || has('win16')
+"   set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/plug.vim
+" else
+"   set rtp+=~/dotfiles/.vim/bundle/Plug.vim
+" endif
 
 call plug#begin()
 " -------------------
