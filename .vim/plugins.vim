@@ -12,10 +12,9 @@ scriptencoding utf-8
 set nocompatible
 filetype off
 
-" Setup Runtime Path:
-set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/
-runtime plug.vim
-
+" plug.vim must appear in an autoload folder in the runtime path
+" check runtimepath with
+" :set runtimepath?
 call plug#begin()
 " -------------------
 "  Compulsory Components of Any Dev Environment
