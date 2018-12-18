@@ -16,12 +16,6 @@ filetype off
 set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/
 runtime plug.vim
 
-" if has('win64') || has('win32') || has('win16')
-"   set rtp+=$HOME/dotfiles/.vim/autoload/vim-plug/plug.vim
-" else
-"   set rtp+=~/dotfiles/.vim/bundle/Plug.vim
-" endif
-
 call plug#begin()
 " -------------------
 "  Compulsory Components of Any Dev Environment
