@@ -21,7 +21,7 @@ scriptencoding utf-8
 " Vi Compatible Settings: Tabs, Colors, Folding and anything that are plain Vi Settings
 " ---------------------------
 runtime vi_compatible_settings.vim
-
+runtime indent_text_object.vim
 " ---------------------------
 " Vim Basic Settings: Tabs, Colors, Folding and anything that are plain Vim Settings
 " ---------------------------
