@@ -360,9 +360,7 @@ function tool_check() {
     node 
     npm 
     python 
-    pip 
     python3 
-    pip3 
     ruby
     brew
     cmake
