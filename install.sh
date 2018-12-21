@@ -172,9 +172,9 @@ function install_os_independent_dev_dependencies () {
   notice "Python Packages"
   #Python
 
-  if [[ -n `which pip3 2> /dev/null` ]]; then
-    python3 -m pip3 install -r $SCRIPT_DIR/requirements.txt --upgrade 
-    python3 -m pip3 install awscli --ignore-installed six --upgrade
+  if [[ -n `which pip 2> /dev/null` ]]; then
+    python3 -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade 
+    python3 -m pip install awscli --ignore-installed six --upgrade
     complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
   else
     notice "pip3 not found"
@@ -339,8 +339,8 @@ function vim_plugins () {
 
   # TODO: Resolve this and .vim/plugins.vim
   # Check if Plug is already installed
-  if [ ! -d "dotfiles/.vim/autoload/.git" ]; then
-    git clone https://github.com/junegunn/vim-plug.git dotfiles/.vim/autoload
+  if [ ! -d "$SCRIPT_DIR/.vim/autoload/.git" ]; then
+    git clone https://github.com/junegunn/vim-plug.git $SCRIPT_DIR/.vim/autoload
   fi
 
   # Install Plugins
