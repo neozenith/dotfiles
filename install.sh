@@ -326,14 +326,19 @@ function install_os_independent_plugin_dependencies () {
 ###############################################################################
 function vim_plugins () {
 
-  if [[ $OSTYPE == darwin* ]]; then
-    install_osx_plugin_dependencies
-  elif [[ $OSTYPE == msys* ]]; then
-    install_mingw_plugin_dependencies
-  else
-    notice "Plugin dependencies not defined for non OSX platforms yet."
-    install_RHEL_plugin_dependencies
-  fi
+  case $OSTYPE in 
+    darwin*)
+      install_osx_plugin_dependencies
+      ;;
+    msys*)
+      install_mingw_plugin_dependencies
+      ;;
+    *)
+      notice "Plugin dependencies not defined for non OSX platforms yet."
+      install_RHEL_plugin_dependencies
+      ;;
+  esac
+  
   
   install_os_independent_plugin_dependencies
 
@@ -418,13 +423,17 @@ function main_installer () {
   ###############################
   title "OS Detected: $OSTYPE"
 
-  if [[ $OSTYPE == darwin* ]]; then
-    confirm "Install OSX development tools" && install_osx_dev_dependencies
-  elif [[ $OSTYPE == msys* ]]; then
-    confirm "Install Windows Git Bash (MinGW) development tools" && install_mingw_dev_dependencies
-  else
-    confirm "Install RHEL development tools" && install_RHEL_dev_dependencies
-  fi
+  case $OSTYPE in
+    darwin*)
+      confirm "Install OSX development tools" && install_osx_dev_dependencies
+      ;;
+    msys*)
+      confirm "Install Windows Git Bash (MinGW) development tools" && install_mingw_dev_dependencies
+      ;;
+    *)
+      confirm "Install RHEL development tools" && install_RHEL_dev_dependencies
+      ;;
+  esac
 
   confirm "Install OS Independent development tools" && install_os_independent_dev_dependencies
 
@@ -436,14 +445,17 @@ function main_installer () {
   vim --version
   echo -e "\033[0m============================================="
 
-  if [[ $OSTYPE == darwin* ]]; then
-    # NOTE: To strip out characters the left side regex must wild match the parts
-    # You want removed and the () capture groups preserve what you want to keep
-    curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
-    confirm "Build latest Vim from Source" && build_vim
-  else
-    notice "$OSTYPE not yet supported building latest Vim from source."
-  fi
+  case $OSTYPE in
+    darwin*|linux*)
+      # NOTE: To strip out characters the left side regex must wild match the parts
+      # You want removed and the () capture groups preserve what you want to keep
+      curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
+      confirm "Build latest Vim from Source" && build_vim
+      ;;
+    *)
+      notice "$OSTYPE not yet supported building latest Vim from source."
+      ;;
+esac
 
   ##################
   # Install Dotfiles
