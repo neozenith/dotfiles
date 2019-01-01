@@ -16,6 +16,7 @@ alias ll="ls -laGH"
 DOTFILE_DIR="$HOME/dotfiles"
 SCRIPTS="
 aliases_git.sh
+aliases_nvim.sh
 aliases_heroku.sh
 function_parse_git_prompt.sh
 function_ccurl.sh

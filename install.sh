@@ -11,6 +11,15 @@ clear
 # HELPER FUNCTIONS:
 ###############################################################################
 
+case $1 in
+  all|ALL)
+    INSTALL_ALL=1
+    ;;
+  *)
+    INSTALL_ALL=0
+    ;;
+esac
+
 # Warn will echo the first argument to stderr
 function warn() {
     echo "$1" >&2
@@ -25,15 +34,19 @@ function die() {
 # Confirm will prompt the user for a y/n response 
 # that can be used for conditional execution
 function confirm () {
-  read -r -p "${1}? [y/N] " response
-  case $response in
-    [yY][eE][sS]|[yY])
-      true
-      ;;
-    *)
-      false
-      ;;
-  esac
+  if [[ $INSTALL_ALL == "1" ]]; then
+    true
+  else
+    read -r -p "${1}? [y/N] " response
+    case $response in
+      [yY][eE][sS]|[yY])
+        true
+        ;;
+      *)
+        false
+        ;;
+    esac
+  fi
 }
 function title(){
   echo -e "\033[32m===================="
@@ -45,7 +58,9 @@ function notice(){
 }
 function pause(){
   echo -e "\033[33m"
-  read -p "Press [Enter] to continue or Ctrl+C to Abort..."
+  if [[ $INSTALL_ALL != "1" ]]; then
+    read -p "Press [Enter] to continue or Ctrl+C to Abort..."
+  fi
   echo -e "\033[0m"
 }
 function show_dir () {
@@ -455,7 +470,7 @@ function main_installer () {
     *)
       notice "$OSTYPE not yet supported building latest Vim from source."
       ;;
-esac
+  esac
 
   ##################
   # Install Dotfiles
