@@ -15,8 +15,13 @@ case $1 in
   all|ALL)
     INSTALL_ALL=1
     ;;
+  quick|QUICK)
+    INSTALL_ALL=1
+    INSTALL_QUICK=1
+    ;;
   *)
     INSTALL_ALL=0
+    INSTALL_QUICK=0
     ;;
 esac
 
@@ -188,8 +193,8 @@ function install_os_independent_dev_dependencies () {
   #Python
 
   if [[ -n `which pip 2> /dev/null` ]]; then
-    python3 -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade 
-    python3 -m pip install awscli --ignore-installed six --upgrade
+    python3 -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
+    python3 -m pip install awscli --ignore-installed six --upgrade --user
     complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
   else
     notice "pip3 not found"
@@ -395,8 +400,10 @@ function tool_check() {
 
   for tool in $TOOL_LIST; do
     notice "${tool}"
-    echo -e "`which $tool 2> /dev/null`"
-    [[ -n `which ${tool} 2> /dev/null` ]] && ${tool} --version 2>&1 | head -n 1
+    for T in `which -a $tool 2> /dev/null`; do
+      echo -e "    $T"
+      $T --version 2>&1 | head -n 1
+    done
   done
   python_check
 }
@@ -406,6 +413,7 @@ function python_check(){
   for P in "python python2 python3"; do 
     for PI in `which -a $P 2> /dev/null`; do
       notice $PI
+      # Check if it symlinks
       ls -laFGH $PI 
       $PI --version
       $PI -m site | grep "site-packages"
@@ -455,22 +463,27 @@ function main_installer () {
   ##############################
   # Build Latest VIM From Source
   ##############################
-  echo -e "=============================================\033[92m"
-  which vim
-  vim --version
-  echo -e "\033[0m============================================="
 
-  case $OSTYPE in
-    darwin*|linux*)
-      # NOTE: To strip out characters the left side regex must wild match the parts
-      # You want removed and the () capture groups preserve what you want to keep
-      curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
-      confirm "Build latest Vim from Source" && build_vim
-      ;;
-    *)
-      notice "$OSTYPE not yet supported building latest Vim from source."
-      ;;
-  esac
+  if [[ $INSTALL_QUICK != "1" ]]; then
+
+    echo -e "=============================================\033[92m"
+    which vim
+    vim --version
+    echo -e "\033[0m============================================="
+
+    case $OSTYPE in
+      darwin*|linux*)
+        # NOTE: To strip out characters the left side regex must wild match the parts
+        # You want removed and the () capture groups preserve what you want to keep
+        curl -s https://github.com/vim/vim/releases | grep tag/v | sed -E 's/.*v([0-9]*)\.([0-9]*)\.([0-9]*).*/\1\.\2\.\3/'
+        confirm "Build latest Vim from Source" && build_vim
+        ;;
+      *)
+        notice "$OSTYPE not yet supported building latest Vim from source."
+        ;;
+    esac
+
+  fi
 
   ##################
   # Install Dotfiles
