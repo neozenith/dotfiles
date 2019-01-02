@@ -192,12 +192,12 @@ function install_os_independent_dev_dependencies () {
   notice "Python Packages"
   #Python
 
-  if [[ -n `which pip 2> /dev/null` ]]; then
+  if [[ -n `which python3 2> /dev/null` ]]; then
     python3 -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
     python3 -m pip install awscli --ignore-installed six --upgrade --user
     complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
   else
-    notice "pip3 not found"
+    notice "python3 -m pip not found"
   fi
   
   notice "NodeJS Packages"
