@@ -65,7 +65,7 @@ if [[ $OSTYPE == darwin* ]]; then
   inject_path "/usr/local/opt/openssl/bin"
 
   # Use this to create symlinks from python to python3 
-  prepend_path "/usr/local/opt/python/libexec/bin"
+  # prepend_path "/usr/local/opt/python/libexec/bin"
 fi
 
 ###############################################################################
