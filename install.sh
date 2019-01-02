@@ -121,13 +121,13 @@ function install_RHEL_dev_dependencies () {
   
   if [[ -n "$HAS_APTGET" ]]; then
     $SUDO $PKG_MANAGER install -y build-essential checkinstall
-    $SUDO $PKG_MANAGER install -y cmake
+    $SUDO $PKG_MANAGER install -y cmake ninja-build
     $SUDO $PKG_MANAGER install -y libncurses5-dev libncursesw5-dev
-    $SUDO $PKG_MANAGER install -y clang 
     $SUDO $PKG_MANAGER install -y clang clang-dev
     $SUDO $PKG_MANAGER install -y python python-dev
     $SUDO $PKG_MANAGER install -y ruby ruby-dev
     $SUDO $PKG_MANAGER install -y nodejs npm
+    $SUDO $PKG_MANAGER install -y terminator
   fi
 
 }
