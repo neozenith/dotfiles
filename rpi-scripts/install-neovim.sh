@@ -23,8 +23,8 @@ sudo apt-get install -y \
   pkg-config \
   unzip
 
+# Using ninja on RPi3B+ uses all cores for too long and overheats.
 # sudo apt-get install -y ninja-build 
-
 
 echo -e "Install NeoVim from Source"
 if [ ! -d "$HOME/neovim/.git" ]; then
@@ -67,7 +67,7 @@ if [[ -n "$CMAKE" ]]; then
   mkdir -pv build
   cmake .. -DCMAKE_BUILD_TYPE=Release
   make
-
+  sudo make install
   # make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local/neovim" CMAKE_BUILD_TYPE=Release
   # make install
 else
