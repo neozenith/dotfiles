@@ -85,7 +85,7 @@ Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' 
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 if !has('win64') && !has('win32') && !has('win16')
   " No Windows YCM Support for now
-  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --go-completer --clang-completer --system-libclang' } " Auto Complete Engine
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
 endif
 
 Plug 'vim-scripts/dbext.vim', {'for': 'sql'}  " SQL Autocomplete and also SQL querying
