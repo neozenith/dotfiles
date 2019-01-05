@@ -39,7 +39,7 @@ sudo apt-get install -y \
 echo -e "Install NeoVim from Source"
 if [ ! -d "$HOME/neovim/.git" ]; then
   notice "Cloning a clean copy"
-  $SUDO rm -rfv neovim/
+  $SUDO rm -rfv $HOME/neovim/
   git clone https://github.com/neovim/neovim.git neovim/
 else 
   cd neovim
@@ -58,7 +58,7 @@ if [[ -n "$CMAKE" ]]; then
     # rm -rf .deps
     mkdir -pv .deps
     cmake -B.deps -Hthird-party -DCMAKE_BUILD_TYPE=Release
-    cmake --build .deps
+    cmake --build .deps --config Release 
   else
     # Bundle Dependencies
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
@@ -72,9 +72,9 @@ if [[ -n "$CMAKE" ]]; then
       libjemalloc-dev
   fi
 
-  mkdir -pv ~/neovim/build
+  mkdir -pv build
   cmake -Bbuild -H. -DCMAKE_BUILD_TYPE=Release 
-  cmake --build build
+  cmake --build build --config Release
   sudo cmake --build build --target install 
 else
   echo "cmake not found. Not building NeoVim"
