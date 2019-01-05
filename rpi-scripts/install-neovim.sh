@@ -57,10 +57,8 @@ if [[ -n "$CMAKE" ]]; then
   if [[ -n $BUNDLE_DEPS ]]; then
     # rm -rf .deps
     mkdir -pv .deps
-    cd .deps
-    cmake ../third-party -DCMAKE_BUILD_TYPE=Release
-    make
-    cd ~/neovim
+    cmake -B.deps -Hthird-party -DCMAKE_BUILD_TYPE=Release
+    cmake --build .deps
   else
     # Bundle Dependencies
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
@@ -75,10 +73,9 @@ if [[ -n "$CMAKE" ]]; then
   fi
 
   mkdir -pv ~/neovim/build
-  cd ~/neovim/build
-  cmake .. -DCMAKE_BUILD_TYPE=Release
-  make
-  sudo make install
+  cmake -Bbuild -H. -DCMAKE_BUILD_TYPE=Release 
+  cmake --build build
+  sudo cmake --build build --target install 
 else
   echo "cmake not found. Not building NeoVim"
 fi

@@ -84,6 +84,10 @@ Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' 
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+" YCM RPi Suppport:
+" https://nallerooth.com/post/building_ycm_on_raspberry_pi_3/
+" Limit cores to keep RAM usage low.
+" YCM_CORES=1 ./install.py
 " YCM Windows Support:
 " Install CMake: https://cmake.org/download/
 " Install MS Build Tools: https://visualstudio.microsoft.com/downloads/
