@@ -68,6 +68,10 @@ if [[ $OSTYPE == darwin* ]]; then
   # prepend_path "/usr/local/opt/python/libexec/bin"
 fi
 
+if [[ $OSTYPE == linux* ]]; then
+  prepend_path "$HOME/opt/node/bin"
+fi
+
 ###############################################################################
 # BASH COMPLETIONS 
 ###############################################################################
