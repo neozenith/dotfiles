@@ -397,13 +397,28 @@ function tool_check() {
     rustc
     cargo
 "
-
+   
   for tool in $TOOL_LIST; do
     notice "${tool}"
-    for T in `which -a $tool 2> /dev/null`; do
-      echo -e "    $T"
-      $T --version 2>&1 | head -n 1
-    done
+    
+    case $OSTYPE in
+      msys*)
+        # Windows can't handle tools with paths with spaces
+        if [[ -n "$(which $tool 2> /dev/null)" ]]; then
+          echo -e "    $tool"
+          "$tool" --version 2>&1 | head -n 1
+          echo -e "$(which -a $tool 2> /dev/null)"
+        fi
+        ;;
+
+      *)
+        for T in $(which -a $tool 2> /dev/null); do
+          echo -e "    $T"
+          "$T" --version 2>&1 | head -n 1
+        done
+        ;;
+    esac
+
   done
   python_check
 }

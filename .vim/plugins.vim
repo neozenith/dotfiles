@@ -60,7 +60,6 @@ Plug 'airblade/vim-gitgutter' " Live Git Diff symbols in left gutter
 " Note to self: Git Diff article explaining how to 3 way merge with Vim
 " http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
 
-
 " STATUS LINE:
 Plug 'itchyny/lightline.vim'  " Status bar
 
@@ -83,10 +82,16 @@ Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 " AUTO COMPLETE:
 Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
-if !has('win64') && !has('win32') && !has('win16')
-  " No Windows YCM Support for now
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
-endif
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+" YCM Windows Support:
+" Install CMake: https://cmake.org/download/
+" Install MS Build Tools: https://visualstudio.microsoft.com/downloads/
+" OPTIONALLY Install: Rust, Node, GoLang
+" By specifying a build dir this caches results of the basic build. Subsequent
+" builds can add extra completers as appropriate. Eg
+"
+" python ~/dotfiles/.vim/plugged/YouCompleteMe/install.py --build-dir $HOME/ycm-build --js-completer --ts-completer
 
 Plug 'vim-scripts/dbext.vim', {'for': 'sql'}  " SQL Autocomplete and also SQL querying
 Plug 'szw/vim-tags'
@@ -117,8 +122,8 @@ Plug 'josudoey/vim-eslint-fix' " ESLint auto fix
 " Plug 'gko/vim-coloresque'     " Preview CSS colours. Works better than ap/vim/css-color. Awaiting YAML FT support merge request
 Plug 'neozenith/vim-coloresque' " Preview CSS colours
 Plug 'othree/html5.vim'       " HTML5 AutoComplete
-Plug 'othree/yajs.vim'        " YetAnotherJS syntax checker/highlighter
-Plug 'joegesualdo/jsdoc.vim'  " Generate JSDoc block from method definition
+Plug 'othree/yajs.vim',       " YetAnotherJS syntax checker/highlighter
+Plug 'joegesualdo/jsdoc.vim', " Generate JSDoc block from method definition
 
 " Show code coverage symbols. Requires Vim 8 or higher
 if (v:version >= 800)
@@ -132,7 +137,7 @@ endif
 
 " ARDUINO DEV:
 " Plug 'stevearc/vim-arduino'
-Plug 'neozenith/vim-arduino'
+" Plug 'neozenith/vim-arduino'
 
 " PYTHON DEV:
 Plug 'fs111/pydoc.vim', {'for': 'python'}
