@@ -1,5 +1,15 @@
 #! /bin/bash
+  # Defaults to building static library
+  # cmake -Bbuild -H. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./dist
+  # cmake --build build --target install 
 
+  # Reconfigure for shared library
+  # cmake -Bbuild -H. -DBUILD_SHARED_LIBS=ON
+  # cmake --build build --target install 
+
+  # Reconfigure to skip building the binary
+  # cmake -Bbuild -H. -DBUILD_LIB_ONLY=ON
+  # cmake --build build --target install 
 
 function show_dir () {
   echo -e "\033[94mWorking Directory:\033[0m\t $(pwd)"
