@@ -41,16 +41,16 @@ fi
 cd ~/neovim
 if [[ -n "$CMAKE" ]]; then 
   
-  rm -r build
-  make clean
+  # rm -r build
+  # make clean
 
   if [[ -n $BUNDLE_DEPS ]]; then
-    rm -rf .deps
+    # rm -rf .deps
     mkdir -pv .deps
     cd .deps
     cmake ../third-party -DCMAKE_BUILD_TYPE=Release
     make
-    cd ..
+    cd ~/neovim
   else
     # Bundle Dependencies
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
@@ -64,12 +64,11 @@ if [[ -n "$CMAKE" ]]; then
       libjemalloc-dev
   fi
 
-  mkdir -pv build
+  mkdir -pv ~/neovim/build
+  cd ~/neovim/build
   cmake .. -DCMAKE_BUILD_TYPE=Release
   make
   sudo make install
-  # make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local/neovim" CMAKE_BUILD_TYPE=Release
-  # make install
 else
   echo "cmake not found. Not building NeoVim"
 fi
