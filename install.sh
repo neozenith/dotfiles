@@ -148,7 +148,9 @@ function install_osx_dev_dependencies () {
 
   notice "HomeBrew"
   # install hombrew
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  if [[ -z "`which brew 2> /dev/null`" ]]; then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
   notice "Homebrew update and upgrade:"
   brew update
   brew upgrade
