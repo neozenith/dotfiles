@@ -51,6 +51,7 @@ Plug 'scrooloose/nerdtree'              " File Explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status in file explorer
 Plug 'scrooloose/nerdcommenter'         " Toggle Commenting
 Plug 'sjl/gundo.vim'                    " Undo History
+Plug 'majutsushi/tagbar'                " Display heirarchy of classes and functions
 
 " GIT Integerations:
 Plug 'tpope/vim-fugitive'
