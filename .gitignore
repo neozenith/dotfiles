@@ -4,7 +4,7 @@
 .vim/autoload/
 .vim/bundle
 .vim/plugged
-tags
+tags*
 gems.tags
 *.log
 

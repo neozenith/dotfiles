@@ -1,15 +1,19 @@
-numpy
-pandas
-matplotlib
-
 pytest
 pytest-black
 pytest-flake8
 pytest-pylint
 pytest-cov
+
 black
 flake8
 pylint
+jedi
+rope
 
 neovim
+
 boto 
+
+numpy
+pandas
+matplotlib

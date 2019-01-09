@@ -51,6 +51,7 @@ Plug 'scrooloose/nerdtree'              " File Explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status in file explorer
 Plug 'scrooloose/nerdcommenter'         " Toggle Commenting
 Plug 'sjl/gundo.vim'                    " Undo History
+Plug 'ludovicchabant/vim-gutentags'     " Auto Tag management, cross platform and dependency free
 Plug 'majutsushi/tagbar'                " Display heirarchy of classes and functions
 
 " GIT Integerations:
@@ -84,7 +85,9 @@ Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+if (has('python') || has('python3'))
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+endif
 " YCM RPi Suppport:
 " https://nallerooth.com/post/building_ycm_on_raspberry_pi_3/
 " Limit cores to keep RAM usage low.
@@ -98,9 +101,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build
 "
 " python ~/dotfiles/.vim/plugged/YouCompleteMe/install.py --build-dir $HOME/ycm-build --js-completer --ts-completer
 
+" SQL:
 Plug 'vim-scripts/dbext.vim', {'for': 'sql'}  " SQL Autocomplete and also SQL querying
-Plug 'szw/vim-tags'
-
 
 " SNIPPETS: See .vim/custom_snippets/README.md
 " Plug 'SirVer/ultisnips'     " Snippet Engine
@@ -116,7 +118,7 @@ Plug 'fisadev/vim-ctrlp-cmdpalette'
 Plug 'mattn/emmet-vim'        " HTML/XML Tag Expander
 
 " https://davidosomething.com/blog/vim-for-javascript/
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'    " Javascript syntax highlighting
 Plug 'leafgarland/typescript-vim' "Typescript syntax highlighting
 Plug 'gregsexton/matchtag'    " HTML/XML Matching Tag Highlighter
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " JavaScript AutoComplete
@@ -145,8 +147,15 @@ endif
 " Plug 'neozenith/vim-arduino'
 
 " PYTHON DEV:
-Plug 'fs111/pydoc.vim', {'for': 'python'}
-Plug 'alfredodeza/pytest.vim', {'for': 'python'}
+" https://rapphil.github.io/vim-python-ide/
+Plug 'fs111/pydoc.vim', {'for': 'python'}         " Programmatically integrate PyDoc lookups
+Plug 'alfredodeza/pytest.vim', {'for': 'python'}  " Pytest tooling
+Plug 'python-rope/ropevim', {'for': 'python'}     " Refactoring tool
+
+" Require Vim to be built with Python integration
+if (has('python') || has('python3'))
+  Plug 'davidhalter/jedi-vim', {'for': 'python'}    " Autocompletion and static analysis
+endif
 
 " MARKDOWN:
 " https://github.com/plasticboy/vim-markdown

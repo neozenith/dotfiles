@@ -370,8 +370,8 @@ function vim_plugins () {
     git clone https://github.com/junegunn/vim-plug.git $SCRIPT_DIR/.vim/autoload
   fi
 
-  # Install Plugins
-  vim +PlugInstall +PlugUpdate +qall
+  # Plugins: Install / Update / Prune
+  vim +PlugInstall +PlugUpdate +PlugClean! +qall
 
 }
 
