@@ -72,6 +72,7 @@ if [[ $OSTYPE == linux* ]]; then
   prepend_path "$HOME/opt/node/bin"
 fi
 
+[ -d "$HOME/.cargo/bin" ] && inject_path "$HOME/.cargo/bin"
 ###############################################################################
 # BASH COMPLETIONS 
 ###############################################################################
@@ -110,4 +111,3 @@ fi
 
 echo "😎"
 
-export PATH="$HOME/.cargo/bin:$PATH"
