@@ -155,7 +155,7 @@ function install_osx_dev_dependencies () {
   brew update
   brew upgrade
   brew doctor 
-  brew prune
+  brew cleanup
 
   # Git Tooling
   # brew install michaeldfallen/formula/git-radar
