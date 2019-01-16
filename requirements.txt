@@ -9,8 +9,9 @@ flake8
 pylint
 jedi
 rope
+ropevim
 
-neovim
+pynvim
 
 boto 
 

@@ -193,14 +193,16 @@ function install_osx_dev_dependencies () {
 function install_os_independent_dev_dependencies () {
   notice "Python Packages"
   #Python
+  # Ensure dependencies are are in all available python installs
+  # TODO: Split vim plugin dependencies from dev dependencies
+  for P in "python python2 python3"; do 
+    for PI in `which $P 2> /dev/null`; do
+      notice $PI
+      $PI -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
+      $PI -m pip install awscli --ignore-installed six --upgrade --user
+    done
+  done
 
-  if [[ -n `which python3 2> /dev/null` ]]; then
-    python3 -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
-    python3 -m pip install awscli --ignore-installed six --upgrade --user
-    complete -C "$(which aws_completer)" aws # Bash AWS tool autocompleter
-  else
-    notice "python3 -m pip not found"
-  fi
   
   notice "NodeJS Packages"
   #JavaScript
