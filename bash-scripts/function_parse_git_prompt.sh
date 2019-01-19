@@ -3,8 +3,16 @@
 
 run_fetch_async(){
   # Assumes already checked for git directory to reduce calls to git
-  local LAST_FETCH="$(stat -c %Y $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
-  local FETCH_THRESHOLD="$(date -d'15 minutes ago' +%s)"  
+  case $OSTYPE in
+    darwin*)
+      local LAST_FETCH="$(stat -f '%m' $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+      local FETCH_THRESHOLD="$(date -v-15m +%s)"  
+      ;;
+    *)
+      local LAST_FETCH="$(stat -c %Y $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+      local FETCH_THRESHOLD="$(date -d'15 minutes ago' +%s)"  
+      ;;
+  esac
 
   if [[ $LAST_FETCH -lt $FETCH_THRESHOLD ]]; then
     git fetch --all --quiet --prune 2> /dev/null &
