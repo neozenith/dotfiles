@@ -1,5 +1,16 @@
 #! /bin/bash
 
+
+run_fetch_async(){
+  # Assumes already checked for git directory to reduce calls to git
+  local LAST_FETCH="$(stat -c %Y $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+  local FETCH_THRESHOLD="$(date -d'15 minutes ago' +%s)"  
+
+  if [[ $LAST_FETCH -lt $FETCH_THRESHOLD ]]; then
+    git fetch --all --quiet --prune 2> /dev/null &
+  fi
+}
+
 parse_git_prompt() {
   # Get diff and status
   # if there are any unstaged diffs then colour RED
@@ -10,6 +21,7 @@ parse_git_prompt() {
   # No branch -> No more work.
   local BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
   if [[ -n $BRANCH ]]; then
+    run_fetch_async
   
     # Colours: Define Colours and platform specific escape codes
     local ESC_CODE="\e"
