@@ -2,20 +2,26 @@
 
 
 run_fetch_async(){
-  # Assumes already checked for git directory to reduce calls to git
-  case $OSTYPE in
-    darwin*)
-      local LAST_FETCH="$(stat -f '%m' $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
-      local FETCH_THRESHOLD="$(date -v-15m +%s)"  
-      ;;
-    *)
-      local LAST_FETCH="$(stat -c %Y $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
-      local FETCH_THRESHOLD="$(date -d'15 minutes ago' +%s)"  
-      ;;
-  esac
+  # No branch == no more work 
+  local BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+  if [[ -n $BRANCH ]]; then
 
-  if [[ $LAST_FETCH -lt $FETCH_THRESHOLD ]]; then
-    git fetch --all --quiet --prune 2> /dev/null &
+    case $OSTYPE in
+      darwin*)
+        local LAST_FETCH="$(stat -f '%m' $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+        local FETCH_THRESHOLD="$(date -v-15m +%s)"  
+        ;;
+      *)
+        local LAST_FETCH="$(stat -c %Y $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+        local FETCH_THRESHOLD="$(date -d'15 minutes ago' +%s)"  
+        ;;
+    esac
+
+    # Fork fetch process in background
+    if [[ $LAST_FETCH -lt $FETCH_THRESHOLD ]]; then
+      git fetch --all --quiet --prune 2> /dev/null &
+    fi
+  
   fi
 }
 
