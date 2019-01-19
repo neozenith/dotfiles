@@ -2,17 +2,17 @@
 
 
 run_fetch_async(){
-  # No branch == no more work 
-  local BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-  if [[ -n $BRANCH ]]; then
+  # No repo == no more work 
+  local REPO_ROOT=`git rev-parse --show-toplevel 2> /dev/null`
+  if [[ -n $REPO_ROOT && -e "$REPO_ROOT/.git/FETCH_HEAD" ]]; then
 
     case $OSTYPE in
       darwin*)
-        local LAST_FETCH="$(stat -f '%m' $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+        local LAST_FETCH="$(stat -f '%m' $REPO_ROOT/.git/FETCH_HEAD)" 
         local FETCH_THRESHOLD="$(date -v-15m +%s)"  
         ;;
       *)
-        local LAST_FETCH="$(stat -c %Y $(git rev-parse --show-toplevel)/.git/FETCH_HEAD)" 
+        local LAST_FETCH="$(stat -c %Y $REPO_ROOT/.git/FETCH_HEAD)" 
         local FETCH_THRESHOLD="$(date -d'15 minutes ago' +%s)"  
         ;;
     esac
