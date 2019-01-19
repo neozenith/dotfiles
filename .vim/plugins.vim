@@ -99,6 +99,8 @@ endif
 " OPTION 2:
 "   Install LLVM Clang: http://releases.llvm.org/download.html
 "   Install Ninja: https://github.com/ninja-build/ninja/releases
+"
+"   https://metricpanda.com/rival-fortress-update-27-compiling-with-clang-on-windows
 "   Run this: cmake -H. -G Ninja -Bbuild \
 "   -DCMAKE_C_FLAGS=TRUE -DCMAKE_CXX_FLAGS=TRUE \
 "   -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang.exe" \
