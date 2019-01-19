@@ -94,7 +94,17 @@ endif
 " YCM_CORES=1 ./install.py
 " YCM Windows Support:
 " Install CMake: https://cmake.org/download/
-" Install MS Build Tools: https://visualstudio.microsoft.com/downloads/
+" OPTION 1:
+"     Install MS Build Tools: https://visualstudio.microsoft.com/downloads/
+" OPTION 2:
+"   Install LLVM Clang: http://releases.llvm.org/download.html
+"   Install Ninja: https://github.com/ninja-build/ninja/releases
+"   Run this: cmake -H. -G Ninja -Bbuild \
+"   -DCMAKE_C_FLAGS=TRUE -DCMAKE_CXX_FLAGS=TRUE \
+"   -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang.exe" \
+"   -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang.exe" \
+"   -DCMAKE_LINKER="C:/Program Files/LLVM/bin/lld-link.exe"
+"
 " OPTIONALLY Install: Rust, Node, GoLang
 " By specifying a build dir this caches results of the basic build. Subsequent
 " builds can add extra completers as appropriate. Eg
