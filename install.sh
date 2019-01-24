@@ -193,7 +193,7 @@ function install_osx_dev_dependencies () {
 function install_os_independent_dev_dependencies () {
   notice "Python Packages"
   #Python
-  # Ensure dependencies are are in all available python installs
+  # Ensure dependencies are in all available python installs
   # TODO: Split vim plugin dependencies from dev dependencies
   for P in "python python2 python3"; do 
     for PI in `which $P 2> /dev/null`; do
@@ -225,6 +225,12 @@ function install_os_independent_dev_dependencies () {
     # sudo npm -g update
   else
     notice "NPM not found"
+  fi
+  
+  notice "Rust + RustUp"
+  if [[ -n `which rustup 2> /dev/null` ]]; then
+    rustup update
+    rustup show
   fi
   
 }
