@@ -86,7 +86,11 @@ Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' 
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 
 if (has('python') || has('python3'))
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+  if(has('macunix'))
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build --js-completer --ts-completer --go-completer --rust-completer --clang-completer --clang-tidy' } " Auto Complete Engine
+  else
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+  endif
 endif
 " YCM RPi Suppport:
 " https://nallerooth.com/post/building_ycm_on_raspberry_pi_3/
