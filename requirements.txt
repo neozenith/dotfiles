@@ -3,10 +3,14 @@ pytest-black
 pytest-flake8
 pytest-pylint
 pytest-cov
+pytest-xdist
+pytest-mypy
 
 black
 flake8
 pylint
+mypy
+
 jedi
 rope
 ropevim
@@ -15,6 +19,3 @@ pynvim
 
 boto 
 
-numpy
-pandas
-matplotlib
