@@ -159,7 +159,8 @@ function install_osx_dev_dependencies () {
 
   # Git Tooling
   # brew install michaeldfallen/formula/git-radar
-  brew install git --with-brewed-openssl --with-brewed-curl
+  brew install git 
+  #--with-brewed-openssl --with-brewed-curl
   brew install nvim
 
   brew install bash-completion \
