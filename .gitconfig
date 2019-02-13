@@ -19,7 +19,8 @@
 [push]
 	default = simple
 [merge]
-	tool = opendiff
+  ff= only
+  tool = vimdiff
   conflictstyle = diff3
   backup = false
 [mergetool]
