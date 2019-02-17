@@ -18,8 +18,11 @@
 	trustExitCode = true
 [push]
 	default = simple
+[branch "master"]
+  mergeoptions = --ff-only
 [merge]
-	tool = opendiff
+  ff= only
+  tool = vimdiff
   conflictstyle = diff3
   backup = false
 [mergetool]
