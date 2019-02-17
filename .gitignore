@@ -4,6 +4,7 @@
 .vim/autoload/
 .vim/bundle
 .vim/plugged
+.vim/undodir
 tags*
 gems.tags
 *.log

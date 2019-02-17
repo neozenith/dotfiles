@@ -138,6 +138,13 @@ set nobackup
 set nowb
 
 " ---------------------------
+" PERSISTENT UNDO:
+" ---------------------------
+set undodir=~/.vim/undodir
+set undofile " Maintain undo history between sessions
+
+
+" ---------------------------
 "  Key Mapping:
 " ---------------------------
 
