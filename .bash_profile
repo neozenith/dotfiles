@@ -19,6 +19,7 @@ aliases_git.sh
 aliases_nvim.sh
 aliases_heroku.sh
 function_parse_git_prompt.sh
+function_parse_conda_prompt.sh
 function_ccurl.sh
 function_inject_path.sh
 "
@@ -33,11 +34,11 @@ done
 ###############################################################################
 export PS1="\e[0;32m\w\e[m"
 if [[ $OSTYPE == msys* ]]; then 
-  export PS1="$PS1 \`parse_git_prompt\`"
+  export PS1="$PS1 \`parse_conda_prompt\` \`parse_git_prompt\`"
 elif [[ $OSTYPE == darwin* ]]; then
-  export PS1="$PS1 \$(parse_git_prompt)"
+  export PS1="$PS1 \$(parse_conda_prompt) \$(parse_git_prompt)"
 else
-  export PS1="$PS1 \$(parse_git_prompt)"
+  export PS1="$PS1 \$(parse_conda_prompt) \$(parse_git_prompt)"
 fi
 export PS1="$PS1\nλ "
 
