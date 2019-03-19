@@ -18,7 +18,7 @@ parse_conda_prompt() {
       local GREEN="$ESC_CODE[32m"
       local GRAY="$ESC_CODE[37m"
       local NORM="$ESC_CODE[0m"
-      CONDA_ENV="\n$GREEN🐍$NORM($GRAY$CONDA_ENV$NORM)"
+      CONDA_ENV="\n${GREEN}🐍${NORM}($GRAY$CONDA_ENV$NORM)"
     fi
   fi
 
