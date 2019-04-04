@@ -61,6 +61,10 @@ inject_path "$HOME/.npm-packages/bin"
 [ -n "$(which go 2> /dev/null)" ] && [ -z "$(go env GOPATH)" ] && export GOPATH="$HOME/go"
 [ -n "$(which go 2> /dev/null)" ] && inject_path "$(go env GOPATH)/bin"
 
+if [[ $OSTYPE == msys* ]]; then 
+  inject_path "${DOTFILE_DIR}/msys64/bin"
+fi
+
 if [[ $OSTYPE == darwin* ]]; then
   # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
   inject_path "/usr/local/opt/openssl/bin"
