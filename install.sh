@@ -306,6 +306,7 @@ function setup_dotfiles() {
   echo -e "\033[94mLinking new files..."
   if [[ $OSTYPE == msys* ]]; then
     $LINK_ACTION $SCRIPT_DIR/.vimrc_link ~/.vimrc
+    $LINK_ACTION $SCRIPT_DIR/.tmux_link.conf ~/.tmux.conf
   else
     $LINK_ACTION $SCRIPT_DIR/.vimrc ~/.vimrc
     $LINK_ACTION $SCRIPT_DIR/.vim ~/.vim

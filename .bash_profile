@@ -7,7 +7,7 @@ echo -n "🕒 ..."
   # http://www.ee.surrey.ac.uk/Teaching/Unix/
 # Navigation
 alias ll="ls -laGH"
-alias t2="tmux -2"
+alias t2="tmux -2u"
 
 ###############################################################################
 # EXPORTED FUNCTIONS:
