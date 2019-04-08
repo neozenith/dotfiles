@@ -36,6 +36,10 @@ let g:ale_pattern_options = {
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
 
+" List fixes in QuickFix window
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
 let g:ale_lint_on_text_changed = 'never'                " Only on enter and save should ALE trigger
 " let g:ale_echo_msg_format = '[%linter%][%severity%] %s' " Set log format
 let g:ale_sign_error = "\uf00d"                         " Set gutter symbol
