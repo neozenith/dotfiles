@@ -72,6 +72,7 @@ loading_progress
 [ -n "$(which go 2> /dev/null)" ] && [ -z "$(go env GOPATH)" ] && export GOPATH="$HOME/go"
 [ -n "$(which go 2> /dev/null)" ] && inject_path "$(go env GOPATH)/bin"
 [ -d "$HOME/.cargo/bin" ] && inject_path "$HOME/.cargo/bin"
+[ -d "$HOME/.wasm/bin" ] && prepend_path "$HOME/.wasm/bin"
 
 loading_progress
 
@@ -83,7 +84,6 @@ fi
 if [[ $OSTYPE == darwin* ]]; then
   # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
   inject_path "/usr/local/opt/openssl/bin"
-  [ -d "$HOME/.wasm/bin" ] && prepend_path "$HOME/.wasm/bin"
 
   # Use this to create symlinks from python to python3 
   # prepend_path "/usr/local/opt/python/libexec/bin"
