@@ -7,18 +7,22 @@ parse_conda_prompt() {
   
   local CONDA_ENV=""
   local CONDA=`conda --help 2> /dev/null`
-  if [[ -n $CONDA ]]; then
-    CONDA_ENV=`conda info --envs | grep \* | cut -d ' ' -f1 2> /dev/null`
+  local PYTHON=`which python 2> /dev/null`
+  local PYTHON3=`which python3 2> /dev/null`
+  if [[ -n $PYTHON ]] || [[ -n $PYTHON3 ]]; then
+    if [[ -n $CONDA ]]; then
+      CONDA_ENV=`conda info --envs | grep \* | cut -d ' ' -f1 2> /dev/null`
 
-    # If env exists then decorate
-    if [[ -n $CONDA_ENV ]]; then
-      local ESC_CODE="\e"
-      [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
+      # If env exists then decorate
+      if [[ -n $CONDA_ENV ]]; then
+        local ESC_CODE="\e"
+        [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
 
-      local GREEN="$ESC_CODE[32m"
-      local GRAY="$ESC_CODE[37m"
-      local NORM="$ESC_CODE[0m"
-      CONDA_ENV="\n${GREEN}🐍${NORM}($GRAY$CONDA_ENV$NORM)"
+        local GREEN="$ESC_CODE[32m"
+        local GRAY="$ESC_CODE[37m"
+        local NORM="$ESC_CODE[0m"
+        CONDA_ENV="\n${GREEN}∫${NORM}($GRAY$CONDA_ENV$NORM)"
+      fi
     fi
   fi
 

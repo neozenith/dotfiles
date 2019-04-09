@@ -1,4 +1,9 @@
-echo -n "🕒 ..."
+echo -n "🕒"
+function loading_progress(){
+  echo -n "."
+}
+
+loading_progress
 
 # Setup App Tokens
 # https://github.com/settings/tokens
@@ -29,6 +34,7 @@ for s in $SCRIPTS; do
   source $SCRIPT 
 done
 
+loading_progress
 
 ###############################################################################
 # Prompt & Paths:
@@ -49,6 +55,7 @@ export PS1="$PS1\nλ "
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
+loading_progress
 
 ###############################################################################
 # PATH and ENV Variables :
@@ -58,10 +65,17 @@ inject_path "$HOME/scripts/ssh-connections"
 inject_path "$HOME/scripts/sql-connections"
 inject_path "$HOME/.npm-packages/bin"
 
+loading_progress
+
+# DevTools Paths
 [ -d "/usr/local/go/bin" ] && prepend_path "/usr/local/go/bin"
 [ -n "$(which go 2> /dev/null)" ] && [ -z "$(go env GOPATH)" ] && export GOPATH="$HOME/go"
 [ -n "$(which go 2> /dev/null)" ] && inject_path "$(go env GOPATH)/bin"
+[ -d "$HOME/.cargo/bin" ] && inject_path "$HOME/.cargo/bin"
 
+loading_progress
+
+# OS Specific Paths
 if [[ $OSTYPE == msys* ]]; then 
   inject_path "${DOTFILE_DIR}/msys64/bin"
 fi
@@ -79,7 +93,9 @@ if [[ $OSTYPE == linux* ]]; then
   prepend_path "$HOME/opt/node/bin"
 fi
 
-[ -d "$HOME/.cargo/bin" ] && inject_path "$HOME/.cargo/bin"
+
+loading_progress
+
 ###############################################################################
 # BASH COMPLETIONS 
 ###############################################################################
@@ -101,6 +117,8 @@ if [[ $OSTYPE == darwin* ]]; then
   export ITERMPLOT=rv
 
 fi
+
+loading_progress
 
 ###############################################################################
 # MISC 
@@ -133,5 +151,5 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
-echo "😎"
+echo -e "!"
 
