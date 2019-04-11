@@ -14,6 +14,7 @@ let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'python': ['black', 'flake8', 'python'],
 \  'ruby': ['rubocop'],
+\  'rust': ['rls', 'cargo','rustc'],
 \  'cpp': ['cpplint', 'clang_check', 'clang_tidy']
 \}
 
@@ -24,6 +25,7 @@ let g:ale_fixers['markdown'] = ['eslint']
 let g:ale_fixers['json'] = ['eslint']
 let g:ale_fixers['typescript'] = ['tslint']
 let g:ale_fixers['python'] = ['black']
+let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
