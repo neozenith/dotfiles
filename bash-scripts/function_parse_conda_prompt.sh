@@ -7,8 +7,8 @@ parse_conda_prompt() {
   
   local CONDA_ENV=""
   local CONDA=`conda --help 2> /dev/null`
-  local PYTHON=`which python 2> /dev/null`
-  local PYTHON3=`which python3 2> /dev/null`
+  local PYTHON=`which python | grep conda 2> /dev/null`
+  local PYTHON3=`which python3 | grep conda 2> /dev/null`
   if [[ -n $PYTHON ]] || [[ -n $PYTHON3 ]]; then
     if [[ -n $CONDA ]]; then
       CONDA_ENV=`conda info --envs | grep \* | cut -d ' ' -f1 2> /dev/null`
