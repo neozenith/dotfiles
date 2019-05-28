@@ -4,27 +4,25 @@
 
 
 parse_conda_prompt() {
-  
+ 
+  local ESC_CODE="\e"
+  [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
+  local GREEN="$ESC_CODE[32m"
+  local GRAY="$ESC_CODE[37m"
+  local NORM="$ESC_CODE[0m"
+  local PIPENV_VIRTUALENV=""
   local CONDA_ENV=""
   local CONDA=`echo $CONDA_EXE`
 
   if [[ -n $CONDA ]]; then
-    # CONDA_ENV=`conda info --envs | grep \* | cut -d ' ' -f1 2> /dev/null`
-    CONDA_ENV="$CONDA_DEFAULT_ENV"
-
     # If env exists then decorate
-    if [[ -n $CONDA_ENV ]]; then
-      local ESC_CODE="\e"
-      [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
-
-      local GREEN="$ESC_CODE[32m"
-      local GRAY="$ESC_CODE[37m"
-      local NORM="$ESC_CODE[0m"
-      CONDA_ENV="\n${GREEN}∫${NORM}($GRAY$CONDA_ENV$NORM)"
-    fi
+    [[ -n $CONDA_DEFAULT_ENV ]] && CONDA_ENV="\n${GREEN}∫${NORM}($GRAY$CONDA_SHLVL: $CONDA_DEFAULT_ENV$NORM)"
   fi
 
-  echo -e "$CONDA_ENV"
+  # Tack on layered virtual environments
+  [[ -n $VIRTUAL_ENV ]] && PIPENV_VIRTUALENV=" ${GREEN}venv${NORM}[${GRAY}$(cygpath $(basename $VIRTUAL_ENV))$NORM]"
+
+  echo -e "$CONDA_ENV$PIPENV_VIRTUALENV"
 }
 # Export bash function to work as command line command as well
 export -f parse_conda_prompt
