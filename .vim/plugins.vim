@@ -156,6 +156,7 @@ if (v:version >= 800)
   let g:coverage_show_uncovered = 1
 endif
 
+
 " R:
 " https://medium.freecodecamp.org/turning-vim-into-an-r-ide-cd9602e8c217
 
@@ -168,10 +169,12 @@ endif
 Plug 'fs111/pydoc.vim', {'for': 'python'}         " Programmatically integrate PyDoc lookups
 Plug 'alfredodeza/pytest.vim', {'for': 'python'}  " Pytest tooling
 Plug 'python-rope/ropevim', {'for': 'python'}     " Refactoring tool
+Plug 'alfredodeza/coveragepy.vim', {'for': 'python'}     " Refactoring tool
 
 " Require Vim to be built with Python integration
 if (has('python') || has('python3'))
   Plug 'davidhalter/jedi-vim', {'for': 'python'}    " Autocompletion and static analysis
+  Plug 'mgedmin/coverage-highlight.vim', {'for': 'python'}
 endif
 
 " MARKDOWN:
