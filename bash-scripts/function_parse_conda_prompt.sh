@@ -20,7 +20,15 @@ parse_conda_prompt() {
   fi
 
   # Tack on layered virtual environments
-  [[ -n $VIRTUAL_ENV ]] && PIPENV_VIRTUALENV=" ${GREEN}venv${NORM}[${GRAY}$(cygpath $(basename $VIRTUAL_ENV))$NORM]"
+  if [[ -n $VIRTUAL_ENV ]]; then
+    
+    VENV_PATH="$(basename $VIRTUAL_ENV)"
+    
+    # If on a cygwin system convert the path
+    [[ -n "$(which cygpath 2> /dev/null)" ]] && VENV_PATH="$(cygpath $VENV_PATH)"
+    
+    PIPENV_VIRTUALENV=" ${GREEN}venv${NORM}[${GRAY}$VENV_PATH$NORM]"
+  fi 
 
   echo -e "$CONDA_ENV$PIPENV_VIRTUALENV"
 }
