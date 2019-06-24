@@ -28,7 +28,7 @@ let g:ale_fixers['python'] = ['black']
 let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fix_on_save = 1
 
-let g:ale_python_black_options = '--line-length=120'
+let g:ale_python_black_options = '--line-length=120 --verbose'
 let g:ale_javascript_prettier_use_local_config = 1
 
 
