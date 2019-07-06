@@ -11,6 +11,14 @@
   # cmake -Bbuild -H. -DBUILD_LIB_ONLY=ON
   # cmake --build build --target install 
 
+function title(){
+  echo -e "\033[32m===================="
+  echo -e "$*"
+  echo -e "====================\033[0m"
+}
+function notice(){
+  echo -e "\033[35m$*\033[0m"
+}
 function show_dir () {
   echo -e "\033[94mWorking Directory:\033[0m\t $(pwd)"
 }
