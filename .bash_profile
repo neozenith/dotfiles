@@ -74,6 +74,9 @@ loading_progress
 [ -d "$HOME/.cargo/bin" ] && inject_path "$HOME/.cargo/bin"
 [ -d "$HOME/.wasm/bin" ] && prepend_path "$HOME/.wasm/bin"
 
+[ -d "$HOME/.pyenv/libexec" ] && export PYENV_ROOT="$HOME/.pyenv" && prepend_path "$PYENV_ROOT/libexec"
+[ -n "$(which pyenv 2> /dev/null)" ] && eval "$(pyenv init -)"
+
 loading_progress
 
 # OS Specific Paths
