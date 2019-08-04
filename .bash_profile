@@ -75,7 +75,7 @@ loading_progress
 [ -d "$HOME/.wasm/bin" ] && prepend_path "$HOME/.wasm/bin"
 
 [ -d "$HOME/.pyenv/libexec" ] && export PYENV_ROOT="$HOME/.pyenv" && prepend_path "$PYENV_ROOT/libexec"
-[ -n "$(which pyenv 2> /dev/null)" ] && eval "$(pyenv init -)"
+# [ -z "$( echo $PATH | grep '.pyenv/shims' 2> /dev/null)" ] && [ -n "$(which pyenv 2> /dev/null)" ] && eval "$(pyenv init -)"
 
 loading_progress
 
