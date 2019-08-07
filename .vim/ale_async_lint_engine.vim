@@ -12,7 +12,7 @@ scriptencoding utf-8
 let g:ale_linters = {
 \  'typescript': ['tsserver', 'tslint'],
 \  'javascript': ['eslint'],
-\  'python': ['black', 'flake8', 'python'],
+\  'python': ['black', 'flake8', 'mypy', 'python'],
 \  'ruby': ['rubocop'],
 \  'rust': ['rls', 'cargo','rustc'],
 \  'cpp': ['cpplint', 'clang_check', 'clang_tidy']
