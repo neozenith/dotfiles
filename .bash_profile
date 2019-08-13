@@ -12,7 +12,7 @@ loading_progress
   # http://www.ee.surrey.ac.uk/Teaching/Unix/
 # Navigation
 alias ll="ls -laGH"
-alias t2="tmux -2u"
+alias t2="tmux -2u new -s \$(basename \$(pwd))"
 
 ###############################################################################
 # EXPORTED FUNCTIONS:
