@@ -13,6 +13,7 @@ loading_progress
 # Navigation
 alias ll="ls -laGH"
 alias t2="tmux -2u new -s \$(basename \$(pwd))"
+alias psh="pipenv shell"
 
 ###############################################################################
 # EXPORTED FUNCTIONS:
