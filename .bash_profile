@@ -78,6 +78,8 @@ loading_progress
 [ -d "$HOME/.pyenv/libexec" ] && export PYENV_ROOT="$HOME/.pyenv" && prepend_path "$PYENV_ROOT/libexec"
 # [ -z "$( echo $PATH | grep '.pyenv/shims' 2> /dev/null)" ] && [ -n "$(which pyenv 2> /dev/null)" ] && eval "$(pyenv init -)"
 
+
+
 loading_progress
 
 # OS Specific Paths
@@ -89,6 +91,12 @@ if [[ $OSTYPE == darwin* ]]; then
   # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
   inject_path "/usr/local/opt/openssl/bin"
 
+  OSX_PY38_PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin"
+  [ -d "$OSX_PY38_PATH" ] && inject_path "$OSX_PY38_PATH"
+  OSX_PY36_PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin"
+  [ -d "$OSX_PY36_PATH" ] && inject_path "$OSX_PY36_PATH"
+  OSX_PY35_PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin"
+  [ -d "$OSX_PY35_PATH" ] && inject_path "$OSX_PY35_PATH"
   # Use this to create symlinks from python to python3 
   # prepend_path "/usr/local/opt/python/libexec/bin"
 fi
