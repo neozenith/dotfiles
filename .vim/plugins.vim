@@ -84,12 +84,13 @@ Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 " AUTO COMPLETE:
 Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 if (has('python') || has('python3'))
   if(has('macunix'))
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build --js-completer --ts-completer --go-completer --rust-completer --clang-completer --clang-tidy' } " Auto Complete Engine
   else
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
+    " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
   endif
 endif
 " YCM RPi Suppport:
@@ -168,7 +169,6 @@ endif
 " https://rapphil.github.io/vim-python-ide/
 Plug 'fs111/pydoc.vim', {'for': 'python'}         " Programmatically integrate PyDoc lookups
 Plug 'alfredodeza/pytest.vim', {'for': 'python'}  " Pytest tooling
-Plug 'python-rope/ropevim', {'for': 'python'}     " Refactoring tool
 Plug 'alfredodeza/coveragepy.vim', {'for': 'python'}     " Refactoring tool
 
 " Require Vim to be built with Python integration
