@@ -15,6 +15,12 @@ alias ll="ls -laGH"
 alias t2="tmux -2u new -s \$(basename \$(pwd))"
 alias psh="pipenv shell"
 
+alias cdp="cd ~/projects"
+alias cdd="cd ~/dotfiles"
+alias cdpw="cd /mnt/c/Users/\$(whoami)/projects"
+alias cddw="cd /mnt/c/Users/\$(whoami)/dotfiles"
+
+
 ###############################################################################
 # EXPORTED FUNCTIONS:
 ###############################################################################
