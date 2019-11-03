@@ -27,6 +27,7 @@ let g:lightline.active.left = [
 " Right side lightline components
 let g:lightline.active.right = [
   \     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
+  \     ['coc_status', 'currentfunction'],
   \     ['lineinfo', 'percent'],
   \     ['fileformat', 'fileencoding', 'filetype']
   \   ]
@@ -38,6 +39,8 @@ let g:lightline.component_function = {
   \   'fugitive': 'FugitiveCheck',
   \   'filetype': 'DevIconsFiletype',
   \   'fileformat': 'DevIconsFileformat',
+  \   'coc_status': 'coc#status',
+  \   'currentfunction' : 'CocCurrentFunction',
   \ }
 let g:lightline.component = {'readonly': '%{&readonly?"\ue0a2":""}' }
 
@@ -75,6 +78,10 @@ let g:lightline#ale#indicator_checking = "\uf110"
 
 
 " }
+
+function! CocCurrentFunction()
+  return get(b:, 'coc_current_function', '')
+endfunction
 
 function! DevIconsFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
