@@ -158,6 +158,23 @@ set undofile " Maintain undo history between sessions
 " Remap the need for : to enter command mode to ; to reduce the need to SHIFT
 nnoremap ; :
 
+" Passive Aggressive Mode - Force me to stop using arrow keys
+nnoremap <Left> :echo "Did you mean... H?"<CR>
+vnoremap <Left> :<C-u>echo "Did you mean... H?"<CR>
+inoremap <Left> <C-o>:echo "Did you mean... H?"<CR>
+
+nnoremap <Right> :echo "Did you mean... L?"<CR>
+vnoremap <Right> :<C-u>echo "Did you mean... L?"<CR>
+inoremap <Right> <C-o>:echo "Did you mean... L?"<CR>
+
+nnoremap <Up> :echo "Did you mean... K?"<CR>
+vnoremap <Up> :<C-u>echo "Did you mean... K?"<CR>
+inoremap <Up> <C-o>:echo "Did you mean... K?"<CR>
+
+nnoremap <Down> :echo "Did you mean... J?"<CR>
+vnoremap <Down> :<C-u>echo "Did you mean... J?"<CR>
+inoremap <Down> <C-o>:echo "Did you mean... J?"<CR>
+
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 command! -bang Q quit<bang>
 
