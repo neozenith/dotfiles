@@ -100,7 +100,7 @@ if [[ $OSTYPE == darwin* ]]; then
   # inject_path "~/Qt5.8.0/5.8/clang_64/bin"
   inject_path "/usr/local/opt/openssl/bin"
 
-  PYTHON_USERBASE_BIN = "$(python3 -m site --user-base)/bin"
+  PYTHON_USERBASE_BIN="$(python3 -m site --user-base)/bin"
   [ -d "$PYTHON_USERBASE_BIN" ] && inject_path "$PYTHON_USERBASE_BIN"
   OSX_PY38_PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin"
   [ -d "$OSX_PY38_PATH" ] && inject_path "$OSX_PY38_PATH"
