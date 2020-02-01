@@ -29,12 +29,26 @@
   alias gca="git commit -v -a"
   
 gacp() {
-  git add "$1" && git commit -m "$2" && git push
-  echo $*
+  if [[ $# < 2 ]]; then
+    echo "$FUNCNAME - Shorthand for: git add \$add_dirs && git commit -m \$commit_message && git push [\$push_args]"
+    echo "USAGE: $FUNCNAME add_dirs commit_message [push_args...]"
+    return 0
+  else
+    add_dir="$1"; shift
+    commit_message="$1"; shift  
+  fi
+  git add "$add_dir" && git commit -m "$commit_message" && git push $@
 }
 
 gcp() {
-  git add . && git commit -m "$1" && git push
+  if [[ $# < 1 ]]; then
+    echo "$FUNCNAME - Shorthand for: git add . && git commit -m \$commit_message && git push [\$push_args]"
+    echo "USAGE: $FUNCNAME commit_message [push_args...]"
+    return 0
+  else
+    commit_message="$1"; shift  
+  fi
+  git add . && git commit -m "$commit_message" && git push $@
 }
   
 ###############################################################################
