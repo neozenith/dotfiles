@@ -28,6 +28,14 @@
   alias gc="git commit -v"
   alias gca="git commit -v -a"
   
+ggacp() {
+  git add "$1" && git commit -m "$2" && git push
+}
+
+ggcp() {
+  git add . && git commit -m "$1" && git push
+}
+  
 ###############################################################################
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
