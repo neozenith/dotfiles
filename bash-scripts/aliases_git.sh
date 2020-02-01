@@ -28,11 +28,11 @@
   alias gc="git commit -v"
   alias gca="git commit -v -a"
   
-ggacp() {
+gacp() {
   git add "$1" && git commit -m "$2" && git push
 }
 
-ggcp() {
+gcp() {
   git add . && git commit -m "$1" && git push
 }
   
