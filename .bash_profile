@@ -139,6 +139,11 @@ if [[ $OSTYPE == darwin* ]]; then
   export MPLBACKEND="module://itermplot"
   export ITERMPLOT=rv
 
+  # Fix arrangement of monitors alias
+  # https://apple.stackexchange.com/a/380168
+  # brew tap jakehilborn/jakehilborn && brew install displayplacer
+  alias fixdis="displayplacer \"id:30E91884-7BB5-374F-7C8A-FF9D851FCBB4 res:1920x1080 hz:30 color_depth:8 scaling:on origin:(0,0) degree:0\" \"id:23D1133F-B303-31FB-6381-AB24109581A8 res:1920x1080 hz:30 color_depth:8 scaling:on origin:(1920,0) degree:0\""
+
 fi
 
 loading_progress
