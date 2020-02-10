@@ -36,14 +36,13 @@ endif
 if !has('compatible')
   " Plugins:
   runtime plugins.vim
+  runtime filetype_defs.vim
 
   " Lightline: status bar configuration
   runtime lightline.vim
 
   " ALE Async Linting Engine: - Linting and Syntax checker plugin configuration
   runtime ale_async_lint_engine.vim
-  " YouCompleteMe Autocomplete Engine:
-  runtime ycm.vim
   runtime ultisnips.vim
 
   " NERDTree File Navigation:
@@ -57,14 +56,10 @@ if !has('compatible')
   " RainbowParenthesis:
   runtime rainbowparenthesis.vim
 
-  " Dev Javascript:
   runtime dev_js.vim
-
-  " Dev Arduino:
-  runtime arduino.vim
-
-  " Dev Python:
   runtime dev_py.vim
+  runtime dev_scala.vim
+  runtime arduino.vim
 
   " Markdown Document Editting:
   runtime markdown.vim

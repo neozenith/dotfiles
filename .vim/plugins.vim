@@ -85,10 +85,10 @@ Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'derekwyatt/vim-scala'
 if (has('python') || has('python3'))
   if(has('macunix'))
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build --js-completer --ts-completer --go-completer --rust-completer --clang-completer --clang-tidy' } " Auto Complete Engine
+    " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build --js-completer --ts-completer --go-completer --rust-completer --clang-completer --clang-tidy' } " Auto Complete Engine
   else
     " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --build-dir $HOME/ycm-build' } " Auto Complete Engine
   endif

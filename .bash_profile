@@ -143,7 +143,11 @@ if [[ $OSTYPE == darwin* ]]; then
   # https://apple.stackexchange.com/a/380168
   # brew tap jakehilborn/jakehilborn && brew install displayplacer
   alias fixdis="displayplacer \"id:30E91884-7BB5-374F-7C8A-FF9D851FCBB4 res:1920x1080 hz:30 color_depth:8 scaling:on origin:(0,0) degree:0\" \"id:23D1133F-B303-31FB-6381-AB24109581A8 res:1920x1080 hz:30 color_depth:8 scaling:on origin:(1920,0) degree:0\""
+  alias fixdis2="displayplacer \"id:30E91884-7BB5-374F-7C8A-FF9D851FCBB4 res:1920x1080 hz:30 color_depth:8 scaling:on origin:(0,0) degree:0\" \"id:52E4545F-43C4-CF1A-9005-039E6566588F res:1920x1080 hz:30 color_depth:8 scaling:on origin:(1920,0) degree:0\""
 
+  #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+  export SDKMAN_DIR="/Users/joshpeak/.sdkman"
+  [[ -s "/Users/joshpeak/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/joshpeak/.sdkman/bin/sdkman-init.sh"
 fi
 
 loading_progress
