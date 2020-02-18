@@ -19,6 +19,7 @@ alias tpsh="tmux new-session -d \; send-keys 'pipenv shell' C-m \; split-window 
 alias psh="pipenv shell"
 
 alias cdp="cd ~/projects"
+alias cdw="cd ~/work"
 alias cdd="cd ~/dotfiles"
 alias cdpw="cd /mnt/c/Users/\$(whoami)/projects"
 alias cddw="cd /mnt/c/Users/\$(whoami)/dotfiles"
