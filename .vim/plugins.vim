@@ -85,6 +85,8 @@ Plug 'kien/rainbow_parentheses.vim'     " Rainbow Color Parenthesis Nesting
 Plug 'tpope/vim-surround'     " Adds the (s)urround text object. eg cs') 'this' -> (this)
 Plug 'tpope/vim-endwise'      " Adds end closures to if statements and while loops etc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'derekwyatt/vim-scala'
 if (has('python') || has('python3'))
   if(has('macunix'))
