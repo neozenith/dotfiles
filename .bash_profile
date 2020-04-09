@@ -17,6 +17,7 @@ alias tt2="tmux new-session \; split-window -h \; selectp -t 0 \;"
 alias ttt2="tmux new-session \; split-window -h \; split-window -v \; selectp -t 0 \;"
 alias tpsh="tmux new-session -d \; send-keys 'pipenv shell' C-m \; split-window -h \; send-keys 'pipenv shell' C-m \; attach-session -d \;"
 alias psh="pipenv shell"
+alias k="kubectl"
 
 alias cdp="cd ~/play"
 alias cdw="cd ~/work"
