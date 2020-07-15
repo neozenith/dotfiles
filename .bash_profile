@@ -12,27 +12,32 @@ loading_progress
   # http://www.ee.surrey.ac.uk/Teaching/Unix/
 # Navigation
 alias ll="ls -laGHh"
+alias cdp="cd ~/play"
+alias cdw="cd ~/work"
+alias cdd="cd ~/dotfiles"
+# WSL equivalents
+alias cdww="cd /mnt/c/Users/\$(whoami)/work"
+alias cddw="cd /mnt/c/Users/\$(whoami)/dotfiles"
+
+# TMUX
 alias t2="tmux -2u"
 alias tt2="tmux new-session \; split-window -h \; selectp -t 0 \;"
 alias ttt2="tmux new-session \; split-window -h \; split-window -v \; selectp -t 0 \;"
 alias tpsh="tmux new-session -d \; send-keys 'pipenv shell' C-m \; split-window -h \; send-keys 'pipenv shell' C-m \; attach-session -d \;"
 alias psh="pipenv shell"
+
+# Containers: Docker and Kubernetes
 alias k="kubectl"
 alias d="docker"
 alias ds="docker stop \$(docker ps -aq) 2> /dev/null"
-
-alias cdp="cd ~/play"
-alias cdw="cd ~/work"
-alias cdd="cd ~/dotfiles"
-alias cdww="cd /mnt/c/Users/\$(whoami)/work"
-alias cddw="cd /mnt/c/Users/\$(whoami)/dotfiles"
-
 function klogs() {
   echo "$1"
   echo "$2"
   echo "$3"
   kubectl logs $2 $3 `kubectl get pods $2 -o json | jq -r .items[].metadata.name | grep $1`
 }
+
+
 
 
 ###############################################################################
