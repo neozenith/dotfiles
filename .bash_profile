@@ -26,10 +26,20 @@ alias ttt2="tmux new-session \; split-window -h \; split-window -v \; selectp -t
 alias tpsh="tmux new-session -d \; send-keys 'pipenv shell' C-m \; split-window -h \; send-keys 'pipenv shell' C-m \; attach-session -d \;"
 alias psh="pipenv shell"
 
-# Containers: Docker and Kubernetes
-alias k="kubectl"
+# Containers: Docker 
 alias d="docker"
+alias dps="docker ps -a"
 alias ds="docker stop \$(docker ps -aq) 2> /dev/null"
+alias dpi="docker image prune -f"
+alias dpc="docker container prune -f"
+alias dP="docker container prune -f; docker image prune -f"
+# Containers: Kubernetes
+# https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash
+source <(kubectl completion bash)
+alias k="kubectl"
+complete -F __start_kubectl k
+alias kudd="kubectl config use-context docker-desktop"
+alias kucs="kubectl config use-context arn:aws:eks:eu-west-1:930519385031:cluster/CS-EKS"
 function klogs() {
   echo "$1"
   echo "$2"
