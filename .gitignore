@@ -18,3 +18,6 @@ gems.tags
 **/*.DS_Store
 .vscode/*
 .py*_cache/*
+
+# Sensitive
+bash-scripts/aliases_work.sh

@@ -39,15 +39,12 @@ source <(kubectl completion bash)
 alias k="kubectl"
 complete -F __start_kubectl k
 alias kudd="kubectl config use-context docker-desktop"
-alias kucs="kubectl config use-context arn:aws:eks:eu-west-1:930519385031:cluster/CS-EKS"
 function klogs() {
   echo "$1"
   echo "$2"
   echo "$3"
   kubectl logs $2 $3 `kubectl get pods $2 -o json | jq -r .items[].metadata.name | grep $1`
 }
-
-
 
 
 ###############################################################################
@@ -57,6 +54,7 @@ function klogs() {
 # SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILE_DIR="$HOME/dotfiles"
 SCRIPTS="
+aliases_work.sh
 aliases_git.sh
 aliases_nvim.sh
 aliases_heroku.sh
