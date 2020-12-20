@@ -32,7 +32,8 @@ alias dps="docker ps -a"
 alias ds="docker stop \$(docker ps -aq) 2> /dev/null"
 alias dpi="docker image prune -f"
 alias dpc="docker container prune -f"
-alias dP="docker container prune -f; docker image prune -f"
+alias dpv="docker volume prune -f"
+alias dP="docker container prune -f; docker image prune -f; docker volume prune -f"
 # Containers: Kubernetes
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash
 source <(kubectl completion bash)
@@ -43,8 +44,9 @@ function klogs() {
   echo "$1"
   echo "$2"
   echo "$3"
-  kubectl logs $2 $3 `kubectl get pods $2 -o json | jq -r .items[].metadata.name | grep $1`
+  kubectl logs $2 $3 `kubectl get pods $2 -o json | jq -r .items[0].metadata.name | grep $1`
 }
+alias ecr-login="aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 979037402244.dkr.ecr.us-west-2.amazonaws.com"
 
 
 ###############################################################################
@@ -59,8 +61,8 @@ aliases_git.sh
 aliases_nvim.sh
 aliases_heroku.sh
 function_parse_git_prompt.sh
+function_parse_kubectl_prompt.sh
 function_parse_conda_prompt.sh
-function_ccurl.sh
 function_inject_path.sh
 "
 for s in $SCRIPTS; do
@@ -75,11 +77,11 @@ loading_progress
 ###############################################################################
 export PS1="\e[0;32m\w\e[m"
 if [[ $OSTYPE == msys* ]]; then
-  export PS1="$PS1 \`parse_conda_prompt\` \`parse_git_prompt\`"
+  export PS1="$PS1 \`parse_conda_prompt\` \`parse_git_prompt\` \`parse_k8s_prompt\`"
 elif [[ $OSTYPE == darwin* ]]; then
-  export PS1="$PS1 \$(parse_conda_prompt) \$(parse_git_prompt)"
+  export PS1="$PS1 \$(parse_conda_prompt) \$(parse_git_prompt) \$(parse_k8s_prompt)"
 else
-  export PS1="$PS1 \$(parse_conda_prompt) \$(parse_git_prompt)"
+  export PS1="$PS1 \$(parse_conda_prompt) \$(parse_git_prompt) \$(parse_k8s_prompt)"
 fi
 export PS1="$PS1\nλ "
 
@@ -174,6 +176,11 @@ if [[ $OSTYPE == darwin* ]]; then
   #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
   export SDKMAN_DIR="/Users/joshpeak/.sdkman"
   [[ -s "/Users/joshpeak/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/joshpeak/.sdkman/bin/sdkman-init.sh"
+
+
+  #GraalVM
+  # prepend_path "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-20.2.0/Contents/Home/bin"
+  # export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-ce-java8-20.2.0/Contents/Home"
 fi
 
 loading_progress
