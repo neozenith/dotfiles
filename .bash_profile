@@ -14,6 +14,7 @@ loading_progress
 alias ll="ls -laGHh"
 alias cdp="cd ~/play"
 alias cdw="cd ~/work"
+alias cdW="cd ~/work/ppr/ppr-compute-service"
 alias cdd="cd ~/dotfiles"
 # WSL equivalents
 alias cdww="cd /mnt/c/Users/\$(whoami)/work"
