@@ -10,19 +10,12 @@
 	# Set tab stop of git diff from 8 to 2
 	# https://stackoverflow.com/a/24846248/622276
 	pager = sed 's/\t/  /g' | less
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[mergetool "smerge"]
+  cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
 [push]
 	default = simple
-[branch "master"]
-  mergeoptions = --ff-only
 [merge]
-  ff= only
-  tool = vimdiff
+  tool = smerge
   conflictstyle = diff3
   backup = false
 [mergetool]
@@ -71,3 +64,7 @@
 	username = neozenith
 [credential "https://gitlab.com"]
 	username = neozenith
+[pull]
+  rebase = false
+[init]
+	defaultBranch = main

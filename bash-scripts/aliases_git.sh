@@ -54,7 +54,6 @@ gcp() {
 ###############################################################################
   # (G)it (M)aster
   alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
-  alias gu=" git checkout $1 -f; git fetch -v --all --tags --prune; git pull -v --all"
 
 ###############################################################################
   # (G)it Pu(L)
