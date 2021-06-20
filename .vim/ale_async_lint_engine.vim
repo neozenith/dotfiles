@@ -25,6 +25,7 @@ let g:ale_fixers['markdown'] = ['eslint']
 let g:ale_fixers['typescript'] = ['tslint', 'eslint']
 let g:ale_fixers['python'] = ['black']
 let g:ale_fixers['rust'] = ['rustfmt']
+let g:ale_fixers['scala'] = ['scalafmt']
 let g:ale_fix_on_save = 1
 
 let g:ale_python_black_options = '--verbose'
