@@ -208,22 +208,7 @@ function install_os_independent_dev_dependencies () {
   notice "NodeJS Packages"
   #JavaScript
   if [[ -n `which npm 2> /dev/null` ]]; then
-    npm install -g \
-      eslint \
-      tslint \
-      prettier \
-      prettier-eslint \
-      eslint-plugin-prettier \
-      eslint-config-prettier \
-      @neozenith/eslint-config \
-      swaglint \
-      express-generator \
-      mocha \
-      tern \
-      webpack \
-      neovim
-    # sudo npm -g outdated
-    # sudo npm -g update
+    notice "Install NPM deps per project"
   else
     notice "NPM not found"
   fi
@@ -270,7 +255,6 @@ function build_vim () {
 
   if [[ -n "$MAKE" ]]; then 
     $SUDO ./configure $VIM_INSTALL_PREFIX \
-      --enable-pythoninterp \
       --enable-python3interp \
       --with-features=huge
     $SUDO $MAKE clean; $SUDO $MAKE; $SUDO $MAKE install
@@ -339,12 +323,7 @@ function install_osx_plugin_dependencies () {
   notice "HomeBrew Packages"
   #HomeBrew
   brew install ninja cmake node 
-
-  #Python
   
-  #Ruby
-  notice "Installing Gems as SuperUser"
-  # sudo gem install rubocop
 }
 
 function install_os_independent_plugin_dependencies () {
@@ -396,9 +375,7 @@ function tool_check() {
     git 
     node 
     npm 
-    python 
     python3 
-    ruby
     brew
     cmake
     ninja
@@ -406,8 +383,6 @@ function tool_check() {
     gcc
     vim 
     nvim
-    rustc
-    cargo
 "
    
   for tool in $TOOL_LIST; do
