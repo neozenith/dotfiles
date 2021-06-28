@@ -7,9 +7,9 @@
 if [[ "$OSTYPE" != "msys" ]]; then
   if [[ -n "`which nvim 2> /dev/null`" ]]; then
     WINPTY=""
-    if [[ -n "`which winpty 2> /dev/null`" ]]; then
-      WINPTY="winpty"
-    fi
+    # if [[ -n "`which winpty 2> /dev/null`" ]]; then
+    #   WINPTY="winpty"
+    # fi
     alias vim="$WINPTY nvim"
     alias vi="$WINPTY nvim"
     alias vimdiff="$WINPTY nvim -d"

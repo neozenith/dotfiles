@@ -28,28 +28,28 @@
   alias gc="git commit -v"
   alias gca="git commit -v -a"
   
-gacp() {
-  if [[ $# < 2 ]]; then
-    echo "$FUNCNAME - Shorthand for: git add \$add_dirs && git commit -m \$commit_message && git push [\$push_args]"
-    echo "USAGE: $FUNCNAME add_dirs commit_message [push_args...]"
-    return 0
-  else
-    add_dir="$1"; shift
-    commit_message="$1"; shift  
-  fi
-  git add "$add_dir" && git commit -m "$commit_message" && git push $@
-}
-
-gcp() {
-  if [[ $# < 1 ]]; then
-    echo "$FUNCNAME - Shorthand for: git add . && git commit -m \$commit_message && git push [\$push_args]"
-    echo "USAGE: $FUNCNAME commit_message [push_args...]"
-    return 0
-  else
-    commit_message="$1"; shift  
-  fi
-  git add . && git commit -m "$commit_message" && git push $@
-}
+# gacp() {
+#   if [[ $# < 2 ]]; then
+#     echo "$FUNCNAME - Shorthand for: git add \$add_dirs && git commit -m \$commit_message && git push [\$push_args]"
+#     echo "USAGE: $FUNCNAME add_dirs commit_message [push_args...]"
+#     return 0
+#   else
+#     add_dir="$1"; shift
+#     commit_message="$1"; shift
+#   fi
+#   git add "$add_dir" && git commit -m "$commit_message" && git push $@
+# }
+#
+# gcp() {
+#   if [[ $# < 1 ]]; then
+#     echo "$FUNCNAME - Shorthand for: git add . && git commit -m \$commit_message && git push [\$push_args]"
+#     echo "USAGE: $FUNCNAME commit_message [push_args...]"
+#     return 0
+#   else
+#     commit_message="$1"; shift
+#   fi
+#   git add . && git commit -m "$commit_message" && git push $@
+# }
   
 ###############################################################################
   # (G)it (M)aster
