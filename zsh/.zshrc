@@ -60,6 +60,7 @@ source "${EXTRA_SCRIPTS}/aliases_git.sh"
 source "${EXTRA_SCRIPTS}/aliases_nvim.sh"
 source "${EXTRA_SCRIPTS}/function_parse_git_prompt.sh"
 source "${EXTRA_SCRIPTS}/function_parse_kubectl_prompt.sh"
+source "${EXTRA_SCRIPTS}/function_parse_python_prompt.sh"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
