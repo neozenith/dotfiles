@@ -8,17 +8,13 @@ parse_git_prompt() {
   # No branch -> No more work.
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
   if [[ -n $BRANCH ]]; then
-  
-    # Colours: Define Colours and platform specific escape codes
-    ESC_CODE=""
-    [[ $OSTYPE == darwin* ]] && ESC_CODE=""
 
-    RED="%{$fg[red]%}"
-    GREEN="%{$fg[green]%}"
-    YELLOW="%{$fg[yellow]%}"
-    BLUE="%{$fg[blue]%}"
-    PURPLE="%{$fg[purple]%}"
-    NORM="%{$reset_colour%}"
+    RED="%F{red}"
+    GREEN="%F{green}"
+    YELLOW="%F{yellow}"
+    BLUE="%F{blue}"
+    PURPLE="%F{magenta}"
+    NORM="%F{reset}"
 
     BRANCH_STATUS=""
     CACHE_STATUS=""

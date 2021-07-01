@@ -1,12 +1,10 @@
 #! /bin/bash
 parse_k8s_prompt() {
-    local ESC_CODE="\e"
-    [[ $OSTYPE == darwin* ]] && ESC_CODE="\033"
 
-    local DARK="$ESC_CODE[2;49;94m"
-    local BRIGHT="$ESC_CODE[1;49;94m"
-    local BRIGHTEST="$ESC_CODE[7;49;94m"
-    local NORM="$ESC_CODE[0m"
+    local DARK="%F{017}"
+    local BRIGHT="%F{023}"
+    local BRIGHTEST="%F{016}%K{019}"
+    local NORM="%F{rc}%K{rc}"
     local K8S_CONTEXT=`kubectl config current-context 2> /dev/null`
     local K8S_PROMPT=""
     local K8S_COLOUR="${BRIGHTEST}"
@@ -18,4 +16,3 @@ parse_k8s_prompt() {
     fi
     echo -e "${K8S_PROMPT}"
 }
-export -f parse_k8s_prompt
