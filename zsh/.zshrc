@@ -35,6 +35,3 @@ source $ZSH/oh-my-zsh.sh
 
 setopt PROMPT_SUBST
 
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init --path)"
-
