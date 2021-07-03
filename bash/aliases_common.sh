@@ -37,3 +37,5 @@ function klogs() {
   kubectl logs $2 $3 `kubectl get pods $2 -o json | jq -r .items[0].metadata.name | grep $1`
 }
 alias ecr-login="aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 979037402244.dkr.ecr.us-west-2.amazonaws.com"
+
+alias awswho="aws sts get-caller-identity | jq .Arn"
