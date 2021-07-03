@@ -20,4 +20,5 @@ gems.tags
 .py*_cache/*
 
 # Sensitive
-bash-scripts/aliases_work.sh
+**/aliases_work.sh
+zsh/plugins/
