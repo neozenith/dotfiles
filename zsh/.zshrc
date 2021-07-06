@@ -33,6 +33,8 @@ plugins=(
   kubectl
   osx
 )
+
+
 source $ZSH/oh-my-zsh.sh
 setopt PROMPT_SUBST
-
+alias ll="ls -laFGh"
