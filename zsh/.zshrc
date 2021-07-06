@@ -3,12 +3,19 @@
 
 DOTFILE_DIR="$HOME/dotfiles"
 EXTRA_SCRIPTS="${DOTFILE_DIR}/zsh/scripts"
-source "${EXTRA_SCRIPTS}/aliases_common.sh"
-source "${EXTRA_SCRIPTS}/aliases_git.sh"
-source "${EXTRA_SCRIPTS}/aliases_nvim.sh"
-source "${EXTRA_SCRIPTS}/function_parse_git_prompt.sh"
-source "${EXTRA_SCRIPTS}/function_parse_kubectl_prompt.sh"
-source "${EXTRA_SCRIPTS}/function_parse_python_prompt.sh"
+scripts=(
+  "aliases_common.sh"
+  "aliases_git.sh"
+  "aliases_nvim.sh"
+  "aliases_work.sh"
+  "function_parse_git_prompt.sh"
+  "function_parse_kubectl_prompt.sh"
+  "function_parse_python_prompt.sh"
+)
+for sc in $scripts ; do
+  [ ! -e "${EXTRA_SCRIPTS}/$sc" ] && echo "Missing: $sc"
+  [ -e "${EXTRA_SCRIPTS}/$sc" ] && source "${EXTRA_SCRIPTS}/$sc"
+done
 
 ZSH_THEME="joshpeak"
 export ZSH="$HOME/.oh-my-zsh"
@@ -16,14 +23,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_CUSTOM=$HOME/dotfiles/zsh/
 export ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/plugins
+
+# TODO: If needing to auto install more plugins refactor this to a method
 [ ! -d "$ZSH_CUSTOM_PLUGINS/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions
 
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
   zsh-autosuggestions
@@ -32,6 +35,5 @@ plugins=(
   osx
 )
 source $ZSH/oh-my-zsh.sh
-
 setopt PROMPT_SUBST
 
