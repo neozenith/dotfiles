@@ -31,7 +31,7 @@ plugins=(
   zsh-autosuggestions
   aws
   kubectl
-  osx
+  macos
 )
 
 
