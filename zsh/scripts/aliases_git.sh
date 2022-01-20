@@ -59,6 +59,8 @@
   # (G)it Pu(L)
   alias gl="git pull -v"
   alias gL="git pull -v --all"
+  alias grm="git fetch -v --all --prune && git fetch --tags && git checkout master && git pull && git checkout - && git rebase master"
+  alias grM="git fetch -v --all --prune && git fetch --tags && git checkout main && git pull && git checkout - && git rebase main"
   
 ###############################################################################
   # (G)it (P)ush
