@@ -6,6 +6,8 @@ function parse_python_prompt() {
     PY_LOCATION="system"
   elif [[ $CURRENT_PY == "/usr/local/bin/python3" ]]; then
     PY_LOCATION="homebrew"
+  elif [[ $CURRENT_PY == "/opt/homebrew/bin/python3" ]]; then
+    PY_LOCATION="homebrew"
   elif [[ $CURRENT_PY == "$HOME/.pyenv/shims/python3" ]]; then
     PY_LOCATION="pyenv"
   else
