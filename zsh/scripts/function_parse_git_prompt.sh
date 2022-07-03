@@ -10,12 +10,16 @@ parse_git_prompt() {
   GIT_USER=`git config user.email 2> /dev/null`
   if [[ -n $BRANCH ]]; then
 
+    DARK="%F{235}"
+    BRIGHT="%F{023}"
+    BRIGHTEST="%F{016}%K{019}"
     RED="%F{red}"
     GREEN="%F{green}"
     YELLOW="%F{yellow}"
     BLUE="%F{blue}"
     PURPLE="%F{magenta}"
-    NORM="%F{reset}"
+    # NORM="%F{reset}"
+    NORM="%F{rc}%K{rc}"
 
     BRANCH_STATUS=""
     CACHE_STATUS=""
@@ -103,7 +107,7 @@ parse_git_prompt() {
 
     done
 
-    echo -e "\n(${GIT_USER}) ${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
+    echo -e "\n${DARK}(${GIT_USER})${NORM} ${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
 
   fi
   
