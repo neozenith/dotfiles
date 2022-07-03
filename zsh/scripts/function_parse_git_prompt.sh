@@ -7,6 +7,7 @@ parse_git_prompt() {
 
   # No branch -> No more work.
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+  GIT_USER=`git config user.email 2> /dev/null`
   if [[ -n $BRANCH ]]; then
 
     RED="%F{red}"
@@ -102,7 +103,7 @@ parse_git_prompt() {
 
     done
 
-    echo -e "\n${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
+    echo -e "\n(${GIT_USER}) ${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
 
   fi
   
