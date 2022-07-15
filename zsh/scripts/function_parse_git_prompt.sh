@@ -10,7 +10,7 @@ parse_git_prompt() {
   GIT_USER=`git config user.email 2> /dev/null`
   if [[ -n $BRANCH ]]; then
 
-    DARK="%F{235}"
+    DARK="%F{240}"
     BRIGHT="%F{023}"
     BRIGHTEST="%F{016}%K{019}"
     RED="%F{red}"
