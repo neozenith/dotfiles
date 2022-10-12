@@ -60,15 +60,25 @@ parse_git_prompt() {
       [[ -n $CACHE_STATUS ]] && CACHE_STATUS=" [${CACHE_STATUS}]"
     fi
     
-    REBASE_STATUS=""
+    MASTER_REBASE_STATUS=""
+    MAIN_REBASE_STATUS=""
+    MASTER_REBASE_DELTA=0
+    MAIN_REBASE_DELTA=0
     if [[ "$BRANCH" != "master" ]]; then
-        REBASE_DELTA=`git cherry $BRANCH master 2> /dev/null | wc -l | tr -d '[:space:]'`
-				if [ $REBASE_DELTA -gt 0 ]; then
-	        REBASE_STATUS="${PURPLE}M→${GREEN}${REBASE_DELTA}${NORM}"
+        MASTER_REBASE_DELTA=`git cherry $BRANCH master 2> /dev/null | wc -l | tr -d '[:space:]'`
+				if [ $MASTER_REBASE_DELTA -gt 0 ]; then
+	        MASTER_REBASE_STATUS="${PURPLE}M→${GREEN}${REBASE_DELTA}${NORM}"
 				fi
         
     fi
-    BRANCH_STATUS="${REBASE_STATUS}${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
+    if [[ "$BRANCH" != "main" ]]; then
+        MAIN_REBASE_DELTA=`git cherry $BRANCH main 2> /dev/null | wc -l | tr -d '[:space:]'`
+				if [ $MAIN_REBASE_DELTA -gt 0 ]; then
+	        MAIN_REBASE_STATUS="${PURPLE}M→${GREEN}${REBASE_DELTA}${NORM}"
+				fi
+        
+    fi
+    BRANCH_STATUS="${MASTER_REBASE_STATUS}${MAIN_REBASE_STATUS}${STATUS_COLOUR}⎇ ${BRANCH}${NORM}"
 
     # Remote status if you have fetched latest from remotes
     # 
@@ -91,18 +101,26 @@ parse_git_prompt() {
         REMOTE_DELTA="|${BLUE}↑${UP}${PURPLE}/${GREEN}↓${DOWN}"
       fi
 
-      REBASE_STATUS=""
-      REBASE_DELTA=0
+      MASTER_REBASE_STATUS=""
+      MASTER_REBASE_DELTA=0
+      MAIN_REBASE_STATUS=""
+      MAIN_REBASE_DELTA=0
       if [[ "$BRANCH" != "master" ]]; then
-          REBASE_DELTA=`git cherry $BRANCH $r/master 2> /dev/null | wc -l | tr -d '[:space:]'`
-          if [ $REBASE_DELTA -gt 0 ]; then
-            REBASE_STATUS="${PURPLE}|M↓${GREEN}${REBASE_DELTA}${NORM}"
+          MASTER_REBASE_DELTA=`git cherry $BRANCH $r/master 2> /dev/null | wc -l | tr -d '[:space:]'`
+          if [ $MASTER_REBASE_DELTA -gt 0 ]; then
+            MASTER_REBASE_STATUS="${PURPLE}|M↓${GREEN}${MASTER_REBASE_DELTA}${NORM}"
+          fi
+      fi
+      if [[ "$BRANCH" != "main" ]]; then
+          MAIN_REBASE_DELTA=`git cherry $BRANCH $r/main 2> /dev/null | wc -l | tr -d '[:space:]'`
+          if [ $MAIN_REBASE_DELTA -gt 0 ]; then
+            MAIN_REBASE_STATUS="${PURPLE}|M↓${GREEN}${MAIN_REBASE_DELTA}${NORM}"
           fi
       fi
           
 
-      if [ $UP -gt  0 ] || [ $DOWN -gt 0 ] || [ $REBASE_DELTA -gt 0 ];then
-        REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}$REBASE_STATUS$REMOTE_DELTA$PURPLE|$NORM"
+      if [ $UP -gt  0 ] || [ $DOWN -gt 0 ] || [ $MASTER_REBASE_DELTA -gt 0 ] || [ $MAIN_REBASE_DELTA -gt 0 ];then
+        REMOTE_STATUS="$REMOTE_STATUS ${PURPLE}${r}$MASTER_REBASE_STATUS$MAIN_REBASE_STATUS$REMOTE_DELTA$PURPLE|$NORM"
       fi
 
     done
