@@ -29,9 +29,11 @@ Symlinks aren't always available so I have chosen to always cop these files that
 
 ```sh
 DOTFILES=$HOME/dotfiles
-[ ! -d $DOTFILES/.git ] && git clone https://github.com/neozenith/dotfiles $DOTFILES
-[ ! -d $DOTFILES/zsh/scripts/aliases_work.sh ] && touch $DOTFILES/zsh/scripts/aliases_work.sh
-[ ! -d $DOTFILES/bash/scripts/aliases_work.sh ] && touch $DOTFILES/bash/scripts/aliases_work.sh
+[ ! -d "$$HOME/dotfiles/.git" ] && git clone https://github.com/neozenith/dotfiles $HOME/dotfiles
+[ ! -d "$$HOME/dotfiles/zsh/scripts/aliases_work.sh" ] && touch $HOME/dotfiles/zsh/scripts/aliases_work.sh
+[ ! -d "$$HOME/dotfiles/bash/scripts/aliases_work.sh" ] && touch $HOME/dotfiles/bash/scripts/aliases_work.sh
+[ ! -d "$$HOME/dotfiles/.vim/autoload/.git" ] && git clone https://github.com/junegunn/vim-plug.git $HOME/dotfiles/.vim/autoload
+
 
 cp -rv $DOTFILES/.gitconfig ~/.gitconfig
 
@@ -41,6 +43,9 @@ cp -rv $DOTFILES/.bashrc_link ~/.bashrc
 cp -rv $DOTFILES/.vimrc_link ~/.vimrc
 cp -rv $DOTFILES/.tmux_link.conf ~/.tmux.conf
 cp -rv $DOTFILES/nvim ~/.config/nvim
+
+# Plugins: Install / Update / Prune
+vim +PlugInstall +PlugUpdate +PlugClean! +qall
 ```
 
 From here you'll have to manually explore the respective `<shell>/scripts/` folders for what is needed.
