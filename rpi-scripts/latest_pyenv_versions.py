@@ -13,8 +13,8 @@ def tidy_versions():
 
     # Get all python versions that are only X.Y.Z format and only digits. No dev or alpha versions etc
     return {
-        pyversion.strip(): tuple([int(d) for d in pyversion.strip().split(".")])  
-        for pyversion in result.stdout.strip().split("\n") 
+        pyversion.strip(): tuple([int(d) for d in pyversion.strip().split(".")])
+        for pyversion in result.stdout.strip().split("\n")
         if pyversion.strip().startswith("3.") and all([d.isdigit() for d in pyversion.strip().split(".")])
     }
 
@@ -25,7 +25,7 @@ def max_patched_versions():
     return [
         '.'.join([str(n) for n in list(v)]) # Convert tuple back to dot formatted string
         for v in sorted([
-            max(g, key=lambda x: x) 
+            max(g, key=lambda x: x)
             for k, g in grouped_versions
         ], reverse=True)
     ]
@@ -33,5 +33,5 @@ def max_patched_versions():
 
 if __name__ == "__main__":
     update_pyenv()
-    print("\n".join([f"pyenv install {v}" for v in max_patched_versions()[:3]]))
-    
+    print("\n".join([f"pyenv install {v}" for v in max_patched_versions()[:5]]))
+

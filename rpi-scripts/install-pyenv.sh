@@ -33,4 +33,4 @@ sudo apt-get install -y \
     build-essential \
     openssl
 
-eval "$(python3 ~/dotfiles/rpi-scripts/latest_pyenv_versions.py)"
+python3 ~/dotfiles/rpi-scripts/latest_pyenv_versions.py
