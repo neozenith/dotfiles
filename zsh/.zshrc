@@ -23,6 +23,8 @@ ZSH_THEME="joshpeak"
 ZSH_CUSTOM=$HOME/dotfiles/zsh/
 export ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/plugins
 
+[ ! -d "~/.oh-my-zsh/themes/joshpeak.zsh-theme" ] && cp ~/dotfiles/zsh/themes/joshpeak.zsh-theme ~/.oh-my-zsh/themes
+
 #Auto-install plugins
 # TODO: If needing to auto install more plugins refactor this to a method
 [ ! -d "$ZSH_CUSTOM_PLUGINS/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions
@@ -42,3 +44,5 @@ setopt PROMPT_SUBST
 alias ll="ls -laFGh"
 # QT_PATH="$HOME/Qt5.12.12/5.12.12/clang_64/bin"
 # [ -d "$QT_PATH" ] && inject_path $QT_PATH
+PYENV_PATH="$HOME/.pyenv/bin"
+[ -d "$PYENV_PATH" ] && inject_path $PYENV_PATH

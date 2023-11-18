@@ -50,6 +50,12 @@ vim +PlugInstall +PlugUpdate +PlugClean! +qall
 
 From here you'll have to manually explore the respective `<shell>/scripts/` folders for what is needed.
 
+To change default shell to `zsh`.
+
+```sh
+sudo chsh -s /bin/zsh <myUserName>
+```
+
 ----
 
 ## Highlights
