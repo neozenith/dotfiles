@@ -46,3 +46,4 @@ alias ll="ls -laFGh"
 # [ -d "$QT_PATH" ] && inject_path $QT_PATH
 PYENV_PATH="$HOME/.pyenv/bin"
 [ -d "$PYENV_PATH" ] && inject_path $PYENV_PATH
+eval "$(pyenv init --path)"
