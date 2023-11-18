@@ -16,6 +16,35 @@ Like the Vim bonsai logo, it all starts with a seed and then you nurture
 and prune it for your own environment. Each person's Vim journey is different
 for this reason.
 
+
+----
+
+## Quick Start
+
+A lot of this has evolved since I first started so the tooling and dev dependencies need updating.
+
+For now the thing that is constant is cloning this repo and copying some key _dotfiles_ that source into this repo.
+
+Symlinks aren't always available so I have chosen to always cop these files that act as the symlinks.
+
+```sh
+DOTFILES=$HOME/dotfiles
+[ ! -d $DOTFILES/.git ] && git clone https://github.com/neozenith/dotfiles $DOTFILES
+[ ! -d $DOTFILES/zsh/scripts/aliases_work.sh ] && touch $DOTFILES/zsh/scripts/aliases_work.sh
+[ ! -d $DOTFILES/bash/scripts/aliases_work.sh ] && touch $DOTFILES/bash/scripts/aliases_work.sh
+
+cp -rv $DOTFILES/.gitconfig ~/.gitconfig
+
+cp -rv $DOTFILES/.zshrc_link ~/.zshrc
+cp -rv $DOTFILES/.bashrc_link ~/.bashrc
+
+cp -rv $DOTFILES/.vimrc_link ~/.vimrc
+cp -rv $DOTFILES/.tmux_link.conf ~/.tmux.conf
+cp -rv $DOTFILES/nvim ~/.config/nvim
+```
+
+From here you'll have to manually explore the respective `<shell>/scripts/` folders for what is needed.
+
 ----
 
 ## Highlights
@@ -92,33 +121,6 @@ export PS1="\e[0;32m\w\e[m"
 export PS1="$PS1 \$(parse_git_prompt)"
 export PS1="$PS1\nλ "
 ```
-
-----
-
-## Installation
-
-### OSX / Linux
-
-```bash
-cd ~
-git clone https://github.com/neozenith/dotfiles.git
-. dotfiles/install.sh
-```
-
-### Windows
-
-Download latest gVim for CMDer to use that binary instead of bundled.
-[Latest GVim][gvim-download]
-
-
-```
-cd %HOME%
-git clone https://github.com/neozenith/dotfiles.git
-cd dotfiles
-install.bat
-```
-
-[gvim-download]: https://github.com/vim/vim-win32-installer/releases
 
 ----
 
