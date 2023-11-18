@@ -1,6 +1,6 @@
 #! /bin/bash
 # Auth: Josh Peak
-# Desc: Install script for associated syntax checker tools
+# Desc: Install script for setting up "dotfiles"
 
 # Installation on Windows
 # https://medium.com/@saaguero/setting-up-vim-in-windows-5401b1d58537#.a3huqnkx7
@@ -158,32 +158,20 @@ function install_osx_dev_dependencies () {
   brew cleanup
 
   # Git Tooling
-  # brew install michaeldfallen/formula/git-radar
   brew install git tmux
   #--with-brewed-openssl --with-brewed-curl
   brew install nvim
 
-  brew install bash-completion \
-    pip-completion 
-
   brew install tree ctags fzf the_silver_searcher
-
-  # Documentation
-  # brew install graphviz doxygen
-
-  # DevOps
-  # brew install terraform ansible
 
   # NodeJS
   brew install node nvm
   # C, C++, C#, Objective-C
   brew install llvm
-  # Golang
-  brew install golang
-
+  
   # Database Drivers
-  brew install postgres \
-    redis 
+  # brew install postgres \
+  #   redis 
 
   notice "Python + Packages"
   # Python 3
@@ -196,28 +184,27 @@ function install_os_independent_dev_dependencies () {
   #Python
   # Ensure dependencies are in all available python installs
   # TODO: Split vim plugin dependencies from dev dependencies
-  for P in "python python2 python3"; do 
-    for PI in `which $P 2> /dev/null`; do
-      notice $PI
-      $PI -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
-      $PI -m pip install awscli --ignore-installed six --upgrade --user
-    done
-  done
+  # for P in "python python2 python3"; do 
+  #   for PI in `which $P 2> /dev/null`; do
+  #     notice $PI
+  #     $PI -m pip install -r $SCRIPT_DIR/requirements.txt --upgrade --user
+  #   done
+  # done
 
   
-  notice "NodeJS Packages"
-  #JavaScript
-  if [[ -n `which npm 2> /dev/null` ]]; then
-    notice "Install NPM deps per project"
-  else
-    notice "NPM not found"
-  fi
+  # notice "NodeJS Packages"
+  # #JavaScript
+  # if [[ -n `which npm 2> /dev/null` ]]; then
+  #   notice "Install NPM deps per project"
+  # else
+  #   notice "NPM not found"
+  # fi
   
-  notice "Rust + RustUp"
-  if [[ -n `which rustup 2> /dev/null` ]]; then
-    rustup update
-    rustup show
-  fi
+  # notice "Rust + RustUp"
+  # if [[ -n `which rustup 2> /dev/null` ]]; then
+  #   rustup update
+  #   rustup show
+  # fi
   
 }
 

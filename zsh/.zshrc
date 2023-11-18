@@ -8,6 +8,7 @@ scripts=(
   "function_parse_git_prompt.sh"
   "function_parse_kubectl_prompt.sh"
   "function_parse_python_prompt.sh"
+  "function_path_tools.sh"
 )
 for sc in $scripts ; do
   [ ! -e "${EXTRA_SCRIPTS}/$sc" ] && echo "Missing: $sc"
@@ -39,3 +40,5 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 setopt PROMPT_SUBST
 alias ll="ls -laFGh"
+# QT_PATH="$HOME/Qt5.12.12/5.12.12/clang_64/bin"
+# [ -d "$QT_PATH" ] && inject_path $QT_PATH
