@@ -71,6 +71,12 @@ nvim +checkhealth
 python3 $DOTFILES/scripts/latest_pyenv_versions.py
 ```
 
+List latest available Python3 versions in PyEnv
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/neozenith/python-onboarding-guide/main/latest_penv_versions.py | python3
+```
+
 From here you'll have to manually explore the respective `<shell>/scripts/` folders for what is needed.
 
 To change default shell to `zsh`.
