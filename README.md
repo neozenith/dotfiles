@@ -23,16 +23,36 @@ for this reason.
 
 A lot of this has evolved since I first started so the tooling and dev dependencies need updating.
 
+### Some basics
+
+ - https://brew.sh/
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```sh
+brew install neovim node python3 pyenv
+```
+
+- https://ohmyz.sh/
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### The dotfiles
+
 For now the thing that is constant is cloning this repo and copying some key _dotfiles_ that source into this repo.
 
 Symlinks aren't always available so I have chosen to always cop these files that act as the symlinks.
 
 ```sh
 DOTFILES=$HOME/dotfiles
-[ ! -d "$$HOME/dotfiles/.git" ] && git clone https://github.com/neozenith/dotfiles $HOME/dotfiles
-[ ! -d "$$HOME/dotfiles/zsh/scripts/aliases_work.sh" ] && touch $HOME/dotfiles/zsh/scripts/aliases_work.sh
-[ ! -d "$$HOME/dotfiles/bash/scripts/aliases_work.sh" ] && touch $HOME/dotfiles/bash/scripts/aliases_work.sh
-[ ! -d "$$HOME/dotfiles/.vim/autoload/.git" ] && git clone https://github.com/junegunn/vim-plug.git $HOME/dotfiles/.vim/autoload
+[ ! -d "$HOME/dotfiles/.git" ] && git clone https://github.com/neozenith/dotfiles $HOME/dotfiles
+[ ! -d "$HOME/dotfiles/zsh/scripts/aliases_work.sh" ] && touch $HOME/dotfiles/zsh/scripts/aliases_work.sh
+[ ! -d "$HOME/dotfiles/bash/aliases_work.sh" ] && touch $HOME/dotfiles/scripts/aliases_work.sh
+[ ! -d "$HOME/dotfiles/.vim/autoload/.git" ] && git clone https://github.com/junegunn/vim-plug.git $HOME/dotfiles/.vim/autoload
 
 
 cp -rv $DOTFILES/.gitconfig ~/.gitconfig
@@ -45,7 +65,8 @@ cp -rv $DOTFILES/.tmux_link.conf ~/.tmux.conf
 cp -rv $DOTFILES/nvim ~/.config/nvim
 
 # Plugins: Install / Update / Prune
-vim +PlugInstall +PlugUpdate +PlugClean! +qall
+nvim +PlugInstall +PlugUpdate +PlugClean! +qall
+nvim +checkhealth
 ```
 
 From here you'll have to manually explore the respective `<shell>/scripts/` folders for what is needed.
