@@ -68,7 +68,7 @@ cp -rv $DOTFILES/nvim ~/.config/nvim
 nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 nvim +checkhealth
 
-python3 $DOTFILES/scripts/lateest_pyenv_versions.py
+python3 $DOTFILES/scripts/latest_pyenv_versions.py
 ```
 
 From here you'll have to manually explore the respective `<shell>/scripts/` folders for what is needed.
