@@ -47,3 +47,7 @@ alias ll="ls -laFGh"
 PYENV_PATH="$HOME/.pyenv/bin"
 [ -d "$PYENV_PATH" ] && inject_path $PYENV_PATH
 eval "$(pyenv init --path)"
+
+WORK_TOOLS_PATH="$HOME/.work/bin"
+[ ! -d "$WORK_TOOLS_PATH" ] && mkdir -p $WORK_TOOLS_PATH
+[ -d "$WORK_TOOLS_PATH" ] && inject_path $WORK_TOOLS_PATH 
