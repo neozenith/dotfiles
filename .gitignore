@@ -21,4 +21,5 @@ gems.tags
 
 # Sensitive
 **/aliases_work.sh
+.gitconfig.work
 zsh/plugins/

@@ -1,6 +1,7 @@
 DOTFILE_DIR="$HOME/dotfiles"
 EXTRA_SCRIPTS="${DOTFILE_DIR}/zsh/scripts"
 scripts=(
+  "function_path_tools.sh"
   "aliases_common.sh"
   "aliases_git.sh"
   "aliases_nvim.sh"
@@ -8,7 +9,6 @@ scripts=(
   "function_parse_git_prompt.sh"
   "function_parse_kubectl_prompt.sh"
   "function_parse_python_prompt.sh"
-  "function_path_tools.sh"
 )
 for sc in $scripts ; do
   [ ! -e "${EXTRA_SCRIPTS}/$sc" ] && echo "Missing: $sc"
@@ -38,6 +38,7 @@ plugins=(
   macos
 )
 
+export GPG_TTY=$(tty)
 
 source $ZSH/oh-my-zsh.sh
 setopt PROMPT_SUBST
@@ -47,6 +48,9 @@ alias ll="ls -laFGh"
 PYENV_PATH="$HOME/.pyenv/bin"
 [ -d "$PYENV_PATH" ] && inject_path $PYENV_PATH
 eval "$(pyenv init --path)"
+
+PIPX_PATH="$HOME/.local/bin"
+[ -d "$PIPX_PATH" ] && inject_path $PIPX_PATH
 
 WORK_TOOLS_PATH="$HOME/.work/bin"
 [ ! -d "$WORK_TOOLS_PATH" ] && mkdir -p $WORK_TOOLS_PATH
