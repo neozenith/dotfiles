@@ -31,7 +31,6 @@ export ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/plugins
 
 plugins=(
   git
-  poetry
   zsh-autosuggestions
   aws
   kubectl
