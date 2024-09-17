@@ -53,8 +53,9 @@ DOTFILES=$HOME/dotfiles
 [ ! -d "$HOME/dotfiles/zsh/scripts/aliases_work.sh" ] && touch $HOME/dotfiles/zsh/scripts/aliases_work.sh
 [ ! -d "$HOME/dotfiles/bash/aliases_work.sh" ] && touch $HOME/dotfiles/scripts/aliases_work.sh
 [ ! -d "$HOME/dotfiles/.vim/autoload/.git" ] && git clone https://github.com/junegunn/vim-plug.git $HOME/dotfiles/.vim/autoload
+```
 
-
+```sh
 cp -rv $DOTFILES/.gitconfig ~/.gitconfig
 
 cp -rv $DOTFILES/.zshrc_link ~/.zshrc
@@ -63,13 +64,19 @@ cp -rv $DOTFILES/.bashrc_link ~/.bashrc
 cp -rv $DOTFILES/.vimrc_link ~/.vimrc
 cp -rv $DOTFILES/.tmux_link.conf ~/.tmux.conf
 cp -rv $DOTFILES/nvim ~/.config/nvim
+```
 
+```sh
+eval "$(pyenv init --path)"
+curl -fsSL https://raw.githubusercontent.com/neozenith/python-onboarding-guide/main/latest_penv_versions.py | python3
+```
+
+```sh
 # Plugins: Install / Update / Prune
 nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 nvim +checkhealth
-
-python3 $DOTFILES/scripts/latest_pyenv_versions.py
 ```
+
 
 List latest available Python3 versions in PyEnv
 
