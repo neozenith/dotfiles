@@ -9,11 +9,17 @@ scripts=(
   "function_parse_git_prompt.sh"
   "function_parse_kubectl_prompt.sh"
   "function_parse_python_prompt.sh"
+  "function_parse_aws_prompt.sh"
 )
 for sc in $scripts ; do
   [ ! -e "${EXTRA_SCRIPTS}/$sc" ] && echo "Missing: $sc"
   [ -e "${EXTRA_SCRIPTS}/$sc" ] && source "${EXTRA_SCRIPTS}/$sc"
 done
+
+# Auto install hombrew
+[ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+
+inject_path "/opt/homebrew/bin" 
 
 # Auto-install oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
@@ -35,6 +41,8 @@ plugins=(
   aws
   kubectl
   macos
+  ssh
+  terraform
 )
 
 export GPG_TTY=$(tty)

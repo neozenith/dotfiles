@@ -1,5 +1,5 @@
 NL=$'\n'
-PROMPT='${NL}%{$fg[cyan]%}%~%{$reset_color%}$(parse_git_prompt) $(parse_k8s_prompt) $(parse_python_prompt)'
+PROMPT='${NL}%{$fg[cyan]%}%~%{$reset_color%}$(parse_git_prompt) $(parse_k8s_prompt) $(parse_python_prompt) $(parse_aws_prompt)'
 PROMPT+="${NL}λ "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="${NL}%{$fg_bold[blue]%}⎇  %{$fg[red]%}"
