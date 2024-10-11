@@ -25,6 +25,8 @@ inject_path "/opt/homebrew/bin"
 export ZSH="$HOME/.oh-my-zsh"
 [ ! -d $ZSH ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# TODO: Update custom prompt tooling to use Starship
+# https://starship.rs/config/
 ZSH_THEME="joshpeak"
 ZSH_CUSTOM=$HOME/dotfiles/zsh/
 export ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/plugins
