@@ -20,6 +20,7 @@ done
 [ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
 
 inject_path "/opt/homebrew/bin" 
+prepend_path "/opt/homebrew/opt/make/libexec/gnubin"
 
 # Auto-install oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
