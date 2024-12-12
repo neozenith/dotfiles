@@ -12,3 +12,8 @@ alias tfd="terraform destroy -auto-approve"
 alias tff="terraform fmt && terraform validate && terraform graph | dot -Tsvg > graph.svg"
 
 alias pvup="python3 -m venv .venv && .venv/bin/python3 -m pip install --upgrade pip && .venv/bin/python3 -m pip install -r requirements.txt && . ./.venv/bin/activate"
+
+# USAGE: eval "$(xenv 2>&1)"
+xenv() {
+  curl -fsSL https://raw.githubusercontent.com/neozenith/python-onboarding-guide/refs/heads/main/scripts/exportenv.py | python3
+}
