@@ -7,6 +7,9 @@ alias cdd="cd ~/dotfiles"
 alias awswho="aws sts get-caller-identity | jq .Arn"
 # alias awssso="aws sso login && eval \"$$(aws configure export-credentials --profile $$AWS_PROFILE --format env)\""
 
+# Python New aka PEW 😉
+alias pew="uv init --vcs git --build-backend uv"
+
 alias tfa="terraform apply -auto-approve"
 alias tfd="terraform destroy -auto-approve"
 alias tff="terraform fmt && terraform validate && terraform graph | dot -Tsvg > graph.svg"
