@@ -7,7 +7,9 @@
   # (G)it (S)tatus
   alias gs="git status --untracked-files --short --branch --ignore-submodules"
   # (G)it (B)ranch
-  alias gb="git branch -vv"
+  alias gbs="git branch -vv"
+  # (G)it (C)heckout (B)ranch
+  alias gcb="git checkout -b"
 
 ###############################################################################
   # (G)it (D)iff
@@ -52,25 +54,29 @@
 # }
   
 ###############################################################################
-  # (G)it (M)aster
-  alias gm=" git checkout master -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
+  # (G)it (M)ain
+  alias gm=" git checkout main -f; git fetch -v --all --prune; git fetch --tags; git pull -v --all"
 
 ###############################################################################
   # (G)it Pu(L)
   alias gl="git pull -v"
   alias gL="git pull -v --all"
-  alias gRm="git fetch -v --all --prune && git fetch --tags && git checkout master && git pull && git checkout - && git rebase master"
-  alias gRM="git fetch -v --all --prune && git fetch --tags && git checkout main && git pull && git checkout - && git rebase main"
+
+###############################################################################
+  # (G)it (R)ebase
+
+  # Rebase the current branch with main without switching to main first. Use with `gpF` alias.
+  alias gr="git rebase origin/main"
   
 ###############################################################################
   # (G)it (P)ush
   alias gp="git push"
   alias gP="git push; git push --tags"
-  alias gphm="git push heroku master"
+  alias gpF="git push origin HEAD --force-with-lease"
   
 ###############################################################################
   # (G)it (F)etch
-  alias gf="git fetch --prune --all"
+  alias gf="git fetch --prune --all; git fetch --tags --prune --all"
   alias gF="git fetch --prune --all; git fetch --tags --prune --all"
   
 ###############################################################################
