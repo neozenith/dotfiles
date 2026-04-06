@@ -13,6 +13,8 @@ alias pew="uv init --vcs git --build-backend uv"
 alias aic="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
 alias ccdsp="claude --dangerously-skip-permissions"
 
+alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
+
 alias v2ai="npx skills add ~/work/agent-capabilites"
 alias jpai="npx skills add ~/play/agentic-dotfiles"
 
