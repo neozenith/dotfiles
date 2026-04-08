@@ -18,6 +18,11 @@ alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 alias v2ai="npx skills add ~/work/agent-capabilites"
 alias jpai="npx skills add ~/play/agentic-dotfiles"
 
+# dbt Cloud
+alias dbtc="/opt/homebrew/bin/dbt"
+# dbt Fusion
+alias dbtf="/Users/joshpeak/.local/bin/dbt"
+
 
 alias tfa="terraform apply -auto-approve"
 alias tfd="terraform destroy -auto-approve"
