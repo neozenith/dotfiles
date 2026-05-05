@@ -15,8 +15,11 @@ alias ccdsp="claude --dangerously-skip-permissions"
 
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 
-alias v2ai="npx skills add ~/work/agent-capabilites"
-alias jpai="npx skills add ~/play/agentic-dotfiles"
+alias v2ai="npx skills add ~/work/agent-capabilites/"
+alias jpai="npx skills add ~/play/agentic-dotfiles/"
+
+alias cv2ai="code ~/work/agent-capabilites/"
+alias cjpai="code ~/play/agentic-dotfiles/"
 
 # dbt Cloud
 alias dbtc="/opt/homebrew/bin/dbt"
