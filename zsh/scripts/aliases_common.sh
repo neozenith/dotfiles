@@ -15,8 +15,8 @@ alias ccdsp="claude --dangerously-skip-permissions"
 
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 
-alias v2ai="npx skills add ~/work/agent-capabilities/"
-alias jpai="npx skills add ~/play/agentic-dotfiles/"
+alias v2ai="npx skills add ~/work/agent-capabilities/ --agent claude-code codex github-copilot"
+alias jpai="npx skills add ~/play/agentic-dotfiles/ --agent claude-code codex github-copilot"
 
 alias cv2ai="code ~/work/agent-capabilities/"
 alias cjpai="code ~/play/agentic-dotfiles/"
