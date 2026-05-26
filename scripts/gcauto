@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# gcauto — report the current directory, the enclosing git repo root,
+# and the git-configured user.email that applies in this location, then
+# export matching CLOUDSDK_* environment variables so subsequent gcloud
+# invocations target a per-tree config dir, the right account, and the
+# right project.
+#
+# The email is resolved by git itself, so includeIf rules in ~/.gitconfig
+# (e.g. ~/play/, ~/work/, ~/clients/<client>/) are honored automatically.
+#
+# NOTE: For the exports to affect the calling shell, source this script:
+#   source gcauto [gcp_project]      # or:  . gcauto [gcp_project]
+# Running it as `gcauto ...` just prints the values — exports die with
+# the child process.
+#
+# Usage: source gcauto [gcp_project] [--login]
+#
+# --login    Also run the interactive `gcloud auth login` flows and apply
+#            `gcloud config set project` / `set-quota-project`. Without
+#            this flag the script only exports env vars (no network calls,
+#            no prompts, no persisted config changes).
+
+do_login=""
+gcp_project=""
+for arg in "$@"; do
+    case "$arg" in
+        --login) do_login=1 ;;
+        *)       [ -z "$gcp_project" ] && gcp_project="$arg" ;;
+    esac
+done
+
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+configured_email="$(git config user.email 2>/dev/null)"
+
+if [ -n "$repo_root" ]; then
+    # Derive a folder-safe repo name from the git remote URL.
+    # Prefers `origin`, falls back to the first available remote, and
+    # finally to the repo root's basename if no remote is configured.
+    remote_url="$(git remote get-url origin 2>/dev/null \
+                || git remote get-url "$(git remote | head -1)" 2>/dev/null)"
+    raw_name="${remote_url:-$repo_root}"
+    raw_name="${raw_name%.git}"; raw_name="${raw_name%/}"; raw_name="${raw_name##*[:/]}"
+    # Normalize: lowercase, non-alphanumeric -> '-', collapse and trim '-'.
+    repo_name="$(printf '%s' "$raw_name" \
+        | tr '[:upper:]' '[:lower:]' \
+        | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')"
+
+    gcloud_config_dir="$(cd "$repo_root/.." && pwd)/.gcloud/${repo_name}"
+else
+    repo_name=""
+    gcloud_config_dir=""
+fi
+
+echo "cwd:       $PWD"
+if [ -n "$repo_root" ]; then
+    echo "repo_root: $repo_root"
+    echo "repo_name: ${repo_name:-(no remote)}"
+    echo "gcloud:    $gcloud_config_dir"
+else
+    echo "repo:      (not in a git repository)"
+fi
+echo "email:     ${configured_email:-(unset)}"
+echo "project:   ${gcp_project:-(none)}"
+
+# CLOUDSDK_CONFIG is the variable gcloud actually reads for its config
+# directory (not CLOUDSDK_CONFIG_DIR). CLOUDSDK_CORE_ACCOUNT and
+# CLOUDSDK_CORE_PROJECT override the active account/project for this shell.
+if [ -n "$gcloud_config_dir" ]; then
+    export CLOUDSDK_CONFIG="$gcloud_config_dir"
+    export GOOGLE_APPLICATION_CREDENTIALS="$CLOUDSDK_CONFIG/application_default_credentials.json"
+fi
+if [ -n "$configured_email" ]; then
+    export CLOUDSDK_CORE_ACCOUNT="$configured_email"
+    if [ -n "$do_login" ]; then
+        gcloud auth application-default login --account "$configured_email"
+        gcloud auth login --account "$configured_email"
+    fi
+fi
+if [ -n "$gcp_project" ]; then
+    export CLOUDSDK_CORE_PROJECT="$gcp_project"
+    export GOOGLE_CLOUD_PROJECT="$gcp_project"
+    if [ -n "$do_login" ]; then
+        gcloud config set project "$gcp_project"
+        gcloud auth application-default set-quota-project "$gcp_project"
+    fi
+fi
