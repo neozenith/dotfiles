@@ -288,6 +288,9 @@ function setup_dotfiles() {
   $LINK_ACTION $SCRIPT_DIR/.eslintrc.json ~/.eslintrc.json         # ESLint Base Settings
   $LINK_ACTION $SCRIPT_DIR/.tern-project ~/.tern-project           # YCM JS Base Settings
   $LINK_ACTION $SCRIPT_DIR/.ycm_extra_conf.py ~/.ycm_extra_conf.py # YCM C++ Base Settings
+
+  mkdir -p ~/.work/bin
+  $LINK_ACTION $SCRIPT_DIR/scripts/gcauto ~/.work/bin/gcauto
   # Display symlinks
   ls -laFG ~ | grep -E "\->" | grep -E "\.vim"
   echo -e "\033[0m"
