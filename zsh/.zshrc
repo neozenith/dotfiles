@@ -47,12 +47,17 @@ plugins=(
   kubectl
   macos
   ssh
-  terraform
 )
 
 export GPG_TTY=$(tty)
 
 source $ZSH/oh-my-zsh.sh
+
+# The oh-my-zsh `terraform` plugin defines `alias tfs='terraform state'`, which
+# shadows the `tfs` stack-lifecycle CLI (~/.local/bin/tfs). Drop just that alias
+# (keeping the plugin's other tf* aliases) so the real executable wins.
+unalias tfs 2>/dev/null
+
 setopt PROMPT_SUBST
 alias ll="ls -laFGh"
 # QT_PATH="$HOME/Qt5.12.12/5.12.12/clang_64/bin"
