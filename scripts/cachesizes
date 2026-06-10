@@ -1,0 +1,286 @@
+#!/usr/bin/env bash
+#
+# cachesizes — discover and measure every developer/app cache on this machine,
+#              ranked largest-first, so you can see how big each problem really
+#              is before deciding what (if anything) to purge.
+#
+# DISCOVERY IS THE POINT. The report is built by *scanning* the canonical cache
+# roots (~/.cache and ~/Library/Caches) and enumerating their children, plus a
+# short list of tool caches that live outside those roots (go modules, npm,
+# cargo, pnpm store, gradle, m2, Xcode DerivedData). It also walks PROJECT_ROOTS
+# for project-local `.terraform` provider dirs, which balloon in inactive repos.
+# Nothing is hard-coded as "the list of caches" — whatever is on disk shows up.
+#
+# Usage:
+#   cachesizes                 Ranked report of all caches (default).
+#   cachesizes NAME            Only rows whose path contains NAME.
+#   cachesizes --min 100       Only show entries >= 100 MiB (default: 1 MiB).
+#   cachesizes -b NAME         Breakdown: also list each match's child dirs by
+#                              size (e.g. `cachesizes -b playwright`).
+#   cachesizes --prune [NAME]  SAFE prune: keep current, drop stale/old. Uses
+#                              each tool's native prune (see below).
+#   cachesizes --purge [NAME]  HARD purge: rm -rf / native clean of the WHOLE
+#                              cache (prompts each).
+#   cachesizes --dry-run ...   Show what --prune/--purge would do, change nothing.
+#   cachesizes --yes ...       Don't prompt.
+#   cachesizes --help
+#
+# --prune runs only operations that KEEP what's current and remove what's stale:
+#   uv          uv cache prune            (drop unreachable objects)
+#   pnpm        pnpm store prune          (drop unreferenced packages)
+#   homebrew    brew cleanup              (drop old versions + stale downloads)
+#   huggingface hf cache prune            (drop detached/unreferenced revisions)
+#   docker      docker builder/image prune (drop build cache + dangling images)
+#   playwright  keep newest build per browser family, rm the older versions
+# --purge is the blunt instrument: native `clean`/`purge` where one exists, else
+# `rm -rf` the whole directory. Look at the report before reaching for it.
+
+set -uo pipefail
+shopt -s nullglob
+
+# Directories whose subtrees are searched for project-local .terraform dirs.
+PROJECT_ROOTS=( "$HOME/work" "$HOME/play" "$HOME/clients" )
+
+# ---- options ---------------------------------------------------------------
+PURGE=0
+PRUNE=0
+DRY_RUN=0
+ASSUME_YES=0
+BREAKDOWN=0
+MIN_MIB=1
+FILTER=""
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -p|--purge)     PURGE=1 ;;
+        -P|--prune)     PRUNE=1 ;;
+        -n|--dry-run)   DRY_RUN=1 ;;
+        -y|--yes)       ASSUME_YES=1 ;;
+        -b|--breakdown) BREAKDOWN=1 ;;
+        --min)          shift; MIN_MIB="${1:-1}" ;;
+        -h|--help)  sed -n '2,/^set -uo/p' "$0" | sed 's/^#\{0,1\} \{0,1\}//; /^set -uo/d'; exit 0 ;;
+        -*)         echo "unknown flag: $1" >&2; exit 2 ;;
+        *)          FILTER="$1" ;;
+    esac
+    shift
+done
+min_kib=$(( MIN_MIB * 1024 ))
+
+# ---- shared helpers --------------------------------------------------------
+# match FILTER (empty filter matches everything).
+match() { [ -z "$FILTER" ] && return 0; case "$1" in *"$FILTER"*) return 0 ;; *) return 1 ;; esac; }
+
+# run a command line, honoring --dry-run.
+run() { if [ "$DRY_RUN" = 1 ]; then echo "  [dry-run] $*"; else echo "  + $*"; eval "$*"; fi; }
+
+# prompt before a destructive action (auto-yes with --yes; never in dry-run).
+confirm() {
+    [ "$DRY_RUN" = 1 ] && return 1
+    [ "$ASSUME_YES" = 1 ] && return 0
+    printf '  %s ? [y/N] ' "$1"; read -r a </dev/tty; case "$a" in [yY]*) return 0 ;; *) return 1 ;; esac
+}
+
+# ---- discovery: tool / app caches ------------------------------------------
+# Emit one absolute candidate-cache path per line. Existence is checked later;
+# duplicates are removed by the caller via `sort -u`.
+cache_candidates() {
+    # 1. Everything directly under the canonical cache roots.
+    local root child
+    for root in "$HOME/.cache"; do
+        [ -d "$root" ] || continue
+        for child in "$root"/*; do
+            printf '%s\n' "$child"
+        done
+    done
+
+    # 2. Tool caches that live OUTSIDE those roots. Resolve via the tool itself
+    #    where possible so we follow the user's real configuration.
+    command -v go   >/dev/null 2>&1 && go env GOMODCACHE 2>/dev/null
+    command -v npm  >/dev/null 2>&1 && { npm config get cache 2>/dev/null; npm config get cache 2>/dev/null | sed 's:$:/_npx:'; }
+    command -v pnpm >/dev/null 2>&1 && pnpm store path 2>/dev/null
+    command -v bun  >/dev/null 2>&1 && bun pm cache 2>/dev/null
+    printf '%s\n' \
+        "${CARGO_HOME:-$HOME/.cargo}/registry" \
+        "${CARGO_HOME:-$HOME/.cargo}/git" \
+        "$HOME/.gradle/caches" \
+        "$HOME/.m2/repository" \
+        "$HOME/Library/Developer/Xcode/DerivedData"
+}
+
+# ---- discovery: project-local .terraform dirs ------------------------------
+# Walk PROJECT_ROOTS for .terraform dirs (provider plugins + modules). Prune
+# node_modules/.git for speed and don't descend into .terraform itself.
+terraform_candidates() {
+    local r
+    for r in "${PROJECT_ROOTS[@]}"; do
+        [ -d "$r" ] || continue
+        find "$r" \
+            \( -type d \( -name node_modules -o -name .git \) -prune \) -o \
+            \( -type d -name .terraform -prune -print \) 2>/dev/null
+    done
+}
+
+# ---- recommended purge command for a given path ----------------------------
+# "" means we have no special command → treat as `rm -rf`.
+recipe() {
+    case "$1" in
+        */uv)                       echo "uv cache clean" ;;
+        */pip)                      echo "pip cache purge" ;;
+        */Homebrew)                 echo "brew cleanup -s --prune=all" ;;
+        */Yarn|*/.yarn/*)           echo "yarn cache clean" ;;
+        */pre-commit)               echo "pre-commit gc" ;;
+        */go-build)                 echo "go clean -cache" ;;
+        */pkg/mod)                  echo "go clean -modcache" ;;
+        */.npm|*/_npx)              echo "npm cache clean --force" ;;
+        */pnpm/store/*|*/pnpm)      echo "pnpm store prune" ;;
+        */ccache)                   echo "ccache -C" ;;
+        */ms-playwright)            echo "rm -rf  (re-run: playwright install)" ;;
+        */.terraform)               echo "rm -rf  (re-run: terraform init)" ;;
+        */huggingface)              echo "rm -rf  (native: hf cache delete)" ;;
+        *)                          echo "" ;;
+    esac
+}
+
+# ---- measure: stdin paths -> "kib<TAB>path<TAB>recipe" rows -----------------
+measure() {
+    local path k
+    while IFS= read -r path; do
+        [ -n "$path" ] || continue
+        [ -e "$path" ] || continue
+        if [ -n "$FILTER" ]; then case "$path" in *"$FILTER"*) ;; *) continue ;; esac; fi
+        k=$(du -sk "$path" 2>/dev/null | awk '{print $1}')
+        [ -n "$k" ] || continue
+        [ "$k" -ge "$min_kib" ] || continue
+        printf '%s\t%s\t%s\n' "$k" "$path" "$(recipe "$path")"
+    done
+}
+
+# ---- render: sort rows largest-first, format with % and total --------------
+render() {
+    local label="$1"
+    sort -t'	' -k1,1 -rn | awk -F'	' -v label="$label" '
+        function human(k){ return (k>=1048576)?sprintf("%.1fG",k/1048576):(k>=1024)?sprintf("%.0fM",k/1024):sprintf("%dK",k) }
+        $1=="" { next }
+        { n++; kib[n]=$1; path[n]=$2; rec[n]=$3; total+=$1 }
+        END{
+            if(total==0){ print "  (none)"; exit }
+            printf "%-8s %6s  %-46s %s\n","SIZE","%","PATH","PURGE";
+            printf "%-8s %6s  %-46s %s\n","----","-","----------------------------------------------","-----";
+            for(i=1;i<=n;i++)
+                printf "%-8s %5.1f%%  %-46s %s\n", human(kib[i]), 100*kib[i]/total, path[i], (rec[i]==""?"rm -rf":rec[i]);
+            printf "%-8s %6s  %s\n","--------","","";
+            printf "%-8s %6s  %s\n", human(total), "100%", label;
+        }'
+}
+
+# ---- breakdown: list each matched dir's immediate children by size ---------
+breakdown() {
+    local k path rec
+    while IFS='	' read -r k path rec; do
+        [ -d "$path" ] || continue
+        echo
+        echo "---- $path ----"
+        du -sk "$path"/* 2>/dev/null | sort -rn | awk -F'	' '
+            function human(k){ return (k>=1048576)?sprintf("%.1fG",k/1048576):(k>=1024)?sprintf("%.0fM",k/1024):sprintf("%dK",k) }
+            { printf "  %-8s  %s\n", human($1), $2 }'
+    done
+}
+
+# ---- report ----------------------------------------------------------------
+cache_rows=$(cache_candidates | sort -u | measure)
+tf_rows=$(terraform_candidates | sort -u | measure)
+
+echo "==== tool & app caches ===="
+printf '%s\n' "$cache_rows" | render "TOTAL (caches)"
+
+echo
+echo "==== project-local .terraform dirs (under ${PROJECT_ROOTS[*]/#$HOME/\~}) ===="
+printf '%s\n' "$tf_rows" | render "TOTAL (.terraform)"
+
+# ---- optional per-cache child breakdown ------------------------------------
+if [ "$BREAKDOWN" = 1 ]; then
+    echo
+    echo "==== breakdown: immediate children, largest first ===="
+    [ -n "$FILTER" ] || echo "  (tip: pass a NAME filter to narrow this, e.g. -b playwright)"
+    printf '%s\n%s\n' "$cache_rows" "$tf_rows" | breakdown
+fi
+
+# ---- docker (not a directory — query the daemon) ---------------------------
+if command -v docker >/dev/null 2>&1 && { [ -z "$FILTER" ] || [ "$FILTER" = docker ]; }; then
+    echo
+    echo "==== docker (reclaimable via: docker system prune) ===="
+    docker system df 2>/dev/null || echo "  docker daemon not running"
+fi
+
+# ---- playwright prune: keep newest build per family, drop the rest ---------
+# Playwright never garbage-collects old browser builds and isn't installed
+# globally here, so prune at the directory level: for each versioned family
+# (chromium, chromium_headless_shell, firefox, webkit, ffmpeg) keep the highest
+# version and remove the older ones. Hash-named mcp-chrome-* builds are left for
+# --purge since they have no version ordering. A project re-fetches what it needs
+# on its next `playwright install`.
+prune_playwright() {
+    local base="$HOME/Library/Caches/ms-playwright"
+    [ -d "$base" ] || { echo "  playwright: cache not found"; return 0; }
+    local fam matches list count old=() d
+    for fam in chromium chromium_headless_shell firefox webkit ffmpeg; do
+        matches=( "$base/$fam"-* )                       # nullglob → empty if none
+        [ ${#matches[@]} -gt 0 ] || continue
+        list=$(printf '%s\n' "${matches[@]}" | sort -t- -k2 -n)
+        count=$(printf '%s\n' "$list" | grep -c .)
+        while IFS= read -r d; do [ -n "$d" ] && old+=( "$d" ); done \
+            < <(printf '%s\n' "$list" | head -n $(( count - 1 )))
+    done
+    if [ ${#old[@]} -eq 0 ]; then
+        echo "  playwright: nothing to prune (only the newest of each browser is present)"
+        return 0
+    fi
+    echo "  playwright: ${#old[@]} old build(s) can be removed (keeping newest per family):"
+    for d in "${old[@]}"; do
+        printf '    - %-34s %s\n' "$(basename "$d")" "$(du -sh "$d" 2>/dev/null | awk '{print $1}')"
+    done
+    [ "$DRY_RUN" = 1 ] && { echo "    [dry-run] nothing removed"; return 0; }
+    confirm "remove the ${#old[@]} old playwright build(s) above" || { echo "    skipped"; return 0; }
+    for d in "${old[@]}"; do rm -rf "$d" && echo "    removed $(basename "$d")"; done
+}
+
+# ---- prune (safe: keep current, drop stale/old) ----------------------------
+if [ "$PRUNE" = 1 ]; then
+    echo
+    echo "==== prune (safe — keeps current, drops stale/old) ===="
+    command -v uv   >/dev/null 2>&1 && match uv          && [ -d "$(uv cache dir 2>/dev/null)" ]      && run "uv cache prune"
+    command -v pnpm >/dev/null 2>&1 && match pnpm        && run "pnpm store prune"
+    command -v brew >/dev/null 2>&1 && match homebrew    && run "brew cleanup"
+    if match huggingface && [ -d "${HF_HOME:-$HOME/.cache/huggingface}" ]; then
+        hf_yes=""; [ "$ASSUME_YES" = 1 ] && hf_yes=" -y"
+        run "uvx --from huggingface_hub hf cache prune$hf_yes"
+    fi
+    # Docker: build cache + dangling (untagged) images. Both are rebuildable, so
+    # safe to prune. Without --yes docker shows its own [y/N] confirmation; -a is
+    # deliberately NOT passed (that would drop tagged-but-unused images too).
+    if command -v docker >/dev/null 2>&1 && match docker; then
+        if docker info >/dev/null 2>&1; then
+            d_yes=""; [ "$ASSUME_YES" = 1 ] && d_yes=" -f"
+            run "docker builder prune$d_yes"
+            run "docker image prune$d_yes"
+        else
+            echo "  docker: daemon not running"
+        fi
+    fi
+    match playwright && prune_playwright
+fi
+
+# ---- purge (hard: native clean / rm -rf the WHOLE cache) -------------------
+if [ "$PURGE" = 1 ]; then
+    echo
+    echo "==== purge (HARD — removes the whole cache) ===="
+    printf '%s\n%s\n' "$cache_rows" "$tf_rows" | sort -t'	' -k1,1 -rn | while IFS='	' read -r k path rec; do
+        [ -n "$path" ] || continue
+        [ "$DRY_RUN" = 1 ] || confirm "purge $path (~$(( k / 1024 )) MiB)" || { echo "  skipped"; continue; }
+        if [ -z "$rec" ] || [ "${rec#rm -rf}" != "$rec" ]; then
+            run "rm -rf '$path'"
+        else
+            run "$rec"
+        fi
+    done
+fi
