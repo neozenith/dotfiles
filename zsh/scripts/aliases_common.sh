@@ -11,7 +11,9 @@ alias awswho="aws sts get-caller-identity | jq .Arn"
 # Python New aka PEW 😉
 alias pew="uv init --vcs git --build-backend uv"
 alias aic="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
+alias ais="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code --skills '*' --yes"
 alias ccdsp="claude --dangerously-skip-permissions"
+alias ccpma="claude --permission-mode auto"
 
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 
