@@ -77,7 +77,7 @@
 ###############################################################################
   # (G)it (F)etch
   alias gf="git fetch --prune --all; git fetch --tags --prune --all"
-  alias gF="git fetch --prune --all; git fetch --tags --prune --all"
+  alias gF="git fetch --prune --all; git fetch --tags --prune --all --force"
   
 ###############################################################################
   # (G)it (T)ree see gitconfig for full details of git tree alias
