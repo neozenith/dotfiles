@@ -34,6 +34,9 @@ alias tfa="terraform apply -auto-approve"
 alias tfd="terraform destroy -auto-approve"
 alias tff="terraform fmt && terraform validate && terraform graph | dot -Tsvg > graph.svg"
 
+# Append .claude/ and tmp/ to this repo's git exclude (skip if already present)
+alias aii="[ -z \"\$(grep -xF '.claude/' .git/info/exclude)\" ] && printf '%s\n' '.claude/' >> .git/info/exclude; [ -z \"\$(grep -xF 'tmp/' .git/info/exclude)\" ] && printf '%s\n' 'tmp/' >> .git/info/exclude"
+
 # USAGE: eval "$(xenv 2>&1)"
 xenv() {
   curl -fsSL https://raw.githubusercontent.com/neozenith/python-onboarding-guide/refs/heads/main/scripts/exportenv.py | python3
