@@ -57,18 +57,18 @@
 	# sslCAPath
 	# sslCAInfo
 	
-[credential]
-  # Git will try credential stores in failover order
-  # https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+# [credential]
+#   # Git will try credential stores in failover order
+#   # https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
 
-  # OSX
-  helper = osxkeychain
-  # WINDOWS
-  helper = manager
-  # RASPBERRY PI
-  helper = store --file ~/.gitcredentials
-  # LAST RESORT
-  helper = cache
+#   # OSX
+#   helper = osxkeychain
+#   # WINDOWS
+#   helper = manager
+#   # RASPBERRY PI
+#   helper = store --file ~/.gitcredentials
+#   # LAST RESORT
+#   helper = cache
 
 [credential "https://github.com"]
 	username = neozenith
