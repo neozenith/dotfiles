@@ -11,6 +11,7 @@ scripts=(
   "function_parse_python_prompt.sh"
   "function_parse_aws_prompt.sh"
   "function_parse_gcloud_prompt.sh"
+  "function_parse_gh_prompt.sh"
 )
 for sc in $scripts ; do
   [ ! -e "${EXTRA_SCRIPTS}/$sc" ] && echo "Missing: $sc"
