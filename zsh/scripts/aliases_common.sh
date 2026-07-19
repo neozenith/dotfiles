@@ -13,6 +13,7 @@ alias pew="uv init --vcs git --build-backend uv"
 alias aic="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
 alias aicc="git -C .claude config --local user.name neozenith && git -C .claude config --local user.email joshpeak05@gmail.com"
 alias ais="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code"
+alias aisu="npx skills@latest update"
 alias ccdsp="claude --dangerously-skip-permissions"
 alias ccpma="claude --permission-mode auto"
 
