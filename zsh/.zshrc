@@ -17,8 +17,8 @@ for sc in $scripts ; do
   [ -e "${EXTRA_SCRIPTS}/$sc" ] && source "${EXTRA_SCRIPTS}/$sc"
 done
 
-# Auto install hombrew
-[ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+# Auto install homebrew (macOS only — Linux/rpi uses the system package manager)
+[[ "$OSTYPE" == darwin* ]] && [ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 inject_path "/opt/homebrew/bin" 
 prepend_path "/opt/homebrew/opt/make/libexec/gnubin"
