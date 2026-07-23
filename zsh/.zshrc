@@ -59,6 +59,10 @@ source $ZSH/oh-my-zsh.sh
 # (keeping the plugin's other tf* aliases) so the real executable wins.
 unalias tfs 2>/dev/null
 
+# The oh-my-zsh `git` plugin defines `alias gam='git am'`, which is unused and
+# shadows the `gam` name. Drop just that alias to free the name.
+unalias gam 2>/dev/null
+
 setopt PROMPT_SUBST
 alias ll="ls -laFGh"
 # QT_PATH="$HOME/Qt5.12.12/5.12.12/clang_64/bin"

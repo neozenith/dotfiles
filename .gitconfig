@@ -17,6 +17,9 @@
 [includeIf "gitdir:~/play/"]
 	path = ~/play/.gitconfig.play
 
+[includeIf "gitdir:~/jpai/"]
+	path = ~/jpai/.gitconfig.jpai
+
 [includeIf "gitdir:~/work/"]
 	path = ~/work/.gitconfig.work
 
