@@ -7,6 +7,12 @@ parse_git_prompt() {
 
   # No branch -> No more work.
   BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+  # Read the effective credential username for the current repository. Git
+  # resolves conditional includes and URL-specific credential sections here.
+  GIT_REMOTE_URL=`git remote get-url origin 2> /dev/null`
+  # Repositories without a remote are assumed to use GitHub.
+  [[ -z $GIT_REMOTE_URL ]] && GIT_REMOTE_URL="https://github.com/"
+  GIT_USERNAME=`git config --get-urlmatch credential.username "$GIT_REMOTE_URL" 2> /dev/null`
   GIT_USER=`git config user.email 2> /dev/null`
   if [[ -n $BRANCH ]]; then
 
@@ -125,11 +131,11 @@ parse_git_prompt() {
 
     done
 
-    echo -e "\n${DARK}(${GIT_USER})${NORM} ${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
+    GIT_IDENTITY="$GIT_USERNAME"
+    [[ -n $GIT_USER ]] && GIT_IDENTITY="${GIT_IDENTITY:+$GIT_IDENTITY }<$GIT_USER>"
+    echo -e "\n${DARK}(${GIT_IDENTITY})${NORM} ${BRANCH_STATUS}${CACHE_STATUS}${REMOTE_STATUS}"
 
   fi
   
   
 }
-
-

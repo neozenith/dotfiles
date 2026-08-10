@@ -11,18 +11,41 @@ parse_gh_prompt() {
   # Not in a git repo -> nothing to do.
   git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return
 
-  local BRANCH
-  BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-
-  # Only care about non-default branches. Skip main/master and detached HEAD.
-  [[ -z "$BRANCH" || "$BRANCH" == "main" || "$BRANCH" == "master" || "$BRANCH" == "HEAD" ]] && return
-
   local DARK="%F{240}"
   local GREEN="%F{green}"
   local RED="%F{red}"
   local YELLOW="%F{yellow}"
   local PURPLE="%F{magenta}"
   local NORM="%F{rc}%K{rc}"
+
+  # GitHub CLI account for github.com. The jq filter intentionally returns
+  # only the login for the active account.
+  local GH_USERNAME
+  GH_USERNAME=$(gh auth status --active --hostname github.com --json hosts \
+    --jq '.hosts["github.com"][] | select(.active) | .login' 2>/dev/null)
+  [[ -z "$GH_USERNAME" ]] && return
+
+  local GH_OUTPUT=" ${DARK}gh:${GH_USERNAME}${NORM}"
+  local GIT_REMOTE_URL
+  GIT_REMOTE_URL=$(git remote get-url origin 2>/dev/null)
+  [[ -z "$GIT_REMOTE_URL" ]] && GIT_REMOTE_URL="https://github.com/"
+
+  local GIT_USERNAME
+  GIT_USERNAME=$(git config --get-urlmatch credential.username "$GIT_REMOTE_URL" 2>/dev/null)
+  if [[ -n "$GIT_USERNAME" && "$GIT_USERNAME" != "$GH_USERNAME" ]]; then
+    # Bright white foreground on a bright red background highlights an
+    # identity mismatch before a commit or GitHub operation is performed.
+    local BRIGHT_WHITE=$'\033[97m'
+    local BRIGHT_RED_BACKGROUND=$'\033[48;5;1m'
+    local BRIGHT_RESET=$'\033[0m'
+    GH_OUTPUT=" ${BRIGHT_WHITE}${BRIGHT_RED_BACKGROUND}git:${GIT_USERNAME} != gh:${GH_USERNAME}${BRIGHT_RESET}"
+  fi
+
+  local BRANCH
+  BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+  # Only care about non-default branches. Skip main/master and detached HEAD.
+  [[ -z "$BRANCH" || "$BRANCH" == "main" || "$BRANCH" == "master" || "$BRANCH" == "HEAD" ]] && echo -e "$GH_OUTPUT" && return
 
   # Single network call. Emit a tab-separated line: number, state, isDraft,
   # #passing, #failing, #total-checks. Uses gh's bundled jq so no external jq
@@ -40,7 +63,7 @@ parse_gh_prompt() {
     ] | @tsv' 2>/dev/null)
 
   # No open PR for this branch -> nothing to show.
-  [[ -z "$LINE" ]] && return
+  [[ -z "$LINE" ]] && echo -e "$GH_OUTPUT" && return
 
   local NUMBER STATE ISDRAFT NPASS NFAIL NTOTAL
   IFS=$'\t' read -r NUMBER STATE ISDRAFT NPASS NFAIL NTOTAL <<< "$LINE"
@@ -59,7 +82,8 @@ parse_gh_prompt() {
     PR_COLOR="$PURPLE"
   fi
 
-  local OUTPUT=" ${PR_COLOR}⑃ #${NUMBER} ${PR_LABEL}${NORM}"
+  local OUTPUT="$GH_OUTPUT"
+  OUTPUT="${OUTPUT} ${PR_COLOR}⑃ #${NUMBER} ${PR_LABEL}${NORM}"
 
   # CI checks summary, only when there are any checks configured.
   if [[ "${NTOTAL:-0}" -gt 0 ]]; then
