@@ -1,0 +1,12 @@
+bin/*
+!bin/joshpeak-prompt
+
+tmp/
+
+# APM dependencies
+apm_modules/
+
+
+.codex/
+.agents/
+.claude/

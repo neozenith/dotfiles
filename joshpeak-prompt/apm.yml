@@ -1,0 +1,19 @@
+name: joshpeak-prompt
+version: 0.1.0
+description: >-
+  Agent context for joshpeak-prompt. Every task must apply librarian, gooddocs,
+  and richdocs as required by AGENTS.md.
+author: Josh Peak
+targets:
+  - codex
+  - claude
+dependencies:
+  apm:
+    - git: neozenith/agentic-dotfiles#7406e2151c63973db5e9be0ab2b4edcdc581ceef
+      skills:
+        - gooddocs
+        - librarian
+        - richdocs
+  mcp: []
+includes: auto
+scripts: {}

@@ -1,5 +1,6 @@
 NL=$'\n'
-PROMPT='${NL}%{$fg[magenta]%}$(current_hostname)%{$reset_color%} %{$fg[cyan]%}%~%{$reset_color%}$(parse_git_prompt)$(parse_gh_prompt) $(parse_k8s_prompt) $(parse_python_prompt) $(parse_aws_prompt) $(parse_gcloud_prompt)'
+JOSHPEAK_PROMPT_BIN=${JOSHPEAK_PROMPT_BIN:-$HOME/dotfiles/joshpeak-prompt/bin/joshpeak-prompt}
+PROMPT='${NL}%{$fg[magenta]%}$(current_hostname)%{$reset_color%} %{$fg[cyan]%}%~%{$reset_color%}$("$JOSHPEAK_PROMPT_BIN" prompt)'
 PROMPT+="${NL}λ "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="${NL}%{$fg_bold[blue]%}⎇  %{$fg[red]%}"
