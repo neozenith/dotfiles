@@ -12,8 +12,11 @@ for sc in $scripts ; do
   [ -e "${EXTRA_SCRIPTS}/$sc" ] && source "${EXTRA_SCRIPTS}/$sc"
 done
 
-# Auto install homebrew (macOS only — Linux/rpi uses the system package manager)
-[[ "$OSTYPE" == darwin* ]] && [ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Homebrew auto-install, disabled. The guard only tested the Apple Silicon prefix,
+# so on an Intel Mac (brew lives in /usr/local) it fired on every shell startup and
+# ran the installer, which prompts for sudo. Bootstrapping brew is a one-off — do it
+# by hand on a new machine rather than on every prompt.
+# [[ "$OSTYPE" == darwin* ]] && [ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 inject_path "/opt/homebrew/bin" 
 prepend_path "/opt/homebrew/opt/make/libexec/gnubin"
