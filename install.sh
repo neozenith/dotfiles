@@ -177,6 +177,21 @@ function install_osx_dev_dependencies () {
   # Python 3
   # pip comes with Python 3. Python 3 also installs "version-less" symlinks
   brew install python3
+
+  notice "Nerd Fonts (prompt glyphs)"
+  # The cask variants ARE the patched Nerd Fonts (apt's fonts-hack/firacode are not).
+  brew install --cask font-hack-nerd-font font-fira-code-nerd-font
+  # Set the iTerm2 font without click-ops, in the checked-in profile.
+  # Verify the PostScript names first with: fc-list | grep -iE "hack|fira"
+  # e.g. "FiraCodeNFM-Reg" (FiraCode Nerd Font Mono) / "HackNFM-Regular" (Hack Nerd Font Mono)
+  ITERM_PLIST="$SCRIPT_DIR/terminal-configs/com.googlecode.iterm2.plist"
+  if [[ -f "$ITERM_PLIST" ]]; then
+    /usr/libexec/PlistBuddy -c "Set ':New Bookmarks:0:Normal Font' 'FiraCodeNFM-Reg 12'" "$ITERM_PLIST" 2>/dev/null \
+      && echo "Set iTerm2 profile font to FiraCode Nerd Font Mono"
+    # Point iTerm2 at this folder so the change takes effect without importing:
+    defaults write com.googlecode.iterm2 PrefsCustomFolder "$SCRIPT_DIR/terminal-configs"
+    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+  fi
 }
 
 function install_os_independent_dev_dependencies () {
