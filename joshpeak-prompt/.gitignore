@@ -1,5 +1,10 @@
 bin/*
-!bin/joshpeak-prompt
+# Commit the per-architecture release binaries; the host theme selects the right
+# one at runtime. The unsuffixed bin/joshpeak-prompt is a local build artifact.
+!bin/joshpeak-prompt-darwin-arm64
+!bin/joshpeak-prompt-darwin-amd64
+!bin/joshpeak-prompt-linux-arm64
+!bin/joshpeak-prompt-linux-amd64
 
 tmp/
 

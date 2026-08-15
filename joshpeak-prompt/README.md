@@ -21,9 +21,9 @@ The CLI runs independent renderers concurrently, then emits prompt text in legac
 
 ## Build the CLI
 
-The build supports Apple silicon and Intel macOS. The Makefile downloads its
-pinned Go toolchain and keeps all disposable files under this project's
-relative `tmp/` directory.
+The build supports macOS and Linux on both `arm64` and `amd64`. The Makefile
+detects the host, downloads its pinned Go toolchain, and keeps all disposable
+files under this project's relative `tmp/` directory.
 
 ```console
 $ make build
@@ -32,8 +32,10 @@ $ bin/joshpeak-prompt aws
 ```
 
 The repository's [`joshpeak.zsh-theme`](../zsh/themes/joshpeak.zsh-theme) calls
-the binary once per prompt. Set `JOSHPEAK_PROMPT_BIN` before theme loading to
-test an alternate build. The default `prompt` command preserves the six legacy
+the binary once per prompt. At load it selects the committed
+`bin/joshpeak-prompt-<os>-<arch>` build for the host and falls back to the local
+unsuffixed `make build` artifact. Set `JOSHPEAK_PROMPT_BIN` before theme loading
+to test an alternate build. The default `prompt` command preserves the six legacy
 sections' ordering and separators. Zsh startup no longer sources those render
 functions or runs its former branch-detection precmd hook.
 
@@ -98,5 +100,10 @@ values, and the Git helper's empty local rebase count. The zsh theme now uses th
 binary directly, while the legacy scripts remain available to `make compat`.
 See [ADR 0013](adrs/0013-adopt-the-binary-in-the-zsh-theme.md).
 
-The first target is macOS. The Go packages avoid macOS-specific APIs, while the
-Makefile currently bootstraps only macOS toolchains.
+The supported hosts are macOS and Linux on `arm64` and `amd64`. The Go packages
+avoid platform-specific APIs, and the Makefile bootstraps the matching toolchain
+for each host. `make check`, `make build`, and `make compat` are verified on
+`linux/arm64` (Raspberry Pi 4) with byte-identical section output. The Go race
+detector cannot initialise on a 39-bit-VMA kernel such as Raspberry Pi OS, so the
+`race` target runs the suite without it there and warns; every other host still
+enforces it. See [ADR 0014](adrs/0014-support-linux-and-commit-per-architecture-binaries.md).

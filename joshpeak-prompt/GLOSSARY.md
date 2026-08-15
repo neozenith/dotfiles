@@ -29,6 +29,8 @@ The compatibility oracle defines section bytes, while the renderer records share
 | --- | --- |
 | Compatibility oracle | The applicable legacy zsh helpers whose output defines expected behaviour. |
 | GitHub identity coherence | Equality between the credential username selected by Git's directory-effective configuration and the effective GitHub CLI account. The normal path reads the configured account without validating authentication; an environment-token override requires API identity resolution. |
+| Host binary selection | The theme-load resolution that maps the host's `uname` output to `bin/joshpeak-prompt-<os>-<arch>`, honours an explicit `JOSHPEAK_PROMPT_BIN`, and falls back to the unsuffixed local build. |
+| Per-architecture binary | One committed release executable named `bin/joshpeak-prompt-<os>-<arch>`, cross-built by `make build-all` for each supported macOS and Linux target. |
 | Prompt section | One independently rendered unit, such as Git, AWS, or Python. |
 | Render report | The complete result of one renderer invocation, containing ordered prompt-section results and invocation-level shared timing spans. |
 | Renderer | The coordinator that renders configured prompt sections concurrently and records their results. |

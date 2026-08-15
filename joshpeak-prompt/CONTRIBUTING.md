@@ -32,16 +32,25 @@ This target formats the Go source, runs `go vet`, executes tests with the race
 detector, and verifies statement coverage. `make coverage` prints the coverage
 for each function when you need a faster report.
 
+The `race` target probes race-detector support first. On a host whose kernel
+cannot initialise ThreadSanitizer — such as a 39-bit-VMA Raspberry Pi OS kernel
+on `linux/arm64` — it runs the suite without `-race` and prints a warning instead
+of failing the gate. Hosts that support the detector continue to enforce it. See
+[ADR 0014](adrs/0014-support-linux-and-commit-per-architecture-binaries.md).
+
 ## Build a local binary
 
-Build the macOS executable into `bin/`:
+Build the host executable into `bin/`:
 
 ```console
 $ make build
 ```
 
-Use `make clean` to remove `bin/` and `tmp/`. The next Go-dependent Make target
-downloads the pinned toolchain again.
+`make build-all` cross-builds the four committed release binaries
+(`bin/joshpeak-prompt-<os>-<arch>`) for macOS and Linux on `arm64` and `amd64`;
+commit those when the source changes. Use `make clean` to remove `tmp/` and the
+local unsuffixed build while preserving the committed release binaries. The next
+Go-dependent Make target downloads the pinned toolchain again.
 
 ## Preserve the output contract
 

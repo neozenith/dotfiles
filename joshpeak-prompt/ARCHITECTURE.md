@@ -378,18 +378,20 @@ for the Git and GitHub identity boundary.
 
 ## Build and portability
 
-The Makefile is the development entry point. It pins the Go toolchain, confines
-disposable state to the project `tmp/` tree, builds without CGO, and supports
-both current macOS architectures.
+The Makefile is the development entry point. It detects the host with `uname`,
+pins and downloads the matching Go toolchain, confines disposable state to the
+project `tmp/` tree, builds without CGO, and supports macOS and Linux on both
+`arm64` and `amd64`.
 
 ```mermaid
 flowchart LR
-    Make["Documented Make target"]:::input --> Prepare["Prepare project tmp"]:::process
-    Prepare --> Toolchain["Pinned Go toolchain"]:::storage
+    Make["Documented Make target"]:::input --> Detect["Host OS and arch detection"]:::process
+    Detect --> Prepare["Prepare project tmp"]:::process
+    Prepare --> Toolchain["Pinned host Go toolchain"]:::storage
     Toolchain --> Check["Checks and compatibility"]:::process
     Toolchain --> Build["CGO-free builds"]:::process
-    Build --> Arm["darwin arm64 binary"]:::output
-    Build --> Intel["darwin amd64 binary"]:::output
+    Build --> Darwin["darwin arm64 and amd64"]:::output
+    Build --> Linux["linux arm64 and amd64"]:::output
 
     classDef input fill:#dbeafe,stroke:#1e3a8a,color:#1e293b,stroke-width:2px
     classDef process fill:#ede9fe,stroke:#5b21b6,color:#1e293b,stroke-width:2px
@@ -397,7 +399,7 @@ flowchart LR
     classDef output fill:#d1fae5,stroke:#065f46,color:#1e293b,stroke-width:2px
 ```
 
-Documented Make targets prepare a local toolchain and caches before checking or building CGO-free macOS binaries.
+Documented Make targets detect the host, prepare a local toolchain and caches, then check or build CGO-free binaries for macOS and Linux.
 
 <details>
 <summary>See the complete development pipeline</summary>
@@ -409,7 +411,7 @@ flowchart TD
     Prepare --> Tmp["Project tmp tree"]:::storage
     Tmp --> Caches["Go caches and work dirs"]:::storage
     Make --> Bootstrap["bootstrap"]:::process
-    Bootstrap --> Download["Download pinned Go archive"]:::external
+    Bootstrap --> Download["Download pinned host Go archive"]:::external
     Download --> Verify["Verify SHA-256"]:::process
     Verify --> Toolchain["Local Go toolchain"]:::storage
 
@@ -417,15 +419,15 @@ flowchart TD
     subgraph Confidence["Confidence checks"]
         Check --> Fmt["fmt"]:::process
         Check --> Vet["vet"]:::process
-        Check --> Race["race tests"]:::process
+        Check --> Race["race tests when supported"]:::process
         Check --> Coverage["100 percent statement coverage"]:::process
     end
 
-    Toolchain --> Native["build native macOS"]:::process
+    Toolchain --> Native["build native host"]:::process
     Toolchain --> Cross["build-all"]:::process
     Native --> Binary["bin joshpeak-prompt"]:::output
-    Cross --> Arm["darwin arm64 binary"]:::output
-    Cross --> Intel["darwin amd64 binary"]:::output
+    Cross --> Darwin["darwin arm64 and amd64"]:::output
+    Cross --> Linux["linux arm64 and amd64"]:::output
     Make --> Compat["compat"]:::process
     Oracle["Legacy zsh helpers"]:::external --> Compat
     Binary --> Compat
@@ -442,12 +444,16 @@ The pipeline verifies a pinned toolchain, runs four confidence checks, compares 
 
 </details>
 
-Other operating systems remain outside the support promise until their domain
-CLI behaviour and compatibility fixtures are verified. The renderer and ports
-use portable Go APIs so that later support does not require a runtime redesign.
+The supported hosts are macOS and Linux on `arm64` and `amd64`. `build-all`
+cross-builds and commits one `bin/joshpeak-prompt-<os>-<arch>` binary per target,
+and the zsh theme selects the host's binary at load. The renderer and ports use
+portable Go APIs, so a new operating system needs only its toolchain checksum,
+a `build-all` target, and compatibility fixtures. On a 39-bit-VMA kernel the race
+detector cannot initialise, so the `race` target runs the suite without it and
+warns; other hosts still enforce it.
 
 Source: [Makefile](Makefile),
 [`check-legacy.zsh`](scripts/check-legacy.zsh), and [`go.mod`](go.mod). See
 [ADR 0003](adrs/0003-keep-development-state-under-project-tmp.md) for local
-temporary state and [ADR 0005](adrs/0005-target-macos-with-portable-go-boundaries.md)
-for the platform boundary.
+temporary state and [ADR 0014](adrs/0014-support-linux-and-commit-per-architecture-binaries.md)
+for the platform boundary and per-architecture binaries.
