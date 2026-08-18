@@ -2,6 +2,7 @@
 alias ll="ls -laGHh"
 alias cdp="cd ~/play"
 alias cdw="cd ~/work"
+alias cdv="cd ~/work/v2-platform"
 alias cdd="cd ~/dotfiles"
 alias cdf="cd ~/foss"
 
@@ -14,7 +15,7 @@ alias pew="uv init --vcs git --build-backend uv"
 # AI-SDLC-ish
 alias aic="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
 alias aicc="git -C .claude config --local user.name neozenith && git -C .claude config --local user.email joshpeak05@gmail.com"
-alias ais="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code"
+alias ais="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code codex"
 alias aisu="npx skills@latest update"
 
 # Claude
