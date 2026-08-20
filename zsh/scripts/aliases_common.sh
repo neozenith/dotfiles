@@ -25,7 +25,7 @@ alias ccpma="claude --permission-mode auto"
 
 #Codex
 alias coa="codex --approve-for-me"
-alias cma="codex mcp login"
+alias cml="codex mcp login"
 
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 
