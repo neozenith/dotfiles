@@ -24,7 +24,7 @@ alias ccdsp="claude --dangerously-skip-permissions"
 alias ccpma="claude --permission-mode auto"
 
 #Codex
-alias coa="codex --approve-for-me"
+alias coa="codex --approve-for-me --model 'gpt-5.6-terra'"
 alias cml="codex mcp login"
 
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
