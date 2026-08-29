@@ -21,6 +21,7 @@ done
 inject_path "/opt/homebrew/bin" 
 prepend_path "/opt/homebrew/opt/make/libexec/gnubin"
 inject_path "$HOME/.local/bin" 
+export SCREENZ_HOME="$DOTFILE_DIR/screenz"
 
 # Auto-install oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"

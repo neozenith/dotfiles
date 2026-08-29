@@ -25,3 +25,5 @@ gems.tags
 zsh/plugins/
 
 tmp/
+.*_cache/
+.playwright*/
