@@ -1,0 +1,21 @@
+# screenz profile "home-code" — written by: screenz apply --save-profile home-code
+# Apply with:   screenz apply --profile home-code
+# Preview with: screenz apply --dry-run --profile home-code
+version: 1
+name: home-code
+rules:
+  - match:
+      app: /Code/
+    display:
+      index: 2
+    region: maximize
+  - match:
+      app: /Edge/
+    display:
+      index: 3
+    region: maximize
+  - match:
+      app: /Chrome/
+    display:
+      index: 3
+    region: maximize
