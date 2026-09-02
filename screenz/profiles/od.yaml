@@ -4,19 +4,6 @@
 version: 1
 name: od
 
-# Display aliases use the same terms as --display.
-# An alias that does not resolve on this machine fails loudly (exit 1)
-# before any window moves.
-displays:
-  dell-left:
-    name: /LU28R55/ # regex against the display's localized name
-    index: 1 # displays ordered top-to-bottom, then left-to-right
-  dell-right:
-    name: /LU28R55/
-    index: 2
-  laptop:
-    built-in: true
-
 # Rules run in order; a window is placed by the FIRST rule it matches.
 rules:
   - match:
@@ -36,3 +23,19 @@ rules:
     tolerance: 5% # accept frames within 5% of the target size; default 0.5 (points)
     each: true # default; false == --first
     order: title # title | pid | existing
+rules:
+  - match:
+      app: /Code/
+    display:
+      index: 2
+    region: left-half
+  - match:
+      app: /Edge/
+    display:
+      index: 2
+    region: right-half
+  - match:
+      app: /Chrome/
+    display:
+      index: 2
+    region: right-half
