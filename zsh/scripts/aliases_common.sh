@@ -28,6 +28,8 @@ alias coa="codex --approve-for-me --model 'gpt-5.6-terra'"
 alias coas="codex --approve-for-me --model 'gpt-5.6-sol'"
 alias cml="codex mcp login"
 
+# Custom Tools
+alias sz="screenz"
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 
 alias v2ai="npx skills add ~/work/agent-capabilities/ --agent claude-code codex github-copilot"
