@@ -1,10 +1,15 @@
 # Navigation
 alias ll="ls -laGHh"
 alias cdp="cd ~/play"
+alias cdj="cd ~/jpai/"
+alias cdjp="cd ~/jpai/jpai-platform"
+alias cdja="cd ~/jpai/jpai-admin"
 alias cdw="cd ~/work"
 alias cdv="cd ~/work/v2-platform"
 alias cdd="cd ~/dotfiles"
 alias cdf="cd ~/foss"
+
+alias cafe="caffeinate -dimsu -t 3600"
 
 alias awswho="aws sts get-caller-identity | jq .Arn"
 # alias awssso="aws sso login && eval \"$$(aws configure export-credentials --profile $$AWS_PROFILE --format env)\""
