@@ -8,12 +8,8 @@ name: work
 # An alias that does not resolve on this machine fails loudly (exit 1)
 # before any window moves.
 displays:
-  dell-left:
-    name: /LU28R55/ # regex against the display's localized name
-    index: 1 # displays ordered top-to-bottom, then left-to-right
-  dell-right:
-    name: /LU28R55/
-    index: 2
+  external:
+    name: /PHL/
   laptop:
     built-in: true
 
@@ -21,18 +17,15 @@ displays:
 rules:
   - match:
       bundle: com.microsoft.VSCode
-    display: dell-left # alias, or an inline map such as {index: 1}
+    display: external
     region: maximize
+
   - match:
       app: Google Chrome
-      title: /Work/ # regex; add i after the closing slash for case-insensitive
-    display: dell-right
-    region: left-half
-    gap: 8 # points between window and region edge
+    display: external
+    region: maximize
+
   - match:
       bundle: com.microsoft.edgemac
-    display: dell-right
-    region: right-half
-    tolerance: 5% # accept frames within 5% of the target size; default 0.5 (points)
-    each: true # default; false == --first
-    order: title # title | pid | existing
+    display: external
+    region: maximize
