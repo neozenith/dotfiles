@@ -27,6 +27,7 @@ alias aisu="npx skills@latest update"
 # Claude
 alias ccdsp="claude --dangerously-skip-permissions"
 alias ccpma="claude --permission-mode auto"
+alias ccn="claude --permission-mode auto --name"
 
 #Codex
 alias coa="codex --approve-for-me --model 'gpt-5.6-terra'"
