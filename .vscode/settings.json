@@ -1,0 +1,11 @@
+{
+  "git.scanRepositories": [
+    ".claude",
+  ],
+  "git.autoRepositoryDetection": true,
+  "git.repositoryScanMaxDepth": 1,
+  "git.repositoryScanIgnoredFolders": ["node_modules", ".venv", "tmp", ".git"],
+  // Opening a child folder directly should still surface its repo rather than nothing.
+  "git.openRepositoryInParentFolders": "always",
+  "scm.alwaysShowRepositories": true
+}

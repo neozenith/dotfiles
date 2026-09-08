@@ -16,7 +16,7 @@ gems.tags
 *.*~
 # OSX temporary files
 **/*.DS_Store
-.vscode/*
+
 .py*_cache/*
 
 # Sensitive
