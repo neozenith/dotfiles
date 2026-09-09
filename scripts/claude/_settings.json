@@ -1,0 +1,12 @@
+{
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "uv run ~/dotfiles/scripts/claude/statusline.py"
+  },
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark-daltonized",
+  "agentPushNotifEnabled": true,
+  "feedbackDrafts": "off"
+}

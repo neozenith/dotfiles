@@ -11,7 +11,10 @@ directly unit-testable; see test_statusline.py.
 
 Current output shape::
 
-    vX.Y.Z[ [N% 5h | N% 7d]][Model] I:148k|O:2k | ~/path | branch[ stats]
+    [account ]vX.Y.Z[ [5h:N% | 7d:N%]][Model] I:148k|O:2k | ~/path | branch[ stats]
+
+The leading account segment is the one thing the payload does not carry — see
+``account()`` for where it comes from and why it is read fresh every render.
 
 In a linked worktree the path segment becomes ``WT: <path relative to the main
 repo root>`` — the prefix is the "you are in a worktree" signal, so the
@@ -21,6 +24,26 @@ Git markers, in render order: ``!`` conflicts, ``+`` staged, ``*`` modified,
 ``?`` untracked, ``↑`` ahead of upstream, ``↓`` behind upstream, ``M↓`` behind
 the remote default branch (needs resync), ``@3h`` last-fetch age once stale,
 ``git?`` a failed git call.
+
+Account identity
+================
+
+Not part of the payload. Claude Code stores the signed-in account in
+``~/.claude.json`` under ``oauthAccount`` and rewrites that object on
+``/login``, so it is the live record of who the session bills to:
+
+    ``emailAddress``        e.g. ``you@example.com``. ``[used]``
+    ``organizationType``    e.g. ``claude_max``, ``claude_pro``, ``claude_team``.
+                            Rendered without the ``claude_`` prefix. ``[used]``
+    ``organizationName``    e.g. ``you@example.com's Organization``. Too long
+                            for a status line; the email is the discriminator.
+    ``fullName``/``displayName``, ``accountUuid``, ``organizationUuid``,
+    ``organizationRole``, ``billingType``, ``organizationRateLimitTier``.
+
+The whole ``oauthAccount`` object is ABSENT before the first login and on
+API-key-only installs. macOS keeps the token itself in the Keychain, not here,
+so nothing in this file is a secret worth guarding — but nothing in it proves
+the token is still valid either.
 
 Payload reference
 =================
@@ -130,12 +153,25 @@ import os
 import subprocess
 import sys
 import time
+from collections.abc import Mapping
 from typing import Any
 from pathlib import Path
 
 # Beyond this, remote-tracking refs are old enough that the resync numbers
 # derived from them get an explicit age marker rather than implying freshness.
 STALE_FETCH_SECONDS = 15 * 60
+
+# Where Claude Code records the signed-in account, relative to home. Stored as
+# a bare name rather than a resolved path so `Path.home()` is read at call time
+# — a module-level `Path.home() / ...` would freeze whatever HOME held at import.
+CONFIG_NAME = ".claude.json"
+
+# Auth routes that bypass a Claude.ai login entirely. These variables exist
+# only to steer Claude Code itself, so their presence is unambiguous.
+GATEWAY_ENV = {"CLAUDE_CODE_USE_BEDROCK": "bedrock", "CLAUDE_CODE_USE_VERTEX": "vertex"}
+
+# Consulted only when there is no login to report — see `account()`.
+API_KEY_ENV = ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN")
 
 
 def _pct(value: Any) -> str | None:
@@ -153,6 +189,48 @@ def _limits(rate_limits: dict[str, Any]) -> str:
     if seven_d:
         parts.append(f"7d:{seven_d}%")
     return f" [{' | '.join(parts)}]" if parts else ""
+
+def account(config: Path | None = None, env: Mapping[str, str] | None = None) -> str:
+    """Who this session bills to: ``you@example.com[max]``, or a gateway name.
+
+    Read from disk on every render, uncached and deliberately so. The file is
+    rewritten by `/login`, and a cache TTL would keep displaying the previous
+    account for the length of that TTL — stale at exactly the moment this
+    segment exists to catch. A ~100KB `json.loads` is noise next to the two git
+    subprocesses already on this path.
+
+    Precedence prefers the login over a bare `ANTHROPIC_API_KEY`, because both
+    can be set at once: a key exported for some other tool while Claude Code
+    still runs on the subscription. In that ambiguity the login is the far more
+    likely truth, and the failure mode of guessing wrong is a status line that
+    confidently names the wrong payer. Bedrock and Vertex carry no such
+    ambiguity, so they win outright.
+
+    Both inputs are injectable and resolve inside the body, so tests exercise
+    the real function against a real file under a real HOME rather than
+    substituting anything. Defaulting them in the signature would bind
+    `Path.home()` and `os.environ` once at import and defeat that.
+    """
+    config = Path.home() / CONFIG_NAME if config is None else config
+    env = os.environ if env is None else env
+
+    for var, label in GATEWAY_ENV.items():
+        if env.get(var):
+            return label
+
+    try:
+        oauth = json.loads(config.read_text(encoding="utf-8")).get("oauthAccount") or {}
+    except (OSError, ValueError, AttributeError):
+        oauth = {}  # missing, unreadable, or caught mid-rewrite by Claude Code
+
+    email = oauth.get("emailAddress")
+    if email:
+        # `claude_max` -> `max`; the prefix is constant, so it carries no signal.
+        plan = (oauth.get("organizationType") or "").removeprefix("claude_")
+        return f"{email}[{plan}]" if plan else email
+
+    return "apikey" if any(env.get(var) for var in API_KEY_ENV) else ""
+
 
 def tildify(path: Path) -> str:
     """Inverse of os.path.expanduser: /Users/you/work/x -> ~/work/x"""
@@ -422,8 +500,9 @@ def render(data: dict[str, Any]) -> str:
         f"|O:{humanize(ctx.get('total_output_tokens', 0))}"
     )
     limits = _limits(data.get("rate_limits") or {})
+    who = account()
 
-    return f"v{version}{limits}[{model}] {counts} | {location}" + (
+    return f"{who + ' ' if who else ''}v{version}{limits}[{model}] {counts} | {location}" + (
         f" | {git}" if git else ""
     )
 

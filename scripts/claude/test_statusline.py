@@ -28,7 +28,11 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent))
 
 from statusline import (  # noqa: E402
+    API_KEY_ENV,
+    CONFIG_NAME,
+    GATEWAY_ENV,
     _duration,
+    account,
     common_dir,
     compact_model,
     default_remote_branch,
@@ -40,6 +44,31 @@ from statusline import (  # noqa: E402
     render,
     tildify,
 )
+
+
+@pytest.fixture(autouse=True)
+def empty_home(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Path:
+    """Run every test under a fresh HOME with nobody logged in.
+
+    `account()` is the one part of the line sourced from the machine rather
+    than the payload, so without this every `render()` assertion here would
+    depend on whichever account the developer happens to be signed into. An
+    empty home has no `.claude.json`, which is genuinely the never-logged-in
+    state rather than a stand-in for it. Clearing the auth variables stops a
+    shell that exports a key for some other tool from turning the segment into
+    `apikey`. Tests that care about the segment write into this home.
+
+    It gets its own subdirectory rather than `tmp_path` itself so the git
+    fixtures, which also build under `tmp_path`, stay *outside* home — otherwise
+    every repo path would tildify to `~/repo` and the absolute-path assertions
+    would be testing the fixture layout instead of `tildify`.
+    """
+    home = tmp_path / "home"
+    home.mkdir()
+    monkeypatch.setenv("HOME", str(home))
+    for var in (*GATEWAY_ENV, *API_KEY_ENV):
+        monkeypatch.delenv(var, raising=False)
+    return home
 
 # Verbatim `git status --porcelain=v2 --branch` output. `1 AM` is the case that
 # matters: staged AND modified, so it must count in both columns.
@@ -487,12 +516,114 @@ def test_tildify_does_not_split_a_directory_name_mid_token() -> None:
 
 
 # --------------------------------------------------------------------------
+# account()
+# --------------------------------------------------------------------------
+
+
+MAX_LOGIN = {"emailAddress": "you@example.com", "organizationType": "claude_max"}
+
+
+def write_config(home: Path, oauth: dict[str, Any] | None) -> Path:
+    """Write a minimal ~/.claude.json. `None` records no login at all."""
+    body: dict[str, Any] = {"numStartups": 12}
+    if oauth is not None:
+        body["oauthAccount"] = oauth
+    path = home / CONFIG_NAME
+    path.write_text(json.dumps(body), encoding="utf-8")
+    return path
+
+
+def test_account_renders_email_and_plan(empty_home: Path) -> None:
+    assert account(write_config(empty_home, MAX_LOGIN), env={}) == "you@example.com[max]"
+
+
+def test_account_strips_only_the_claude_prefix_from_the_plan(empty_home: Path) -> None:
+    oauth = {**MAX_LOGIN, "organizationType": "claude_team"}
+    assert account(write_config(empty_home, oauth), env={}) == "you@example.com[team]"
+
+
+def test_account_omits_the_bracket_when_the_plan_is_unknown(empty_home: Path) -> None:
+    """organizationType is absent on some accounts; the email still identifies."""
+    config = write_config(empty_home, {"emailAddress": "you@example.com"})
+    assert account(config, env={}) == "you@example.com"
+
+
+def test_account_is_empty_before_the_first_login(empty_home: Path) -> None:
+    assert account(write_config(empty_home, None), env={}) == ""
+
+
+def test_account_is_empty_when_the_config_is_missing(empty_home: Path) -> None:
+    assert account(empty_home / CONFIG_NAME, env={}) == ""
+
+
+def test_account_survives_a_config_caught_mid_rewrite(empty_home: Path) -> None:
+    """Claude Code rewrites this file live, so a render can land on half of it."""
+    truncated = empty_home / CONFIG_NAME
+    truncated.write_text('{"oauthAccount": {"emailAdd', encoding="utf-8")
+    assert account(truncated, env={}) == ""
+
+
+@pytest.mark.parametrize(
+    "var,expected",
+    [("CLAUDE_CODE_USE_BEDROCK", "bedrock"), ("CLAUDE_CODE_USE_VERTEX", "vertex")],
+)
+def test_gateway_env_wins_over_a_stored_login(
+    empty_home: Path, var: str, expected: str
+) -> None:
+    """These flags route Claude Code itself, so the stored login is not in play."""
+    assert account(write_config(empty_home, MAX_LOGIN), env={var: "1"}) == expected
+
+
+def test_gateway_env_ignored_when_present_but_empty(empty_home: Path) -> None:
+    config = write_config(empty_home, {"emailAddress": "you@example.com"})
+    assert account(config, env={"CLAUDE_CODE_USE_BEDROCK": ""}) == "you@example.com"
+
+
+@pytest.mark.parametrize("var", API_KEY_ENV)
+def test_api_key_reported_only_when_there_is_no_login(
+    empty_home: Path, var: str
+) -> None:
+    assert account(write_config(empty_home, None), env={var: "sk-ant-x"}) == "apikey"
+
+
+@pytest.mark.parametrize("var", API_KEY_ENV)
+def test_login_outranks_a_key_exported_for_another_tool(
+    empty_home: Path, var: str
+) -> None:
+    """Both can be set at once; naming the wrong payer is the worse failure."""
+    config = write_config(empty_home, MAX_LOGIN)
+    assert account(config, env={var: "sk-ant-x"}) == "you@example.com[max]"
+
+
+def test_account_defaults_to_the_config_under_the_live_home(empty_home: Path) -> None:
+    """No injection: this is the path `render()` actually takes in production."""
+    write_config(empty_home, MAX_LOGIN)
+    assert account() == "you@example.com[max]"
+
+
+def test_account_leads_the_rendered_line(empty_home: Path) -> None:
+    write_config(empty_home, MAX_LOGIN)
+    assert render(MINIMAL).startswith("you@example.com[max] v2.1.7[Sonnet5]")
+
+
+def test_no_account_leaves_no_leading_space() -> None:
+    """The separator belongs to the segment, not to the version."""
+    assert render(MINIMAL).startswith("v2.1.7[")
+
+
+# --------------------------------------------------------------------------
 # Entry point
 # --------------------------------------------------------------------------
 
 
 def test_entrypoint_reads_stdin_and_prints_one_line() -> None:
-    """The contract Claude Code actually depends on: stdin JSON -> stdout line."""
+    """The contract Claude Code actually depends on: stdin JSON -> stdout line.
+
+    The child inherits the `empty_home` fixture's HOME, so it resolves the same
+    never-logged-in account as the in-process `render()` it is compared against.
+    Without that the result would turn on whether whoever runs the suite happens
+    to be signed in.
+    """
     result = subprocess.run(
         [sys.executable, str(Path(__file__).parent / "statusline.py")],
         input=json.dumps(FULL),
