@@ -18,6 +18,7 @@ gems.tags
 **/*.DS_Store
 
 .py*_cache/*
+__pycache__/
 
 # Sensitive
 **/aliases_work.sh
