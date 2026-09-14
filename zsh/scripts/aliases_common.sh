@@ -18,9 +18,15 @@ alias awswho="aws sts get-caller-identity | jq .Arn"
 alias pew="uv init --vcs git --build-backend uv"
 
 # AI-SDLC-ish
-alias aic="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
+# cd into a .claude repo and hardcode the git config to me despite any conditional configs
+
 alias aicc="git -C .claude config --local user.name neozenith && git -C .claude config --local user.email joshpeak05@gmail.com"
-alias ais="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code codex"
+
+alias ainz="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
+alias aic="git clone https://github.com/jpeakai/skills/ .claude"
+
+alias aisnz="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code codex"
+alias aisc="npx skills@latest add jpeakai/skills/ --agent claude-code codex"
 alias aisce="npx skills@latest add EveryInc/compound-engineering-plugin --agent claude-code codex"
 alias aisu="npx skills@latest update"
 
@@ -32,16 +38,17 @@ alias ccn="claude --permission-mode auto --name"
 #Codex
 alias coa="codex --approve-for-me --model 'gpt-5.6-terra'"
 alias coas="codex --approve-for-me --model 'gpt-5.6-sol'"
-alias cml="codex mcp login"
+alias coml="codex mcp login"
 
 # Custom Tools
 alias mmdr="~/dotfiles/scripts/render_mermaid.sh"
 
 alias v2ai="npx skills add ~/work/agent-capabilities/ --agent claude-code codex github-copilot"
-alias jpai="npx skills add ~/play/agentic-dotfiles/ --agent claude-code codex github-copilot"
+alias jpai="npx skills add ~/jpai/jpai-ai/jpai-skills/ --agent claude-code codex github-copilot"
+alias jpai-init="mkdir -p ~/jpai/; cd ~/jpai/; git clone https://github.com/jpeakai/jpai.git .;"
 
 alias cv2ai="code ~/work/agent-capabilities/"
-alias cjpai="code ~/play/agentic-dotfiles/"
+alias cjpai="code ~/jpai/jpai-ai/jpai-skills/"
 
 # dbt Cloud
 alias dbtc="/opt/homebrew/bin/dbt"
@@ -53,8 +60,17 @@ alias tfa="terraform apply -auto-approve"
 alias tfd="terraform destroy -auto-approve"
 alias tff="terraform fmt && terraform validate && terraform graph | dot -Tsvg > graph.svg"
 
-# Append .claude/ and tmp/ to this repo's git exclude (skip if already present)
-alias aii="[ -z \"\$(grep -xF '.claude/' .git/info/exclude)\" ] && printf '%s\n' '.claude/' >> .git/info/exclude; [ -z \"\$(grep -xF 'tmp/' .git/info/exclude)\" ] && printf '%s\n' 'tmp/' >> .git/info/exclude"
+# Append agent/tooling dirs to this repo's git exclude (skip any already present).
+# Extra patterns can be passed as args: git_exclude_ai 'node_modules/'
+git_exclude_ai() {
+  local exclude pattern
+  exclude="$(git rev-parse --git-path info/exclude)" || return 1
+  mkdir -p "$(dirname "$exclude")" && touch "$exclude"
+  for pattern in '.claude/' '.codex/' '.agents/' 'tmp/' '.*_cache/' '.playwright*/' 'node_modules/' "$@"; do
+    grep -qxF -- "$pattern" "$exclude" || printf '%s\n' "$pattern" >> "$exclude"
+  done
+}
+alias aii="git_exclude_ai"
 
 # USAGE: eval "$(xenv 2>&1)"
 xenv() {
