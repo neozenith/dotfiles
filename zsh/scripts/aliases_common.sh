@@ -25,9 +25,9 @@ alias aicc="git -C .claude config --local user.name neozenith && git -C .claude 
 alias ainz="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
 alias aic="git clone https://github.com/jpeakai/skills/ .claude"
 
-alias aisnz="npx skills@latest add neozenith/agentic-dotfiles/ --agent claude-code codex"
-alias aisc="npx skills@latest add jpeakai/skills/ --agent claude-code codex"
-alias aisce="npx skills@latest add EveryInc/compound-engineering-plugin --agent claude-code codex"
+alias aisnz="npx skills@latest add neozenith/agentic-dotfiles/"
+alias aisc="npx skills@latest add jpeakai/skills/"
+alias aisce="npx skills@latest add EveryInc/compound-engineering-plugin"
 alias aisu="npx skills@latest update"
 
 # Claude
