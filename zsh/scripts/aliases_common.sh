@@ -25,9 +25,13 @@ alias aicc="git -C .claude config --local user.name neozenith && git -C .claude 
 alias ainz="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
 alias aic="git clone https://github.com/jpeakai/skills/ .claude"
 
+alias apmjpai="apm install jpeakai/skills/plugins/jpai-essentials" #  --target claude,codex
+alias apmce="apm install EveryInc/compound-engineering-plugin" #  --target claude,codex
+
 alias aisnz="npx skills@latest add neozenith/agentic-dotfiles/"
 alias aisc="npx skills@latest add jpeakai/skills/"
-alias aisce="npx skills@latest add EveryInc/compound-engineering-plugin"
+CE_SKILLS_LIST="ce-babysit-pr ce-brainstorm ce-code-review ce-commit ce-commit-push-pr ce-compound ce-compound-refresh ce-doc-review ce-noslop ce-optimize ce-plan ce-simplify-code ce-worktree lfg ce-work"
+alias aisce="npx skills@latest add EveryInc/compound-engineering-plugin -s $CE_SKILLS_LIST"
 alias aisu="npx skills@latest update"
 
 # Claude
