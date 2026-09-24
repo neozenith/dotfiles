@@ -40,8 +40,8 @@ alias ccpma="claude --permission-mode auto"
 alias ccn="claude --permission-mode auto --name"
 
 #Codex
-alias coa="codex --approve-for-me --model 'gpt-5.6-terra'"
-alias coas="codex --approve-for-me --model 'gpt-5.6-sol'"
+alias coa="codex --approve-for-me --model 'gpt-6-luna' -c model_reasoning_effort=xhigh"
+alias coas="codex --approve-for-me --model 'gpt-6-sol'"
 alias coml="codex mcp login"
 
 # Custom Tools
