@@ -69,6 +69,10 @@ PYENV_PATH="$HOME/.pyenv/bin"
 [ -d "$PYENV_PATH" ] && inject_path $PYENV_PATH
 eval "$(pyenv init --path)"
 
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 PIPX_PATH="$HOME/.local/bin"
 [ -d "$PIPX_PATH" ] && inject_path $PIPX_PATH
 
