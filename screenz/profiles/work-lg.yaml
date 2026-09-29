@@ -1,0 +1,31 @@
+# screenz profile "work"          -- emitted by: screenz profile init work
+# Apply with:   screenz apply work
+# Preview with: screenz apply --dry-run work
+version: 1
+name: work
+
+# Display aliases use the same terms as --display.
+# An alias that does not resolve on this machine fails loudly (exit 1)
+# before any window moves.
+displays:
+  external:
+    name: /LG/
+  laptop:
+    built-in: true
+
+# Rules run in order; a window is placed by the FIRST rule it matches.
+rules:
+  - match:
+      bundle: com.microsoft.VSCode
+    display: external
+    region: maximize
+
+  - match:
+      app: Google Chrome
+    display: external
+    region: maximize
+
+  - match:
+      bundle: com.microsoft.edgemac
+    display: external
+    region: maximize

@@ -28,6 +28,8 @@ alias aic="git clone https://github.com/jpeakai/skills/ .claude"
 alias apmjpai="apm install jpeakai/skills/plugins/jpai-essentials" #  --target claude,codex
 alias apmce="apm install EveryInc/compound-engineering-plugin" #  --target claude,codex
 
+alias aipu="claude plugin marketplace update jpeakai; claude plugin update jpai-essentials@jpeakai; codex plugin marketplace add jpeakai/skills; codex plugin add jpai-essentials@jpeakai"
+
 alias aisnz="npx skills@latest add neozenith/agentic-dotfiles/"
 alias aisc="npx skills@latest add jpeakai/skills/"
 CE_SKILLS_LIST="ce-babysit-pr ce-brainstorm ce-code-review ce-commit ce-commit-push-pr ce-compound ce-compound-refresh ce-doc-review ce-noslop ce-optimize ce-plan ce-simplify-code ce-worktree lfg ce-work"
