@@ -1,0 +1,5 @@
+#!/bin/sh
+# Global hooks dir replaces .git/hooks, so forward to the repo-local hook if one exists.
+local_hook="$(git rev-parse --git-common-dir)/hooks/$(basename "$0")"
+[ -x "$local_hook" ] && exec "$local_hook" "$@"
+exit 0

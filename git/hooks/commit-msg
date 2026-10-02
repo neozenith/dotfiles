@@ -1,0 +1,10 @@
+#!/bin/sh
+# Strip Claude co-author trailers and "Generated with Claude Code" lines.
+msg="$1"
+# $(...) also drops the trailing blank lines left behind.
+cleaned="$(grep -viE '^[[:space:]]*co-authored-by:.*(claude|noreply@anthropic\.com)|generated with \[?claude code' "$msg")"
+printf '%s\n' "$cleaned" > "$msg"
+# Chain to the repo-local commit-msg hook.
+local_hook="$(git rev-parse --git-common-dir)/hooks/commit-msg"
+[ -x "$local_hook" ] && exec "$local_hook" "$@"
+exit 0
