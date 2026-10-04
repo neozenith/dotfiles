@@ -21,6 +21,9 @@
 [includeIf "gitdir:~/jpai/"]
 	path = ~/jpai/.gitconfig.jpai
 
+[includeIf "gitdir:~/jpai-lifeadmin/"]
+	path = ~/jpai-lifeadmin/.gitconfig.jpai
+
 [includeIf "gitdir:~/work/"]
 	path = ~/work/.gitconfig.work
 
