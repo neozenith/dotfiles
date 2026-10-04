@@ -27,13 +27,11 @@ export SCREENZ_HOME="$DOTFILE_DIR/screenz"
 export ZSH="$HOME/.oh-my-zsh"
 [ ! -d $ZSH ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# TODO: Update custom prompt tooling to use Starship
-# https://starship.rs/config/
 ZSH_THEME="joshpeak"
 ZSH_CUSTOM=$HOME/dotfiles/zsh/
 export ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/plugins
 
-[ ! -d "~/.oh-my-zsh/themes/joshpeak.zsh-theme" ] && cp ~/dotfiles/zsh/themes/joshpeak.zsh-theme ~/.oh-my-zsh/themes
+[ ! -f "$HOME/.oh-my-zsh/themes/joshpeak.zsh-theme" ] && cp ~/dotfiles/zsh/themes/joshpeak.zsh-theme ~/.oh-my-zsh/themes
 
 #Auto-install plugins
 # TODO: If needing to auto install more plugins refactor this to a method
@@ -69,9 +67,14 @@ PYENV_PATH="$HOME/.pyenv/bin"
 [ -d "$PYENV_PATH" ] && inject_path $PYENV_PATH
 eval "$(pyenv init --path)"
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+# nvm and __nvm are functions defined by the main and completion scripts.
+if (( ! $+functions[nvm] )); then
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
+fi
+if (( $+functions[nvm] && ! $+functions[__nvm] )); then
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+fi
 
 PIPX_PATH="$HOME/.local/bin"
 [ -d "$PIPX_PATH" ] && inject_path $PIPX_PATH

@@ -9,11 +9,9 @@ targets:
   - claude
 dependencies:
   apm:
-    - git: neozenith/agentic-dotfiles#7406e2151c63973db5e9be0ab2b4edcdc581ceef
-      skills:
-        - gooddocs
-        - librarian
-        - richdocs
+    - git: jpeakai/skills/skills/gooddocs#619fecba29f2ec9534c2d45e3846f15a5e320e13
+    - git: jpeakai/skills/skills/librarian#619fecba29f2ec9534c2d45e3846f15a5e320e13
+    - git: jpeakai/skills/skills/richdocs#619fecba29f2ec9534c2d45e3846f15a5e320e13
   mcp: []
 includes: auto
 scripts: {}

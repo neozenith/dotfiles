@@ -3,12 +3,12 @@ package prompt
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
-	"sync"
 
 	_ "modernc.org/sqlite"
 )
@@ -57,21 +57,24 @@ type GCloud struct {
 func (GCloud) Name() string { return "gcloud" }
 
 func (g GCloud) Render(ctx context.Context) string {
-	values := make([]string, 3)
-	formats := []string{"value(config.paths.global_config_dir)", "value(config.account)", "value(config.project)"}
-	var wg sync.WaitGroup
-	for i, format := range formats {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			values[i] = g.Runner.Run(ctx, "gcloud", "info", "--format="+format)
-		}()
+	infoJSON := runWithSpan(ctx, g.Runner, "fetch gcloud info", "gcloud", "info", "--format=json(config.paths.global_config_dir,config.account,config.project)")
+	var info struct {
+		Config struct {
+			Paths struct {
+				GlobalConfigDir string `json:"global_config_dir"`
+			} `json:"paths"`
+			Account string `json:"account"`
+			Project string `json:"project"`
+		} `json:"config"`
 	}
-	wg.Wait()
-	config, account, project := values[0], values[1], values[2]
+	_ = json.Unmarshal([]byte(infoJSON), &info)
+	config, account, project := info.Config.Paths.GlobalConfigDir, info.Config.Account, info.Config.Project
 	delta := ""
 	if g.Tokens != nil && account != "" {
-		delta, _ = g.Tokens.ExpiryDeltaSeconds(ctx, config+"/access_tokens.db", account)
+		delta = recordSpan(ctx, "read token expiry", func() string {
+			value, _ := g.Tokens.ExpiryDeltaSeconds(ctx, config+"/access_tokens.db", account)
+			return value
+		})
 	}
 
 	const (

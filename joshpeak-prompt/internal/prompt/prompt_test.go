@@ -5,6 +5,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -386,10 +387,12 @@ func TestGCloudPermutations(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
+			response := fmt.Sprintf(`{"config":{"paths":{"global_config_dir":%q},"account":%q,"project":%q}}`, test.config, test.account, test.project)
+			if test.name == "missing CLI" {
+				response = ""
+			}
 			runner := fakeRunner{lines: map[string]string{
-				commandKey("gcloud", "info", "--format=value(config.paths.global_config_dir)"): test.config,
-				commandKey("gcloud", "info", "--format=value(config.account)"):                 test.account,
-				commandKey("gcloud", "info", "--format=value(config.project)"):                 test.project,
+				commandKey("gcloud", "info", "--format=json(config.paths.global_config_dir,config.account,config.project)"): response,
 			}}
 			got := (GCloud{Runner: runner, Env: env(test.environment), Home: home, Tokens: fakeTokens{delta: test.delta, err: errors.New("ignored")}}).Render(context.Background())
 			if got != test.want {
@@ -399,6 +402,26 @@ func TestGCloudPermutations(t *testing.T) {
 	}
 	if (GCloud{}).Name() != "gcloud" || source("", "") != "" || humanDuration(60) != "1m" || humanDuration(86400) != "1d" {
 		t.Fatal("GCloud helpers mismatch")
+	}
+}
+
+func TestGCloudTimingSpans(t *testing.T) {
+	key := commandKey("gcloud", "info", "--format=json(config.paths.global_config_dir,config.account,config.project)")
+	runner := &concurrentRunner{lines: map[string]string{
+		key: `{"config":{"paths":{"global_config_dir":"/tmp/cloud"},"account":"a@example.com","project":"project"}}`,
+	}, calls: make(map[string]int)}
+	report := (Renderer{Sections: []Section{GCloud{Runner: runner, Env: env(nil), Tokens: fakeTokens{delta: "60"}}}}).Render(context.Background())
+	got := map[string]bool{}
+	for _, span := range report.Results[0].Spans {
+		got[span.Operation] = true
+	}
+	for _, operation := range []string{"fetch gcloud info", "read token expiry"} {
+		if !got[operation] {
+			t.Fatalf("missing %q in spans: %#v", operation, report.Results[0].Spans)
+		}
+	}
+	if len(got) != 2 || len(runner.calls) != 1 || runner.calls[key] != 1 {
+		t.Fatalf("unexpected spans: %#v", report.Results[0].Spans)
 	}
 }
 
@@ -472,6 +495,7 @@ func TestRunWithSpan(t *testing.T) {
 		time.Unix(0, int64(2*time.Millisecond)),
 		time.Unix(0, int64(4*time.Millisecond)),
 		time.Unix(0, int64(6*time.Millisecond)),
+		time.Unix(0, int64(7*time.Millisecond)),
 	}
 	index := 0
 	report := (Renderer{
@@ -550,6 +574,7 @@ func TestRendererRecordsRelativeStart(t *testing.T) {
 		time.Unix(0, 0),
 		time.Unix(0, int64(5*time.Millisecond)),
 		time.Unix(0, int64(8*time.Millisecond)),
+		time.Unix(0, int64(10*time.Millisecond)),
 	}
 	index := 0
 	report := (Renderer{
@@ -592,6 +617,11 @@ func TestRendererComposeAndTimings(t *testing.T) {
 		t.Fatalf("timings = %q, want %q", got, want)
 	}
 	output.Reset()
+	FormatDetailedTimings(&output, Report{Results: results[:3], SharedSpans: []Span{{Operation: "common branch", StartOffset: 500 * time.Microsecond, Duration: 500 * time.Microsecond}}})
+	if got := output.String(); !strings.Contains(got, "shared git pre-step\nOperation") || !strings.Contains(got, "git steps\nOperation") || !strings.Contains(got, "detect branch") {
+		t.Fatalf("detailed timings = %q", got)
+	}
+	output.Reset()
 	FormatMermaidTimings(&output, results[:3])
 	wantMermaid := "```mermaid\ngantt\n    title joshpeak-prompt timing trace\n    dateFormat x\n    axisFormat %S.%L\n    tickInterval 1millisecond\n    section Prompt sections\n    git          :0, 2ms\n    gh           :0, 1ms\n    kubernetes   :0, 1ms\n```\n"
 	if got := output.String(); got != wantMermaid {
@@ -608,6 +638,20 @@ func TestRendererComposeAndTimings(t *testing.T) {
 	}
 	if len(DefaultSections(fakeRunner{}, os.Getenv, "/tmp", fakeTokens{})) != 6 {
 		t.Fatal("default sections mismatch")
+	}
+}
+
+func TestComposeSelectedWithInlineTimings(t *testing.T) {
+	report := Report{Results: []Result{
+		{Name: "git", Output: "G", Duration: 2 * time.Millisecond},
+		{Name: "gh", Output: "H", Duration: time.Millisecond},
+		{Name: "kubernetes", Output: "K", Duration: 3 * time.Millisecond},
+	}, TotalDuration: 4 * time.Millisecond}
+	if got, want := ComposeSelected(report, true), "G [git 2.0ms] H [gh 1.0ms] K [kubernetes 3.0ms] [total 4.0ms]"; got != want {
+		t.Fatalf("inline timings = %q, want %q", got, want)
+	}
+	if got, want := ComposeSelected(report, false), "GH K"; got != want {
+		t.Fatalf("selected prompt = %q, want %q", got, want)
 	}
 }
 

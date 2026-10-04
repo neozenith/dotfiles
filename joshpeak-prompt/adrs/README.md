@@ -33,3 +33,5 @@ Each accepted decision remains immutable and is replaced only by an indexed supe
 | [0012](0012-mark-binary-owned-prompt-rollups.md) | Mark binary-owned prompt rollups | Accepted | 2026-08-14 |
 | [0013](0013-adopt-the-binary-in-the-zsh-theme.md) | Adopt the binary in the zsh theme | Accepted | 2026-08-14 |
 | [0014](0014-support-linux-and-commit-per-architecture-binaries.md) | Support Linux and commit per-architecture binaries | Accepted | 2026-08-15 |
+| [0015](0015-fetch-gcloud-info-once.md) | Fetch gcloud prompt fields in one CLI call | Accepted | 2026-10-04 |
+| [0016](0016-control-prompt-sections-and-inline-timings.md) | Control prompt sections and inline timings | Accepted | 2026-10-04 |

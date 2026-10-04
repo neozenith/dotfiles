@@ -2,8 +2,7 @@
 
 `joshpeak-prompt` replaces the `zsh/scripts/function_parse_*.sh` prompt
 helpers with one Go executable. It renders each section concurrently, preserves
-the legacy output bytes, and reports optional timings separately from prompt
-output.
+the legacy output bytes by default, and reports optional timings.
 
 ```mermaid
 flowchart LR
@@ -54,6 +53,27 @@ The durations depend on local tools, repositories, credentials, and network
 latency. Each start is relative to that render invocation. `prompt --timings`
 writes prompt text to stdout and timings to stderr.
 
+Set `JOSHPEAK_PROMPT__DEBUG_TIMINGS=1` to append a readable duration after
+each enabled section and a total wall duration at the end of the prompt.
+Unset the variable to restore the original prompt on the next invocation.
+These annotations are part of the prompt output, so use the flag only while
+debugging.
+
+Disable a section with `JOSHPEAK_PROMPT__DISABLE_GCLOUD=1` or
+`--disable-gcloud`. The six names are `git`, `gh`, `kubernetes`, `python`,
+`aws`, and `gcloud`. The environment and CLI controls combine, and disabled
+sections never run. Every disable variable uses the uppercase section name and
+the literal value `1`. Flags can follow the command or precede it. For
+example, `bin/joshpeak-prompt timings --detail --disable-gcloud` measures the
+remaining sections. Set all six disable variables to `1` to start with an
+empty rollup, then unset one at a time. See [ADR 0016](adrs/0016-control-prompt-sections-and-inline-timings.md).
+
+Use `timings --detail` for precise child spans.
+The gcloud section runs one `gcloud info` command with a projected JSON result.
+Go decodes the config directory, account, and project from that result.
+If an account exists, the section then reads token expiry from a local database.
+The detailed trace shows the CLI duration and local token read separately.
+
 Write a fenced detailed trace to the project-local temporary tree:
 
 ```console
@@ -61,7 +81,7 @@ $ mkdir -p tmp/timings
 $ bin/joshpeak-prompt timings --mermaid --detail > tmp/timings/prompt.md
 ```
 
-The detailed trace groups each prompt section's total with its recorded child
+The Mermaid detailed trace groups each prompt section's total with its recorded child
 spans. Its `shared git pre-step` lane records the one repository snapshot used
 by both Git and GitHub, including branch, worktree, origin, and credential
 probes. The Git and GitHub lanes contain only their remaining section-specific

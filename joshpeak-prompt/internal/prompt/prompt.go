@@ -35,8 +35,9 @@ type Result struct {
 }
 
 type Report struct {
-	Results     []Result
-	SharedSpans []Span
+	Results       []Result
+	SharedSpans   []Span
+	TotalDuration time.Duration
 }
 
 type Renderer struct {
@@ -74,7 +75,7 @@ func (r Renderer) Render(ctx context.Context) Report {
 		}()
 	}
 	wg.Wait()
-	return Report{Results: results, SharedSpans: shared.recorder.snapshot()}
+	return Report{Results: results, SharedSpans: shared.recorder.snapshot(), TotalDuration: now().Sub(invocationStart)}
 }
 
 func DefaultSections(runner Runner, env func(string) string, home string, tokens TokenReader) []Section {
@@ -97,6 +98,29 @@ func Compose(results []Result) string {
 		values["python"] + " " + values["aws"] + " " + values["gcloud"]
 }
 
+// ComposeSelected writes only rendered sections, with optional inline timing labels.
+func ComposeSelected(report Report, debugTimings bool) string {
+	var output strings.Builder
+	previous := false
+	for _, result := range report.Results {
+		if previous && (result.Name != "gh" || debugTimings) {
+			output.WriteByte(' ')
+		}
+		output.WriteString(result.Output)
+		if debugTimings {
+			fmt.Fprintf(&output, " [%s %s]", result.Name, formatDuration(result.Duration))
+		}
+		previous = true
+	}
+	if debugTimings {
+		if previous {
+			output.WriteByte(' ')
+		}
+		fmt.Fprintf(&output, "[total %s]", formatDuration(report.TotalDuration))
+	}
+	return output.String()
+}
+
 func FormatTimings(w io.Writer, results []Result) {
 	ordered := append([]Result(nil), results...)
 	sort.SliceStable(ordered, func(i, j int) bool {
@@ -105,6 +129,28 @@ func FormatTimings(w io.Writer, results []Result) {
 	fmt.Fprintln(w, "Module       Start       Duration")
 	for _, result := range ordered {
 		fmt.Fprintf(w, "%-12s +%-10s %s\n", result.Name, formatDuration(result.StartOffset), formatDuration(result.Duration))
+	}
+}
+
+func FormatDetailedTimings(w io.Writer, report Report) {
+	FormatTimings(w, report.Results)
+	if len(report.SharedSpans) > 0 {
+		fmt.Fprintln(w, "\nshared git pre-step")
+		formatTimingSpans(w, report.SharedSpans)
+	}
+	for _, result := range report.Results {
+		if len(result.Spans) == 0 {
+			continue
+		}
+		fmt.Fprintf(w, "\n%s steps\n", result.Name)
+		formatTimingSpans(w, result.Spans)
+	}
+}
+
+func formatTimingSpans(w io.Writer, spans []Span) {
+	fmt.Fprintln(w, "Operation                    Start       Duration")
+	for _, span := range spans {
+		fmt.Fprintf(w, "%-28s +%-10s %s\n", span.Operation, formatDuration(span.StartOffset), formatDuration(span.Duration))
 	}
 }
 

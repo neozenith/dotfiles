@@ -28,7 +28,7 @@ diagram. Invoke `mermaidjs_diagrams` for diagram work and pass its complexity
 and WCAG contrast gates. Do not apply this rule to APM-installed skill content.
 
 The [apm.yml](apm.yml) manifest installs these skills from the canonical
-`neozenith/agentic-dotfiles` source and records the selected skill subset.
+`jpeakai/skills` source and records the selected skill subset.
 
 ## Check project memory first
 
