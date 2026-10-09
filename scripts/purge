@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+uv cache clean --force
+brew cleanup --prune=all
+npx playwright uninstall --all
+
+# ~/Library/pnpm/ content store
+pnpm store prune -y
+# ~/Library/Caches/pnpm/ is metadata
+pnpm cache delete '*'
