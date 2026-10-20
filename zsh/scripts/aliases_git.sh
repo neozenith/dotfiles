@@ -61,6 +61,7 @@
   # (G)it Pu(L)
   alias gl="git pull -v"
   alias gL="git pull -v --all"
+  alias cL="git -C .claude pull -v --all"
 
 ###############################################################################
   # (G)it (R)ebase
@@ -78,6 +79,7 @@
   # (G)it (F)etch
   alias gf="git fetch --prune --all; git fetch --tags --prune --all"
   alias gF="git fetch --prune --all; git fetch --tags --prune --all --force"
+  alias cF="git -C .claude fetch --prune --all; git -C .claude fetch --tags --prune --all --force"
   
 ###############################################################################
   # (G)it (T)ree see gitconfig for full details of git tree alias

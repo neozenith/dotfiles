@@ -18,15 +18,20 @@ alias awswho="aws sts get-caller-identity | jq .Arn"
 alias pew="uv init --vcs git --build-backend uv"
 
 # AI-SDLC-ish
-# cd into a .claude repo and hardcode the git config to me despite any conditional configs
 
-alias aicc="git -C .claude config --local user.name neozenith && git -C .claude config --local user.email joshpeak05@gmail.com"
-
-alias ainz="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
-alias aic="git clone https://github.com/jpeakai/skills/ .claude"
-
+## APM
 alias apmjpai="apm install jpeakai/skills/plugins/jpai-essentials" #  --target claude,codex
 alias apmce="apm install EveryInc/compound-engineering-plugin" #  --target claude,codex
+
+# cd into a .claude repo and hardcode the git config to me despite any conditional configs
+alias aicc="git -C .claude config --local user.name neozenith && git -C .claude config --local user.email joshpeak05@gmail.com"
+
+### Legacy Skills Library
+alias ainz="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
+
+### New Skills Library
+alias aic="git clone https://github.com/jpeakai/skills/ .claude"
+alias aicm="make -C .claude codex-setup"
 
 alias aipi="claude plugin marketplace add jpeakai/skills; claude plugin install jpai-essentials@jpeakai; codex plugin marketplace add jpeakai/skills; codex plugin add jpai-essentials@jpeakai"
 alias aipu="claude plugin marketplace update jpeakai; claude plugin update jpai-essentials@jpeakai; codex plugin marketplace upgrade jpeakai; codex plugin add jpai-essentials@jpeakai"
