@@ -9,7 +9,13 @@ alias cdv="cd ~/work/v2-platform"
 alias cdd="cd ~/dotfiles"
 alias cdf="cd ~/foss"
 
+# Keep laptop awake
 alias cafe="caffeinate -dimsu -t 3600"
+
+# GH CLI
+## Export environment variable for a shell session to act as a specific user. 
+## Useful when acting as multiple github users on the same host and keeping them isolated at the shell level
+alias gasme="export GH_TOKEN=\"$(gh auth token --user neozenith)\""
 
 alias awswho="aws sts get-caller-identity | jq .Arn"
 # alias awssso="aws sso login && eval \"$$(aws configure export-credentials --profile $$AWS_PROFILE --format env)\""
@@ -18,6 +24,8 @@ alias awswho="aws sts get-caller-identity | jq .Arn"
 alias pew="uv init --vcs git --build-backend uv"
 
 # AI-SDLC-ish
+
+
 
 ## APM
 alias apmjpai="apm install jpeakai/skills/plugins/jpai-essentials" #  --target claude,codex
