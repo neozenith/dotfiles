@@ -38,7 +38,7 @@ alias aicc="git -C .claude config --local user.name neozenith && git -C .claude 
 alias ainz="git clone https://github.com/neozenith/agentic-dotfiles/ .claude"
 
 ### New Skills Library
-alias aic="git clone https://github.com/jpeakai/skills/ .claude"
+alias aic="git clone https://github.com/jpeakai/skills/ .claude && make -C .claude codex-setup"
 alias aicm="make -C .claude codex-setup"
 
 alias aipi="claude plugin marketplace add jpeakai/skills; claude plugin install jpai-essentials@jpeakai; codex plugin marketplace add jpeakai/skills; codex plugin add jpai-essentials@jpeakai"
