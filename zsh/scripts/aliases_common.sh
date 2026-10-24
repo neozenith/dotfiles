@@ -15,7 +15,7 @@ alias cafe="caffeinate -dimsu -t 3600"
 # GH CLI
 ## Export environment variable for a shell session to act as a specific user. 
 ## Useful when acting as multiple github users on the same host and keeping them isolated at the shell level
-alias gasme="export GH_TOKEN=\"$(gh auth token --user neozenith)\""
+gasme() { local token; token="$(gh auth token --user neozenith)" || return; export GH_TOKEN="$token"; }
 
 alias awswho="aws sts get-caller-identity | jq .Arn"
 # alias awssso="aws sso login && eval \"$$(aws configure export-credentials --profile $$AWS_PROFILE --format env)\""
