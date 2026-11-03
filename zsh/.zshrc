@@ -1,5 +1,7 @@
 DOTFILE_DIR="$HOME/dotfiles"
 EXTRA_SCRIPTS="${DOTFILE_DIR}/zsh/scripts"
+export DISABLE_TELEMETRY=1
+export DO_NOT_TRACK=1
 scripts=(
   "function_path_tools.sh"
   "aliases_common.sh"
@@ -17,6 +19,7 @@ done
 # ran the installer, which prompts for sudo. Bootstrapping brew is a one-off — do it
 # by hand on a new machine rather than on every prompt.
 # [[ "$OSTYPE" == darwin* ]] && [ ! -d "/opt/homebrew/bin/" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 
 inject_path "/opt/homebrew/bin" 
 prepend_path "/opt/homebrew/opt/make/libexec/gnubin"
