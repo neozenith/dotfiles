@@ -1,8 +1,9 @@
 #!/bin/sh
-# Strip Claude co-author trailers and "Generated with Claude Code" lines.
+# Strip Claude co-author trailers, "Generated with Claude Code" lines,
+# Claude-Session trailers and any line containing a claude.ai session URL.
 msg="$1"
-# $(...) also drops the trailing blank lines left behind.
-cleaned="$(grep -viE '^[[:space:]]*co-authored-by:.*(claude|noreply@anthropic\.com)|generated with \[?claude code' "$msg")"
+# cat -s collapses blank-line runs left behind; $(...) drops trailing blank lines.
+cleaned="$(grep -viE '^[[:space:]]*co-authored-by:.*(claude|noreply@anthropic\.com)|generated with \[?claude code|^[[:space:]]*claude-session:|claude\.ai/code/session' "$msg" | cat -s)"
 printf '%s\n' "$cleaned" > "$msg"
 # Chain to the repo-local commit-msg hook.
 local_hook="$(git rev-parse --git-common-dir)/hooks/commit-msg"
