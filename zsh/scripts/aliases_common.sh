@@ -29,7 +29,9 @@ alias pew="uv init --vcs git --build-backend uv"
 
 ## APM
 alias apmjpai="apm install jpeakai/skills/plugins/jpai-essentials" #  --target claude,codex
-alias apmce="apm install EveryInc/compound-engineering-plugin" #  --target claude,codex
+alias apmce="apm install EveryInc/compound-engineering-plugin --target claude" #  --target claude,codex
+alias apmceg="apm install -g EveryInc/compound-engineering-plugin --target codex"
+alias apmcegu="apm update -g"
 
 # cd into a .claude repo and hardcode the git config to me despite any conditional configs
 alias aicc="git -C .claude config --local user.name neozenith && git -C .claude config --local user.email joshpeak05@gmail.com"
