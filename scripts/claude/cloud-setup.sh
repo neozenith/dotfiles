@@ -6,7 +6,8 @@
 # environment. It runs as root, from the directory that holds the repository
 # checkouts, before Claude starts.
 #
-# Environment variables (set on the cloud environment):
+# Environment variables. The setup script cannot read the environment's saved
+# variables, so the stub exports these before running this file:
 #   CCW_GIT_NAME              Commit author name for every checked-out repo.
 #   CCW_GIT_EMAIL             Commit author email for every checked-out repo.
 #   CLAUDECLOUDWORKER_ROLE_ARN  IAM role assumed by the "ccw" AWS profile.
