@@ -10,7 +10,7 @@ alias cdd="cd ~/dotfiles"
 alias cdf="cd ~/foss"
 
 # Keep laptop awake
-alias cafe="caffeinate -dimsu -t 3600"
+alias cafe="caffeinate -dimsu -t 36000"
 
 # GH CLI
 ## Export environment variable for a shell session to act as a specific user. 
@@ -60,6 +60,7 @@ alias ccn="claude --permission-mode auto --name"
 #Codex
 alias coa="codex --approve-for-me --model 'gpt-6-luna' -c model_reasoning_effort=xhigh"
 alias coas="codex --approve-for-me --model 'gpt-6.1-sol'"
+alias coat="codex --approve-for-me --model 'gpt-6.1-terra'"
 alias coml="codex mcp login"
 
 # Custom Tools
